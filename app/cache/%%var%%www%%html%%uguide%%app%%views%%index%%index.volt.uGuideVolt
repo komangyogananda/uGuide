@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+    <style>
+    
+            body{
+                margin: 0;
+                background-image: url('src/beach.jpg') !important;
+                background-size: cover !important;
+            }
+            .border{
+                border: 2px solid black;
+            }
+            .customBox{
+                position: absolute;
+                width: 100%;
+                top: 50%;
+                transform: translate(0% , -50%);
+                color:white;
+            }
+        
+    </style>
+</head>
+<body>
+    
+    <div class="ui two column centered grid customBox">
+        <div class="ui column middle aligned">
+                <h2 class="ui center aligned icon header">
+                    LOGO
+                    <div class="content">
+                        uGuide
+                        <div class="sub header">Subheader</div>
+                    </div>
+                </h2>
+        </div>
+        <div class="ui three column row stackable center aligned grid">
+            <div class="ui vertical divider">Atau</div>
+            <div class="middle aligned row">
+                <div class="column">
+                    <div class="column">
+                        <div class="ui icon header">
+                            <i class="user circle icon"></i>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="ui primary button">
+                            Tourist
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                        <div class="column">
+                            <div class="ui icon header">
+                                <i class="blind icon"></i>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="ui primary button">
+                                Guide
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    
+    <script
+    src="https://code.jquery.com/jquery-3.1.1.min.js"
+    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+    <script src="semantic/dist/semantic.min.js"></script>
+</body>
+</html>
