@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" type="text/css" href="<?= $this->url->get('semantic/dist/semantic.min.css') ?>">
+<link href="<?= $this->url->get('css/style.css') ?>" rel="stylesheet">
+<script src="<?= $this->url->get('js/scripts.js') ?>"></script>
+        <title> Welcome - Tour Guide  - uGuide</title>
+    </head>
+
+    <body>
+
+        
+
+<div class="ui two column centered grid customBox">
+    <?= $this->tag->form(['class' => 'ui form segment']) ?>
+
+        <h2 class="ui header">Guide Information</h2>
+
+        <?= $form->render('tipe', ['value' => 'guide']) ?>
+
+        <div class="field">
+            <label>Name</label>
+            <div class="two fields">
+            <div class="field">
+                <label>First Name</label>
+                <?= $form->render('firstName') ?>
+            </div>
+            <div class="field">
+                <label>Last Name</label>
+                <?= $form->render('lastName') ?>
+            </div>
+            </div>
+        </div>
+
+        <div class="field">
+            <label>Email</label>
+            <input type="email" name="email" placeholder="Email">
+        </div>
+        
+        <div class="field">
+            <label>Password</label>
+            <div class="two fields">
+                <div class="field">
+                    <?= $form->render('password') ?>
+                </div>
+                <div class="field">
+                    <?= $form->render('confpassword') ?>
+                </div>
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="two fields">
+                <div class="field">
+                    <label>Phone number</label>
+                    <?= $form->render('telephone') ?>
+                </div>
+                <div class="field">
+                    <label>Gender</label>
+                    <?= $form->render('gender') ?>
+                </div>
+            </div>
+        </div>
+
+        <div class="field">
+            <label>Location</label>
+
+            <div class="field">
+                <?= $form->render('location', ['class' => 'ui fluid search dropdown']) ?>
+            </div>
+        </div>
+
+        <div class="field">
+            <label>Profile Picture</label>
+            <?= $form->render('picture') ?>
+        </div>
+
+        <?= $form->render('go', ['class' => 'ui button']) ?>
+
+    </form>
+</div>
+
+
+
+        <script
+src=<?= $this->url->get('https://code.jquery.com/jquery-3.1.1.min.js') ?>
+integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+crossorigin="anonymous"></script>
+<script src="<?= $this->url->get('semantic/dist/semantic.min.js') ?>"></script>
+    </body>
+
+</html>

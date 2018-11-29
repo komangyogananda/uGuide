@@ -1,0 +1,15 @@
+body{
+    margin: 0;
+    background-image: url('../src/beach.jpg') !important;
+    background-size: cover !important;
+}
+.border{
+    border: 2px solid black;
+}
+.customBox{
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    transform: translate(0% , -50%);
+    color:white;
+}
