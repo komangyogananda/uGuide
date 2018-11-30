@@ -81,6 +81,10 @@
 
         <?= $form->render('go', ['class' => 'ui button']) ?>
 
+        <div class='ui column'>
+            <?= $this->tag->linkTo(['login/guide', 'Have an account ? Login Here']) ?>
+        </div>
+
     </form>
 </div>
 

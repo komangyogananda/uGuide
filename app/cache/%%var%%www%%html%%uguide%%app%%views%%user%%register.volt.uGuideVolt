@@ -8,7 +8,7 @@
 <link rel="stylesheet" type="text/css" href="<?= $this->url->get('semantic/dist/semantic.min.css') ?>">
 <link href="<?= $this->url->get('css/style.css') ?>" rel="stylesheet">
 <script src="<?= $this->url->get('js/scripts.js') ?>"></script>
-        <title> Hello  - uGuide</title>
+        <title> Welcome - <?php if ($tipe == 'tourist') { ?>Tourist<?php } else { ?>Tour Guide<?php } ?> - uGuide</title>
     </head>
 
     <body>
@@ -16,48 +16,105 @@
         
 
 <div class="ui two column centered grid customBox">
-    <div class="column middle aligned">
-            <h2 class="center aligned icon header">
-                LOGO
-                <div class="content">
-                    uGuide
-                    <div class="sub header">Subheader</div>
-                </div>
-            </h2>
-    </div>
-    <div class="ui three column row stackable center aligned grid">
-        <div class="ui vertical divider">Atau</div>
-        <div class="middle aligned row">
+    <?= $this->tag->form(['class' => 'ui form segment']) ?>
+
+        <?php if ($tipe == 'tourist') { ?>
             <div class="column">
-                <div class="column">
-                    <div class="ui icon header">
-                        <i class="user circle icon"></i>
-                    </div>
-                </div>
-                <div class="column">
-                    <a href=<?= $this->url->get('tourist') ?>>
-                        <div class="ui primary button">
-                            Guide
-                        </div>
-                    </a>
+                <div class="ui icon header">
+                    <i class="user circle icon"></i>
                 </div>
             </div>
+            <h2 class="ui header">Tourist Information</h2>
+        <?php } else { ?>
             <div class="column">
-                    <div class="column">
-                        <div class="ui icon header">
-                            <i class="blind icon"></i>
-                        </div>
-                    </div>
-                    <div class="column">
-                        <a href=<?= $this->url->get('guide') ?>>
-                            <div class="ui primary button">
-                                Guide
-                            </div>
-                        </a>
-                    </div>
+                <div class="ui icon header">
+                    <i class="blind icon"></i>
                 </div>
+            </div>
+            <h2 class="ui header">Guide Information</h2>
+        <?php } ?>
+
+        <?php if ($tipe == 'tourist') { ?>
+            <?= $form->render('tipe', ['value' => 'tourist']) ?>
+        <?php } else { ?>
+            <?= $form->render('tipe', ['value' => 'guide']) ?>
+        <?php } ?>
+
+        <div class="field">
+            <label>Name</label>
+            <div class="two fields">
+            <div class="field">
+                <label>First Name</label>
+                <?= $form->render('firstName') ?>
+            </div>
+            <div class="field">
+                <label>Last Name</label>
+                <?= $form->render('lastName') ?>
+            </div>
+            </div>
         </div>
-    </div>
+
+        <?php if ($tipe == 'tourist') { ?>
+            <div class="field">
+            <label>Username</label>
+                <?= $form->render('username') ?>
+            </div>
+        <?php } ?>
+
+        <div class="field">
+            <label>Email</label>
+            <input type="email" name="email" placeholder="Email">
+        </div>
+        
+        <div class="field">
+            <label>Password</label>
+            <div class="two fields">
+                <div class="field">
+                    <?= $form->render('password') ?>
+                </div>
+                <div class="field">
+                    <?= $form->render('confpassword') ?>
+                </div>
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="two fields">
+                <div class="field">
+                    <label>Phone number</label>
+                    <?= $form->render('telephone') ?>
+                </div>
+                <div class="field">
+                    <label>Gender</label>
+                    <?= $form->render('gender') ?>
+                </div>
+            </div>
+        </div>
+
+        <div class="field">
+            <label>Location</label>
+
+            <div class="field">
+                <?= $form->render('location', ['class' => 'ui fluid search dropdown']) ?>
+            </div>
+        </div>
+
+        <div class="field">
+            <label>Profile Picture</label>
+            <?= $form->render('picture') ?>
+        </div>
+
+        <?= $form->render('go', ['class' => 'ui button']) ?>
+        
+        <div class ='ui column'>
+            <?php if ($tipe == 'tourist') { ?>
+                <?= $this->tag->linkTo(['login/tourist', 'Have an account ? Login Here']) ?>
+            <?php } else { ?>
+                <?= $this->tag->linkTo(['login/guide', 'Have an account ? Login Here']) ?>
+            <?php } ?>
+        </div>
+
+    </form>
 </div>
 
 

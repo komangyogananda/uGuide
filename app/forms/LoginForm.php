@@ -10,7 +10,7 @@ use Phalcon\Forms\Element\Email;
 use Phalcon\Forms\Element\Submit;
 use Phalcon\Forms\Element\Select;
 
-class SignUpForm extends Form{
+class LoginForm extends Form{
     public function initialize(){
 
         $this->add(

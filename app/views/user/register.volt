@@ -1,15 +1,33 @@
 {% extends 'layouts/base.volt' %}
 
-{% block title %} Welcome - Tourist {% endblock %}
+{% block title %} Welcome - {% if tipe == 'tourist' %}Tourist{% else %}Tour Guide{% endif %}{% endblock %}
 
 {% block content %}
 
 <div class="ui two column centered grid customBox">
     {{ form('class' : 'ui form segment') }}
 
-        <h2 class="ui header">Tourist Information</h2>
+        {% if tipe == 'tourist' %}
+            <div class="column">
+                <div class="ui icon header">
+                    <i class="user circle icon"></i>
+                </div>
+            </div>
+            <h2 class="ui header">Tourist Information</h2>
+        {% else %}
+            <div class="column">
+                <div class="ui icon header">
+                    <i class="blind icon"></i>
+                </div>
+            </div>
+            <h2 class="ui header">Guide Information</h2>
+        {% endif %}
 
-        {{ form.render('tipe', ['value': 'guide']) }}
+        {% if tipe == 'tourist' %}
+            {{ form.render('tipe', ['value': 'tourist']) }}
+        {% else %}
+            {{ form.render('tipe', ['value': 'guide']) }}
+        {% endif %}
 
         <div class="field">
             <label>Name</label>
@@ -25,14 +43,16 @@
             </div>
         </div>
 
-        <div class="field">
+        {% if tipe == 'tourist' %}
+            <div class="field">
             <label>Username</label>
-            {{ form.render('username') }}
-        </div>
+                {{ form.render('username') }}
+            </div>
+        {% endif %}
 
         <div class="field">
             <label>Email</label>
-            {{ form.render('email') }}
+            <input type="email" name="email" placeholder="Email">
         </div>
         
         <div class="field">
@@ -74,6 +94,14 @@
         </div>
 
         {{ form.render('go', ['class' : 'ui button']) }}
+        
+        <div class ='ui column'>
+            {% if tipe == 'tourist' %}
+                {{ link_to('login/tourist', 'Have an account ? Login Here') }}
+            {% else %}
+                {{ link_to('login/guide', 'Have an account ? Login Here') }}
+            {% endif %}
+        </div>
 
     </form>
 </div>

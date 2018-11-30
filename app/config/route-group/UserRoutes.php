@@ -11,16 +11,35 @@ class UserRoutes extends RouterGroup{
         $this->addGet(
             '/tourist',
             [
-                'action' => 'registerTourist',
+                'action' => 'register',
+                'tipe' => 'tourist',
             ]
         );
 
         $this->addGet(
             '/guide',
             [
-                'action' => 'registerGuide',
+                'action' => 'register',
+                'tipe' => 'guide',
             ]
         );
+
+        $this->addGet(
+            '/login/tourist',
+            [
+                'action' => 'login',
+                'tipe' => 'tourist',
+            ]
+        );
+
+        $this->addGet(
+            '/login/guide',
+            [
+                'action' => 'login',
+                'tipe' => 'guide',
+            ]
+        );
+
 
         return $this;
     }

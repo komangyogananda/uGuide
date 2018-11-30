@@ -4,20 +4,19 @@
     use Phalcon\Http\Response;
 
     class UserController extends Controller{
-        public function registerTouristAction(){
+        public function registerAction(){
             $form = new SignUpForm();
 
+            $tipe = $this->dispatcher->getParam('tipe');
+            $this->view->tipe = $tipe;
             $this->view->form = $form;
         }
-        public function registerGuideAction(){
-            $form = new SignUpForm();
+        public function loginAction(){
+            $form = new LoginForm();
 
             $this->view->form = $form;
-        }
-        public function signUpAction(){
-            $form = new SignUpForm();
-
-            $this->view->form = $form;
+            $tipe = $this->dispatcher->getParam('tipe');
+            $this->view->tipe = $tipe;
         }
     }
 

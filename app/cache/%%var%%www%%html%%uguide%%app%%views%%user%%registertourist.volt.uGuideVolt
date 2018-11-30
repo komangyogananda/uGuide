@@ -86,6 +86,10 @@
 
         <?= $form->render('go', ['class' => 'ui button']) ?>
 
+        <div>
+            <?= $this->tag->linkTo(['login/tourist', 'Have an account ? Login Here']) ?>
+        </div>
+
     </form>
 </div>
 
