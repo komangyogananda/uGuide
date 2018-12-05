@@ -1,5 +1,4 @@
 body{
-    margin: 0;
     background-image: url('../src/beach.jpg') !important;
     background-size: cover !important;
 }
@@ -7,9 +6,12 @@ body{
     border: 2px solid black;
 }
 .customBox{
+
+	background-color: rgba(0,0,0,.3);
     position: absolute;
     width: 100%;
     top: 50%;
+    margin-left: 0px !important;
     transform: translate(0% , -50%);
     color:white;
 }

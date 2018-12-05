@@ -1,0 +1,25 @@
+a:5:{i:0;s:455:"<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" type="text/css" href="<?= $this->url->get('semantic/dist/semantic.min.css') ?>">
+<link href="<?= $this->url->get('css/style.css') ?>" rel="stylesheet">
+<script src="<?= $this->url->get('js/scripts.js') ?>"></script>
+        <title>";s:5:"title";N;i:1;s:56:" - uGuide</title>
+    </head>
+
+    <body>
+
+        ";s:7:"content";a:1:{i:0;a:4:{s:4:"type";i:357;s:5:"value";s:1:" ";s:4:"file";s:51:"D:\xampp\htdocs\uGuide/app/views/\layouts/base.volt";s:4:"line";i:11;}}i:2;s:299:"
+
+        <script
+src=<?= $this->url->get('https://code.jquery.com/jquery-3.1.1.min.js') ?>
+integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+crossorigin="anonymous"></script>
+<script src="<?= $this->url->get('semantic/dist/semantic.min.js') ?>"></script>
+    </body>
+
+</html>";}
