@@ -5,6 +5,11 @@ body{
 .border{
     border: 2px solid black;
 }
+
+.grid{
+    
+}
+
 .customBox{
 
 	background-color: rgba(0,0,0,.3);
@@ -12,6 +17,7 @@ body{
     width: 100%;
     top: 50%;
     margin-left: 0px !important;
+    margin-top: 0px !important;
     transform: translate(0% , -50%);
     color:white;
 }

@@ -7,7 +7,7 @@
 <div class="ui two column centered grid customBox">
     <div class="column middle aligned">
             <h2 class="center aligned icon header">
-                <img src="src/smallLogo.png" height="20%" width="20%">
+                <img src="{{ url('src/smallLogo.png') }}" height="20%" width="20%">
                 <div class="content">
                     uGuide
                     <div class="sub header">Tersesat? Traveloka aja!</div>

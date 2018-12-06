@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title> Welcome - <?php if ($tipe == 'tourist') { ?>Tourist<?php } else { ?>Tour Guide<?php } ?> - uGuide</title>
+        <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" type="text/css" href="<?= $this->url->get('semantic/dist/semantic.min.css') ?>">
+<link href="<?= $this->url->get('css/style.css') ?>" rel="stylesheet">
+<script src="<?= $this->url->get('js/jquery-3.3.1.min.js') ?>"></script>
+<script src="<?= $this->url->get('semantic/dist/semantic.min.js') ?>"></script>
+    </head>
+
+    <body>
+
+        
+
+    <div class="ui centered grid">
+        <div class="left aligned column">
+            <div class="ui compact menu sidebarToggle">
+                <a class="active item">
+                    <i class="bars icon"></i>
+                </a>
+            </div>        
+        </div>
+        <div class="centered aligned column">
+            <img class="ui fluid image" src="<?= $this->url->get('src/bigLogo.png') ?>">
+        </div>
+        <div class="right aligned column">
+            <div class="ui compact menu">
+                <a class="item">
+                    <i class="arrow alternate circle right icon"></i>
+                    Logout
+                </a>
+            </div> 
+        </div>
+    </div>
+
+
+    <div id="sidebarMenu" class="ui left vertical inverted sidebar labeled icon menu">
+        <img class="image" src="<?= $this->url->get('src/smallLogo.png') ?>" width="10%" height="auto">
+        <a class="item">
+            <i class="home icon"></i>
+            Home
+        </a>
+        <a class="item">
+            <i class="history layout icon"></i>
+            History
+        </a>
+        <a class="item">
+            <i class="suitcase icon"></i>
+            Active
+        </a>
+        <a class="item">
+            <i class="user icon"></i>
+            Profile
+        </a>
+        <a class="bottom item sidebarToggle">
+            <i class="angle double left icon"></i>
+        </a>
+    </div>
+
+    <script>    
+        $(".sidebarToggle").on("click", function(){
+            $("#sidebarMenu").sidebar('toggle');
+        });
+    </script>
+
+
+
+    </body>
+
+</html>

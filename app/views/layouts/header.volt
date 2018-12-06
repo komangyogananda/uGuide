@@ -3,4 +3,5 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <link rel="stylesheet" type="text/css" href="{{ url('semantic/dist/semantic.min.css') }}">
 <link href="{{ url('css/style.css') }}" rel="stylesheet">
-<script src="{{ url('js/scripts.js')}}"></script>
+<script src="{{ url('js/jquery-3.3.1.min.js')}}"></script>
+<script src="{{ url('semantic/dist/semantic.min.js') }}"></script>

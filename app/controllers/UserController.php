@@ -18,6 +18,9 @@
             $tipe = $this->dispatcher->getParam('tipe');
             $this->view->tipe = $tipe;
         }
+        public function dashboardAction(){
+            
+        }
     }
 
 ?>

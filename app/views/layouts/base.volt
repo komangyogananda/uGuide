@@ -2,15 +2,14 @@
 <html>
 
     <head>
-        {% include 'layouts/header.volt' %}
         <title>{% block title %}{% endblock %} - uGuide</title>
+        {% include 'layouts/header.volt' %}
     </head>
 
     <body>
 
         {% block content %} {% endblock %}
 
-        {% include 'layouts/footer.volt' %}
     </body>
 
 </html>

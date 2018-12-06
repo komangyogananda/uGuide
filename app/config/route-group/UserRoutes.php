@@ -40,6 +40,22 @@ class UserRoutes extends RouterGroup{
             ]
         );
 
+        $this->addGet(
+            '/dashboard/tourist',
+            [
+                'action' => 'dashboard',
+                'tipe' => 'tourist',
+            ]
+        );
+
+        $this->addGet(
+            '/dashboard/guide',
+            [
+                'action' => 'dashboard',
+                'tipe' => 'guide',
+            ]
+        );
+
 
         return $this;
     }
