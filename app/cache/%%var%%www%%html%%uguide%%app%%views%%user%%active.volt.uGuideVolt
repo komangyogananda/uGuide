@@ -2,7 +2,7 @@
 <html>
 
     <head>
-        <title> Home - <?php if ($tipe == 'tourist') { ?>Tourist<?php } else { ?>Tour Guide<?php } ?> - uGuide</title>
+        <title> MyTrip - <?php if ($tipe == 'tourist') { ?>Tourist<?php } else { ?>Tour Guide<?php } ?> - uGuide</title>
         <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -22,8 +22,8 @@
             <i class="bars icon"></i>
         </a>
         <div class="item">
-            <i class="home icon"></i>
-            <span class="text">Home</span>
+            <i class="suitcase icon"></i>
+            <span class="text">MyTrip</span>
         </div>
         <div class="right menu">
             <div class="item">
@@ -35,20 +35,22 @@
         </div>
     </div>
 
-    <div class="ui two column centered grid">
-        <div class="ui grid two column row">
-            <div class="segment column middle aligned">
-                <div class="ui five top attached steps">
+    <div class="ui grid centered">
+        <div class="row">
+            <div class="eleven wide column center aligned">
+                <div class="ui five steps">
                     <div class="completed step">
                         <i class="bullhorn icon"></i>
                         <div class="content">
                             <div class="title">Get A Guide</div>
+                            <div class="description">Blablabla</div>
                         </div>
                     </div>
                     <div class="completed step">
                         <i class="payment icon"></i>
                         <div class="content">
                             <div class="title">Pay your guide services.</div>
+                            <div class="description">Blablabla</div>
                         </div>
                     </div>
                     <div class="active step">
@@ -56,22 +58,32 @@
                         </i>
                         <div class="content">
                             <div class="title">Contact with your guide.</div>
+                            <div class="description">Blablabla</div>
                         </div>
                     </div>
                     <div class="disabled step">
                         <i class="suitcase icon"></i>
                         <div class="content">
                             <div class="title">Trip Day!</div>
+                            <div class="description">Blablabla</div>
                         </div>
                     </div>
                     <div class="disabled step">
                         <i class="star icon"></i>
                         <div class="content">
                             <div class="title">FeedBack</div>
+                            <div class="description">Blablabla</div>
                         </div>
                     </div>
                 </div>
-                <div class="ui attached segment">
+            </div>
+        </div>
+    </div>
+
+    <div class="ui centered grid">
+        <div class="row">
+            <div class="eleven wide column center aligned">
+                <div class="ui segment column middle aligned">
                     <div class="ui row">
                         <div class="column center aligned">
                             <h1 class="ui header">
@@ -84,105 +96,78 @@
                             </h2>
                         </div>
                     </div>
-                    <div class="ui grid two column row">
-                        <div class="column middle aligned">
-                            <div class="ui card centered">
-                                <div class="image">
-                                    <img src="/images/avatar2/large/kristy.png">
-                                </div>
-                                <div class="content">
-                                    <a class="header">Novan</a>
-                                    <div class="meta">
-                                        <span class="location">Tangerang</span>
+                    <div class="ui grid">
+                        <div class="row">
+                            <div class="column middle aligned">
+                                <div class="ui card centered">
+                                    <div class="image">
+                                        <img src="/images/avatar2/large/kristy.png">
                                     </div>
-                                    <div class="ui star rating" data-rating="5"></div>
-                                    <div class="description">
-                                        Siap memandu anda kemanapun. Ahli dalam liburan bersama alam.
+                                    <div class="content">
+                                        <a class="header">Novan</a>
+                                        <div class="meta">
+                                            <span class="location">Tangerang</span>
+                                        </div>
+                                        <div class="ui star rating" data-rating="5"></div>
+                                        <div class="description">
+                                            Siap memandu anda kemanapun. Ahli dalam liburan bersama alam.
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="extra content">
-                                    <a>
-                                        <i class="icon">
-                                            <i class="fas fa-hiking"></i>
-                                        </i>
-                                        10 Activies
-                                    </a>
-                                    <div class="ui two buttons">
-                                        <div class="button">
-                                            <div class="ui basic green button">
-                                                <i class="phone icon"></i>
-                                                Call
+                                    <div class="extra content">
+                                        <a>
+                                            <i class="icon">
+                                                <i class="fas fa-hiking"></i>
+                                            </i>
+                                            10 Activies
+                                        </a>
+                                        <div class="ui two buttons">
+                                            <div class="button">
+                                                <div class="ui basic green button">
+                                                    <i class="phone icon"></i>
+                                                    Call
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="column">
-                            <h3 class="header">Activities</h3>
-                            <div class="ui grid">
-                                <div class="ui two column row">
-                                    <div class="column right floated">
-                                        <div class="ui message green">
-                                            <div class="header">
-                                                Tourist - Arrival
+                        <div class="row">
+                            <div class="column">
+                                <h3 class="header">Activities</h3>
+                                <div class="ui grid">
+                                    <div class="ui two column row">
+                                        <div class="column right floated">
+                                            <div class="ui message green">
+                                                <div class="header">
+                                                    Tourist - Arrival
+                                                </div>
+                                                <p>Kita dateng tanggal 20.</p>
                                             </div>
-                                            <p>Kita dateng tanggal 20.</p>
+                                        </div>
+                                    </div>
+                                    <div class="ui two column row">
+                                        <div class="column left floated">
+                                            <div class="ui message blue">
+                                                <div class="header">
+                                                    Guide - Response Arrival
+                                                </div>
+                                                <p>Saya tunggu di bandara.</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="ui two column row">
-                                    <div class="column left floated">
-                                        <div class="ui message blue">
-                                            <div class="header">
-                                                Guide - Response Arrival
-                                            </div>
-                                            <p>Saya tunggu di bandara.</p>
-                                        </div>
-                                    </div>
-                                </div>
+                                <button class="ui right floated button">
+                                    <i class="plus icon"></i>
+                                    Add New Message
+                                </button>
                             </div>
-                            <button class="ui right floated button">
-                                <i class="plus icon"></i>
-                                Add New Message
-                            </button>
-                    </div>
-                </div>
-            </div>
-            <button class="positive fluid ui button">Click here for details.</button>
-        </div>
-
-        <div class="row">
-            <div class="segment column middle aligned">
-                <div class="ui attached segment">
-                    <div class="column center aligned">
-                        <h1 class="ui header">
-                        Recent Trip
-                        </h 1>
-                        <h2 class="ui header">
-                            <i class="history layout icon"></i>
-                        </h2>
-                    </div>
-                </div>
-                <button class="positive fluid ui button">Click here for details.</button>
-            </div>
-        </div>
-
-        <div class="row">
-                <div class="segment column middle aligned">
-                    <div class="ui attached segment">
-                        <div class="column center aligned">
-                            <h1 class="ui header">
-                            News
-                            </h 1>
-                            <h2 class="ui header">
-                                <i class="newspaper icon"></i>
-                            </h2>
                         </div>
                     </div>
-                    <button class="positive fluid ui button">Click here for details.</button>
                 </div>
             </div>
+        </div>
+            
     </div>  
 
     <div id="sidebarMenu" class="ui left vertical inverted sidebar labeled icon menu">

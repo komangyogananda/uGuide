@@ -9,50 +9,42 @@ class UserRoutes extends RouterGroup{
         ]);
 
         $this->addGet(
-            '/tourist',
+            '/((tourist)|(guide))',
             [
                 'action' => 'register',
-                'tipe' => 'tourist',
+                'tipe' => 1,
             ]
         );
 
         $this->addGet(
-            '/guide',
+            '/((tourist)|(guide))/login',
             [
-                'action' => 'register',
-                'tipe' => 'guide',
-            ]
-        );
-
-        $this->addGet(
-            '/login/tourist',
-            [
+                'tipe' => 1,
                 'action' => 'login',
-                'tipe' => 'tourist',
             ]
         );
 
         $this->addGet(
-            '/login/guide',
+            '/((tourist)|(guide))/dashboard',
             [
-                'action' => 'login',
-                'tipe' => 'guide',
-            ]
-        );
-
-        $this->addGet(
-            '/dashboard/tourist',
-            [
+                'tipe' => 1,
                 'action' => 'dashboard',
-                'tipe' => 'tourist',
             ]
         );
 
         $this->addGet(
-            '/dashboard/guide',
+            '/((tourist)|(guide))/profile',
             [
-                'action' => 'dashboard',
-                'tipe' => 'guide',
+                'tipe' => 1,
+                'action' => 'profile',
+            ]
+        );
+
+        $this->addGet(
+            '/((tourist)|(guide))/active',
+            [
+                'tipe' => 1,
+                'action' => 'active',
             ]
         );
 

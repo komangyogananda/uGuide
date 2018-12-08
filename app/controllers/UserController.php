@@ -11,6 +11,7 @@
             $this->view->tipe = $tipe;
             $this->view->form = $form;
         }
+        
         public function loginAction(){
             $form = new LoginForm();
 
@@ -18,8 +19,24 @@
             $tipe = $this->dispatcher->getParam('tipe');
             $this->view->tipe = $tipe;
         }
+        
         public function dashboardAction(){
-            
+            $tipe = $this->dispatcher->getParam('tipe');
+            $this->view->tipe = $tipe;
+        }
+
+        public function profileAction(){
+
+            $form = new SignUpForm();
+            $this->view->form = $form;
+
+            $tipe = $this->dispatcher->getParam('tipe');
+            $this->view->tipe = $tipe;
+        }
+
+        public function activeAction(){
+            $tipe = $this->dispatcher->getParam('tipe');
+            $this->view->tipe = $tipe;
         }
     }
 
