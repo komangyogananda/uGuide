@@ -2,8 +2,18 @@ body{
     background-image: url('../src/beach.jpg') !important;
     background-size: cover !important;
 }
+
+body.pushable>.pusher{
+    background-image: url('../src/beach.jpg') !important;
+}
+
 .border{
     border: 2px solid black;
+}
+
+.card{
+    margin-top: 30px !important;
+    margin-bottom: 30px !important;
 }
 
 .customBox{
