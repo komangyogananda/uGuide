@@ -160,8 +160,8 @@
             <?php } ?>
         </a>
         
-        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/history') ?>" class="item">
-        <?php } else { ?> <a href="<?= $this->url->get('guide/history') ?>" class="item">
+        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/recent') ?>" class="item">
+        <?php } else { ?> <a href="<?= $this->url->get('guide/recent') ?>" class="item">
         <?php } ?>
             <i class="history layout icon"></i>
             Recent Trip

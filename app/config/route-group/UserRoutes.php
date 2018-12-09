@@ -48,6 +48,14 @@ class UserRoutes extends RouterGroup{
             ]
         );
 
+        $this->addGet(
+            '/((tourist)|(guide))/recent',
+            [
+                'tipe' => 1,
+                'action' => 'recent',
+            ]
+        );
+
 
         return $this;
     }

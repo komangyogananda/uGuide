@@ -21,8 +21,8 @@
             {% endif %}
         </a>
         
-        {% if tipe == 'tourist' %}<a href="{{url('tourist/history')}}" class="item">
-        {% else %} <a href="{{url('guide/history')}}" class="item">
+        {% if tipe == 'tourist' %}<a href="{{url('tourist/recent')}}" class="item">
+        {% else %} <a href="{{url('guide/recent')}}" class="item">
         {% endif %}
             <i class="history layout icon"></i>
             Recent Trip

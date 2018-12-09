@@ -35,6 +35,13 @@
         }
 
         public function activeAction(){
+
+            $tipe = $this->dispatcher->getParam('tipe');
+            $this->view->tipe = $tipe;
+        }
+
+        public function recentAction(){
+            
             $tipe = $this->dispatcher->getParam('tipe');
             $this->view->tipe = $tipe;
         }
