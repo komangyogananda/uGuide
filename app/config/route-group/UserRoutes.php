@@ -19,7 +19,7 @@ class UserRoutes extends RouterGroup{
         $this->addPost(
             '/((tourist)|(guide))',
             [
-                'action' => 'register',
+                'action' => 'store',
                 'tipe' => 1,
             ]
         );
