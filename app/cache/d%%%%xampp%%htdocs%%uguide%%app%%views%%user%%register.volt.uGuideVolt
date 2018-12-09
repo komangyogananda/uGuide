@@ -110,9 +110,9 @@
         
         <div class ='ui column'>
             <?php if ($tipe == 'tourist') { ?>
-                <?= $this->tag->linkTo(['login/tourist', 'Have an account ? Login Here']) ?>
+                <?= $this->tag->linkTo(['tourist/login', 'Have an account ? Login Here']) ?>
             <?php } else { ?>
-                <?= $this->tag->linkTo(['login/guide', 'Have an account ? Login Here']) ?>
+                <?= $this->tag->linkTo(['guide/login', 'Have an account ? Login Here']) ?>
             <?php } ?>
         </div>
 
