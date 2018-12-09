@@ -38,7 +38,7 @@
     <div class="ui grid centered">
         <div class="row">
             <div class="eleven wide column center aligned">
-                <div class="ui five steps">
+                <div class="ui tablet stackable five steps">
                     <div class="completed step">
                         <i class="bullhorn icon"></i>
                         <div class="content">
@@ -87,7 +87,7 @@
                     <div class="ui row">
                         <div class="column center aligned">
                             <h1 class="ui header">
-                            My Trip
+                            My Trip 
                             </h1>
                             <h2 class="ui header">
                                 <i class="icon">
@@ -136,8 +136,8 @@
                             <div class="column">
                                 <h3 class="header">Activities</h3>
                                 <div class="ui grid">
-                                    <div class="ui two column row">
-                                        <div class="column right floated">
+                                    <div class="row">
+                                        <div class="twelve wide column right floated">
                                             <div class="ui message green">
                                                 <div class="header">
                                                     Tourist - Arrival
@@ -146,8 +146,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="ui two column row">
-                                        <div class="column left floated">
+                                    <div class="row">
+                                        <div class="twelve wide column left floated">
                                             <div class="ui message blue">
                                                 <div class="header">
                                                     Guide - Response Arrival

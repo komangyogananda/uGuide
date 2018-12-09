@@ -97,9 +97,9 @@
         
         <div class ='ui column'>
             {% if tipe == 'tourist' %}
-                {{ link_to('login/tourist', 'Have an account ? Login Here') }}
+                {{ link_to('tourist/login', 'Have an account ? Login Here') }}
             {% else %}
-                {{ link_to('login/guide', 'Have an account ? Login Here') }}
+                {{ link_to('guide/login', 'Have an account ? Login Here') }}
             {% endif %}
         </div>
 

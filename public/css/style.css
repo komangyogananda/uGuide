@@ -23,8 +23,8 @@ body.pushable>.pusher{
     width: 100%;
     top: 50%;
     margin-left: 0px !important;
-    margin-top: 30px !important;
-    margin-bottom: 30px !important;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
     transform: translate(0% , -50%);
     color:white;
 }

@@ -23,7 +23,6 @@
     </div>
 
     <div class="ui two column centered grid">
-
         <div class="row">
             <div class="ui segment column middle aligned">
                 <div class="column center aligned">
@@ -38,6 +37,10 @@
                     <div class="two column row center aligned">
                         <div class="column center aligned">
                                 {{ form('class' : 'ui form segment') }}
+
+                                <div class="ui medium bordered image">
+                                    <img src="https://www.gettyimages.ca/gi-resources/images/Homepage/Hero/UK/CMS_Creative_164657191_Kingfisher.jpg">
+                                </div>
 
                                 {% if tipe == 'tourist' %}
                                     <div class="field">
