@@ -9,6 +9,7 @@ class Guide extends Model
 	protected $password;
 	protected $fname;
 	protected $lname;
+    protected $bio;
 	protected $phone;
     protected $location;
     protected $gender;
@@ -37,6 +38,10 @@ class Guide extends Model
     public function getLname()
     {
         return $this->lname;
+    }
+    public function getBio()
+    {
+        return $this->bio;
     }
     public function getPhone()
     {
@@ -78,6 +83,10 @@ class Guide extends Model
     public function setLname($lname)
     {
         $this->lname = $lname;
+    }
+    public function setBio($bio)
+    {
+        $this->bio = $bio;
     }
     public function setPhone($phone)
     {

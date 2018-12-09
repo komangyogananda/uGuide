@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 09, 2018 at 08:16 AM
+-- Generation Time: Dec 09, 2018 at 09:04 AM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.10
 
@@ -49,6 +49,7 @@ CREATE TABLE `guide` (
   `password` char(60) NOT NULL,
   `fname` varchar(256) NOT NULL,
   `lname` varchar(256) NOT NULL,
+  `bio` varchar(256) DEFAULT NULL,
   `phone` varchar(13) NOT NULL,
   `location` varchar(64) NOT NULL,
   `gender` char(1) NOT NULL,
@@ -69,6 +70,7 @@ CREATE TABLE `tourist` (
   `email` varchar(100) NOT NULL,
   `fname` varchar(256) NOT NULL,
   `lname` varchar(256) NOT NULL,
+  `bio` varchar(256) DEFAULT NULL,
   `phone` varchar(13) NOT NULL,
   `location` varchar(64) NOT NULL,
   `gender` char(1) NOT NULL,
