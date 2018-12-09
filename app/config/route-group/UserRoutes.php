@@ -73,6 +73,14 @@ class UserRoutes extends RouterGroup{
             ]
         );
 
+        $this->addGet(
+            '/((tourist)|(guide))/find',
+            [
+                'tipe' => 1,
+                'action' => 'find',
+            ]
+        );
+
 
         return $this;
     }

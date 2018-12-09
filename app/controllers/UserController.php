@@ -80,6 +80,15 @@
             $this->view->tipe = $tipe;
         }
 
+        public function findAction(){
+            
+            $form = new HolidayForm();
+
+            $tipe = $this->dispatcher->getParam('tipe');
+            $this->view->tipe = $tipe;
+            $this->view->form = $form;
+        }
+
         public function storeAction(){
             $tipe = $this->request->getPost('tipe');
             $user;
