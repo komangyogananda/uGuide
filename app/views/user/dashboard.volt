@@ -97,8 +97,7 @@
                                     <div class="ui two buttons">
                                         <div class="button">
                                             <div class="ui basic green button">
-                                                <i class="phone icon"></i>
-                                                Call
+                                                Show Profile
                                             </div>
                                         </div>
                                     </div>

@@ -7,8 +7,8 @@
         'database' => [
             'adapter' => 'Phalcon\Db\Adapter\Pdo\Mysql',
             'host' => 'localhost',
-            'username' => 'root',
-            'password' => '',
+            'username' => 'kulguy',
+            'password' => 'yoganteng',
             'dbname' => 'uguide'
         ],
         'url' => [

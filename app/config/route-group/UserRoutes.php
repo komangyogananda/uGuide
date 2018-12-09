@@ -66,10 +66,10 @@ class UserRoutes extends RouterGroup{
         );
 
         $this->addGet(
-            '/((tourist)|(guide))/recent',
+            '/((tourist)|(guide))/history',
             [
                 'tipe' => 1,
-                'action' => 'recent',
+                'action' => 'history',
             ]
         );
 

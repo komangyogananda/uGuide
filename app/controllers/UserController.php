@@ -74,7 +74,7 @@
             $this->view->tipe = $tipe;
         }
 
-        public function recentAction(){
+        public function historyAction(){
             
             $tipe = $this->dispatcher->getParam('tipe');
             $this->view->tipe = $tipe;

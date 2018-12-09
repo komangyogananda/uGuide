@@ -1,6 +1,6 @@
 {% extends 'layouts/base.volt' %}
 
-{% block title %} Recent - {% if tipe == 'tourist' %}Tourist{% else %}Tour Guide{% endif %}{% endblock %}
+{% block title %} History - {% if tipe == 'tourist' %}Tourist{% else %}Tour Guide{% endif %}{% endblock %}
 
 {% block content %}
 
@@ -10,7 +10,7 @@
         </a>
         <div class="item">
             <i class="history layout icon"></i>
-            <span class="text">Recent</span>
+            <span class="text">History</span>
         </div>
         <div class="right menu">
             <div class="item">
@@ -23,9 +23,10 @@
     </div>
 
     <div class="ui grid centered">
-        <div class="two column row">
-            <div class="row center aligned">
-                <div class="ui column segment">
+        
+        <div class="row">
+            <div class="eight wide column">
+                <div class="ui column attached segment">
                     <div class="item">
                         <div class="ui small image">
                             <img src="/images/wireframe/image.png">
@@ -42,27 +43,56 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row center aligned">
-                <div class="ui column segment">
-                    <div class="item">
-                        <div class="ui small image">
-                            <img src="/images/wireframe/image.png">
-                        </div>
-                        <div class="content">
-                            <div class="header">Arrowhead Valley Camp</div>
-                            <div class="meta">
-                                <span class="price">$1200</span>
-                                <span class="stay">1 Month</span>
-                            </div>
-                            <div class="description">
-                                <p></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <button class="positive fluid ui button">Click here for details.</button>
             </div>
         </div>
+        
+        <div class="row">
+            <div class="eight wide column">
+                <div class="ui column attached segment">
+                    <div class="item">
+                        <div class="ui small image">
+                            <img src="/images/wireframe/image.png">
+                        </div>
+                        <div class="content">
+                            <div class="header">Arrowhead Valley Camp</div>
+                            <div class="meta">
+                                <span class="price">$1200</span>
+                                <span class="stay">1 Month</span>
+                            </div>
+                            <div class="description">
+                                <p></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="positive fluid ui button">Click here for details.</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="eight wide column">
+                <div class="ui column attached segment">
+                    <div class="item">
+                        <div class="ui small image">
+                            <img src="/images/wireframe/image.png">
+                        </div>
+                        <div class="content">
+                            <div class="header">Arrowhead Valley Camp</div>
+                            <div class="meta">
+                                <span class="price">$1200</span>
+                                <span class="stay">1 Month</span>
+                            </div>
+                            <div class="description">
+                                <p></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="positive fluid ui button">Click here for details.</button>
+            </div>
+        </div>
+        
     </div>
 
     {% include 'layouts/sidebar.volt' %}
