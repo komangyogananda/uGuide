@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title> Welcome - Tour Guide  - uGuide</title>
+        <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" type="text/css" href="<?= $this->url->get('semantic/dist/semantic.min.css') ?>">
+<link href="<?= $this->url->get('css/style.css') ?>" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+<script src="<?= $this->url->get('js/jquery-3.3.1.min.js') ?>"></script>
+<script src="<?= $this->url->get('semantic/dist/semantic.min.js') ?>"></script>
+    </head>
+
+    <body>
+
+        
+
+<div class="ui two column centered grid customBox">
+    <?= $this->tag->form(['class' => 'ui form segment']) ?>
+
+        <?php if ($tipe == 'tourist') { ?>
+            <div class="column">
+                <div class="ui icon header">
+                    <i class="user circle icon"></i>
+                </div>
+            </div>
+            <h2 class="ui header">Tourist Login</h2>
+        <?php } else { ?>
+            <div class="column">
+                <div class="ui icon header">
+                    <i class="blind icon"></i>
+                </div>
+            </div>
+            <h2 class="ui header">Guide Login</h2>
+        <?php } ?>
+
+        <?php if ($tipe == 'tourist') { ?>
+            <?= $form->render('tipe', ['value' => 'tourist']) ?>
+        <?php } else { ?>
+            <?= $form->render('tipe', ['value' => 'guide']) ?>
+        <?php } ?>
+
+        <div class="field">
+            <label>Email</label>
+            <input type="email" name="email" placeholder="Email">
+        </div>
+        
+        
+        <div class="field">
+            <label>Password</label>
+            <?= $form->render('password') ?>
+        </div>
+
+        <?= $form->render('go', ['class' => 'ui button']) ?>
+
+
+        <div class="ui column">
+            <?= $this->tag->linkTo(['login/forgotPassword', 'Forgot Password']) ?>
+        </div>
+        
+
+    </form>
+</div>
+
+
+
+    </body>
+
+</html>
