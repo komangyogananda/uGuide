@@ -49,8 +49,14 @@
             {{ form.render('password') }}
         </div>
 
-        {{ form.render('go', ['class' : 'ui button']) }}
+        <div class="field">
+            <div class="ui toggle checkbox">
+                {{ form.render('remember') }}
+                <label>Remember me 7 days.</label>
+            </div>
+        </div>
 
+        {{ form.render('go', ['class' : 'ui button']) }}
 
         <div class="ui column">
             {{ link_to('login/forgotPassword', 'Forgot Password') }}
