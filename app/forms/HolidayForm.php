@@ -86,7 +86,7 @@ class HolidayForm extends Form{
     
         $this->add(
             new Select(
-                'services',
+                'services[]',
                 [
                     '' => 'Services',
                     'Food' => 'Standard Food',
@@ -94,6 +94,9 @@ class HolidayForm extends Form{
                     'Culinary' => 'Culinary Food',
                     'Transportation' => 'Transportation',
                     'Ticket' => 'Ticket for all places',
+                ],
+                [
+                    'multiple' => true
                 ]
             )
         );

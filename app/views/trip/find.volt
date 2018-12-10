@@ -60,7 +60,7 @@
                                     <div class="ui Right labeled input">
                                         <label for="maxAmount" class="ui label">Rp.</label>
                                         
-                                        {{ form.render('minBudget') }}
+                                        {{ form.render('maxBudget') }}
 
                                         <div class="ui basic label">.00</div>
                                     </div>
@@ -103,9 +103,8 @@
                     <h4 class="ui dividing header">Service Specification</h4>
                     <div class="field">
                         
-                        {{ form.render('services', ['id' : 'services',
-                                                    'class' : 'ui fluid search dropdown',
-                                                    'multiple' : '']) }}
+                        {{ form.render('services[]', ['id' : 'services',
+                                                    'class' : 'ui fluid search dropdown']) }}
 
                     </div>
                     

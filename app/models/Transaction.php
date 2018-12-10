@@ -2,7 +2,7 @@
 
 use Phalcon\Mvc\Model;
 
-class Activity extends Model
+class Transaction extends Model
 {
 	protected $id;
 	protected $trip_id;
@@ -13,9 +13,9 @@ class Activity extends Model
     protected $status;
     public function initialize()
     {
-        $this->setSource('activity');
+        $this->setSource('Transaction');
     }
-    public function onConstruct($trip_id, $amount, $date_paid, $date_expired, $proof, $status)
+    public function init($trip_id, $amount, $date_paid, $date_expired, $proof, $status)
     {
     	$this->trip_id = $trip_id;
     	$this->amount = $amount;

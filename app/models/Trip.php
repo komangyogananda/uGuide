@@ -7,7 +7,6 @@ class Trip extends Model
 	protected $id;
 	protected $tourist_id;
 	protected $guide_id;
-	protected $transaction_id;
 	protected $date;
     protected $title;
 	protected $description;
@@ -19,7 +18,7 @@ class Trip extends Model
     protected $person;
     public function initialize()
     {
-        $this->setSource('guide');
+        $this->setSource('trip');
     }
     public function getId()
     {
@@ -32,10 +31,6 @@ class Trip extends Model
     public function getGuideId()
     {
         return $this->guide_id;
-    }
-    public function getTransactionId()
-    {
-        return $this->transaction_id;
     }
     public function getDate()
     {
@@ -105,10 +100,6 @@ class Trip extends Model
     public function setGuideId($guide_id)
     {
         $this->guide_id = $guide_id;
-    }
-    public function setTransactionId($transaction_id)
-    {
-        $this->transaction_id = $transaction_id;
     }
     public function setDate($date)
     {

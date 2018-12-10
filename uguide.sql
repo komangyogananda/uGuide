@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 10, 2018 at 08:50 AM
+-- Generation Time: Dec 10, 2018 at 01:04 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.10
 
@@ -49,6 +49,13 @@ CREATE TABLE `service` (
   `value` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf16;
 
+--
+-- Dumping data for table `service`
+--
+
+INSERT INTO `service` (`id`, `trip_id`, `value`) VALUES
+(10, 11, 'Ticket');
+
 -- --------------------------------------------------------
 
 --
@@ -58,12 +65,19 @@ CREATE TABLE `service` (
 CREATE TABLE `transaction` (
   `id` int(11) NOT NULL,
   `trip_id` int(11) NOT NULL,
-  `date_paid` datetime DEFAULT NULL,
-  `date_expired` datetime NOT NULL,
-  `amount` int(11) NOT NULL,
+  `date_paid` date DEFAULT NULL,
+  `date_expired` date NOT NULL,
+  `amount` int(11) DEFAULT NULL,
   `proof` mediumblob,
   `status` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf16;
+
+--
+-- Dumping data for table `transaction`
+--
+
+INSERT INTO `transaction` (`id`, `trip_id`, `date_paid`, `date_expired`, `amount`, `proof`, `status`) VALUES
+(3, 11, NULL, '2019-01-02', NULL, NULL, 'PENDING');
 
 -- --------------------------------------------------------
 
@@ -75,7 +89,6 @@ CREATE TABLE `trip` (
   `id` int(11) NOT NULL,
   `guide_id` int(11) DEFAULT NULL,
   `tourist_id` int(11) NOT NULL,
-  `transaction_id` int(11) NOT NULL,
   `title` varchar(50) NOT NULL,
   `description` varchar(256) NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1',
@@ -86,6 +99,13 @@ CREATE TABLE `trip` (
   `destination` varchar(50) NOT NULL,
   `person` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf16;
+
+--
+-- Dumping data for table `trip`
+--
+
+INSERT INTO `trip` (`id`, `guide_id`, `tourist_id`, `title`, `description`, `status`, `date`, `min_budget`, `max_budget`, `duration`, `destination`, `person`) VALUES
+(11, NULL, 1, 'asdasd', 'sad', 1, '2018-12-31', 11313, 1231231, 12, 'aceh', 1);
 
 -- --------------------------------------------------------
 
@@ -113,7 +133,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `user_type`, `username`, `password`, `email`, `fname`, `lname`, `phone`, `location`, `gender`, `rating`, `picture`) VALUES
-(1, 'tourist', 'nvnrdhn', '$2y$15$3Q3fL2zwiYtAcA/B8mhffuQnqf9zc3..6/nmKXv5GA8EBpE0LUjp6', 'novanardhn_@live.com', 'novan', 'ardhana', '081285548731', 'Papua', 'M', 0, 0x6e6e2e6a7067);
+(1, 'tourist', 'nvnrdhn', '$2y$15$3Q3fL2zwiYtAcA/B8mhffuQnqf9zc3..6/nmKXv5GA8EBpE0LUjp6', 'novanardhn_@live.com', 'novan', 'ardhana', '081285548731', 'Papua', 'M', 0, 0x6e6e2e6a7067),
+(4, 'guide', 'guide1', '$2y$15$pL67TeXCdXBTeLbDrM9sqe3Vd8oePnd5m9hpemS506ktqJVXRlV4a', 'ryo37337@gmail.com', 'novan', 'ardhana', '12345678123', 'Kalsel', 'M', 0, 0x32332e4e4f56414e2e41524448414e415b315d2e4a5047),
+(5, 'moderator', 'moderator1', '$2y$15$a6bN3EyETrEmngOp.c475.og8QBk2M3S90HXs9McG/yQxzBpaaLJW', 'momod@uguide.com', 'moder', 'ator', '123456789098', 'Sulsel', 'M', 0, 0x4a656f6e2e536f6d692e66756c6c2e39323039322e6a7067);
 
 --
 -- Indexes for dumped tables
@@ -170,25 +192,25 @@ ALTER TABLE `activity`
 -- AUTO_INCREMENT for table `service`
 --
 ALTER TABLE `service`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `trip`
 --
 ALTER TABLE `trip`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
@@ -210,7 +232,7 @@ ALTER TABLE `service`
 -- Constraints for table `transaction`
 --
 ALTER TABLE `transaction`
-  ADD CONSTRAINT `fk_transtrip` FOREIGN KEY (`trip_id`) REFERENCES `activity` (`id`);
+  ADD CONSTRAINT `fk_transtrip` FOREIGN KEY (`trip_id`) REFERENCES `trip` (`id`);
 
 --
 -- Constraints for table `trip`

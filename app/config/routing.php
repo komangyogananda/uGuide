@@ -17,6 +17,10 @@ $di->set(
             new ModeratorRoutes()
         );
 
+        $router->mount(
+            new TripRoutes()
+        );
+
         $router->add(
             '/',
             [

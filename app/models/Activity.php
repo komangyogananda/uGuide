@@ -14,7 +14,7 @@ class Activity extends Model
     {
         $this->setSource('activity');
     }
-    public function onConstruct($trip_id, $sender_type, $title, $content, $date)
+    public function init($trip_id, $sender_type, $title, $content, $date)
     {
     	$this->trip_id = $trip_id;
     	$this->sender_type = $sender_type;

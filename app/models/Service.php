@@ -11,7 +11,7 @@ class Service extends Model
     {
         $this->setSource('service');
     }
-    public function onConstruct($trip_id, $value)
+    public function init($trip_id, $value)
     {
     	$this->trip_id = $trip_id;
     	$this->value = $value;

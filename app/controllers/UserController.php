@@ -97,15 +97,6 @@
             $this->view->tipe = $tipe;
         }
 
-        public function findAction(){
-            
-            $form = new HolidayForm();
-
-            $tipe = $this->dispatcher->getParam('tipe');
-            $this->view->tipe = $tipe;
-            $this->view->form = $form;
-        }
-
         public function storeAction(){
             $user = new User();
             $user->setType($this->request->getPost('tipe'));
