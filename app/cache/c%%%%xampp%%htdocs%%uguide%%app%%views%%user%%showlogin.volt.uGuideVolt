@@ -45,8 +45,10 @@
 
         <?php if ($tipe == 'tourist') { ?>
             <?= $form->render('tipe', ['value' => 'tourist']) ?>
-        <?php } else { ?>
+        <?php } elseif ($tipe == 'guide') { ?>
             <?= $form->render('tipe', ['value' => 'guide']) ?>
+        <?php } else { ?>
+            <?= $form->render('tipe', ['value' => 'moderator']) ?>
         <?php } ?>
 
         <div class="field">

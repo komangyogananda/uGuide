@@ -87,8 +87,36 @@
 
         public function activeAction(){
 
+            $id = $this->session->get('auth')['id'];
+            $tipe = $this->session->get('auth')['type'];
+            
+            $step = array(
+                1 => false,
+                2 => false,
+                3 => false,
+                4 => false,
+                5 => false,
+            );
+
+            $activity = NULL;
+            if ($tipe == 'tourist'){
+                $activeTrip = Trip::findFirst("tourist_id = '$id'");
+                $activity = Activity::find("trip_id = '$activeTrip->id'");
+            }else{
+                $activeTrip = Trip::findFirst("guide_id = '$id'");
+            }
+            $find;
+            if ($activeTrip){
+                $find = true;
+            }else{
+                $find = false;
+            }
+            $this->view->find = $find;
+            $this->view->activeTrip = $activeTrip;
+            $this->view->step = $step;
             $tipe = $this->dispatcher->getParam('tipe');
             $this->view->tipe = $tipe;
+            $this->view->activity = $activity;
         }
 
         public function historyAction(){
