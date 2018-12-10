@@ -20,7 +20,6 @@
 
     <script>
         $('#addActivity').on("click", function(){
-            console.log("coi");
             $('.small.modal').modal('show');
         });
     </script>

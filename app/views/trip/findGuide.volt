@@ -53,7 +53,7 @@
                             </a>
                             <div class="ui two buttons">
                                 <div class="button">
-                                    <div class="ui basic green button">
+                                    <div class="ui basic green button buttonInterested">
                                         Interested
                                     </div>
                                 </div>
@@ -85,7 +85,7 @@
                             </a>
                             <div class="ui two buttons">
                                 <div class="button">
-                                    <div class="ui basic green button">
+                                    <div class="ui basic green button buttonInterested">
                                         Interested
                                     </div>
                                 </div>
@@ -117,7 +117,7 @@
                             </a>
                             <div class="ui two buttons">
                                 <div class="button">
-                                    <div class="ui basic green button">
+                                    <div class="ui basic green button buttonInterested">
                                         Interested
                                     </div>
                                 </div>
@@ -149,7 +149,7 @@
                             </a>
                             <div class="ui two buttons">
                                 <div class="button">
-                                    <div class="ui basic green button">
+                                    <div class="ui basic green button buttonInterested">
                                         Interested
                                     </div>
                                 </div>
@@ -159,6 +159,44 @@
                 </div>
             </div>
     </div>
+
+    <div class="ui small modal">
+        <div class="header">Interested ?</div>
+        <div class="content">
+            {{ form('class' : 'ui form') }}
+
+                <div class="ui field">
+                    {{ interestForm.render('trip') }}
+                </div>
+
+                <div class="ui field">
+                    {{ interestForm.render('tourist') }}
+                </div>
+
+                <div class="ui field">
+                    {{ interestForm.render('guide') }}
+                </div>
+
+                <div class="ui field">
+                    {{ interestForm.render('budget') }}
+                </div>
+
+                <div class="ui field">
+                    {{ interestForm.render('desc') }}
+                </div>
+
+            </form>
+        </div>
+        <div class="actions">
+            <div class="ui positive button">Send</div>
+        </div>
+    </div>
+
+    <script>
+        $('.buttonInterested').on("click", function(){
+            $('.small.modal').modal('show');
+        });
+    </script>
 
     {% include 'layouts/sidebar.volt' %}
 

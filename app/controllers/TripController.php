@@ -77,6 +77,7 @@
 
         public function findGuideAction(){
             $sameLocation;
+            $form = new InterestedForm();
             $tipe = $this->dispatcher->getParam('tipe');
             $this->view->tipe = $tipe;
             $location = $this->session->get('auth')['location'];
@@ -87,6 +88,7 @@
                 ]
             ]);
             $this->view->trip = $trip;
+            $this->view->interestForm = $form;
         }
 
     }
