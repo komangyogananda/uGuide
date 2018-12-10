@@ -9,6 +9,7 @@ use Phalcon\Forms\Element\File;
 use Phalcon\Forms\Element\Email;
 use Phalcon\Forms\Element\Submit;
 use Phalcon\Forms\Element\Select;
+use Phalcon\Forms\Element\Check;
 
 class LoginForm extends Form{
     public function initialize(){
@@ -149,6 +150,15 @@ class LoginForm extends Form{
                 'go',
                 [
                     'value' => 'SignUp'
+                ]
+            )
+        );
+
+        $this->add(
+            new Check(
+                'remember',
+                [
+                    'value' => '0',
                 ]
             )
         );

@@ -9,6 +9,7 @@ use Phalcon\Forms\Element\File;
 use Phalcon\Forms\Element\Email;
 use Phalcon\Forms\Element\Submit;
 use Phalcon\Forms\Element\Select;
+use Phalcon\Forms\Element\Check;
 
 class SignUpForm extends Form{
     public function initialize(){
@@ -152,6 +153,7 @@ class SignUpForm extends Form{
                 ]
             )
         );
+
 
     }
 }
