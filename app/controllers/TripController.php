@@ -79,7 +79,14 @@
             $sameLocation;
             $tipe = $this->dispatcher->getParam('tipe');
             $this->view->tipe = $tipe;
-            $this->view->form = $form;
+            $location = $this->session->get('auth')['location'];
+            $trip = Trip::find([
+                'destination = :loc: AND status = 1',
+                'bind' => [
+                    'loc' => $location
+                ]
+            ]);
+            $this->view->trip = $trip;
         }
 
     }

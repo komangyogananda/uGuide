@@ -36,7 +36,8 @@
                             'username' => $user->getUsername(),
                             'email' => $user->getEmail(),
                             'firstName' => $user->getFname(),
-                            'lastName' => $user->getLname()
+                            'lastName' => $user->getLname(),
+                            'location' => $user->getLocation()
                         ]
                     );
                     echo "Login Success";

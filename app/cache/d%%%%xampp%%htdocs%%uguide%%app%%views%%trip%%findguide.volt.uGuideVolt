@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title> Find A Tourist - <?php if ($tipe == 'tourist') { ?>Tourist<?php } else { ?>Tour Guide<?php } ?> - uGuide</title>
+        <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" type="text/css" href="<?= $this->url->get('semantic/dist/semantic.min.css') ?>">
+<link href="<?= $this->url->get('css/style.css') ?>" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+<script src="<?= $this->url->get('js/jquery-3.3.1.min.js') ?>"></script>
+<script src="<?= $this->url->get('semantic/dist/semantic.min.js') ?>"></script>
+    </head>
+
+    <body>
+
+        
+
+    <div class="ui menu">
+        <a class="sidebarToggle item">
+            <i class="bars icon"></i>
+        </a>
+        <div class="item">
+            <i class="user circle icon"></i>
+            <span class="text">Find A Tourist</span>
+        </div>
+        <div class="right menu">
+            <div class="item">
+                <div class="ui icon input">
+                    <input type="text" placeholder="Search...">
+                    <i class="search link icon"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui grid centered">
+            <div class="row">
+                <div class="ui six wide segment column center aligned">
+                    <h2 class="header">List of tourist in your area</h2>
+                </div>
+            </div>
+            <div class="ui two column eight wide row">
+                <div class="ui column center aligned">
+                    <div class="ui card centered">
+                        <div class="image">
+                            <img src="/images/avatar2/large/kristy.png">
+                        </div>
+                        <div class="content">
+                            <a class="header">Novan</a>
+                            <div class="meta">
+                                <span class="location">Tangerang</span>
+                            </div>
+                            <div class="ui star rating" data-rating="5"></div>
+                            <div class="description">
+                                Siap memandu anda kemanapun. Ahli dalam liburan bersama alam.
+                            </div>
+                        </div>
+                        <div class="extra content">
+                            <a>
+                                <i class="icon">
+                                    <i class="fas fa-hiking"></i>
+                                </i>
+                                10 Activies
+                            </a>
+                            <div class="ui two buttons">
+                                <div class="button">
+                                    <div class="ui basic green button">
+                                        Interested
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui column center aligned">
+                    <div class="ui card centered">
+                        <div class="image">
+                            <img src="/images/avatar2/large/kristy.png">
+                        </div>
+                        <div class="content">
+                            <a class="header">Novan</a>
+                            <div class="meta">
+                                <span class="location">Tangerang</span>
+                            </div>
+                            <div class="ui star rating" data-rating="5"></div>
+                            <div class="description">
+                                Siap memandu anda kemanapun. Ahli dalam liburan bersama alam.
+                            </div>
+                        </div>
+                        <div class="extra content">
+                            <a>
+                                <i class="icon">
+                                    <i class="fas fa-hiking"></i>
+                                </i>
+                                10 Activies
+                            </a>
+                            <div class="ui two buttons">
+                                <div class="button">
+                                    <div class="ui basic green button">
+                                        Interested
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui column center aligned">
+                    <div class="ui card centered">
+                        <div class="image">
+                            <img src="/images/avatar2/large/kristy.png">
+                        </div>
+                        <div class="content">
+                            <a class="header">Novan</a>
+                            <div class="meta">
+                                <span class="location">Tangerang</span>
+                            </div>
+                            <div class="ui star rating" data-rating="5"></div>
+                            <div class="description">
+                                Siap memandu anda kemanapun. Ahli dalam liburan bersama alam.
+                            </div>
+                        </div>
+                        <div class="extra content">
+                            <a>
+                                <i class="icon">
+                                    <i class="fas fa-hiking"></i>
+                                </i>
+                                10 Activies
+                            </a>
+                            <div class="ui two buttons">
+                                <div class="button">
+                                    <div class="ui basic green button">
+                                        Interested
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui column center aligned">
+                    <div class="ui card centered">
+                        <div class="image">
+                            <img src="/images/avatar2/large/kristy.png">
+                        </div>
+                        <div class="content">
+                            <a class="header">Novan</a>
+                            <div class="meta">
+                                <span class="location">Tangerang</span>
+                            </div>
+                            <div class="ui star rating" data-rating="5"></div>
+                            <div class="description">
+                                Siap memandu anda kemanapun. Ahli dalam liburan bersama alam.
+                            </div>
+                        </div>
+                        <div class="extra content">
+                            <a>
+                                <i class="icon">
+                                    <i class="fas fa-hiking"></i>
+                                </i>
+                                10 Activies
+                            </a>
+                            <div class="ui two buttons">
+                                <div class="button">
+                                    <div class="ui basic green button">
+                                        Interested
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+    <div id="sidebarMenu" class="ui left vertical inverted sidebar labeled icon menu">
+        <div class="column">
+            <img class="image" width=40 src="<?= $this->url->get('src/smallLogo.png') ?>">
+        </div>
+
+        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/dashboard') ?>" class="item">
+        <?php } else { ?> <a href="<?= $this->url->get('guide/dashboard') ?>" class="item">
+        <?php } ?>
+            <i class="home icon"></i>
+            Home
+        </a>
+
+        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/find') ?>" class="item">
+        <?php } else { ?> <a href="<?= $this->url->get('guide/find') ?>" class="item">
+        <?php } ?>
+            <i class="plus square icon"></i>
+            <?php if ($tipe == 'tourist') { ?>
+            Find a Guide
+            <?php } else { ?>
+            Find a Tourist
+            <?php } ?>
+        </a>
+        
+        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/history') ?>" class="item">
+        <?php } else { ?> <a href="<?= $this->url->get('guide/history') ?>" class="item">
+        <?php } ?>
+            <i class="history layout icon"></i>
+            Recent Trip
+        </a>
+        
+        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/active') ?>" class="item">
+        <?php } else { ?> <a href="<?= $this->url->get('guide/active') ?>" class="item">
+        <?php } ?>
+            <i class="suitcase icon"></i>
+            My Trip
+        </a>
+
+        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/profile') ?>" class="item">
+        <?php } else { ?> <a href="<?= $this->url->get('guide/profile') ?>" class="item">
+        <?php } ?>
+            <i class="user icon"></i>
+            Profile
+        </a>
+        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/feedback') ?>" class="item">
+        <?php } else { ?> <a href="<?= $this->url->get('guide/feedback') ?>" class="item">
+        <?php } ?>
+            <i class="icon">
+                <i class="fas fa-comment-alt"></i>
+            </i>
+            Feed Back
+        </a>
+
+        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/logout') ?>" class="item">
+        <?php } else { ?> <a href="<?= $this->url->get('guide/logout') ?>" class="item">
+        <?php } ?>
+            <i class="arrow alternate circle right icon"></i>
+            Logout
+        </a>
+        
+        <a class="right item sidebarToggle">
+            <i class="angle double left icon"></i>
+        </a>
+    </div>
+
+    <script>    
+
+        $(".sidebarToggle").on("click", function(){
+            $("#sidebarMenu").sidebar('toggle');
+        });
+
+        $('.ui.sticky').sticky();
+
+    </script>
+
+    <script>
+    
+        $('#services').dropdown();
+
+        console.log($("#services").val());
+
+    </script>
+
+
+
+    </body>
+
+</html>
