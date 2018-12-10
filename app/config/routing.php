@@ -9,6 +9,10 @@ $di->set(
             new UserRoutes()
         );
 
+        $router->mount(
+            new GeneralRoutes()
+        );
+
         $router->add(
             '/',
             [

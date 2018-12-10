@@ -123,6 +123,8 @@
     
         $('#services').dropdown();
 
+        console.log($("#services").val());
+
     </script>
 
 {% endblock %}
