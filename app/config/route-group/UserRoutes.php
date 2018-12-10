@@ -89,6 +89,14 @@ class UserRoutes extends RouterGroup{
             ]
         );
 
+        $this->addGet(
+            '/moderator/xxx/yyy/zzz',
+            [
+                'tipe' => 'moderator',
+                'action' => 'showLogin',
+            ]
+        );
+
 
         return $this;
     }

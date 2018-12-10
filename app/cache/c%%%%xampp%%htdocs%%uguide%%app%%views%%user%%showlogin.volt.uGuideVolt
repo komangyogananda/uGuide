@@ -27,13 +27,20 @@
                 </div>
             </div>
             <h2 class="ui header">Tourist Login</h2>
-        <?php } else { ?>
+        <?php } elseif ($tipe == 'guide') { ?>
             <div class="column">
                 <div class="ui icon header">
                     <i class="blind icon"></i>
                 </div>
             </div>
             <h2 class="ui header">Guide Login</h2>
+        <?php } else { ?>
+            <div class="column">
+                <div class="ui icon header">
+                    <i class="money icon"></i>
+                </div>
+            </div>
+            <h2 class="ui header">Moderator Login</h2>
         <?php } ?>
 
         <?php if ($tipe == 'tourist') { ?>

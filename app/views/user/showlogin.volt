@@ -14,13 +14,20 @@
                 </div>
             </div>
             <h2 class="ui header">Tourist Login</h2>
-        {% else %}
+        {% elseif tipe == 'guide' %}
             <div class="column">
                 <div class="ui icon header">
                     <i class="blind icon"></i>
                 </div>
             </div>
             <h2 class="ui header">Guide Login</h2>
+        {% else %}
+            <div class="column">
+                <div class="ui icon header">
+                    <i class="money icon"></i>
+                </div>
+            </div>
+            <h2 class="ui header">Moderator Login</h2>
         {% endif %}
 
         {% if tipe == 'tourist' %}
