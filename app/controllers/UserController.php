@@ -81,7 +81,8 @@
                     'bind' => [
                         1 => $id
                     ],
-                    'limit' => 3
+                    'order' => 'date',
+                    //'limit' => 3
                 ]
             );
             $this->view->recent = $recent;
@@ -116,6 +117,9 @@
             }else{
                 $activeTrip = Trip::findFirst("guide_id = '$id'");
             }
+            $findActivity;
+            if (count($activity)) $findActivity = true;
+            else $findActivity = false;
             $find;
             if ($activeTrip){
                 $find = true;
@@ -128,6 +132,7 @@
             $tipe = $this->dispatcher->getParam('tipe');
             $this->view->tipe = $tipe;
             $this->view->activity = $activity;
+            $this->view->findActivity = $findActivity;
         }
 
         public function historyAction(){
@@ -140,7 +145,8 @@
                     'status = 0 AND (tourist_id = 1 OR guide_id = 1)',
                     'bind' => [
                         1 => $id,
-                    ]
+                    ],
+                    'order' => 'date'
                 ]
             );
             $this->view->history = $history;
