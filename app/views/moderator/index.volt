@@ -9,6 +9,15 @@
             <i class="user icon"></i>
             <span class="text">Moderator</span>
         </div>
+        <div class="right menu">
+            <div class="item">
+                <a href="{{ url('moderator/xxx/yyy/logout')}}">
+                    <div class="ui button">
+                        Logout
+                    </div>
+                </a>
+            </div>
+        </div>
     </div>
 
     <div class="ui grid centered">
