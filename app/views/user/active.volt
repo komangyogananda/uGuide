@@ -23,137 +23,199 @@
     </div>
 
     <div class="ui grid centered">
-        <div class="row">
-            <div class="ten wide column center aligned">
-                <div class="ui tablet stackable five steps">
-                    <div class="completed step">
-                        <i class="bullhorn icon"></i>
-                        <div class="content">
-                            <div class="title">Get A Guide</div>
-                            <div class="description">Blablabla</div>
+        {% if find == true %}
+            <div class="row">
+                <div class="ten wide column center aligned">
+                    <div class="ui tablet stackable five steps">
+                        <div class="{% if step[1] == true %}
+                            completed
+                            {% else %}
+                            active
+                            {% endif %} step">
+                            <i class="bullhorn icon"></i>
+                            <div class="content">
+                                <div class="title">Get A Guide</div>
+                                <div class="description">Blablabla</div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="completed step">
-                        <i class="payment icon"></i>
-                        <div class="content">
-                            <div class="title">Pay your guide services.</div>
-                            <div class="description">Blablabla</div>
+                        <div class="{% if step[2] == true %}
+                        completed
+                        {% elseif step[1] == true and step[2] == false %}
+                        active
+                        {% else %}
+                        disabled
+                        {% endif %} step">
+                            <i class="payment icon"></i>
+                            <div class="content">
+                                <div class="title">Pay your guide services.</div>
+                                <div class="description">Blablabla</div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="active step">
-                        <i class="comments icon">
-                        </i>
-                        <div class="content">
-                            <div class="title">Contact with your guide.</div>
-                            <div class="description">Blablabla</div>
+                        <div class="{% if step[3] == true %}
+                        completed
+                        {% elseif step[2] == true and step[3] == false %}
+                        active
+                        {% else %}
+                        disabled
+                        {% endif %} step">
+                            <i class="comments icon">
+                            </i>
+                            <div class="content">
+                                <div class="title">Contact with your guide.</div>
+                                <div class="description">Blablabla</div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="disabled step">
-                        <i class="suitcase icon"></i>
-                        <div class="content">
-                            <div class="title">Trip Day!</div>
-                            <div class="description">Blablabla</div>
+                        <div class="{% if step[4] == true %}
+                        completed
+                        {% elseif step[3] == true and step[4] == false %}
+                        active
+                        {% else %}
+                        disabled
+                        {% endif %} step">
+                            <i class="suitcase icon"></i>
+                            <div class="content">
+                                <div class="title">Trip Day!</div>
+                                <div class="description">Blablabla</div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="disabled step">
-                        <i class="star icon"></i>
-                        <div class="content">
-                            <div class="title">FeedBack</div>
-                            <div class="description">Blablabla</div>
+                        <div class="{% if step[5] == true %}
+                        completed
+                        {% elseif step[4] == true and step[5] == false %}
+                        active
+                        {% else %}
+                        disabled
+                        {% endif %} step">
+                            <i class="star icon"></i>
+                            <div class="content">
+                                <div class="title">FeedBack</div>
+                                <div class="description">Blablabla</div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <div class="ui centered grid">
-        <div class="row">
-            <div class="eight wide column center aligned">
-                <div class="ui segment column middle aligned">
-                    <div class="ui row">
+            <div class="row">
+                <div class="eight wide column center aligned">
+                    <div class="ui segment column middle aligned">
+                        <div class="ui row">
+                            <div class="column center aligned">
+                                <h1 class="ui header">
+                                My Trip 
+                                </h1>
+                                <h2 class="ui header">
+                                    <i class="icon">
+                                        <i class="fas fa-hiking"></i>
+                                    </i>
+                                </h2>
+                            </div>
+                        </div>
+                        <div class="ui grid">
+                            <div class="row">
+                                <div class="column middle aligned">
+                                    {% if activeTrip.guide_id != NULL %}
+                                        <div class="ui card centered">
+                                            <div class="image">
+                                                <img src="/images/avatar2/large/kristy.png">
+                                            </div>
+                                            <div class="content">
+                                                <a class="header">Novan</a>
+                                                <div class="meta">
+                                                    <span class="location">Tangerang</span>
+                                                </div>
+                                                <div class="ui star rating" data-rating="5"></div>
+                                                <div class="description">
+                                                    Siap memandu anda kemanapun. Ahli dalam liburan bersama alam.
+                                                </div>
+                                            </div>
+                                            <div class="extra content">
+                                                <a>
+                                                    <i class="icon">
+                                                        <i class="fas fa-hiking"></i>
+                                                    </i>
+                                                    10 Activies
+                                                </a>
+                                                <div class="ui two buttons">
+                                                    <div class="button">
+                                                        <div class="ui basic green button">
+                                                            Show Profile
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% else %}
+                                        <div class="ui grid centered">
+                                            <div class="row">
+                                                <div class="six wide column center aligned">
+                                                    <div class="ui info message">
+                                                        Find a Guide First.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="row">
+                                {% if activity != NULL %}
+                                    <div class="column">
+                                        <h3 class="header">Activities</h3>
+                                        <div class="ui grid">
+                                            <div class="row">
+                                                <div class="twelve wide column right floated">
+                                                    <div class="ui message green">
+                                                        <div class="header">
+                                                            Tourist - Arrival
+                                                        </div>
+                                                        <p>Kita dateng tanggal 20.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="twelve wide column left floated">
+                                                    <div class="ui message blue">
+                                                        <div class="header">
+                                                            Guide - Response Arrival
+                                                        </div>
+                                                        <p>Saya tunggu di bandara.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button class="ui right floated button">
+                                            <i class="plus icon"></i>
+                                            Add New Message
+                                        </button>
+                                    </div>
+                                {% else %}
+                                    <div class="column">
+                                        <div class="segment info message">
+                                            There is no activity yet.
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="row">
+                <div class="segment eight wide column middle aligned">
+                    <div class="ui attached segment">
                         <div class="column center aligned">
                             <h1 class="ui header">
-                            My Trip 
+                                <i class="window close outline icon"></i>
                             </h1>
                             <h2 class="ui header">
-                                <i class="icon">
-                                    <i class="fas fa-hiking"></i>
-                                </i>
+                            You have no active trip
                             </h2>
                         </div>
                     </div>
-                    <div class="ui grid">
-                        <div class="row">
-                            <div class="column middle aligned">
-                                <div class="ui card centered">
-                                    <div class="image">
-                                        <img src="/images/avatar2/large/kristy.png">
-                                    </div>
-                                    <div class="content">
-                                        <a class="header">Novan</a>
-                                        <div class="meta">
-                                            <span class="location">Tangerang</span>
-                                        </div>
-                                        <div class="ui star rating" data-rating="5"></div>
-                                        <div class="description">
-                                            Siap memandu anda kemanapun. Ahli dalam liburan bersama alam.
-                                        </div>
-                                    </div>
-                                    <div class="extra content">
-                                        <a>
-                                            <i class="icon">
-                                                <i class="fas fa-hiking"></i>
-                                            </i>
-                                            10 Activies
-                                        </a>
-                                        <div class="ui two buttons">
-                                            <div class="button">
-                                                <div class="ui basic green button">
-                                                    Show Profile
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="column">
-                                <h3 class="header">Activities</h3>
-                                <div class="ui grid">
-                                    <div class="row">
-                                        <div class="twelve wide column right floated">
-                                            <div class="ui message green">
-                                                <div class="header">
-                                                    Tourist - Arrival
-                                                </div>
-                                                <p>Kita dateng tanggal 20.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="twelve wide column left floated">
-                                            <div class="ui message blue">
-                                                <div class="header">
-                                                    Guide - Response Arrival
-                                                </div>
-                                                <p>Saya tunggu di bandara.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <button class="ui right floated button">
-                                    <i class="plus icon"></i>
-                                    Add New Message
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                    <button class="positive fluid ui button">Click here to create new Trip.</button>
                 </div>
             </div>
-        </div>
-            
+        {% endif %}
     </div>  
 
     {% include 'layouts/sidebar.volt' %}

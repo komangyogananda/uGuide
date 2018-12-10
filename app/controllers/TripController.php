@@ -48,5 +48,32 @@
             $trans->save();
         }
 
+        public function touristActiveAction(){
+            $tourist_id = $this->session->get('auth')['tourist_id'];
+            $activeTrip = Trip::findFirst("tourist_id = '$tourist_id'");
+            $find;
+            $step = array(
+                1 => false,
+                2 => false,
+                3 => false,
+                4 => false,
+                5 => false,
+            );
+            if ($activeTrip){
+                $find = true;
+                if ($activeTrip->guide_id != NULL){
+                    $step[1] = true;
+                }
+                $payment = Transaction::findFirst("trip_id = '$activeTrip->id'");
+                if ($payment){
+                    $step[2] = true;
+                }
+            }else{
+                $find = false;
+            }
+            $this->view->find = $find;
+            $this->view->activeTrip = $activeTrip;
+        }
+
     }
 ?>
