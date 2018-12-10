@@ -7,16 +7,22 @@ class Activity extends Model
 	protected $id;
 	protected $trip_id;
 	protected $amount;
-	protected $date;
+	protected $date_paid;
+    protected $date_expired;
+    protected $proof;
+    protected $status;
     public function initialize()
     {
         $this->setSource('activity');
     }
-    public function onConstruct($trip_id, $amount, $date)
+    public function onConstruct($trip_id, $amount, $date_paid, $date_expired, $proof, $status)
     {
     	$this->trip_id = $trip_id;
     	$this->amount = $amount;
-    	$this->date = $date;
+    	$this->date_paid = $date_paid;
+        $this->date_expired = $date_expired;
+        $this->proof = $proof;
+        $this->status = $status;
     }
     public function getId()
     {
@@ -30,9 +36,20 @@ class Activity extends Model
     {
     	return $this->amount;
     }
-    public function getDate()
+    public function getDatePaid()
     {
-    	return $this->date;
+    	return $this->date_paid;
     }
-    
+    public function getDateExpired()
+    {
+        return $this->date_expired;
+    }
+    public function getProof()
+    {
+        return $this->proof;
+    }
+    public function getStatus()
+    {
+        return $this->status;
+    }
 }

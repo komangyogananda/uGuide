@@ -1,0 +1,73 @@
+<div id="sidebarMenu" class="ui left vertical inverted sidebar labeled icon menu">
+        <div class="column">
+            <img class="image" width=40 src="<?= $this->url->get('src/smallLogo.png') ?>">
+        </div>
+
+        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/dashboard') ?>" class="item">
+        <?php } else { ?> <a href="<?= $this->url->get('guide/dashboard') ?>" class="item">
+        <?php } ?>
+            <i class="home icon"></i>
+            Home
+        </a>
+
+        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/find') ?>" class="item">
+        <?php } else { ?> <a href="<?= $this->url->get('guide/find') ?>" class="item">
+        <?php } ?>
+            <i class="plus square icon"></i>
+            <?php if ($tipe == 'tourist') { ?>
+            Find a Guide
+            <?php } else { ?>
+            Find a Tourist
+            <?php } ?>
+        </a>
+        
+        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/history') ?>" class="item">
+        <?php } else { ?> <a href="<?= $this->url->get('guide/history') ?>" class="item">
+        <?php } ?>
+            <i class="history layout icon"></i>
+            Recent Trip
+        </a>
+        
+        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/active') ?>" class="item">
+        <?php } else { ?> <a href="<?= $this->url->get('guide/active') ?>" class="item">
+        <?php } ?>
+            <i class="suitcase icon"></i>
+            My Trip
+        </a>
+
+        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/profile') ?>" class="item">
+        <?php } else { ?> <a href="<?= $this->url->get('guide/profile') ?>" class="item">
+        <?php } ?>
+            <i class="user icon"></i>
+            Profile
+        </a>
+        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/feedback') ?>" class="item">
+        <?php } else { ?> <a href="<?= $this->url->get('guide/feedback') ?>" class="item">
+        <?php } ?>
+            <i class="icon">
+                <i class="fas fa-comment-alt"></i>
+            </i>
+            Feed Back
+        </a>
+
+        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/logout') ?>" class="item">
+        <?php } else { ?> <a href="<?= $this->url->get('guide/logout') ?>" class="item">
+        <?php } ?>
+            <i class="arrow alternate circle right icon"></i>
+            Logout
+        </a>
+        
+        <a class="right item sidebarToggle">
+            <i class="angle double left icon"></i>
+        </a>
+    </div>
+
+    <script>    
+
+        $(".sidebarToggle").on("click", function(){
+            $("#sidebarMenu").sidebar('toggle');
+        });
+
+        $('.ui.sticky').sticky();
+
+    </script>

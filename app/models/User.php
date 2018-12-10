@@ -2,9 +2,10 @@
 
 use Phalcon\Mvc\Model;
 
-class Tourist extends Model
+class User extends Model
 {
 	protected $id;
+    protected $user_type;
     protected $username;
 	protected $email;
 	protected $password;
@@ -14,14 +15,23 @@ class Tourist extends Model
 	protected $phone;
     protected $location;
     protected $gender;
+    protected $rating;
     protected $picture;
     public function initialize()
     {
-        $this->setSource('tourist');
+        $this->setSource('user');
     }
     public function getId()
     {
         return $this->id;
+    }
+    public function getType()
+    {
+        return $this->user_type;
+    }
+    public function getUsername()
+    {
+        return $this->username;
     }
     public function getEmail()
     {
@@ -55,9 +65,9 @@ class Tourist extends Model
     {
         return $this->gender;
     }
-    public function getUsername()
+    public function getRating()
     {
-        return $this->username;
+        return $this->rating;
     }
     public function getPicture()
     {
@@ -67,6 +77,14 @@ class Tourist extends Model
     public function setId($id)
     {
         $this->id = $id;
+    }
+    public function setType($user_type)
+    {
+        $this->user_type = $user_type;
+    }
+    public function setUsername($username)
+    {
+        $this->username = $username;
     }
     public function setEmail($email)
     {
@@ -100,9 +118,9 @@ class Tourist extends Model
     {
         $this->gender = $gender;
     }
-    public function setUsername($username)
+    public function setRating($rating)
     {
-        $this->username = $username;
+        $this->rating = $rating;
     }
     public function setPicture($picture)
     {

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title> Profile - <?php if ($tipe == 'tourist') { ?>Tourist<?php } else { ?>Tour Guide<?php } ?> - uGuide</title>
+        <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" type="text/css" href="<?= $this->url->get('semantic/dist/semantic.min.css') ?>">
+<link href="<?= $this->url->get('css/style.css') ?>" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+<script src="<?= $this->url->get('js/jquery-3.3.1.min.js') ?>"></script>
+<script src="<?= $this->url->get('semantic/dist/semantic.min.js') ?>"></script>
+    </head>
+
+    <body>
+
+        
+
+    <div class="ui menu">
+        <a class="sidebarToggle item">
+            <i class="bars icon"></i>
+        </a>
+        <div class="item">
+            <i class="user icon"></i>
+            <span class="text">Profile</span>
+        </div>
+        <div class="right menu">
+            <div class="item">
+                <div class="ui icon input">
+                    <input type="text" placeholder="Search...">
+                    <i class="search link icon"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui two column centered grid">
+        <div class="row">
+            <div class="ui segment column middle aligned">
+                <div class="column center aligned">
+                    <h1 class="ui header">
+                        <i class="user icon"></i>
+                    </h1>
+                    <h2 class="ui header">
+                        Profile Information
+                    </h2>
+                </div>
+                <div class="ui grid centered">
+                    <div class="two column row center aligned">
+                        <div class="column center aligned">
+                                <?= $this->tag->form(['class' => 'ui form segment']) ?>
+
+                                <div class="ui medium bordered image">
+                                    <img src="https://www.gettyimages.ca/gi-resources/images/Homepage/Hero/UK/CMS_Creative_164657191_Kingfisher.jpg">
+                                </div>
+
+                                <?php if ($tipe == 'tourist') { ?>
+                                    <div class="field">
+                                    <label>Username</label>
+                                        <?= $form->render('username', ['disabled' => true, 'value' => 'tourist123']) ?>
+                                    </div>
+                                <?php } ?>
+    
+                                <?php if ($tipe == 'tourist') { ?>
+                                    <?= $form->render('tipe', ['value' => 'tourist']) ?>
+                                <?php } else { ?>
+                                    <?= $form->render('tipe', ['value' => 'guide']) ?>
+                                <?php } ?>
+                                <div class="field">
+                                    <label>First Name</label>
+                                    <?= $form->render('firstName') ?>
+                                </div>
+                                <div class="field">
+                                    <label>Last Name</label>
+                                    <?= $form->render('lastName') ?>
+                                </div>
+                        
+                                <div class="field">
+                                    <label>Email</label>
+                                    <input type="email" name="email" placeholder="Email">
+                                </div>
+                                
+                                <div class="field">
+                                    <label>New Password</label>
+                                    <div class="field">
+                                        <?= $form->render('password', ['placeholder' => 'New Password']) ?>
+                                    </div>
+                                    <div class="field">
+                                        <?= $form->render('confpassword', ['placeholder' => 'New Password Confirmation']) ?>
+                                    </div>
+                                </div>
+                        
+                                <div class="field">
+                                    <div class="two fields">
+                                        <div class="field">
+                                            <label>Phone number</label>
+                                            <?= $form->render('telephone') ?>
+                                        </div>
+                                        <div class="field">
+                                            <label>Gender</label>
+                                            <?= $form->render('gender') ?>
+                                        </div>
+                                    </div>
+                                </div>
+                        
+                                <div class="field">
+                                    <label>Location</label>
+                        
+                                    <div class="field">
+                                        <?= $form->render('location', ['class' => 'ui fluid search dropdown']) ?>
+                                    </div>
+                                </div>
+                        
+                                <div class="field">
+                                    <label>Profile Picture</label>
+                                    <?= $form->render('picture') ?>
+                                </div>
+    
+                                <div class="field">
+                                    <label>Current Password</label>
+                                    <div class="field">
+                                        <?= $form->render('password', ['placeholder' => 'Current Password']) ?>
+                                    </div>
+                                </div>
+    
+                            </form>
+
+                            <div class="row">
+                                    <input class="ui button" type="submit" value="Edit">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="sidebarMenu" class="ui left vertical inverted sidebar labeled icon menu">
+        <div class="column">
+            <img class="image" width=40 src="<?= $this->url->get('src/smallLogo.png') ?>">
+        </div>
+
+        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/dashboard') ?>" class="item">
+        <?php } else { ?> <a href="<?= $this->url->get('guide/dashboard') ?>" class="item">
+        <?php } ?>
+            <i class="home icon"></i>
+            Home
+        </a>
+
+        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/find') ?>" class="item">
+        <?php } else { ?> <a href="<?= $this->url->get('guide/find') ?>" class="item">
+        <?php } ?>
+            <i class="plus square icon"></i>
+            <?php if ($tipe == 'tourist') { ?>
+            Find a Guide
+            <?php } else { ?>
+            Find a Tourist
+            <?php } ?>
+        </a>
+        
+        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/history') ?>" class="item">
+        <?php } else { ?> <a href="<?= $this->url->get('guide/history') ?>" class="item">
+        <?php } ?>
+            <i class="history layout icon"></i>
+            Recent Trip
+        </a>
+        
+        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/active') ?>" class="item">
+        <?php } else { ?> <a href="<?= $this->url->get('guide/active') ?>" class="item">
+        <?php } ?>
+            <i class="suitcase icon"></i>
+            My Trip
+        </a>
+
+        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/profile') ?>" class="item">
+        <?php } else { ?> <a href="<?= $this->url->get('guide/profile') ?>" class="item">
+        <?php } ?>
+            <i class="user icon"></i>
+            Profile
+        </a>
+        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/feedback') ?>" class="item">
+        <?php } else { ?> <a href="<?= $this->url->get('guide/feedback') ?>" class="item">
+        <?php } ?>
+            <i class="icon">
+                <i class="fas fa-comment-alt"></i>
+            </i>
+            Feed Back
+        </a>
+
+        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/logout') ?>" class="item">
+        <?php } else { ?> <a href="<?= $this->url->get('guide/logout') ?>" class="item">
+        <?php } ?>
+            <i class="arrow alternate circle right icon"></i>
+            Logout
+        </a>
+        
+        <a class="right item sidebarToggle">
+            <i class="angle double left icon"></i>
+        </a>
+    </div>
+
+    <script>    
+
+        $(".sidebarToggle").on("click", function(){
+            $("#sidebarMenu").sidebar('toggle');
+        });
+
+        $('.ui.sticky').sticky();
+
+    </script>
+
+
+
+    </body>
+
+</html>

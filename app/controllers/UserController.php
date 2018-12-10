@@ -24,14 +24,7 @@
             $tipe = $this->request->getPost('tipe');
             $password = $this->request->getPost('password');
             $email = $this->request->getPost('email');
-            $user;
-
-            if ($tipe == 'tourist') {
-                $user = Tourist::findFirst("email = '$email'");
-            }
-            else {
-                $user = Guide::findFirst("email = '$email'");
-            }
+            $user = User::findFirst("email = '$email'");
 
             if ($user){
                 if (password_verify($password, $user->getPassword())){
@@ -39,6 +32,8 @@
                         'auth',
                         [
                             'id' => $user->getId(),
+                            'type' => $user->getType(),
+                            'username' => $user->getUsername(),
                             'email' => $user->getEmail(),
                             'firstName' => $user->getFname(),
                             'lastName' => $user->getLname()
@@ -90,17 +85,9 @@
         }
 
         public function storeAction(){
-            $tipe = $this->request->getPost('tipe');
-            $user;
-            if ($tipe == 'tourist') {
-                $user =  new Tourist();
-            }
-            else {
-                $user = new Guide();
-            }
-            if ($tipe == 'tourist') {
-                $user->setUsername($this->request->getPost('username'));
-            }
+            $user = new User();
+            $user->setType($this->request->getPost('tipe'));
+            $user->setUsername($this->request->getPost('username'));
             $user->setEmail($this->request->getPost('email'));
             $user->setPassword(password_hash($this->request->getPost('password'), PASSWORD_BCRYPT, ['cost' => 15]));
             $user->setFname($this->request->getPost('firstName'));
@@ -108,9 +95,7 @@
             $user->setPhone($this->request->getPost('telephone'));
             $user->setLocation($this->request->getPost('location'));
             $user->setGender($this->request->getPost('gender'));
-            if ($tipe == 'guide') {
-                $user->setRating(0);
-            }
+            $user->setRating(0);
             $user->setPicture($this->request->getPost('picture'));
             if ($user->save() === false){
                 foreach($user->getMessages() as $message){

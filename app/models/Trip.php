@@ -9,8 +9,14 @@ class Trip extends Model
 	protected $guide_id;
 	protected $transaction_id;
 	protected $date;
+    protected $title;
 	protected $description;
     protected $status;
+    protected $min_budget;
+    protected $max_budget;
+    protected $duration;
+    protected $destination;
+    protected $person;
     public function initialize()
     {
         $this->setSource('guide');
@@ -35,6 +41,10 @@ class Trip extends Model
     {
         return $this->date;
     }
+    public function getTitle()
+    {
+        return $this->title;
+    }
     public function getDescription()
     {
         return $this->description;
@@ -43,7 +53,47 @@ class Trip extends Model
     {
         return $this->status;
     }
+    public function getMinBudget()
+    {
+        return $this->min_budget;
+    }
+    public function getMaxBudget()
+    {
+        return $this->max_budget;
+    }
+    public function getDuration()
+    {
+        return $this->duration;
+    }
+    public function getDestination()
+    {
+        return $this->destination;
+    }
+    public function getPerson()
+    {
+        return $this->person;
+    }
 
+    public function setPerson($person)
+    {
+        $this->person = $person;
+    }
+    public function setDestination($destination)
+    {
+        $this->destination = $destination;
+    }
+    public function setDuration($duration)
+    {
+        $this->duration = $duration;
+    }
+    public function setMaxBudget($max_budget)
+    {
+        $this->max_budget = $max_budget;
+    }
+    public function setMinBudget($min_budget)
+    {
+        $this->min_budget = $min_budget;
+    }
     public function setId($id)
     {
         $this->id = $id;
@@ -63,6 +113,10 @@ class Trip extends Model
     public function setDate($date)
     {
         $this->date = $date;
+    }
+    public function setTitle($title)
+    {
+        $this->title = $title;
     }
     public function setDescription($description)
     {
