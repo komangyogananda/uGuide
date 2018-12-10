@@ -21,7 +21,7 @@
         }
 
         public function loginAction(){
-            $tipe = $this->request->getPost('type');
+            $tipe = $this->request->getPost('tipe');
             $password = $this->request->getPost('password');
             $email = $this->request->getPost('email');
             $user = User::findFirst("email = '$email'");
