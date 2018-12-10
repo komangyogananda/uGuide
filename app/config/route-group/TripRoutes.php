@@ -9,18 +9,34 @@ class TripRoutes extends RouterGroup{
         ]);
        
         $this->addGet(
-            '/((tourist)|(guide))/find',
+            '/tourist/find',
             [
-                'tipe' => 1,
-                'action' => 'find',
+                'tipe' => 'tourist',
+                'action' => 'findTourist',
             ]
         );
 
         $this->addPost(
-            '/((tourist)|(guide))/find',
+            '/tourist/find',
             [
-                'tipe' => 1,
-                'action' => 'create',
+                'tipe' => 'tourist',
+                'action' => 'createTourist',
+            ]
+        );
+
+        $this->addGet(
+            '/guide/find',
+            [
+                'tipe' => 'guide',
+                'action' => 'findGuide',
+            ]
+        );
+
+        $this->addPost(
+            '/guide/find',
+            [
+                'tipe' => 'guide',
+                'action' => 'createGuide',
             ]
         );
 

@@ -5,7 +5,7 @@
 
     class TripController extends Controller{
 
-        public function findAction(){
+        public function findTouristAction(){
             
             $form = new HolidayForm();
 
@@ -49,8 +49,8 @@
         }
 
         public function touristActiveAction(){
-            $tourist_id = $this->session->get('auth')['tourist_id'];
-            $activeTrip = Trip::findFirst("tourist_id = '$tourist_id'");
+            $id = $this->session->get('auth')['id'];
+            $activeTrip = Trip::findFirst("tourist_id = '$id'");
             $find;
             $step = array(
                 1 => false,
@@ -73,6 +73,13 @@
             }
             $this->view->find = $find;
             $this->view->activeTrip = $activeTrip;
+        }
+
+        public function findGuideAction(){
+            $sameLocation;
+            $tipe = $this->dispatcher->getParam('tipe');
+            $this->view->tipe = $tipe;
+            $this->view->form = $form;
         }
 
     }
