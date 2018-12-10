@@ -141,7 +141,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <button class="ui right floated button">
+                            <button id="addActivity" class="ui right floated button">
                                 <i class="plus icon"></i>
                                 Add New Message
                             </button>
@@ -184,6 +184,8 @@
             <button class="positive fluid ui button">Click here for details.</button>
         </div>
     </div>
+
+    
 
     <div id="sidebarMenu" class="ui left vertical inverted sidebar labeled icon menu">
         <div class="column">
@@ -257,6 +259,33 @@
 
         $('.ui.sticky').sticky();
 
+    </script>
+
+        <div class="ui small modal">
+        <div class="header">Add New Message</div>
+        <div class="content">
+            <?= $this->tag->form(['class' => 'ui form']) ?>
+
+                <div class="ui field">
+                    <?= $messageForm->render('title') ?>
+                </div>
+
+                <div class="ui field">
+                    <?= $messageForm->render('message') ?>
+                </div>
+
+            </form>
+        </div>
+        <div class="actions">
+            <div class="ui positive button">Send</div>
+        </div>
+    </div>
+
+    <script>
+        $('#addActivity').on("click", function(){
+            console.log("coi");
+            $('.small.modal').modal('show');
+        });
     </script>
 
 

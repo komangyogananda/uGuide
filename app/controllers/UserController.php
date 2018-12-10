@@ -87,6 +87,8 @@
                 ]
             );
             $this->view->recent = $recent;
+            $messageForm = new MessageForm();
+            $this->view->messageForm = $messageForm;
         }
 
         public function profileAction(){
@@ -134,6 +136,8 @@
             $this->view->tipe = $tipe;
             $this->view->activity = $activity;
             $this->view->findActivity = $findActivity;
+            $messageForm = new MessageForm();
+            $this->view->messageForm = $messageForm;
         }
 
         public function historyAction(){
