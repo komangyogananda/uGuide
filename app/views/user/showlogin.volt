@@ -32,8 +32,10 @@
 
         {% if tipe == 'tourist' %}
             {{ form.render('tipe', ['value': 'tourist']) }}
-        {% else %}
+        {% elseif tipe == 'guide' %}
             {{ form.render('tipe', ['value': 'guide']) }}
+        {% else %}
+            {{ form.render('tipe', ['value': 'moderator']) }}
         {% endif %}
 
         <div class="field">
