@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 10, 2018 at 01:04 PM
+-- Generation Time: Dec 10, 2018 at 08:42 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.10
 
@@ -35,6 +35,21 @@ CREATE TABLE `activity` (
   `title` varchar(20) NOT NULL,
   `content` text NOT NULL,
   `date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf16;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `interest`
+--
+
+CREATE TABLE `interest` (
+  `id` int(11) NOT NULL,
+  `trip_id` int(11) NOT NULL,
+  `guide_id` int(11) NOT NULL,
+  `tourist_id` int(11) NOT NULL,
+  `budget` int(11) NOT NULL,
+  `plan` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf16;
 
 -- --------------------------------------------------------
@@ -105,7 +120,8 @@ CREATE TABLE `trip` (
 --
 
 INSERT INTO `trip` (`id`, `guide_id`, `tourist_id`, `title`, `description`, `status`, `date`, `min_budget`, `max_budget`, `duration`, `destination`, `person`) VALUES
-(11, NULL, 1, 'asdasd', 'sad', 1, '2018-12-31', 11313, 1231231, 12, 'aceh', 1);
+(11, NULL, 1, 'asdasd', 'sad', 1, '2018-12-31', 11313, 1231231, 12, 'aceh', 1),
+(12, 4, 1, 'test', 'asdasd', 1, '2018-11-21', 50000, 100000, 3, 'Kalsel', 1);
 
 -- --------------------------------------------------------
 
@@ -149,6 +165,15 @@ ALTER TABLE `activity`
   ADD KEY `fk_activitytrip` (`trip_id`);
 
 --
+-- Indexes for table `interest`
+--
+ALTER TABLE `interest`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_intertrip` (`trip_id`),
+  ADD KEY `fk_interguide` (`guide_id`),
+  ADD KEY `fk_intertour` (`tourist_id`);
+
+--
 -- Indexes for table `service`
 --
 ALTER TABLE `service`
@@ -186,6 +211,12 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `activity`
 --
 ALTER TABLE `activity`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `interest`
+--
+ALTER TABLE `interest`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -204,7 +235,7 @@ ALTER TABLE `transaction`
 -- AUTO_INCREMENT for table `trip`
 --
 ALTER TABLE `trip`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -221,6 +252,14 @@ ALTER TABLE `user`
 --
 ALTER TABLE `activity`
   ADD CONSTRAINT `fk_activitytrip` FOREIGN KEY (`trip_id`) REFERENCES `trip` (`id`);
+
+--
+-- Constraints for table `interest`
+--
+ALTER TABLE `interest`
+  ADD CONSTRAINT `fk_interguide` FOREIGN KEY (`guide_id`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `fk_intertour` FOREIGN KEY (`tourist_id`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `fk_intertrip` FOREIGN KEY (`trip_id`) REFERENCES `trip` (`id`);
 
 --
 -- Constraints for table `service`
