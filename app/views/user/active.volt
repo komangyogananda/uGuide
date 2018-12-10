@@ -24,7 +24,7 @@
 
     <div class="ui grid centered">
         <div class="row">
-            <div class="eleven wide column center aligned">
+            <div class="ten wide column center aligned">
                 <div class="ui tablet stackable five steps">
                     <div class="completed step">
                         <i class="bullhorn icon"></i>
@@ -69,7 +69,7 @@
 
     <div class="ui centered grid">
         <div class="row">
-            <div class="eleven wide column center aligned">
+            <div class="eight wide column center aligned">
                 <div class="ui segment column middle aligned">
                     <div class="ui row">
                         <div class="column center aligned">

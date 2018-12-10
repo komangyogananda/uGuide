@@ -85,7 +85,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <tr class="error" >
                                     <td>001</td>
                                     <td>001</td>
                                     <td>001</td>
@@ -95,7 +95,7 @@
                                     <td>23/12/2018</td>
                                     <td>Expired</td>
                                 </tr>
-                                <tr>
+                                <tr class="positive" >
                                     <td>003</td>
                                     <td>003</td>
                                     <td>003</td>
@@ -103,7 +103,7 @@
                                     <td>5000000</td>
                                     <td>24/12/2018</td>
                                     <td>23/12/2018</td>
-                                    <td>Active</td>
+                                    <td>Approved</td>
                                 </tr>
                             </tbody>
                         </table>
