@@ -2,6 +2,7 @@
 
     use Phalcon\Mvc\Controller;
     use Phalcon\Http\Response;
+    use Phalcon\Tag;
 
     class UserController extends Controller{
         public function registerAction(){
@@ -158,26 +159,34 @@
         }
 
         public function storeAction(){
-            $user = new User();
-            $user->setType($this->request->getPost('tipe'));
-            $user->setUsername($this->request->getPost('username'));
-            $user->setEmail($this->request->getPost('email'));
-            $user->setPassword(password_hash($this->request->getPost('password'), PASSWORD_BCRYPT, ['cost' => 15]));
-            $user->setFname($this->request->getPost('firstName'));
-            $user->setLname($this->request->getPost('lastName'));
-            $user->setPhone($this->request->getPost('telephone'));
-            $user->setLocation($this->request->getPost('location'));
-            $user->setGender($this->request->getPost('gender'));
-            $user->setRating(0);
-            $user->setPicture($this->request->getPost('picture'));
-            if ($user->save() === false){
-                foreach($user->getMessages() as $message){
-                    echo $message;
-                    echo '<br>';
+            $form = new SignUpForm();
+            if ($this->request->isPost()) {
+                if ($form->isValid($this->request->getPost()) == false) {
+                    foreach ($form->getMessages() as $message) {
+                        $this->flash->error($message);
+                    }
+                } else {
+                    $user = new User();
+                    $user->setType($this->request->getPost('tipe'));
+                    $user->setUsername($this->request->getPost('username'));
+                    $user->setEmail($this->request->getPost('email'));
+                    $user->setPassword(password_hash($this->request->getPost('password'), PASSWORD_BCRYPT, ['cost' => 15]));
+                    $user->setFname($this->request->getPost('firstName'));
+                    $user->setLname($this->request->getPost('lastName'));
+                    $user->setPhone($this->request->getPost('telephone'));
+                    $user->setLocation($this->request->getPost('location'));
+                    $user->setGender($this->request->getPost('gender'));
+                    $user->setRating(0);
+                    $user->setPicture($this->request->getPost('picture'));
+                    if (!$user->save()) {
+                        $this->flash->error($user->getMessages());
+                    } else {
+                        $this->flash->success("User was created successfully");
+                        Tag::resetInput();
+                    }
                 }
-            }else{
-                echo "pendaftaran berhasil!";
             }
+            $this->view->form = $form;
 
         }
 

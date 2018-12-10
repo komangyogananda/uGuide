@@ -1,6 +1,12 @@
 <?php
 
 use Phalcon\Mvc\Model;
+use Phalcon\Validation;
+use Phalcon\Validation\Validator\Email;
+use Phalcon\Validation\Validator\Uniqueness;
+use Phalcon\Validation\Validator\PresenceOf;
+use Phalcon\Validation\Validator\Alnum;
+use Phalcon\Validation\Validator\Digit;
 
 class User extends Model
 {
@@ -126,4 +132,137 @@ class User extends Model
     {
         $this->picture = $picture;
     }
+     public function validation(){
+        $validator = new Validation();
+
+        $validator->add(
+            'username',
+            new Uniqueness(
+                [
+                    'message' => 'Username already exist.',
+                       'model' => $this
+                ]
+            )
+        );
+
+        $validator->add(
+            'username',
+            new PresenceOf(
+                [
+                    'message' => 'Username required.'
+                ]
+            )
+        );
+
+        $validator->add(
+            'username',
+            new Alnum(
+                [
+                    'message' => 'Not a valid username.'
+                ]
+            )
+        );
+
+        $validator->add(
+            'email',
+            new Email(
+                [
+                    'message' => 'Not a valid e-mail address.'
+                ]
+            )
+        );
+
+        $validator->add(
+            'email',
+            new Uniqueness(
+                [
+                    'message' => 'Email address already exist',
+                       'model' => $this
+                ]
+            )
+        );
+
+        $validator->add(
+            'email',
+            new PresenceOf(
+                [
+                    'message' => 'Email address required.'
+                ]
+            )
+        );
+
+        $validator->add(
+            'email',
+            new Email(
+                [
+                    'message' => 'Not a valid e-mail address.'
+                ]
+            )
+        );
+
+        $validator->add(
+            'password',
+            new PresenceOf(
+                [
+                    'message' => 'Password is required.'
+                ]
+            )
+        );
+
+        $validator->add(
+            'fname',
+            new PresenceOf(
+                [
+                    'message' => 'First name required.'
+                ]
+            )
+        );
+
+        $validator->add(
+            'lname',
+            new PresenceOf(
+                [
+                    'message' => 'First name required.'
+                ]
+            )
+        );
+
+        $validator->add(
+            'phone',
+            new PresenceOf(
+                [
+                    'message' => 'First name required.'
+                ]
+            )
+        );
+
+        $validator->add(
+            'phone',
+            new Digit(
+                [
+                    'message' => 'Not a valid phone number.'
+                ]
+            )
+        );
+
+        $validator->add(
+            'phone',
+            new Digit(
+                [
+                    'message' => 'Not a valid phone number.'
+                ]
+            )
+        );
+
+        $validator->add(
+            'picture',
+            new PresenceOf(
+                [
+                    'message' => 'Not a valid phone number.'
+                ]
+            )
+        );
+        return $this->validate($validator);
+    }
+
 }
