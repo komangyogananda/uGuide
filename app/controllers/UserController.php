@@ -74,6 +74,17 @@
                 else $resp->redirect('moderator')->send();
             }
             $this->view->tipe = $tipe;
+            $id = $this->session->get('auth')['id'];
+            $recent = Trip::find(
+                [
+                    'status = 0 AND (tourist_id = 1 OR guide_id = 1)',
+                    'bind' => [
+                        1 => $id
+                    ],
+                    'limit' => 3
+                ]
+            );
+            $this->view->recent = $recent;
         }
 
         public function profileAction(){
@@ -95,6 +106,16 @@
             
             $tipe = $this->dispatcher->getParam('tipe');
             $this->view->tipe = $tipe;
+            $id = $this->session->get('auth')['id'];
+            $history = Trip::find(
+                [
+                    'status = 0 AND (tourist_id = 1 OR guide_id = 1)',
+                    'bind' => [
+                        1 => $id,
+                    ]
+                ]
+            );
+            $this->view->history = $history;
         }
 
         public function storeAction(){
