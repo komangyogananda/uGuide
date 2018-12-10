@@ -56,12 +56,10 @@
             </div>
         </div>
 
-        <?php if ($tipe == 'tourist') { ?>
-            <div class="field">
-            <label>Username</label>
-                <?= $form->render('username') ?>
-            </div>
-        <?php } ?>
+        <div class="field">
+        <label>Username</label>
+            <?= $form->render('username') ?>
+        </div>
 
         <div class="field">
             <label>Email</label>

@@ -43,12 +43,10 @@
             </div>
         </div>
 
-        {% if tipe == 'tourist' %}
-            <div class="field">
-            <label>Username</label>
-                {{ form.render('username') }}
-            </div>
-        {% endif %}
+        <div class="field">
+        <label>Username</label>
+            {{ form.render('username') }}
+        </div>
 
         <div class="field">
             <label>Email</label>
