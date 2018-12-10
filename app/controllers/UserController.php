@@ -25,8 +25,8 @@
             $password = $this->request->getPost('password');
             $email = $this->request->getPost('email');
             $user = User::findFirst("email = '$email'");
-
-            if ($user){
+            if ($user->getType() !== $tipe) echo "$tipe user not found";
+            else if ($user){
                 if (password_verify($password, $user->getPassword())){
                     $this->session->set(
                         'auth',
@@ -40,17 +40,39 @@
                         ]
                     );
                     echo "Login Success";
+                    $resp = new Response();
+                    if ($tipe == 'tourist') {
+                        $resp->redirect('tourist/dashboard')->send();
+                    }
+                    else if ($tipe == 'guide') {
+                        $resp->redirect('guide/dashboard')->send();
+                    }
+                    else {
+                        $resp->redirect('moderator')->send();
+                    }
                 }else{
-                    echo "verify Gagal";
+                    echo "failed to verify";
                 }
             }else{
-                echo "user gaada";
+                echo "user not found";
             }
 
+        }
+
+        public function logoutAction(){
+            $this->session->destroy('auth');
+            (new Response())->redirect('')->send();      
         }
         
         public function dashboardAction(){
             $tipe = $this->dispatcher->getParam('tipe');
+            $resp = new Response();
+            if (!$this->session->has('auth')) (new Response())->redirect('')->send();
+            else if ($this->session->get('auth')['type'] != $tipe) {
+                if ($this->session->get('auth')['type'] == 'tourist') $resp->redirect('tourist/dashboard')->send();
+                else if ($this->session->get('auth')['type'] == 'guide') $resp->redirect('guide/dashboard')->send();
+                else $resp->redirect('moderator')->send();
+            }
             $this->view->tipe = $tipe;
         }
 

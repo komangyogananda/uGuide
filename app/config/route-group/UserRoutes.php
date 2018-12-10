@@ -32,6 +32,14 @@ class UserRoutes extends RouterGroup{
             ]
         );
 
+        $this->addGet(
+            '/((tourist)|(guide))/logout',
+            [
+                'tipe' => 1,
+                'action' => 'logout',
+            ]
+        );
+
         $this->addPost(
             '/((tourist)|(guide))/login',
             [
