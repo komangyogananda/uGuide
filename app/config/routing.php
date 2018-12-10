@@ -13,6 +13,10 @@ $di->set(
             new GeneralRoutes()
         );
 
+        $router->mount(
+            new ModeratorRoutes()
+        );
+
         $router->add(
             '/',
             [
