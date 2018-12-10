@@ -2,7 +2,7 @@
 <html>
 
     <head>
-        <title> MyTrip - <?php if ($tipe == 'tourist') { ?>Tourist<?php } else { ?>Tour Guide<?php } ?> - uGuide</title>
+        <title> Guide Profile - <?php if ($tipe == 'tourist') { ?>Tourist<?php } else { ?>Tour Guide<?php } ?> - uGuide</title>
         <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -22,8 +22,8 @@
             <i class="bars icon"></i>
         </a>
         <div class="item">
-            <i class="suitcase icon"></i>
-            <span class="text">MyTrip</span>
+            <i class="blind icon"></i>
+            <span class="text">Guide Profile</span>
         </div>
         <div class="right menu">
             <div class="item">
