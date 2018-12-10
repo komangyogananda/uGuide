@@ -128,7 +128,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <button class="ui right floated button">
+                            <button id="addActivity" class="ui right floated button">
                                 <i class="plus icon"></i>
                                 Add New Message
                             </button>
@@ -172,6 +172,10 @@
         </div>
     </div>
 
+    
+
     {% include 'layouts/sidebar.volt' %}
+
+    {% include 'layouts/message.volt' %}
 
 {% endblock %}

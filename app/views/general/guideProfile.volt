@@ -170,4 +170,6 @@
 
     {% include 'layouts/sidebar.volt' %}
 
+    {% include 'layouts/message.volt' %}
+
 {% endblock %}
