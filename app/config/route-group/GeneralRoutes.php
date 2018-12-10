@@ -16,6 +16,14 @@ class GeneralRoutes extends RouterGroup{
             ]
         );
 
+        $this->addGet(
+            '/payments/:params',
+            [
+                'action' => 'payments',
+                'params' => 1,
+            ]
+        );
+
         return $this;
     }
 }

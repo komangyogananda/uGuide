@@ -1,6 +1,6 @@
 {% extends 'layouts/base.volt' %}
 
-{% block title %} MyTrip - {% if tipe == 'tourist' %}Tourist{% else %}Tour Guide{% endif %}{% endblock %}
+{% block title %} Guide Profile - {% if tipe == 'tourist' %}Tourist{% else %}Tour Guide{% endif %}{% endblock %}
 
 {% block content %}
 
@@ -9,8 +9,8 @@
             <i class="bars icon"></i>
         </a>
         <div class="item">
-            <i class="suitcase icon"></i>
-            <span class="text">MyTrip</span>
+            <i class="blind icon"></i>
+            <span class="text">Guide Profile</span>
         </div>
         <div class="right menu">
             <div class="item">
