@@ -11,10 +11,11 @@
                     <?= $messageForm->render('message') ?>
                 </div>
 
+                <div class="actions">
+                    <?= $messageForm->render('go', ['class' => 'ui positive button']) ?>
+                </div>
+
             </form>
-        </div>
-        <div class="actions">
-            <div class="ui positive button">Send</div>
         </div>
     </div>
 

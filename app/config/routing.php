@@ -21,6 +21,11 @@ $di->set(
             new TripRoutes()
         );
 
+        $router->mount(
+            new ProfileRoutes()
+        );
+
+
         $router->add(
             '/',
             [

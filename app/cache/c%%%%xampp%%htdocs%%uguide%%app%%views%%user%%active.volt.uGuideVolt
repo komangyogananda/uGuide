@@ -125,6 +125,7 @@
                         <div class="ui grid">
                             <div class="row">
                                 <div class="column middle aligned">
+                                    <h3 class="header">Your Guide</h3>
                                     <?php if ($activeTrip->guide_id != null) { ?>
                                         <div class="ui card centered">
                                             <div class="image">
@@ -161,8 +162,15 @@
                                             <div class="row">
                                                 <div class="six wide column center aligned">
                                                     <div class="ui info message">
-                                                        Find a Guide First.
+                                                        <h3 class="header">
+                                                            Find a Guide First.
+                                                        </h3>
                                                     </div>
+                                                    <a href="<?= $this->url->get('tourist/trip/interested/1') ?>">
+                                                        <div class="ui positive button">
+                                                            Check Guide(s) interested in your trip!
+                                                        </div>
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
@@ -170,43 +178,41 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <?php if ($activity != null) { ?>
-                                    <div class="column">
-                                        <h3 class="header">Activities</h3>
-                                        <div class="ui grid">
-                                            <div class="row">
-                                                <div class="twelve wide column right floated">
-                                                    <div class="ui message green">
-                                                        <div class="header">
-                                                            Tourist - Arrival
+                                <div class="column">
+                                    <h3 class="header">Activities</h3>
+                                        <?php if ($this->length($activity) != 0) { ?>
+                                            <div class="ui grid">
+                                                <div class="row">
+                                                    <div class="twelve wide column right floated">
+                                                        <div class="ui message green">
+                                                            <div class="header">
+                                                                Tourist - Arrival
+                                                            </div>
+                                                            <p>Kita dateng tanggal 20.</p>
                                                         </div>
-                                                        <p>Kita dateng tanggal 20.</p>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="twelve wide column left floated">
+                                                        <div class="ui message blue">
+                                                            <div class="header">
+                                                                Guide - Response Arrival
+                                                            </div>
+                                                            <p>Saya tunggu di bandara.</p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                                <div class="twelve wide column left floated">
-                                                    <div class="ui message blue">
-                                                        <div class="header">
-                                                            Guide - Response Arrival
-                                                        </div>
-                                                        <p>Saya tunggu di bandara.</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <button id="addActivity" class="ui right floated button">
-                                            <i class="plus icon"></i>
-                                            Add New Message
-                                        </button>
-                                    </div>
-                                <?php } else { ?>
-                                    <div class="column">
-                                        <div class="segment info message">
+                                            <button id="addActivity" class="ui right floated button">
+                                                <i class="plus icon"></i>
+                                                Add New Message
+                                            </button> 
+                                        <?php } else { ?>
+                                        <div class="ui info message">
                                             There is no activity yet.
                                         </div>
-                                    </div>
-                                <?php } ?>
+                                    <?php } ?>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -225,7 +231,9 @@
                             </h2>
                         </div>
                     </div>
-                    <button class="positive fluid ui button">Click here to create new Trip.</button>
+                    <a href="<?= $this->url->get($tourist / $find) ?>">
+                        <button class="positive fluid ui button">Click here to create new Trip.</button>
+                    </a>
                 </div>
             </div>
         <?php } ?>
@@ -318,16 +326,16 @@
                     <?= $messageForm->render('message') ?>
                 </div>
 
+                <div class="actions">
+                    <?= $messageForm->render('go', ['class' => 'ui positive button']) ?>
+                </div>
+
             </form>
-        </div>
-        <div class="actions">
-            <div class="ui positive button">Send</div>
         </div>
     </div>
 
     <script>
         $('#addActivity').on("click", function(){
-            console.log("coi");
             $('.small.modal').modal('show');
         });
     </script>

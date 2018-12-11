@@ -32,6 +32,15 @@ class MessageForm extends Form{
                 ]
             )
         );
+
+        $this->add(
+            new Submit(
+                'go',
+                [
+                    'value' => 'Send',
+                ]
+            )
+        );
     }
 }
     

@@ -4,6 +4,7 @@
     use Phalcon\Http\Response;
 
     class ProfileController extends Controller{
+        
         public function editProfileAction(){
             $form = new SignUpForm();
             $email = $this->session->get('auth')['email'];
@@ -12,6 +13,11 @@
             $this->view->tipe = $tipe;
             $this->view->form = $form;
             $this->view->user = $user;
+        }
+
+        public function showGuideAction(){
+            $tipe = 'tourist';
+            $this->view->tipe = 'tourist';
         }
     }
 

@@ -77,19 +77,47 @@
             }
             $this->view->tipe = $tipe;
             $id = $this->session->get('auth')['id'];
-            $recent = Trip::find(
+            $recents = Trip::find(
                 [
-                    'status = 0 AND (tourist_id = 1 OR guide_id = 1)',
+                    'status = 0 AND (tourist_id = :id1: OR guide_id = :id2:)',
                     'bind' => [
-                        1 => $id
+                        'id1' => $id,
+                        'id2' => $id,
                     ],
+                    [
                     'order' => 'date',
-                    //'limit' => 3
+                    'limit' => 3,
+                    ]
                 ]
             );
-            $this->view->recent = $recent;
+            $this->view->recents = $recents;
             $messageForm = new MessageForm();
             $this->view->messageForm = $messageForm;
+
+            $step = array(
+                1 => false,
+                2 => false,
+                3 => false,
+                4 => false,
+                5 => false,
+            );
+
+            if ($tipe == 'tourist'){
+                $activeTrip = Trip::findFirst("tourist_id = '$id'");
+                $activity = Activity::find("trip_id = '$activeTrip->id'");
+            }else{
+                $activeTrip = Trip::findFirst("guide_id = '$id'");
+                $activity = Activity::find("trip_id = '$activeTrip->id'");
+            }
+            $find;
+            if ($activeTrip){
+                $find = true;
+            }else{
+                $find = false;
+            }
+            $this->view->find = $find;
+            $this->view->activeTrip = $activeTrip;
+            $this->view->activity = $activity;
         }
 
         public function profileAction(){
@@ -114,16 +142,13 @@
                 5 => false,
             );
 
-            $activity = NULL;
             if ($tipe == 'tourist'){
                 $activeTrip = Trip::findFirst("tourist_id = '$id'");
                 $activity = Activity::find("trip_id = '$activeTrip->id'");
             }else{
                 $activeTrip = Trip::findFirst("guide_id = '$id'");
+                $activity = Activity::find("trip_id = '$activeTrip->id'");
             }
-            $findActivity;
-            if (count($activity)) $findActivity = true;
-            else $findActivity = false;
             $find;
             if ($activeTrip){
                 $find = true;
@@ -136,7 +161,6 @@
             $tipe = $this->dispatcher->getParam('tipe');
             $this->view->tipe = $tipe;
             $this->view->activity = $activity;
-            $this->view->findActivity = $findActivity;
             $messageForm = new MessageForm();
             $this->view->messageForm = $messageForm;
         }
@@ -146,16 +170,17 @@
             $tipe = $this->dispatcher->getParam('tipe');
             $this->view->tipe = $tipe;
             $id = $this->session->get('auth')['id'];
-            $history = Trip::find(
+            $recents = Trip::find(
                 [
-                    'status = 0 AND (tourist_id = 1 OR guide_id = 1)',
+                    'status = 0 AND (tourist_id = :id1: OR guide_id = :id2:)',
                     'bind' => [
-                        1 => $id,
+                        'id1' => $id,
+                        'id2' => $id,
                     ],
                     'order' => 'date'
                 ]
             );
-            $this->view->history = $history;
+            $this->view->recents = $recents;
         }
 
         public function storeAction(){

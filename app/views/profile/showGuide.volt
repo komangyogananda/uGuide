@@ -1,6 +1,6 @@
 {% extends 'layouts/base.volt' %}
 
-{% block title %} Guide Profile - {% if tipe == 'tourist' %}Tourist{% else %}Tour Guide{% endif %}{% endblock %}
+{% block title %} Guide Profile {% endblock %}
 
 {% block content %}
 
@@ -169,7 +169,5 @@
     </div>
 
     {% include 'layouts/sidebar.volt' %}
-
-    {% include 'layouts/message.volt' %}
 
 {% endblock %}

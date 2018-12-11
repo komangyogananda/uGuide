@@ -23,7 +23,6 @@
     </div>
 
     <div class="ui grid centered">
-        {% if find == true %}
             <div class="row">
                 <div class="ten wide column center aligned">
                     <div class="ui tablet stackable five steps">
@@ -113,7 +112,7 @@
                             <div class="row">
                                 <div class="column middle aligned">
                                     <h3 class="header">Your Guide</h3>
-                                    {% if activeTrip.guide_id != NULL %}
+                                    {% if trip.guide_id != NULL %}
                                         <div class="ui card centered">
                                             <div class="image">
                                                 <img src="/images/avatar2/large/kristy.png">
@@ -195,35 +194,16 @@
                                                 Add New Message
                                             </button> 
                                         {% else %}
-                                        <div class="ui info message">
-                                            There is no activity yet.
-                                        </div>
-                                    {% endif %}
+                                            <div class="ui info message">
+                                                There is no activity yet.
+                                            </div>
+                                        {% endif %}
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        {% else %}
-            <div class="row">
-                <div class="segment eight wide column middle aligned">
-                    <div class="ui attached segment">
-                        <div class="column center aligned">
-                            <h1 class="ui header">
-                                <i class="window close outline icon"></i>
-                            </h1>
-                            <h2 class="ui header">
-                            You have no active trip
-                            </h2>
-                        </div>
-                    </div>
-                    <a href="{{ url(tourist/find) }}">
-                        <button class="positive fluid ui button">Click here to create new Trip.</button>
-                    </a>
-                </div>
-            </div>
-        {% endif %}
     </div>  
 
     {% include 'layouts/sidebar.volt' %}

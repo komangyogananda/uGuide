@@ -7,10 +7,6 @@
         public function paymentsAction(){
 
         }
-
-        public function guideProfileAction(){
-            
-        }
     }
 
 ?>

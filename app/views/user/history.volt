@@ -23,75 +23,45 @@
     </div>
 
     <div class="ui grid centered">
-        
-        <div class="row">
-            <div class="eight wide column">
-                <div class="ui column attached segment">
-                    <div class="item">
-                        <div class="ui small image">
-                            <img src="/images/wireframe/image.png">
-                        </div>
-                        <div class="content">
-                            <div class="header">Arrowhead Valley Camp</div>
-                            <div class="meta">
-                                <span class="price">$1200</span>
-                                <span class="stay">1 Month</span>
-                            </div>
-                            <div class="description">
-                                <p></p>
-                            </div>
+        {% if recents|length == 0 %}
+            <div class="row">
+                <div class="eight wide column">
+                    <div class="ui column attached segment center aligned">
+                        <div class="item">
+                            <h1 class="ui header">
+                                No recent trip yet.
+                            </h 1>
+                            <h2 class="ui header">
+                                <i class="history layout icon"></i>
+                            </h2>
                         </div>
                     </div>
                 </div>
-                <button class="positive fluid ui button">Click here for details.</button>
             </div>
-        </div>
-        
-        <div class="row">
-            <div class="eight wide column">
-                <div class="ui column attached segment">
-                    <div class="item">
-                        <div class="ui small image">
-                            <img src="/images/wireframe/image.png">
-                        </div>
-                        <div class="content">
-                            <div class="header">Arrowhead Valley Camp</div>
-                            <div class="meta">
-                                <span class="price">$1200</span>
-                                <span class="stay">1 Month</span>
+        {% else %}
+            <div class="row">
+                <div class="eight wide column">
+                    <div class="ui column attached segment">
+                        <div class="item">
+                            <div class="ui small image">
+                                <img src="/images/wireframe/image.png">
                             </div>
-                            <div class="description">
-                                <p></p>
+                            <div class="content">
+                                <div class="header">Arrowhead Valley Camp</div>
+                                <div class="meta">
+                                    <span class="price">$1200</span>
+                                    <span class="stay">1 Month</span>
+                                </div>
+                                <div class="description">
+                                    <p></p>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <button class="positive fluid ui button">Click here for details.</button>
                 </div>
-                <button class="positive fluid ui button">Click here for details.</button>
             </div>
-        </div>
-
-        <div class="row">
-            <div class="eight wide column">
-                <div class="ui column attached segment">
-                    <div class="item">
-                        <div class="ui small image">
-                            <img src="/images/wireframe/image.png">
-                        </div>
-                        <div class="content">
-                            <div class="header">Arrowhead Valley Camp</div>
-                            <div class="meta">
-                                <span class="price">$1200</span>
-                                <span class="stay">1 Month</span>
-                            </div>
-                            <div class="description">
-                                <p></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <button class="positive fluid ui button">Click here for details.</button>
-            </div>
-        </div>
+        {% endif %}
         
     </div>
 

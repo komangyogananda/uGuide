@@ -16,6 +16,13 @@ class ProfileRoutes extends RouterGroup{
             ]
         );
 
+        $this->addGet(
+            '/guide/profile/show/:params',
+            [
+                'action' => 'showGuide',
+                'params' => 1,
+            ]
+        );
 
         return $this;
     }

@@ -1,8 +1,21 @@
-{% extends 'layouts/base.volt' %}
+<!DOCTYPE html>
+<html>
 
-{% block title %} MyTrip - {% if tipe == 'tourist' %}Tourist{% else %}Tour Guide{% endif %}{% endblock %}
+    <head>
+        <title> MyTrip - <?php if ($tipe == 'tourist') { ?>Tourist<?php } else { ?>Tour Guide<?php } ?> - uGuide</title>
+        <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" type="text/css" href="<?= $this->url->get('semantic/dist/semantic.min.css') ?>">
+<link href="<?= $this->url->get('css/style.css') ?>" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+<script src="<?= $this->url->get('js/jquery-3.3.1.min.js') ?>"></script>
+<script src="<?= $this->url->get('semantic/dist/semantic.min.js') ?>"></script>
+    </head>
 
-{% block content %}
+    <body>
+
+        
 
     <div class="ui menu">
         <a class="sidebarToggle item">
@@ -23,41 +36,40 @@
     </div>
 
     <div class="ui grid centered">
-        {% if find == true %}
             <div class="row">
                 <div class="ten wide column center aligned">
                     <div class="ui tablet stackable five steps">
-                        <div class="{% if step[1] == true %}
+                        <div class="<?php if ($step[1] == true) { ?>
                             completed
-                            {% else %}
+                            <?php } else { ?>
                             active
-                            {% endif %} step">
+                            <?php } ?> step">
                             <i class="bullhorn icon"></i>
                             <div class="content">
                                 <div class="title">Get A Guide</div>
                                 <div class="description">Blablabla</div>
                             </div>
                         </div>
-                        <div class="{% if step[2] == true %}
+                        <div class="<?php if ($step[2] == true) { ?>
                         completed
-                        {% elseif step[1] == true and step[2] == false %}
+                        <?php } elseif ($step[1] == true && $step[2] == false) { ?>
                         active
-                        {% else %}
+                        <?php } else { ?>
                         disabled
-                        {% endif %} step">
+                        <?php } ?> step">
                             <i class="payment icon"></i>
                             <div class="content">
                                 <div class="title">Pay your guide services.</div>
                                 <div class="description">Blablabla</div>
                             </div>
                         </div>
-                        <div class="{% if step[3] == true %}
+                        <div class="<?php if ($step[3] == true) { ?>
                         completed
-                        {% elseif step[2] == true and step[3] == false %}
+                        <?php } elseif ($step[2] == true && $step[3] == false) { ?>
                         active
-                        {% else %}
+                        <?php } else { ?>
                         disabled
-                        {% endif %} step">
+                        <?php } ?> step">
                             <i class="comments icon">
                             </i>
                             <div class="content">
@@ -65,26 +77,26 @@
                                 <div class="description">Blablabla</div>
                             </div>
                         </div>
-                        <div class="{% if step[4] == true %}
+                        <div class="<?php if ($step[4] == true) { ?>
                         completed
-                        {% elseif step[3] == true and step[4] == false %}
+                        <?php } elseif ($step[3] == true && $step[4] == false) { ?>
                         active
-                        {% else %}
+                        <?php } else { ?>
                         disabled
-                        {% endif %} step">
+                        <?php } ?> step">
                             <i class="suitcase icon"></i>
                             <div class="content">
                                 <div class="title">Trip Day!</div>
                                 <div class="description">Blablabla</div>
                             </div>
                         </div>
-                        <div class="{% if step[5] == true %}
+                        <div class="<?php if ($step[5] == true) { ?>
                         completed
-                        {% elseif step[4] == true and step[5] == false %}
+                        <?php } elseif ($step[4] == true && $step[5] == false) { ?>
                         active
-                        {% else %}
+                        <?php } else { ?>
                         disabled
-                        {% endif %} step">
+                        <?php } ?> step">
                             <i class="star icon"></i>
                             <div class="content">
                                 <div class="title">FeedBack</div>
@@ -113,7 +125,7 @@
                             <div class="row">
                                 <div class="column middle aligned">
                                     <h3 class="header">Your Guide</h3>
-                                    {% if activeTrip.guide_id != NULL %}
+                                    <?php if ($trip->guide_id != null) { ?>
                                         <div class="ui card centered">
                                             <div class="image">
                                                 <img src="/images/avatar2/large/kristy.png">
@@ -144,7 +156,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    {% else %}
+                                    <?php } else { ?>
                                         <div class="ui grid centered">
                                             <div class="row">
                                                 <div class="six wide column center aligned">
@@ -153,7 +165,7 @@
                                                             Find a Guide First.
                                                         </h3>
                                                     </div>
-                                                    <a href="{{ url('tourist/trip/interested/1') }}">
+                                                    <a href="<?= $this->url->get('tourist/trip/interested/1') ?>">
                                                         <div class="ui positive button">
                                                             Check Guide(s) interested in your trip!
                                                         </div>
@@ -161,13 +173,13 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    {% endif %}
+                                    <?php } ?>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="column">
                                     <h3 class="header">Activities</h3>
-                                        {% if activity|length != 0 %}
+                                        <?php if ($this->length($activity) != 0) { ?>
                                             <div class="ui grid">
                                                 <div class="row">
                                                     <div class="twelve wide column right floated">
@@ -194,40 +206,122 @@
                                                 <i class="plus icon"></i>
                                                 Add New Message
                                             </button> 
-                                        {% else %}
-                                        <div class="ui info message">
-                                            There is no activity yet.
-                                        </div>
-                                    {% endif %}
+                                        <?php } else { ?>
+                                            <div class="ui info message">
+                                                There is no activity yet.
+                                            </div>
+                                        <?php } ?>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        {% else %}
-            <div class="row">
-                <div class="segment eight wide column middle aligned">
-                    <div class="ui attached segment">
-                        <div class="column center aligned">
-                            <h1 class="ui header">
-                                <i class="window close outline icon"></i>
-                            </h1>
-                            <h2 class="ui header">
-                            You have no active trip
-                            </h2>
-                        </div>
-                    </div>
-                    <a href="{{ url(tourist/find) }}">
-                        <button class="positive fluid ui button">Click here to create new Trip.</button>
-                    </a>
-                </div>
-            </div>
-        {% endif %}
     </div>  
 
-    {% include 'layouts/sidebar.volt' %}
-    
-    {% include 'layouts/message.volt' %}
+    <div id="sidebarMenu" class="ui left vertical inverted sidebar labeled icon menu">
+        <div class="column">
+            <img class="image" width=40 src="<?= $this->url->get('src/smallLogo.png') ?>">
+        </div>
 
-{% endblock %}
+        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/dashboard') ?>" class="item">
+        <?php } else { ?> <a href="<?= $this->url->get('guide/dashboard') ?>" class="item">
+        <?php } ?>
+            <i class="home icon"></i>
+            Home
+        </a>
+
+        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/find') ?>" class="item">
+        <?php } else { ?> <a href="<?= $this->url->get('guide/find') ?>" class="item">
+        <?php } ?>
+            <i class="plus square icon"></i>
+            <?php if ($tipe == 'tourist') { ?>
+            Find a Guide
+            <?php } else { ?>
+            Find a Tourist
+            <?php } ?>
+        </a>
+        
+        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/history') ?>" class="item">
+        <?php } else { ?> <a href="<?= $this->url->get('guide/history') ?>" class="item">
+        <?php } ?>
+            <i class="history layout icon"></i>
+            Recent Trip
+        </a>
+        
+        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/active') ?>" class="item">
+        <?php } else { ?> <a href="<?= $this->url->get('guide/active') ?>" class="item">
+        <?php } ?>
+            <i class="suitcase icon"></i>
+            My Trip
+        </a>
+
+        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/profile') ?>" class="item">
+        <?php } else { ?> <a href="<?= $this->url->get('guide/profile') ?>" class="item">
+        <?php } ?>
+            <i class="user icon"></i>
+            Profile
+        </a>
+        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/feedback') ?>" class="item">
+        <?php } else { ?> <a href="<?= $this->url->get('guide/feedback') ?>" class="item">
+        <?php } ?>
+            <i class="icon">
+                <i class="fas fa-comment-alt"></i>
+            </i>
+            Feed Back
+        </a>
+
+        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/logout') ?>" class="item">
+        <?php } else { ?> <a href="<?= $this->url->get('guide/logout') ?>" class="item">
+        <?php } ?>
+            <i class="arrow alternate circle right icon"></i>
+            Logout
+        </a>
+        
+        <a class="right item sidebarToggle">
+            <i class="angle double left icon"></i>
+        </a>
+    </div>
+
+    <script>    
+
+        $(".sidebarToggle").on("click", function(){
+            $("#sidebarMenu").sidebar('toggle');
+        });
+
+        $('.ui.sticky').sticky();
+
+    </script>
+    
+        <div class="ui small modal">
+        <div class="header">Add New Message</div>
+        <div class="content">
+            <?= $this->tag->form(['class' => 'ui form']) ?>
+
+                <div class="ui field">
+                    <?= $messageForm->render('title') ?>
+                </div>
+
+                <div class="ui field">
+                    <?= $messageForm->render('message') ?>
+                </div>
+
+                <div class="actions">
+                    <?= $messageForm->render('go', ['class' => 'ui positive button']) ?>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <script>
+        $('#addActivity').on("click", function(){
+            $('.small.modal').modal('show');
+        });
+    </script>
+
+
+
+    </body>
+
+</html>

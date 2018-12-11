@@ -48,10 +48,13 @@
             $trans->save();
         }
 
-        public function touristActiveAction(){
+        public function showTripAction(){
             $id = $this->session->get('auth')['id'];
-            $activeTrip = Trip::findFirst("tourist_id = '$id'");
-            $find;
+            $tipeUser = $this->session->get('auth')['type'];
+            $tipe = $this->dispatcher->getParam('tipe');
+            $idTrip = $this->dispatcher->getParam('id');
+            $messageForm = new MessageForm();
+
             $step = array(
                 1 => false,
                 2 => false,
@@ -59,20 +62,19 @@
                 4 => false,
                 5 => false,
             );
-            if ($activeTrip){
-                $find = true;
-                if ($activeTrip->guide_id != NULL){
-                    $step[1] = true;
-                }
-                $payment = Transaction::findFirst("trip_id = '$activeTrip->id'");
-                if ($payment){
-                    $step[2] = true;
-                }
-            }else{
-                $find = false;
+
+            $trip = Trip::findFirst("id = '$idTrip'");
+            $activity = Activity::find("trip_id = '$idTrip'");
+
+            if (!$trip){
+                (new Response())->redirect('404')->send();
             }
-            $this->view->find = $find;
-            $this->view->activeTrip = $activeTrip;
+
+            $this->view->trip = $trip;
+            $this->view->step = $step;
+            $this->view->tipe = $tipe;
+            $this->view->activity = $activity;
+            $this->view->messageForm = $messageForm;
         }
 
         public function findGuideAction(){
@@ -89,6 +91,12 @@
             ]);
             $this->view->trip = $trip;
             $this->view->interestForm = $form;
+        }
+
+        public function interestedGuideAction(){
+
+            $tipe = $this->dispatcher->getParam('tipe');
+            $this->view->tipe = $tipe;
         }
 
     }

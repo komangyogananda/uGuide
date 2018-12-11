@@ -9,14 +9,6 @@ class GeneralRoutes extends RouterGroup{
         ]);
 
         $this->addGet(
-            '/guide/profile/:params',
-            [
-                'action' => 'guideProfile',
-                'params' => 1,
-            ]
-        );
-
-        $this->addGet(
             '/payments/:params',
             [
                 'action' => 'payments',
