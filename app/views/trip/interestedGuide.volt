@@ -1,6 +1,6 @@
 {% extends 'layouts/base.volt' %}
 
-{% block title %} Accept Guide - {% if tipe == 'tourist' %}Tourist{% else %}Tour Guide{% endif %}{% endblock %}
+{% block title %} Interested Guide - {% if tipe == 'tourist' %}Tourist{% else %}Tour Guide{% endif %}{% endblock %}
 
 {% block content %}
 
@@ -10,7 +10,7 @@
         </a>
         <div class="item">
             <i class="user circle icon"></i>
-            <span class="text">Accept Guide</span>
+            <span class="text">Interested Guide</span>
         </div>
         <div class="right menu">
             <div class="item">
@@ -25,7 +25,7 @@
     <div class="ui grid centered">
             <div class="row">
                 <div class="ui six wide segment column center aligned">
-                    <h2 class="header">List of Accept Guide</h2>
+                    <h2 class="header">List of Interested Guide</h2>
                 </div>
             </div>
             <div class="ui two column eight wide row">

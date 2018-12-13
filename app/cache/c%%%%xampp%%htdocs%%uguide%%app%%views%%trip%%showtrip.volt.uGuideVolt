@@ -256,8 +256,8 @@
             My Trip
         </a>
 
-        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/profile') ?>" class="item">
-        <?php } else { ?> <a href="<?= $this->url->get('guide/profile') ?>" class="item">
+        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/profile/edit') ?>" class="item">
+        <?php } else { ?> <a href="<?= $this->url->get('guide/profile/edit') ?>" class="item">
         <?php } ?>
             <i class="user icon"></i>
             Profile

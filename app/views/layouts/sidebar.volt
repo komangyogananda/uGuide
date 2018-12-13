@@ -35,8 +35,8 @@
             My Trip
         </a>
 
-        {% if tipe == 'tourist' %}<a href="{{url('tourist/profile')}}" class="item">
-        {% else %} <a href="{{url('guide/profile')}}" class="item">
+        {% if tipe == 'tourist' %}<a href="{{url('tourist/profile/edit')}}" class="item">
+        {% else %} <a href="{{url('guide/profile/edit')}}" class="item">
         {% endif %}
             <i class="user icon"></i>
             Profile

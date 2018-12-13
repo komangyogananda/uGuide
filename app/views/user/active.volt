@@ -195,10 +195,10 @@
                                                 Add New Message
                                             </button> 
                                         {% else %}
-                                        <div class="ui info message">
-                                            There is no activity yet.
-                                        </div>
-                                    {% endif %}
+                                            <div class="ui info message">
+                                                There is no activity yet.
+                                            </div>
+                                        {% endif %}
                                 </div>
                             </div>
                         </div>
@@ -218,7 +218,7 @@
                             </h2>
                         </div>
                     </div>
-                    <a href="{{ url(tourist/find) }}">
+                    <a href="{{ url('tourist/find') }}">
                         <button class="positive fluid ui button">Click here to create new Trip.</button>
                     </a>
                 </div>

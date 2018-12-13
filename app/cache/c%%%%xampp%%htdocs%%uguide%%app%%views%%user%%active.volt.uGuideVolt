@@ -208,10 +208,10 @@
                                                 Add New Message
                                             </button> 
                                         <?php } else { ?>
-                                        <div class="ui info message">
-                                            There is no activity yet.
-                                        </div>
-                                    <?php } ?>
+                                            <div class="ui info message">
+                                                There is no activity yet.
+                                            </div>
+                                        <?php } ?>
                                 </div>
                             </div>
                         </div>
@@ -231,7 +231,7 @@
                             </h2>
                         </div>
                     </div>
-                    <a href="<?= $this->url->get($tourist / $find) ?>">
+                    <a href="<?= $this->url->get('tourist/find') ?>">
                         <button class="positive fluid ui button">Click here to create new Trip.</button>
                     </a>
                 </div>

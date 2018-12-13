@@ -14,7 +14,7 @@
             $this->view->form = $form;
         }
 
-        public function createAction(){
+        public function createTouristAction(){
             $tipe = $this->dispatcher->getParam('tipe');
             $trip = new Trip();
             $trip->setTouristId($this->session->get('auth')['id']);

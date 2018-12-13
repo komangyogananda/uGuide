@@ -36,169 +36,189 @@
     </div>
 
     <div class="ui centered grid">
-        <div class="row">
-            <div class="segment ten wide column middle aligned">
-                <div class="ui five top attached steps">
-                    <div class="<?php if ($step[1] == true) { ?>
-                    completed
-                    <?php } else { ?>
-                    active
-                    <?php } ?> step">
-                        <i class="bullhorn icon"></i>
-                        <div class="content">
-                            <div class="title">Get A Guide</div>
-                        </div>
-                    </div>
-                    <div class="<?php if ($step[2] == true) { ?>
-                    completed
-                    <?php } elseif ($step[1] == true && $step[2] == false) { ?>
-                    active
-                    <?php } else { ?>
-                    disabled
-                    <?php } ?> step">
-                        <i class="payment icon"></i>
-                        <div class="content">
-                            <div class="title">Pay your guide services.</div>
-                        </div>
-                    </div>
-                    <div class="<?php if ($step[3] == true) { ?>
-                    completed
-                    <?php } elseif ($step[2] == true && $step[3] == false) { ?>
-                    active
-                    <?php } else { ?>
-                    disabled
-                    <?php } ?> step">
-                        <i class="comments icon">
-                        </i>
-                        <div class="content">
-                            <div class="title">Contact with your guide.</div>
-                        </div>
-                    </div>
-                    <div class="<?php if ($step[4] == true) { ?>
-                    completed
-                    <?php } elseif ($step[3] == true && $step[4] == false) { ?>
-                    active
-                    <?php } else { ?>
-                    disabled
-                    <?php } ?> step step">
-                        <i class="suitcase icon"></i>
-                        <div class="content">
-                            <div class="title">Trip Day!</div>
-                        </div>
-                    </div>
-                    <div class="<?php if ($step[5] == true) { ?>
-                    completed
-                    <?php } elseif ($step[4] == true && $step[5] == false) { ?>
-                    active
-                    <?php } else { ?>
-                    disabled
-                    <?php } ?> step step">
-                        <i class="star icon"></i>
-                        <div class="content">
-                            <div class="title">FeedBack</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="ui attached segment">
-                    <div class="ui row">
+        <?php if ($find == false) { ?>
+            <div class="row">
+                <div class="segment ten wide column middle aligned">
+                    <div class="ui attached segment">
                         <div class="column center aligned">
                             <h1 class="ui header">
-                            My Trip
+                                <i class="window close outline icon"></i>
                             </h1>
                             <h2 class="ui header">
-                                <i class="icon">
-                                    <i class="fas fa-hiking"></i>
-                                </i>
+                            You have no active trip
                             </h2>
                         </div>
                     </div>
-                    <div class="ui grid two column row">
-                        <div class="column middle aligned">
-                                <h3 class="header">Your Guide</h3>
-                                <?php if ($activeTrip->guide_id != null) { ?>
-                                    <div class="ui card centered">
-                                        <div class="image">
-                                            <img src="/images/avatar2/large/kristy.png">
-                                        </div>
-                                        <div class="content">
-                                            <a class="header">Novan</a>
-                                            <div class="meta">
-                                                <span class="location">Tangerang</span>
+                    <a href="<?= $this->url->get('tourist/find') ?>">
+                        <button class="positive fluid ui button">Click here to create new Trip.</button>
+                    </a>
+                </div>
+            </div>
+        <?php } else { ?>
+            <div class="row">
+                    <div class="segment ten wide column middle aligned">
+                        <div class="ui five top attached steps">
+                            <div class="<?php if ($step[1] == true) { ?>
+                            completed
+                            <?php } else { ?>
+                            active
+                            <?php } ?> step">
+                                <i class="bullhorn icon"></i>
+                                <div class="content">
+                                    <div class="title">Get A Guide</div>
+                                </div>
+                            </div>
+                            <div class="<?php if ($step[2] == true) { ?>
+                            completed
+                            <?php } elseif ($step[1] == true && $step[2] == false) { ?>
+                            active
+                            <?php } else { ?>
+                            disabled
+                            <?php } ?> step">
+                                <i class="payment icon"></i>
+                                <div class="content">
+                                    <div class="title">Pay your guide services.</div>
+                                </div>
+                            </div>
+                            <div class="<?php if ($step[3] == true) { ?>
+                            completed
+                            <?php } elseif ($step[2] == true && $step[3] == false) { ?>
+                            active
+                            <?php } else { ?>
+                            disabled
+                            <?php } ?> step">
+                                <i class="comments icon">
+                                </i>
+                                <div class="content">
+                                    <div class="title">Contact with your guide.</div>
+                                </div>
+                            </div>
+                            <div class="<?php if ($step[4] == true) { ?>
+                            completed
+                            <?php } elseif ($step[3] == true && $step[4] == false) { ?>
+                            active
+                            <?php } else { ?>
+                            disabled
+                            <?php } ?> step step">
+                                <i class="suitcase icon"></i>
+                                <div class="content">
+                                    <div class="title">Trip Day!</div>
+                                </div>
+                            </div>
+                            <div class="<?php if ($step[5] == true) { ?>
+                            completed
+                            <?php } elseif ($step[4] == true && $step[5] == false) { ?>
+                            active
+                            <?php } else { ?>
+                            disabled
+                            <?php } ?> step step">
+                                <i class="star icon"></i>
+                                <div class="content">
+                                    <div class="title">FeedBack</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui attached segment">
+                            <div class="ui row">
+                                <div class="column center aligned">
+                                    <h1 class="ui header">
+                                    My Trip
+                                    </h1>
+                                    <h2 class="ui header">
+                                        <i class="icon">
+                                            <i class="fas fa-hiking"></i>
+                                        </i>
+                                    </h2>
+                                </div>
+                            </div>
+                            <div class="ui grid two column row">
+                                <div class="column middle aligned">
+                                        <h3 class="header">Your Guide</h3>
+                                        <?php if ($activeTrip->guide_id != null) { ?>
+                                            <div class="ui card centered">
+                                                <div class="image">
+                                                    <img src="/images/avatar2/large/kristy.png">
+                                                </div>
+                                                <div class="content">
+                                                    <a class="header">Novan</a>
+                                                    <div class="meta">
+                                                        <span class="location">Tangerang</span>
+                                                    </div>
+                                                    <div class="ui star rating" data-rating="5"></div>
+                                                    <div class="description">
+                                                        Siap memandu anda kemanapun. Ahli dalam liburan bersama alam.
+                                                    </div>
+                                                </div>
+                                                <div class="extra content">
+                                                    <a>
+                                                        <i class="icon">
+                                                            <i class="fas fa-hiking"></i>
+                                                        </i>
+                                                        10 Activies
+                                                    </a>
+                                                    <div class="ui two buttons">
+                                                        <div class="button">
+                                                            <div class="ui basic green button">
+                                                                Show Profile
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="ui star rating" data-rating="5"></div>
-                                            <div class="description">
-                                                Siap memandu anda kemanapun. Ahli dalam liburan bersama alam.
+                                        <?php } else { ?>
+                                            <div class="ui grid centered">
+                                                <div class="row">
+                                                    <div class="six wide column center aligned">
+                                                        <div class="ui info message">
+                                                            <h3 class="header">
+                                                                Find a Guide First.
+                                                            </h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="extra content">
-                                            <a>
-                                                <i class="icon">
-                                                    <i class="fas fa-hiking"></i>
-                                                </i>
-                                                10 Activies
-                                            </a>
-                                            <div class="ui two buttons">
-                                                <div class="button">
-                                                    <div class="ui basic green button">
-                                                        Show Profile
+                                        <?php } ?>
+                                </div>
+                                <div class="column">
+                                    <h3 class="header">Activities</h3>
+                                    <?php if ($this->length($activity) != 0) { ?>
+                                        <div class="ui grid">
+                                            <div class="row">
+                                                <div class="twelve wide column right floated">
+                                                    <div class="ui message green">
+                                                        <div class="header">
+                                                            Tourist - Arrival
+                                                        </div>
+                                                        <p>Kita dateng tanggal 20.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="twelve wide column left floated">
+                                                    <div class="ui message blue">
+                                                        <div class="header">
+                                                            Guide - Response Arrival
+                                                        </div>
+                                                        <p>Saya tunggu di bandara.</p>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                <?php } else { ?>
-                                    <div class="ui grid centered">
-                                        <div class="row">
-                                            <div class="six wide column center aligned">
-                                                <div class="ui info message">
-                                                    <h3 class="header">
-                                                        Find a Guide First.
-                                                    </h3>
-                                                </div>
-                                            </div>
+                                    <?php } else { ?>
+                                        <div class="ui info message">
+                                            There is no activity yet.
                                         </div>
-                                    </div>
-                                <?php } ?>
-                        </div>
-                        <div class="column">
-                            <h3 class="header">Activities</h3>
-                            <?php if ($this->length($activity) != 0) { ?>
-                                <div class="ui grid">
-                                    <div class="row">
-                                        <div class="twelve wide column right floated">
-                                            <div class="ui message green">
-                                                <div class="header">
-                                                    Tourist - Arrival
-                                                </div>
-                                                <p>Kita dateng tanggal 20.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="twelve wide column left floated">
-                                            <div class="ui message blue">
-                                                <div class="header">
-                                                    Guide - Response Arrival
-                                                </div>
-                                                <p>Saya tunggu di bandara.</p>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <?php } ?>
                                 </div>
-                            <?php } else { ?>
-                                <div class="ui info message">
-                                    There is no activity yet.
-                                </div>
-                            <?php } ?>
                         </div>
+                    </div>
+                    <a href="<?= $this->url->get('tourist/trip/show/' . $activeTrip->id) ?>">
+                        <button class="positive fluid ui button">Click here for details.</button>
+                    </a>
                 </div>
-            </div>
-            <a href="<?= $this->url->get('tourist/active') ?>">
-                <button class="positive fluid ui button">Click here for details.</button>
-            </a>
-        </div>
 
-    </div>  
+            </div> 
+        <?php } ?> 
 
     <div class="row">
         <div class="segment ten wide column middle aligned">
@@ -299,8 +319,8 @@
             My Trip
         </a>
 
-        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/profile') ?>" class="item">
-        <?php } else { ?> <a href="<?= $this->url->get('guide/profile') ?>" class="item">
+        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/profile/edit') ?>" class="item">
+        <?php } else { ?> <a href="<?= $this->url->get('guide/profile/edit') ?>" class="item">
         <?php } ?>
             <i class="user icon"></i>
             Profile
