@@ -173,21 +173,35 @@
             </div>
     </div>
 
+    <div class="ui basic modal">
+        <div class="ui icon header">
+            <i class="blind icon"></i>
+            Are you sure want to accept this propose ?
+        </div>
+        <div class="content">
+            <p>budget</p>
+            <p>Desc</p>
+        </div>
+        <div class="actions">
+            <form method="post">
+                <input type="hidden" name="accept">
+                <input type="submit" value="No" class="ui red basic cancel inverted button">
+                <input type="submit" value="Yes" class="ui green ok inverted button">
+            </form>
+        </div>
+    </div>
+
     <div id="sidebarMenu" class="ui left vertical inverted sidebar labeled icon menu">
         <div class="column">
             <img class="image" width=40 src="<?= $this->url->get('src/smallLogo.png') ?>">
         </div>
 
-        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/dashboard') ?>" class="item">
-        <?php } else { ?> <a href="<?= $this->url->get('guide/dashboard') ?>" class="item">
-        <?php } ?>
+        <a href="<?= $this->url->get($tipe . '/dashboard') ?>" class="item">
             <i class="home icon"></i>
             Home
         </a>
 
-        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/find') ?>" class="item">
-        <?php } else { ?> <a href="<?= $this->url->get('guide/find') ?>" class="item">
-        <?php } ?>
+        <a href="<?= $this->url->get($tipe . '/find') ?>" class="item">
             <i class="plus square icon"></i>
             <?php if ($tipe == 'tourist') { ?>
             Find a Guide
@@ -196,38 +210,22 @@
             <?php } ?>
         </a>
         
-        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/history') ?>" class="item">
-        <?php } else { ?> <a href="<?= $this->url->get('guide/history') ?>" class="item">
-        <?php } ?>
+        <a href="<?= $this->url->get($tipe . '/history') ?>" class="item">
             <i class="history layout icon"></i>
             Recent Trip
         </a>
         
-        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/active') ?>" class="item">
-        <?php } else { ?> <a href="<?= $this->url->get('guide/active') ?>" class="item">
-        <?php } ?>
+        <a href="<?= $this->url->get($tipe . '/active') ?>" class="item">
             <i class="suitcase icon"></i>
             My Trip
         </a>
 
-        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/profile') ?>" class="item">
-        <?php } else { ?> <a href="<?= $this->url->get('guide/profile') ?>" class="item">
-        <?php } ?>
+        <a href="<?= $this->url->get($tipe . '/profile/edit') ?>" class="item">
             <i class="user icon"></i>
             Profile
         </a>
-        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/feedback') ?>" class="item">
-        <?php } else { ?> <a href="<?= $this->url->get('guide/feedback') ?>" class="item">
-        <?php } ?>
-            <i class="icon">
-                <i class="fas fa-comment-alt"></i>
-            </i>
-            Feed Back
-        </a>
 
-        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/logout') ?>" class="item">
-        <?php } else { ?> <a href="<?= $this->url->get('guide/logout') ?>" class="item">
-        <?php } ?>
+        <a href="<?= $this->url->get($tipe . '/logout') ?>" class="item">
             <i class="arrow alternate circle right icon"></i>
             Logout
         </a>
@@ -252,6 +250,10 @@
         $('#services').dropdown();
 
         console.log($("#services").val());
+
+        $('.buttonAccept').on('click', function(){
+            $('.ui.basic.modal').modal('show');
+        });
 
     </script>
 

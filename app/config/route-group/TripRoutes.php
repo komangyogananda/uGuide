@@ -21,7 +21,7 @@ class TripRoutes extends RouterGroup{
             [
                 'tipe' => 'tourist',
                 'action' => 'showTrip',
-                'id' => 1,
+                'tripId' => 1,
             ]
         );
 
@@ -30,7 +30,25 @@ class TripRoutes extends RouterGroup{
             [
                 'tipe' => 'guide',
                 'action' => 'showTrip',
-                'id' => 1,
+                'tripId' => 1,
+            ]
+        );
+
+        $this->addPost(
+            '/tourist/trip/show/:int',
+            [
+                'tipe' => 'tourist',
+                'action' => 'addNewActivity',
+                'tripId' => 1,
+            ]
+        );
+
+        $this->addPost(
+            '/guide/trip/show/:int',
+            [
+                'tipe' => 'guide',
+                'action' => 'addNewActivity',
+                'tripId' => 1,
             ]
         );
 
@@ -56,6 +74,14 @@ class TripRoutes extends RouterGroup{
             [
                 'tipe' => 'guide',
                 'action' => 'findGuide',
+            ]
+        );
+
+        $this->addPost(
+            '/guide/find',
+            [
+                'tipe' => 'guide',
+                'action' => 'addNewInterested',
             ]
         );
 

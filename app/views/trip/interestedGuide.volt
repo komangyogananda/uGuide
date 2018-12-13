@@ -160,6 +160,24 @@
             </div>
     </div>
 
+    <div class="ui basic modal">
+        <div class="ui icon header">
+            <i class="blind icon"></i>
+            Are you sure want to accept this propose ?
+        </div>
+        <div class="content">
+            <p>budget</p>
+            <p>Desc</p>
+        </div>
+        <div class="actions">
+            <form method="post">
+                <input type="hidden" name="accept">
+                <input type="submit" value="No" class="ui red basic cancel inverted button">
+                <input type="submit" value="Yes" class="ui green ok inverted button">
+            </form>
+        </div>
+    </div>
+
     {% include 'layouts/sidebar.volt' %}
 
     <script>
@@ -167,6 +185,10 @@
         $('#services').dropdown();
 
         console.log($("#services").val());
+
+        $('.buttonAccept').on('click', function(){
+            $('.ui.basic.modal').modal('show');
+        });
 
     </script>
 

@@ -3,16 +3,12 @@
             <img class="image" width=40 src="{{ url('src/smallLogo.png') }}">
         </div>
 
-        {% if tipe == 'tourist' %}<a href="{{url('tourist/dashboard')}}" class="item">
-        {% else %} <a href="{{url('guide/dashboard')}}" class="item">
-        {% endif %}
+        <a href="{{ url(tipe ~ '/dashboard') }}" class="item">
             <i class="home icon"></i>
             Home
         </a>
 
-        {% if tipe == 'tourist' %}<a href="{{url('tourist/find')}}" class="item">
-        {% else %} <a href="{{url('guide/find')}}" class="item">
-        {% endif %}
+        <a href="{{ url(tipe ~ '/find') }}" class="item">
             <i class="plus square icon"></i>
             {% if tipe == 'tourist' %}
             Find a Guide
@@ -21,38 +17,22 @@
             {% endif %}
         </a>
         
-        {% if tipe == 'tourist' %}<a href="{{url('tourist/history')}}" class="item">
-        {% else %} <a href="{{url('guide/history')}}" class="item">
-        {% endif %}
+        <a href="{{ url(tipe ~ '/history') }}" class="item">
             <i class="history layout icon"></i>
             Recent Trip
         </a>
         
-        {% if tipe == 'tourist' %}<a href="{{url('tourist/active')}}" class="item">
-        {% else %} <a href="{{url('guide/active')}}" class="item">
-        {% endif %}
+        <a href="{{ url(tipe ~ '/active') }}" class="item">
             <i class="suitcase icon"></i>
             My Trip
         </a>
 
-        {% if tipe == 'tourist' %}<a href="{{url('tourist/profile/edit')}}" class="item">
-        {% else %} <a href="{{url('guide/profile/edit')}}" class="item">
-        {% endif %}
+        <a href="{{ url(tipe ~ '/profile/edit') }}" class="item">
             <i class="user icon"></i>
             Profile
         </a>
-        {% if tipe == 'tourist' %}<a href="{{url('tourist/feedback')}}" class="item">
-        {% else %} <a href="{{url('guide/feedback')}}" class="item">
-        {% endif %}
-            <i class="icon">
-                <i class="fas fa-comment-alt"></i>
-            </i>
-            Feed Back
-        </a>
 
-        {% if tipe == 'tourist' %}<a href="{{url('tourist/logout')}}" class="item">
-        {% else %} <a href="{{url('guide/logout')}}" class="item">
-        {% endif %}
+        <a href="{{ url(tipe ~ '/logout') }}" class="item">
             <i class="arrow alternate circle right icon"></i>
             Logout
         </a>

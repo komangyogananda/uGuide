@@ -58,65 +58,92 @@
             <div class="row">
                     <div class="segment ten wide column middle aligned">
                         <div class="ui five top attached steps">
-                            <div class="<?php if ($step[1] == true) { ?>
+                            <a class="<?php if ($step[1] == true) { ?>
                             completed
                             <?php } else { ?>
                             active
-                            <?php } ?> step">
+                            <?php } ?> step" 
+                            href="<?php if ($tipe == 'tourist') { ?>
+                                <?= $this->url->get('tourist/trip/interested/' . $trip->id) ?>
+                            <?php } else { ?>
+                                <?= $this->url->get('guide/find') ?>
+                            <?php } ?>">
                                 <i class="bullhorn icon"></i>
                                 <div class="content">
-                                    <div class="title">Get A Guide</div>
+                                    <?php if ($tipe == 'tourist') { ?>
+                                        <div class="title">Get A Guide</div>
+                                    <?php } else { ?>
+                                        <div class="title">Get A Tourist</div>
+                                    <?php } ?>
                                 </div>
-                            </div>
-                            <div class="<?php if ($step[2] == true) { ?>
+                            </a>
+                            <a class="<?php if ($step[2] == true) { ?>
                             completed
                             <?php } elseif ($step[1] == true && $step[2] == false) { ?>
                             active
                             <?php } else { ?>
                             disabled
-                            <?php } ?> step">
+                            <?php } ?> step" href="<?= $this->url->get('payments/' . $trip->id) ?>">
                                 <i class="payment icon"></i>
                                 <div class="content">
-                                    <div class="title">Pay your guide services.</div>
+                                    <?php if ($tipe == 'tourist') { ?>
+                                        <div class="title">Pay your guide services.</div>
+                                    <?php } else { ?>
+                                        <div class="title">Waiting for tourist's payments.</div>
+                                    <?php } ?>
                                 </div>
-                            </div>
-                            <div class="<?php if ($step[3] == true) { ?>
+                            </a>
+                            <a class="<?php if ($step[3] == true) { ?>
                             completed
                             <?php } elseif ($step[2] == true && $step[3] == false) { ?>
                             active
                             <?php } else { ?>
                             disabled
-                            <?php } ?> step">
+                            <?php } ?> step" href="<?= $this->url->get($tipe . '/trip/show/' . $trip->id) ?>">
                                 <i class="comments icon">
                                 </i>
                                 <div class="content">
-                                    <div class="title">Contact with your guide.</div>
+                                    <div class="title">Contact with your <?php if ($tipe == 'tourist') { ?>Guide<?php } else { ?>Tourist<?php } ?>.</div>
                                 </div>
-                            </div>
-                            <div class="<?php if ($step[4] == true) { ?>
+                            </a>
+                            <a class="<?php if ($step[4] == true) { ?>
                             completed
                             <?php } elseif ($step[3] == true && $step[4] == false) { ?>
                             active
                             <?php } else { ?>
                             disabled
-                            <?php } ?> step step">
+                            <?php } ?> step step" href="<?= $this->url->get($tipe . '/trip/show/' . $trip->id) ?>">
                                 <i class="suitcase icon"></i>
                                 <div class="content">
                                     <div class="title">Trip Day!</div>
                                 </div>
-                            </div>
-                            <div class="<?php if ($step[5] == true) { ?>
+                            </a>
+                            <a class="<?php if ($step[5] == true) { ?>
                             completed
                             <?php } elseif ($step[4] == true && $step[5] == false) { ?>
                             active
                             <?php } else { ?>
                             disabled
-                            <?php } ?> step step">
+                            <?php } ?> step step" 
+                            href="<?php if ($tipe == 'tourist') { ?>
+                                <?= $this->url->get('tourist/trip/feedback/' . $trip->id) ?>
+                            <?php } else { ?>
+                                <?= $this->url->get($tipe . '/trip/show/' . $trip->id) ?>
+                            <?php } ?>">
+                            <?php if ($tipe == 'tourist') { ?>
                                 <i class="star icon"></i>
                                 <div class="content">
                                     <div class="title">FeedBack</div>
                                 </div>
-                            </div>
+                            <?php } else { ?>
+                                <i class="icon">
+                                    <i class="fas fa-clipboard-check"></i>
+                                </i>
+                                <div class="content">
+                                    <div class="title">Finish Trip</div>
+                                </div>
+                            <?php } ?>
+                            </a>
                         </div>
                         <div class="ui attached segment">
                             <div class="ui row">
@@ -129,6 +156,41 @@
                                             <i class="fas fa-hiking"></i>
                                         </i>
                                     </h2>
+                                </div>
+                            </div>
+                            <div class="ui grid centered" style="margin-top:10px">
+                                <div class="eight wide column row">
+                                    <div class="column">
+                                        <div class="ui info message">
+                                            <h2 class="header">
+                                                Trip Info
+                                            </h2>
+                                            <div class="item">
+                                                location aceh
+                                            </div>
+                                            <div class="item">
+                                                minimum budget
+                                            </div>
+                                            <div class="item">
+                                                maximum budget
+                                            </div>
+                                            <div class="item">
+                                                services
+                                            </div>
+                                            <div class="item">
+                                                startdate
+                                            </div>
+                                            <div class="item">                                                
+                                                duration
+                                            </div>
+                                            <div class="item">                                                
+                                                persons                                            
+                                            </div>
+                                            <div class="item">
+                                                description
+                                            </div>
+                                          </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="ui grid two column row">
@@ -287,16 +349,12 @@
             <img class="image" width=40 src="<?= $this->url->get('src/smallLogo.png') ?>">
         </div>
 
-        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/dashboard') ?>" class="item">
-        <?php } else { ?> <a href="<?= $this->url->get('guide/dashboard') ?>" class="item">
-        <?php } ?>
+        <a href="<?= $this->url->get($tipe . '/dashboard') ?>" class="item">
             <i class="home icon"></i>
             Home
         </a>
 
-        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/find') ?>" class="item">
-        <?php } else { ?> <a href="<?= $this->url->get('guide/find') ?>" class="item">
-        <?php } ?>
+        <a href="<?= $this->url->get($tipe . '/find') ?>" class="item">
             <i class="plus square icon"></i>
             <?php if ($tipe == 'tourist') { ?>
             Find a Guide
@@ -305,38 +363,22 @@
             <?php } ?>
         </a>
         
-        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/history') ?>" class="item">
-        <?php } else { ?> <a href="<?= $this->url->get('guide/history') ?>" class="item">
-        <?php } ?>
+        <a href="<?= $this->url->get($tipe . '/history') ?>" class="item">
             <i class="history layout icon"></i>
             Recent Trip
         </a>
         
-        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/active') ?>" class="item">
-        <?php } else { ?> <a href="<?= $this->url->get('guide/active') ?>" class="item">
-        <?php } ?>
+        <a href="<?= $this->url->get($tipe . '/active') ?>" class="item">
             <i class="suitcase icon"></i>
             My Trip
         </a>
 
-        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/profile/edit') ?>" class="item">
-        <?php } else { ?> <a href="<?= $this->url->get('guide/profile/edit') ?>" class="item">
-        <?php } ?>
+        <a href="<?= $this->url->get($tipe . '/profile/edit') ?>" class="item">
             <i class="user icon"></i>
             Profile
         </a>
-        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/feedback') ?>" class="item">
-        <?php } else { ?> <a href="<?= $this->url->get('guide/feedback') ?>" class="item">
-        <?php } ?>
-            <i class="icon">
-                <i class="fas fa-comment-alt"></i>
-            </i>
-            Feed Back
-        </a>
 
-        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/logout') ?>" class="item">
-        <?php } else { ?> <a href="<?= $this->url->get('guide/logout') ?>" class="item">
-        <?php } ?>
+        <a href="<?= $this->url->get($tipe . '/logout') ?>" class="item">
             <i class="arrow alternate circle right icon"></i>
             Logout
         </a>

@@ -52,7 +52,7 @@
             $id = $this->session->get('auth')['id'];
             $tipeUser = $this->session->get('auth')['type'];
             $tipe = $this->dispatcher->getParam('tipe');
-            $idTrip = $this->dispatcher->getParam('id');
+            $idTrip = $this->dispatcher->getParam('tripId');
             $messageForm = new MessageForm();
 
             $step = array(
@@ -97,6 +97,17 @@
 
             $tipe = $this->dispatcher->getParam('tipe');
             $this->view->tipe = $tipe;
+        }
+
+        public function addNewActivityAction(){
+            //tambah new activity dari tourist|guide/trip/show dan /tourist/active
+            $idTrip = $this->dispatcher->getParam('tripId');
+            (new Response())->redirect('tourist/trip/show/'.$idTrip)->send();
+        }
+
+        public function addNewInterested(){
+            //tambah interested dari guide/find
+            
         }
 
     }

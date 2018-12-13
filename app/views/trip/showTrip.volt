@@ -26,70 +26,92 @@
             <div class="row">
                 <div class="ten wide column center aligned">
                     <div class="ui tablet stackable five steps">
-                        <div class="{% if step[1] == true %}
-                            completed
-                            {% else %}
-                            active
-                            {% endif %} step">
+                        <a class="{% if step[1] == true %}
+                        completed
+                        {% else %}
+                        active
+                        {% endif %} step" 
+                        href="{% if tipe == 'tourist' %}
+                            {{ url('tourist/trip/interested/' ~ trip.id) }}
+                        {% else %}
+                            {{ url('guide/find') }}
+                        {% endif %}">
                             <i class="bullhorn icon"></i>
                             <div class="content">
-                                <div class="title">Get A Guide</div>
-                                <div class="description">Blablabla</div>
+                                {% if tipe == 'tourist' %}
+                                    <div class="title">Get A Guide</div>
+                                {% else %}
+                                    <div class="title">Get A Tourist</div>
+                                {% endif %}
                             </div>
-                        </div>
-                        <div class="{% if step[2] == true %}
+                        </a>
+                        <a class="{% if step[2] == true %}
                         completed
                         {% elseif step[1] == true and step[2] == false %}
                         active
                         {% else %}
                         disabled
-                        {% endif %} step">
+                        {% endif %} step" href="{{ url('payments/' ~ trip.id) }}">
                             <i class="payment icon"></i>
                             <div class="content">
-                                <div class="title">Pay your guide services.</div>
-                                <div class="description">Blablabla</div>
+                                {% if tipe == 'tourist' %}
+                                    <div class="title">Pay your guide services.</div>
+                                {% else %}
+                                    <div class="title">Waiting for tourist's payments.</div>
+                                {% endif %}
                             </div>
-                        </div>
-                        <div class="{% if step[3] == true %}
+                        </a>
+                        <a class="{% if step[3] == true %}
                         completed
                         {% elseif step[2] == true and step[3] == false %}
                         active
                         {% else %}
                         disabled
-                        {% endif %} step">
+                        {% endif %} step" href="{{ url(tipe ~'/trip/show/' ~ trip.id) }}">
                             <i class="comments icon">
                             </i>
                             <div class="content">
-                                <div class="title">Contact with your guide.</div>
-                                <div class="description">Blablabla</div>
+                                <div class="title">Contact with your {% if tipe == 'tourist' %}Guide{% else %}Tourist{% endif %}.</div>
                             </div>
-                        </div>
-                        <div class="{% if step[4] == true %}
+                        </a>
+                        <a class="{% if step[4] == true %}
                         completed
                         {% elseif step[3] == true and step[4] == false %}
                         active
                         {% else %}
                         disabled
-                        {% endif %} step">
+                        {% endif %} step step" href="{{ url(tipe ~ '/trip/show/' ~ trip.id) }}">
                             <i class="suitcase icon"></i>
                             <div class="content">
                                 <div class="title">Trip Day!</div>
-                                <div class="description">Blablabla</div>
                             </div>
-                        </div>
-                        <div class="{% if step[5] == true %}
+                        </a>
+                        <a class="{% if step[5] == true %}
                         completed
                         {% elseif step[4] == true and step[5] == false %}
                         active
                         {% else %}
                         disabled
-                        {% endif %} step">
+                        {% endif %} step step" 
+                        href="{% if tipe == 'tourist' %}
+                            {{ url('tourist/trip/feedback/' ~ trip.id) }}
+                        {% else %}
+                            {{ url(tipe ~ '/trip/show/' ~ trip.id) }}
+                        {% endif %}">
+                        {% if tipe == 'tourist' %}
                             <i class="star icon"></i>
                             <div class="content">
                                 <div class="title">FeedBack</div>
-                                <div class="description">Blablabla</div>
                             </div>
-                        </div>
+                        {% else %}
+                            <i class="icon">
+                                <i class="fas fa-clipboard-check"></i>
+                            </i>
+                            <div class="content">
+                                <div class="title">Finish Trip</div>
+                            </div>
+                        {% endif %}
+                        </a>
                     </div>
                 </div>
             </div>
@@ -106,6 +128,41 @@
                                         <i class="fas fa-hiking"></i>
                                     </i>
                                 </h2>
+                            </div>
+                        </div>
+                        <div class="ui grid centered" style="margin-top:10px">
+                            <div class="eight wide column row">
+                                <div class="column">
+                                    <div class="ui info message">
+                                        <h2 class="header">
+                                            Trip Info
+                                        </h2>
+                                        <div class="item">
+                                            location aceh
+                                        </div>
+                                        <div class="item">
+                                            minimum budget
+                                        </div>
+                                        <div class="item">
+                                            maximum budget
+                                        </div>
+                                        <div class="item">
+                                            services
+                                        </div>
+                                        <div class="item">
+                                            startdate
+                                        </div>
+                                        <div class="item">                                                
+                                            duration
+                                        </div>
+                                        <div class="item">                                                
+                                            persons                                            
+                                        </div>
+                                        <div class="item">
+                                            description
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="ui grid">
@@ -189,15 +246,34 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <button id="addActivity" class="ui right floated button">
-                                                <i class="plus icon"></i>
-                                                Add New Message
-                                            </button> 
                                         {% else %}
                                             <div class="ui info message">
                                                 There is no activity yet.
                                             </div>
                                         {% endif %}
+                                        {% if step[2] == true %}
+                                            <button id="addActivity" class="ui right floated button">
+                                                <i class="plus icon"></i>
+                                                Add New Message
+                                            </button> 
+                                        {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui grid">
+                            <div class="row">
+                                <div class="column">
+                                    {% if tipe == 'tourist' AND step[2] == false %}
+                                        <button class="ui negative labeled icon button">
+                                            <i class="close icon"></i>
+                                            Delete Trip
+                                        </button>
+                                    {% elseif tipe == 'guide' AND step[4] == true %}
+                                        <button class="ui positive labeled icon button">
+                                            <i class="check icon"></i>
+                                            Finish Trip
+                                        </button>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>

@@ -115,19 +115,11 @@
             My Trip
         </a>
 
-        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/profile') ?>" class="item">
-        <?php } else { ?> <a href="<?= $this->url->get('guide/profile') ?>" class="item">
+        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/profile/edit') ?>" class="item">
+        <?php } else { ?> <a href="<?= $this->url->get('guide/profile/edit') ?>" class="item">
         <?php } ?>
             <i class="user icon"></i>
             Profile
-        </a>
-        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/feedback') ?>" class="item">
-        <?php } else { ?> <a href="<?= $this->url->get('guide/feedback') ?>" class="item">
-        <?php } ?>
-            <i class="icon">
-                <i class="fas fa-comment-alt"></i>
-            </i>
-            Feed Back
         </a>
 
         <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/logout') ?>" class="item">
