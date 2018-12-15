@@ -93,6 +93,15 @@ class TripRoutes extends RouterGroup{
             ]
         );
 
+        $this->addGet(
+            '/tourist/payments/:int',
+            [
+                'tipe' => 'tourist',
+                'action' => 'payments',
+                'id' => 1,
+            ]
+        );
+
         return $this;
     }
 }

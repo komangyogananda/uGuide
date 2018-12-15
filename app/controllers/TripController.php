@@ -105,9 +105,14 @@
             (new Response())->redirect('tourist/trip/show/'.$idTrip)->send();
         }
 
-        public function addNewInterested(){
+        public function addNewInterestedAction(){
             //tambah interested dari guide/find
             
+        }
+
+        public function paymentsAction(){
+            //payments
+
         }
 
     }

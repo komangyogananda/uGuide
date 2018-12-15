@@ -10,10 +10,6 @@ $di->set(
         );
 
         $router->mount(
-            new GeneralRoutes()
-        );
-
-        $router->mount(
             new ModeratorRoutes()
         );
 
@@ -24,7 +20,6 @@ $di->set(
         $router->mount(
             new ProfileRoutes()
         );
-
 
         $router->add(
             '/',

@@ -150,29 +150,56 @@
                                         <h2 class="header">
                                             Trip Info
                                         </h2>
-                                        <div class="item">
-                                            location aceh
-                                        </div>
-                                        <div class="item">
-                                            minimum budget
-                                        </div>
-                                        <div class="item">
-                                            maximum budget
-                                        </div>
-                                        <div class="item">
-                                            services
-                                        </div>
-                                        <div class="item">
-                                            startdate
-                                        </div>
-                                        <div class="item">                                                
-                                            duration
-                                        </div>
-                                        <div class="item">                                                
-                                            persons                                            
-                                        </div>
-                                        <div class="item">
-                                            description
+                                        <div class="ui divided list">
+                                            <div class="item">
+                                                <div class="ui blue horizontal label">Location</div>
+                                                <div class="ui teal horizontal label"><?= Phalcon\Text::upper($trip->destination) ?></div>
+                                            </div>
+                                            <div class="item">
+                                                <div class="ui blue horizontal label">Minimum Budget</div>
+                                                <div class="ui teal horizontal label">Rp. <?= $trip->min_budget ?></div>
+                                            </div>
+                                            <div class="item">
+                                                <div class="ui blue horizontal label">Maximum Budget</div>
+                                                <div class="ui teal horizontal label">Rp. <?= $trip->max_budget ?></div>
+                                            </div>
+                                            <div class="item">
+                                                <div class="ui blue horizontal label">Service(s)</div><br>
+                                                <div class="item">
+                                                    <div class="ui teal horizontal label">asdflksf</div>
+                                                </div>
+                                                <div class="item">
+                                                    <div class="ui teal horizontal label">asdflksf</div>
+                                                </div>
+                                                <div class="item">
+                                                    <div class="ui teal horizontal label">asdflksf</div>
+                                                </div>
+                                                <div class="item">
+                                                    <div class="ui teal horizontal label">asdflksf</div>
+                                                </div>
+                                            </div>
+                                            <div class="item">
+                                                <div class="ui blue horizontal label">Start Date</div>
+                                                <div class="ui teal horizontal label"><?= date('D, d-M-Y', strtotime($trip->date)) ?></div>
+                                            </div>
+                                            <div class="item">                                                
+                                                <div class="ui blue horizontal label">Duration</div>
+                                                <div class="ui teal horizontal label"><?= $trip->duration ?> Day(s)</div>
+                                            </div>
+                                            <div class="item">                                                
+                                                <div class="ui blue horizontal label">Person</div>
+                                                <div class="ui teal horizontal label"><?= $trip->person ?> Person(s)</div>                                           
+                                            </div>
+                                            <div class="item">
+                                                <div class="ui blue horizontal label">Description</div>
+                                                <div class="six wide column center aligned">
+                                                        <div>
+                                                            <div class="ui teal horizontal label">
+                                                                Check Guide(s) interested in your trip!Check Guide(s) interested in your trip!Check Guide(s) interested in your trip!
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

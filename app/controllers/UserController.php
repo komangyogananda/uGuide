@@ -141,7 +141,8 @@
                 4 => false,
                 5 => false,
             );
-
+            
+            // masih salah status = 1;
             if ($tipe == 'tourist'){
                 $activeTrip = Trip::findFirst("tourist_id = '$id'");
                 $activity = Activity::find("trip_id = '$activeTrip->id'");

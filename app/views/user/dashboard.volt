@@ -36,8 +36,8 @@
                             </h2>
                         </div>
                     </div>
-                    <a href="{{ url('tourist/find') }}">
-                        <button class="positive fluid ui button">Click here to create new Trip.</button>
+                    <a href="{{ url(tipe ~ '/find') }}">
+                        <button class="positive fluid ui button">Click here to {% if tipe == 'tourist' %}create{% else %}find{% endif %} a new Trip.</button>
                     </a>
                 </div>
             </div>
@@ -152,37 +152,64 @@
                                             <h2 class="header">
                                                 Trip Info
                                             </h2>
-                                            <div class="item">
-                                                location aceh
+                                            <div class="ui divided list">
+                                                <div class="item">
+                                                    <div class="ui blue horizontal label">Location</div>
+                                                    <div class="ui teal horizontal label">{{ activeTrip.destination|upper }}</div>
+                                                </div>
+                                                <div class="item">
+                                                    <div class="ui blue horizontal label">Minimum Budget</div>
+                                                    <div class="ui teal horizontal label">Rp. {{ activeTrip.min_budget }}</div>
+                                                </div>
+                                                <div class="item">
+                                                    <div class="ui blue horizontal label">Maximum Budget</div>
+                                                    <div class="ui teal horizontal label">Rp. {{ activeTrip.max_budget }}</div>
+                                                </div>
+                                                <div class="item">
+                                                    <div class="ui blue horizontal label">Service(s)</div>
+                                                    <div class="six wide column center aligned">
+                                                            <div class="ui teal horizontal label">asdflksf</div>
+                                                            <div class="ui teal horizontal label">asdflksf</div>
+                                                            <div class="ui teal horizontal label">asdflksf</div>
+                                                            <div class="ui teal horizontal label">asdflksf</div>
+                                                            <div class="ui teal horizontal label">asdflksf</div>
+                                                            <div class="ui teal horizontal label">asdflksf</div>
+                                                    </div>
+                                                </div>
+                                                <div class="item">
+                                                    <div class="ui blue horizontal label">Start Date</div>
+                                                    <div class="ui teal horizontal label">{{ date('D, d-M-Y', strtotime(activeTrip.date)) }}</div>
+                                                </div>
+                                                <div class="item">                                                
+                                                    <div class="ui blue horizontal label">Duration</div>
+                                                    <div class="ui teal horizontal label">{{ activeTrip.duration }} Day(s)</div>
+                                                </div>
+                                                <div class="item">                                                
+                                                    <div class="ui blue horizontal label">Person</div>
+                                                    <div class="ui teal horizontal label">{{ activeTrip.person }} Person(s)</div>                                           
+                                                </div>
+                                                <div class="item">
+                                                    <div class="ui blue horizontal label">Description</div>
+                                                    <div class="six wide column center aligned">
+                                                        <div>
+                                                            <div class="ui teal horizontal label">
+                                                                Check Guide(s) interested in your trip!Check Guide(s) interested in your trip!Check Guide(s) interested in your trip!
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="item">
-                                                minimum budget
-                                            </div>
-                                            <div class="item">
-                                                maximum budget
-                                            </div>
-                                            <div class="item">
-                                                services
-                                            </div>
-                                            <div class="item">
-                                                startdate
-                                            </div>
-                                            <div class="item">                                                
-                                                duration
-                                            </div>
-                                            <div class="item">                                                
-                                                persons                                            
-                                            </div>
-                                            <div class="item">
-                                                description
-                                            </div>
-                                          </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="ui stackable grid two column row">
                                 <div class="column middle aligned">
-                                        <h3 class="header">Your Guide</h3>
+                                        {% if tipe == 'tourist' %}
+                                            <h3 class="header">Your Guide</h3>
+                                        {% else %}
+                                            <h3 class="header">Your Tourist</h3>
+                                        {% endif %}
                                         {% if activeTrip.guide_id != NULL %}
                                             <div class="ui card centered">
                                                 <div class="image">
@@ -205,13 +232,15 @@
                                                         </i>
                                                         10 Activies
                                                     </a>
-                                                    <div class="ui two buttons">
-                                                        <div class="button">
-                                                            <div class="ui basic green button">
-                                                                Show Profile
+                                                    {% if tipe == 'tourist' %}
+                                                        <div class="ui two buttons">
+                                                            <div class="button">
+                                                                <div class="ui basic green button">
+                                                                    Show Profile
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    {% endif %}
                                                 </div>
                                             </div>
                                         {% else %}
@@ -261,7 +290,7 @@
                                 </div>
                         </div>
                     </div>
-                    <a href="{{ url('tourist/trip/show/' ~ activeTrip.id) }}">
+                    <a href="{{ url(tipe ~ '/trip/show/' ~ activeTrip.id) }}">
                         <button class="positive fluid ui button">Click here for details.</button>
                     </a>
                 </div>
@@ -289,22 +318,40 @@
                                 <h3 class="header">No recent trip yet.</h3>
                             </div>
                         {% else %}
+                        <div class="ui grid">
                             {% for recent in recents %}
-                                <div class="ui column segment">
-                                    <div class="item">
-                                        <div class="content">
-                                            <div class="header">Arrowhead Valley Camp</div>
-                                            <div class="meta">
-                                                <span class="price">$1200</span>
-                                                <span class="stay">1 Month</span>
-                                            </div>
-                                            <div class="description">
-                                                <p></p>
+                                <div class="row">
+                                    <div class="column">
+                                        <div class="ui info message">
+                                            <h3 class="header">
+                                                <a class="ui image label">
+                                                    <img src="/images/avatar/small/joe.jpg">
+                                                    Novan
+                                                </a>
+                                                <div class="header">{{ recent.title }}</div>
+                                            </h3>
+                                            <div class="item">
+                                                <div class="ui teal horizontal label">{{ recent.destination }}</div>
+                                                <div class="ui teal horizontal label">{{ date('D, d-M-Y', strtotime(recent.date)) }}</div>
+                                                <div class="ui teal horizontal label">{{ recent.duration }} Day(s)</div>
+                                                <div class="ui teal horizontal label">{{ recent.person }} Person(s)</div>
+                                                <div class="ui teal horizontal label">{{ 'Rp. ' ~ recent.min_budget ~ ' - Rp. ' ~ recent.max_budget}}</div>
+                                                <div class="ui teal horizontal label">service1</div>
+                                                <div class="ui teal horizontal label">service2</div>
+                                                <div class="ui teal horizontal label">service3</div>
+                                                <div class="six wide column center aligned">
+                                                    <div>
+                                                        <div class="ui teal horizontal label">
+                                                            Check Guide(s) interested in your trip!Check Guide(s) interested in your trip!Check Guide(s) interested in your trip!
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             {% endfor %}
+                            </div>
                         {% endif %}
                     </div>
                 </div>  

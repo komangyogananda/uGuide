@@ -188,7 +188,7 @@
             </form>
         </div>
         <div class="actions">
-            <div class="ui positive button">Send</div>
+            <div class="ui positive button sendButton">Send</div>
         </div>
     </div>
 

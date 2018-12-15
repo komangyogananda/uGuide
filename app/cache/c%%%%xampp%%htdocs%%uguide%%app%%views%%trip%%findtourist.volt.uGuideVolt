@@ -17,7 +17,7 @@
 
         
 
-    <div class="ui menu">
+    <div class="ui stackable menu">
         <a class="sidebarToggle item">
             <i class="bars icon"></i>
         </a>
@@ -35,7 +35,7 @@
         </div>
     </div>
 
-    <div class="ui centered grid">
+    <div class="ui centered stackable grid">
         <div class="row">
             <div class="eight wide column center aligned">
 
@@ -125,7 +125,7 @@
 
     </div>
 
-    <div id="sidebarMenu" class="ui left vertical inverted sidebar labeled icon menu">
+    <div id="sidebarMenu" class="ui left vertical inverted sidebar labeled icon stackable menu">
         <div class="column">
             <img class="image" width=40 src="<?= $this->url->get('src/smallLogo.png') ?>">
         </div>

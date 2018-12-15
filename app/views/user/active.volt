@@ -141,7 +141,7 @@
                                         <div class="ui divided list">
                                             <div class="item">
                                                 <div class="ui blue horizontal label">Location</div>
-                                                <div class="ui teal horizontal label">{{ activeTrip.destination }}</div>
+                                                <div class="ui teal horizontal label">{{ activeTrip.destination|upper }}</div>
                                             </div>
                                             <div class="item">
                                                 <div class="ui blue horizontal label">Minimum Budget</div>
@@ -321,8 +321,8 @@
                             </h2>
                         </div>
                     </div>
-                    <a href="{{ url('tourist/find') }}">
-                        <button class="positive fluid ui button">Click here to create new Trip.</button>
+                    <a href="{{ url(tipe ~ '/find') }}">
+                        <button class="positive fluid ui button">Click here to {% if tipe == 'tourist' %}create{% else %}find{% endif %} a new Trip.</button>
                     </a>
                 </div>
             </div>

@@ -55,23 +55,42 @@
             <div class="row">
                 <div class="eight wide column">
                     <div class="ui column attached segment">
-                        <div class="item">
-                            <div class="ui small image">
-                                <img src="/images/wireframe/image.png">
-                            </div>
-                            <div class="content">
-                                <div class="header">Arrowhead Valley Camp</div>
-                                <div class="meta">
-                                    <span class="price">$1200</span>
-                                    <span class="stay">1 Month</span>
+                        <?php foreach ($recents as $recent) { ?>
+                            <div class="row">
+                                <div class="column">
+                                    <div class="ui info message">
+                                        <h3 class="header">
+                                            <a class="ui image label">
+                                                <img src="/images/avatar/small/joe.jpg">
+                                                Novan
+                                            </a>
+                                            <div class="header"><?= $recent->title ?></div>
+                                        </h3>
+                                        <div class="item">
+                                            <div class="ui teal horizontal label"><?= $recent->destination ?></div>
+                                            <div class="ui teal horizontal label"><?= date('D, d-M-Y', strtotime($recent->date)) ?></div>
+                                            <div class="ui teal horizontal label"><?= $recent->duration ?> Day(s)</div>
+                                            <div class="ui teal horizontal label"><?= $recent->person ?> Person(s)</div>
+                                            <div class="ui teal horizontal label"><?= 'Rp. ' . $recent->min_budget . ' - Rp. ' . $recent->max_budget ?></div>
+                                            <div class="ui teal horizontal label">service1</div>
+                                            <div class="ui teal horizontal label">service2</div>
+                                            <div class="ui teal horizontal label">service3</div>
+                                            <div class="six wide column center aligned">
+                                                <div>
+                                                    <div class="ui teal horizontal label">
+                                                        Check Guide(s) interested in your trip!Check Guide(s) interested in your trip!Check Guide(s) interested in your trip!
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="description">
-                                    <p></p>
-                                </div>
                             </div>
-                        </div>
                     </div>
-                    <button class="positive fluid ui button">Click here for details.</button>
+                    <a href="<?= $this->url->get($tipe . '/trip/show/' . $recent->id) ?>">
+                        <button class="positive fluid ui button">Click here for details.</button>
+                    </a>
+                    <?php } ?>
                 </div>
             </div>
         <?php } ?>

@@ -7,13 +7,15 @@
         'voltService',
         function($view, $di){
             $volt = new Phalcon\Mvc\View\Engine\Volt($view, $di);
-            $compiler = $volt->getCompiler();
-            $compiler->addFunction('strtotime', 'strtotime');
+            
             $volt->setOptions([
                 'compiledPath' => APP_PATH.'/cache/',
                 'compiledExtension' => '.uGuideVolt',
                 'compileAlways' => true,
             ]);
+
+            $compiler = $volt->getCompiler();
+            $compiler->addFunction('strtotime', 'strtotime');
 
             return $volt;
         }

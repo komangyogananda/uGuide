@@ -154,7 +154,7 @@
                                         <div class="ui divided list">
                                             <div class="item">
                                                 <div class="ui blue horizontal label">Location</div>
-                                                <div class="ui teal horizontal label"><?= $activeTrip->destination ?></div>
+                                                <div class="ui teal horizontal label"><?= Phalcon\Text::upper($activeTrip->destination) ?></div>
                                             </div>
                                             <div class="item">
                                                 <div class="ui blue horizontal label">Minimum Budget</div>
@@ -181,16 +181,25 @@
                                             </div>
                                             <div class="item">
                                                 <div class="ui blue horizontal label">Start Date</div>
-                                                <div class="ui teal horizontal label"><?= date('d-m-Y', $activeTrip->date) ?></div>
+                                                <div class="ui teal horizontal label"><?= date('D, d-M-Y', strtotime($activeTrip->date)) ?></div>
                                             </div>
                                             <div class="item">                                                
-                                                duration
+                                                <div class="ui blue horizontal label">Duration</div>
+                                                <div class="ui teal horizontal label"><?= $activeTrip->duration ?> Day(s)</div>
                                             </div>
                                             <div class="item">                                                
-                                                persons                                            
+                                                <div class="ui blue horizontal label">Person</div>
+                                                <div class="ui teal horizontal label"><?= $activeTrip->person ?> Person(s)</div>                                           
                                             </div>
                                             <div class="item">
-                                                description
+                                                <div class="ui blue horizontal label">Description</div>
+                                                <div class="six wide column center aligned">
+                                                        <div>
+                                                            <div class="ui teal horizontal label">
+                                                                Check Guide(s) interested in your trip!Check Guide(s) interested in your trip!Check Guide(s) interested in your trip!
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                             </div>
                                         </div>
                                       </div>
@@ -325,8 +334,8 @@
                             </h2>
                         </div>
                     </div>
-                    <a href="<?= $this->url->get('tourist/find') ?>">
-                        <button class="positive fluid ui button">Click here to create new Trip.</button>
+                    <a href="<?= $this->url->get($tipe . '/find') ?>">
+                        <button class="positive fluid ui button">Click here to <?php if ($tipe == 'tourist') { ?>create<?php } else { ?>find<?php } ?> a new Trip.</button>
                     </a>
                 </div>
             </div>

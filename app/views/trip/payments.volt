@@ -1,21 +1,8 @@
-<!DOCTYPE html>
-<html>
+{% extends 'layouts/base.volt' %}
 
-    <head>
-        <title> Payments - <?php if ($tipe == 'tourist') { ?>Tourist<?php } else { ?>Tour Guide<?php } ?> - uGuide</title>
-        <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<link rel="stylesheet" type="text/css" href="<?= $this->url->get('semantic/dist/semantic.min.css') ?>">
-<link href="<?= $this->url->get('css/style.css') ?>" rel="stylesheet">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-<script src="<?= $this->url->get('js/jquery-3.3.1.min.js') ?>"></script>
-<script src="<?= $this->url->get('semantic/dist/semantic.min.js') ?>"></script>
-    </head>
+{% block title %} Payments - {% if tipe == 'tourist' %}Tourist{% else %}Tour Guide{% endif %}{% endblock %}
 
-    <body>
-
-        
+{% block content %}
 
     <div class="ui stackable menu">
         <a class="sidebarToggle item">
@@ -102,62 +89,6 @@
             </div>
         </div>
 
-    <div id="sidebarMenu" class="ui left vertical inverted sidebar labeled icon stackable menu">
-        <div class="column">
-            <img class="image" width=40 src="<?= $this->url->get('src/smallLogo.png') ?>">
-        </div>
+    {% include 'layouts/sidebar.volt' %}
 
-        <a href="<?= $this->url->get($tipe . '/dashboard') ?>" class="item">
-            <i class="home icon"></i>
-            Home
-        </a>
-
-        <a href="<?= $this->url->get($tipe . '/find') ?>" class="item">
-            <i class="plus square icon"></i>
-            <?php if ($tipe == 'tourist') { ?>
-            Find a Guide
-            <?php } else { ?>
-            Find a Tourist
-            <?php } ?>
-        </a>
-        
-        <a href="<?= $this->url->get($tipe . '/history') ?>" class="item">
-            <i class="history layout icon"></i>
-            Recent Trip
-        </a>
-        
-        <a href="<?= $this->url->get($tipe . '/active') ?>" class="item">
-            <i class="suitcase icon"></i>
-            My Trip
-        </a>
-
-        <a href="<?= $this->url->get($tipe . '/profile/edit') ?>" class="item">
-            <i class="user icon"></i>
-            Profile
-        </a>
-
-        <a href="<?= $this->url->get($tipe . '/logout') ?>" class="item">
-            <i class="arrow alternate circle right icon"></i>
-            Logout
-        </a>
-        
-        <a class="right item sidebarToggle">
-            <i class="angle double left icon"></i>
-        </a>
-    </div>
-
-    <script>    
-
-        $(".sidebarToggle").on("click", function(){
-            $("#sidebarMenu").sidebar('toggle');
-        });
-
-        $('.ui.sticky').sticky();
-
-    </script>
-
-
-
-    </body>
-
-</html>
+{% endblock %}
