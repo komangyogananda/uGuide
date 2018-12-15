@@ -4,7 +4,7 @@
 
 {% block content %}
 
-    <div class="ui menu">
+    <div class="ui stackable menu">
         <a class="sidebarToggle item">
             <i class="bars icon"></i>
         </a>
@@ -22,7 +22,7 @@
         </div>
     </div>
 
-    <div class="ui grid centered">
+    <div class="ui stackable grid centered">
             <div class="row">
                 <div class="ui six wide segment column center aligned">
                     <h2 class="header">List of Interested Guide</h2>
@@ -172,7 +172,6 @@
         <div class="actions">
             <form method="post">
                 <input type="hidden" name="accept">
-                <input type="submit" value="No" class="ui red basic cancel inverted button">
                 <input type="submit" value="Yes" class="ui green ok inverted button">
             </form>
         </div>

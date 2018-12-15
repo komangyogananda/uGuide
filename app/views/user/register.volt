@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<div class="ui two column centered grid customBox">
+<div class="ui two column centered stackable grid customBox">
     {{ form('class' : 'ui form segment') }}
 
         {% if tipe == 'tourist' %}

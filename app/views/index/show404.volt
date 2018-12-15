@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<div class="ui two column centered grid customBox">
+<div class="ui two column centered stackable grid customBox">
     <div class="column middle aligned">
             <h1 class="center aligned icon header">
                 <img src="{{ url('src/smallLogo.png') }}" height="20%" width="20%">

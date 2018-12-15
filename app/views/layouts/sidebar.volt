@@ -1,4 +1,4 @@
-<div id="sidebarMenu" class="ui left vertical inverted sidebar labeled icon menu">
+<div id="sidebarMenu" class="ui left vertical inverted sidebar labeled icon stackable menu">
         <div class="column">
             <img class="image" width=40 src="{{ url('src/smallLogo.png') }}">
         </div>

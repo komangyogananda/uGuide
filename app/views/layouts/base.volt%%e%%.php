@@ -1,0 +1,22 @@
+a:5:{i:0;s:54:"<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>";s:5:"title";N;i:1;s:743:" - uGuide</title>
+        <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" type="text/css" href="<?= $this->url->get('semantic/dist/semantic.min.css') ?>">
+<link href="<?= $this->url->get('css/style.css') ?>" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+<script src="<?= $this->url->get('js/jquery-3.3.1.min.js') ?>"></script>
+<script src="<?= $this->url->get('semantic/dist/semantic.min.js') ?>"></script>
+    </head>
+
+    <body>
+
+        ";s:7:"content";a:1:{i:0;a:4:{s:4:"type";i:357;s:5:"value";s:1:" ";s:4:"file";s:51:"C:\xampp\htdocs\uGuide/app/views/\layouts/base.volt";s:4:"line";i:11;}}i:2;s:26:"
+
+    </body>
+
+</html>";}

@@ -4,7 +4,7 @@
 
 {% block content %}
 
-    <div class="ui menu">
+    <div class="ui stackable menu">
         <a class="sidebarToggle item">
             <i class="bars icon"></i>
         </a>
@@ -22,7 +22,7 @@
         </div>
     </div>
 
-    <div class="ui two column centered grid">
+    <div class="ui two column centered stackable grid">
         <div class="row">
             <div class="ui segment column middle aligned">
                 <div class="column center aligned">
@@ -33,7 +33,7 @@
                         Profile Information
                     </h2>
                 </div>
-                <div class="ui grid centered">
+                <div class="ui stackable grid centered">
                     <div class="two column row center aligned">
                         <div class="column center aligned">
                                 {{ form('class' : 'ui form segment') }}

@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<div class="ui two column centered grid customBox">
+<div class="ui two column centered stackable grid customBox">
     <div class="column middle aligned">
             <h2 class="center aligned icon header">
                 <img src="{{ url('src/smallLogo.png') }}" height="20%" width="20%">
@@ -14,7 +14,7 @@
                 </div>
             </h2>
     </div>
-    <div class="ui three column row stackable center aligned grid">
+    <div class="ui three column row stackable center aligned stackable grid">
         <div class="ui vertical divider" style="color:white">Atau</div>
         <div class="middle aligned row">
             <div class="column">

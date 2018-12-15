@@ -4,7 +4,7 @@
 
 {% block content %}
 
-    <div class="ui menu">
+    <div class="ui stackable menu">
         <a class="sidebarToggle item">
             <i class="bars icon"></i>
         </a>
@@ -22,7 +22,7 @@
         </div>
     </div>
 
-    <div class="ui grid centered">
+    <div class="ui stackable grid centered">
         {% if recents|length == 0 %}
             <div class="row">
                 <div class="eight wide column">

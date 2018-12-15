@@ -4,7 +4,7 @@
 
 {% block content %}
 
-    <div class="ui menu">
+    <div class="ui stackable menu">
         <a class="sidebarToggle item">
             <i class="bars icon"></i>
         </a>
@@ -22,7 +22,7 @@
         </div>
     </div>
 
-    <div class="ui grid centered">
+    <div class="ui stackable grid centered">
             <div class="row">
                 <div class="ui six wide segment column center aligned">
                     <h2 class="header">List of tourist in your area</h2>

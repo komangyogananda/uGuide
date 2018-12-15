@@ -17,7 +17,7 @@
 
         
 
-    <div class="ui menu">
+    <div class="ui stackable menu">
         <a class="sidebarToggle item">
             <i class="bars icon"></i>
         </a>
@@ -35,7 +35,7 @@
         </div>
     </div>
 
-    <div class="ui two column centered grid">
+    <div class="ui two column centered stackable grid">
         <div class="row">
             <div class="ui segment column middle aligned">
                 <div class="column center aligned">
@@ -46,7 +46,7 @@
                         Profile Information
                     </h2>
                 </div>
-                <div class="ui grid centered">
+                <div class="ui stackable grid centered">
                     <div class="two column row center aligned">
                         <div class="column center aligned">
                                 <?= $this->tag->form(['class' => 'ui form segment']) ?>
@@ -137,21 +137,17 @@
 
     </div>
 
-    <div id="sidebarMenu" class="ui left vertical inverted sidebar labeled icon menu">
+    <div id="sidebarMenu" class="ui left vertical inverted sidebar labeled icon stackable menu">
         <div class="column">
             <img class="image" width=40 src="<?= $this->url->get('src/smallLogo.png') ?>">
         </div>
 
-        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/dashboard') ?>" class="item">
-        <?php } else { ?> <a href="<?= $this->url->get('guide/dashboard') ?>" class="item">
-        <?php } ?>
+        <a href="<?= $this->url->get($tipe . '/dashboard') ?>" class="item">
             <i class="home icon"></i>
             Home
         </a>
 
-        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/find') ?>" class="item">
-        <?php } else { ?> <a href="<?= $this->url->get('guide/find') ?>" class="item">
-        <?php } ?>
+        <a href="<?= $this->url->get($tipe . '/find') ?>" class="item">
             <i class="plus square icon"></i>
             <?php if ($tipe == 'tourist') { ?>
             Find a Guide
@@ -160,30 +156,22 @@
             <?php } ?>
         </a>
         
-        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/history') ?>" class="item">
-        <?php } else { ?> <a href="<?= $this->url->get('guide/history') ?>" class="item">
-        <?php } ?>
+        <a href="<?= $this->url->get($tipe . '/history') ?>" class="item">
             <i class="history layout icon"></i>
             Recent Trip
         </a>
         
-        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/active') ?>" class="item">
-        <?php } else { ?> <a href="<?= $this->url->get('guide/active') ?>" class="item">
-        <?php } ?>
+        <a href="<?= $this->url->get($tipe . '/active') ?>" class="item">
             <i class="suitcase icon"></i>
             My Trip
         </a>
 
-        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/profile/edit') ?>" class="item">
-        <?php } else { ?> <a href="<?= $this->url->get('guide/profile/edit') ?>" class="item">
-        <?php } ?>
+        <a href="<?= $this->url->get($tipe . '/profile/edit') ?>" class="item">
             <i class="user icon"></i>
             Profile
         </a>
 
-        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/logout') ?>" class="item">
-        <?php } else { ?> <a href="<?= $this->url->get('guide/logout') ?>" class="item">
-        <?php } ?>
+        <a href="<?= $this->url->get($tipe . '/logout') ?>" class="item">
             <i class="arrow alternate circle right icon"></i>
             Logout
         </a>

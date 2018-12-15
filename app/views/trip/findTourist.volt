@@ -4,7 +4,7 @@
 
 {% block content %}
 
-    <div class="ui menu">
+    <div class="ui stackable menu">
         <a class="sidebarToggle item">
             <i class="bars icon"></i>
         </a>
@@ -22,7 +22,7 @@
         </div>
     </div>
 
-    <div class="ui centered grid">
+    <div class="ui centered stackable grid">
         <div class="row">
             <div class="eight wide column center aligned">
 

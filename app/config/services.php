@@ -7,7 +7,8 @@
         'voltService',
         function($view, $di){
             $volt = new Phalcon\Mvc\View\Engine\Volt($view, $di);
-
+            $compiler = $volt->getCompiler();
+            $compiler->addFunction('strtotime', 'strtotime');
             $volt->setOptions([
                 'compiledPath' => APP_PATH.'/cache/',
                 'compiledExtension' => '.uGuideVolt',
@@ -23,7 +24,6 @@
         function(){
             $view = new Phalcon\Mvc\View();
             $view->setViewsDir(APP_PATH.'/views/');
-
             $view->registerEngines([
                 ".volt" => 'voltService',
             ]);

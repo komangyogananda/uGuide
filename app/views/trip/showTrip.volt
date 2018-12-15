@@ -4,7 +4,7 @@
 
 {% block content %}
 
-    <div class="ui menu">
+    <div class="ui stackable menu">
         <a class="sidebarToggle item">
             <i class="bars icon"></i>
         </a>
@@ -22,7 +22,7 @@
         </div>
     </div>
 
-    <div class="ui grid centered">
+    <div class="ui stackable grid centered">
             <div class="row">
                 <div class="ten wide column center aligned">
                     <div class="ui tablet stackable five steps">
@@ -130,7 +130,7 @@
                                 </h2>
                             </div>
                         </div>
-                        <div class="ui grid centered" style="margin-top:10px">
+                        <div class="ui stackable grid centered" style="margin-top:10px">
                             <div class="eight wide column row">
                                 <div class="column">
                                     <div class="ui info message">
@@ -165,7 +165,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="ui grid">
+                        <div class="ui stackable grid">
                             <div class="row">
                                 <div class="column middle aligned">
                                     <h3 class="header">Your Guide</h3>
@@ -201,7 +201,7 @@
                                             </div>
                                         </div>
                                     {% else %}
-                                        <div class="ui grid centered">
+                                        <div class="ui stackable grid centered">
                                             <div class="row">
                                                 <div class="six wide column center aligned">
                                                     <div class="ui info message">
@@ -224,7 +224,7 @@
                                 <div class="column">
                                     <h3 class="header">Activities</h3>
                                         {% if activity|length != 0 %}
-                                            <div class="ui grid">
+                                            <div class="ui stackable grid">
                                                 <div class="row">
                                                     <div class="twelve wide column right floated">
                                                         <div class="ui message green">
@@ -260,7 +260,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="ui grid">
+                        <div class="ui stackable grid">
                             <div class="row">
                                 <div class="column">
                                     {% if tipe == 'tourist' AND step[2] == false %}

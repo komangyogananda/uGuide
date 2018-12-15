@@ -36,6 +36,7 @@
     </div>
 
     <div class="ui stackable grid centered">
+        <?php if ($find == true) { ?>
             <div class="row">
                 <div class="ten wide column center aligned">
                     <div class="ui tablet stackable five steps">
@@ -150,31 +151,58 @@
                                         <h2 class="header">
                                             Trip Info
                                         </h2>
-                                        <div class="item">
-                                            location aceh
+                                        <div class="ui divided list">
+                                            <div class="item">
+                                                <div class="ui blue horizontal label">Location</div>
+                                                <div class="ui teal horizontal label"><?= $activeTrip->destination ?></div>
+                                            </div>
+                                            <div class="item">
+                                                <div class="ui blue horizontal label">Minimum Budget</div>
+                                                <div class="ui teal horizontal label">Rp. <?= $activeTrip->min_budget ?></div>
+                                            </div>
+                                            <div class="item">
+                                                <div class="ui blue horizontal label">Maximum Budget</div>
+                                                <div class="ui teal horizontal label">Rp. <?= $activeTrip->max_budget ?></div>
+                                            </div>
+                                            <div class="item">
+                                                <div class="ui blue horizontal label">Service(s)</div><br>
+                                                <div class="item">
+                                                    <div class="ui teal horizontal label">asdflksf</div>
+                                                </div>
+                                                <div class="item">
+                                                    <div class="ui teal horizontal label">asdflksf</div>
+                                                </div>
+                                                <div class="item">
+                                                    <div class="ui teal horizontal label">asdflksf</div>
+                                                </div>
+                                                <div class="item">
+                                                    <div class="ui teal horizontal label">asdflksf</div>
+                                                </div>
+                                            </div>
+                                            <div class="item">
+                                                <div class="ui blue horizontal label">Start Date</div>
+                                                <div class="ui teal horizontal label"><?= date('D, d-M-Y', strtotime($activeTrip->date)) ?></div>
+                                            </div>
+                                            <div class="item">                                                
+                                                <div class="ui blue horizontal label">Duration</div>
+                                                <div class="ui teal horizontal label"><?= $activeTrip->duration ?> Day(s)</div>
+                                            </div>
+                                            <div class="item">                                                
+                                                <div class="ui blue horizontal label">Person</div>
+                                                <div class="ui teal horizontal label"><?= $activeTrip->person ?> Person(s)</div>                                           
+                                            </div>
+                                            <div class="item">
+                                                <div class="ui blue horizontal label">Description</div>
+                                                <div class="six wide column center aligned">
+                                                        <div>
+                                                            <div class="ui teal horizontal label">
+                                                                Check Guide(s) interested in your trip!Check Guide(s) interested in your trip!Check Guide(s) interested in your trip!
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                            </div>
                                         </div>
-                                        <div class="item">
-                                            minimum budget
-                                        </div>
-                                        <div class="item">
-                                            maximum budget
-                                        </div>
-                                        <div class="item">
-                                            services
-                                        </div>
-                                        <div class="item">
-                                            startdate
-                                        </div>
-                                        <div class="item">                                                
-                                            duration
-                                        </div>
-                                        <div class="item">                                                
-                                            persons                                            
-                                        </div>
-                                        <div class="item">
-                                            description
-                                        </div>
-                                    </div>
+                                      </div>
                                 </div>
                             </div>
                         </div>
@@ -182,7 +210,7 @@
                             <div class="row">
                                 <div class="column middle aligned">
                                     <h3 class="header">Your Guide</h3>
-                                    <?php if ($trip->guide_id != null) { ?>
+                                    <?php if ($activeTrip->guide_id != null) { ?>
                                         <div class="ui card centered">
                                             <div class="image">
                                                 <img src="/images/avatar2/large/kristy.png">
@@ -293,6 +321,25 @@
                     </div>
                 </div>
             </div>
+        <?php } else { ?>
+            <div class="row">
+                <div class="segment eight wide column middle aligned">
+                    <div class="ui attached segment">
+                        <div class="column center aligned">
+                            <h1 class="ui header">
+                                <i class="window close outline icon"></i>
+                            </h1>
+                            <h2 class="ui header">
+                            You have no active trip
+                            </h2>
+                        </div>
+                    </div>
+                    <a href="<?= $this->url->get('tourist/find') ?>">
+                        <button class="positive fluid ui button">Click here to create new Trip.</button>
+                    </a>
+                </div>
+            </div>
+        <?php } ?>
     </div>  
 
     <div id="sidebarMenu" class="ui left vertical inverted sidebar labeled icon stackable menu">
