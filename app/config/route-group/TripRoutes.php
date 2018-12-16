@@ -53,7 +53,7 @@ class TripRoutes extends RouterGroup{
         );
 
         $this->addGet(
-            '/tourist/trip/interested/:params',
+            '/tourist/trip/interested/:int',
             [
                 'tipe' => 'tourist',
                 'action' => 'interestedGuide',
@@ -78,10 +78,11 @@ class TripRoutes extends RouterGroup{
         );
 
         $this->addPost(
-            '/guide/find',
+            '/guide/trip/interested/:int',
             [
                 'tipe' => 'guide',
                 'action' => 'addNewInterested',
+                'id' => 1,
             ]
         );
 

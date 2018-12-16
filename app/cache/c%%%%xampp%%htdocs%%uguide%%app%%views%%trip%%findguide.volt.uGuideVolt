@@ -201,13 +201,26 @@
             </form>
         </div>
         <div class="actions">
-            <div class="ui positive button">Send</div>
+            <div class="ui positive button sendButton">Send</div>
         </div>
     </div>
 
     <script>
         $('.buttonInterested').on("click", function(){
             $('.small.modal').modal('show');
+        });
+
+        $('.sendButton').on('click', function(){
+            var test = $('form').serialize();
+            console.log(test);
+            $.ajax({
+                type: 'post',
+                url: '<?= $this->url->get('/guide/trip/interested/1') ?>',
+                data: $('form').serialize(),
+                success: function(){
+                    alert('success');
+                }
+            });
         });
     </script>
 

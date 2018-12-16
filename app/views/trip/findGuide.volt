@@ -166,18 +166,6 @@
             {{ form('class' : 'ui form') }}
 
                 <div class="ui field">
-                    {{ interestForm.render('trip') }}
-                </div>
-
-                <div class="ui field">
-                    {{ interestForm.render('tourist') }}
-                </div>
-
-                <div class="ui field">
-                    {{ interestForm.render('guide') }}
-                </div>
-
-                <div class="ui field">
                     {{ interestForm.render('budget') }}
                 </div>
 
@@ -195,6 +183,19 @@
     <script>
         $('.buttonInterested').on("click", function(){
             $('.small.modal').modal('show');
+        });
+
+        $('.sendButton').on('click', function(){
+            var test = $('form').serialize();
+            console.log(test);
+            $.ajax({
+                type: 'post',
+                url: '{{ url("/guide/trip/interested/1") }}',
+                data: $('form').serialize(),
+                success: function(){
+                    alert('success');
+                }
+            });
         });
     </script>
 
