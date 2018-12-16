@@ -85,7 +85,7 @@
                             </a>
                             <div class="ui two buttons">
                                 <div class="button">
-                                    <div class="ui basic green button buttonInterested">
+                                    <div class="ui basic green button buttonInterested" data-trip="1">
                                         Interested
                                     </div>
                                 </div>
@@ -93,77 +93,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="ui column center aligned">
-                    <div class="ui card centered">
-                        <div class="image">
-                            <img src="/images/avatar2/large/kristy.png">
-                        </div>
-                        <div class="content">
-                            <a class="header">Novan</a>
-                            <div class="meta">
-                                <span class="location">Tangerang</span>
-                            </div>
-                            <div class="ui star rating" data-rating="5"></div>
-                            <div class="description">
-                                Siap memandu anda kemanapun. Ahli dalam liburan bersama alam.
-                            </div>
-                        </div>
-                        <div class="extra content">
-                            <a>
-                                <i class="icon">
-                                    <i class="fas fa-hiking"></i>
-                                </i>
-                                10 Activies
-                            </a>
-                            <div class="ui two buttons">
-                                <div class="button">
-                                    <div class="ui basic green button buttonInterested">
-                                        Interested
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="ui column center aligned">
-                    <div class="ui card centered">
-                        <div class="image">
-                            <img src="/images/avatar2/large/kristy.png">
-                        </div>
-                        <div class="content">
-                            <a class="header">Novan</a>
-                            <div class="meta">
-                                <span class="location">Tangerang</span>
-                            </div>
-                            <div class="ui star rating" data-rating="5"></div>
-                            <div class="description">
-                                Siap memandu anda kemanapun. Ahli dalam liburan bersama alam.
-                            </div>
-                        </div>
-                        <div class="extra content">
-                            <a>
-                                <i class="icon">
-                                    <i class="fas fa-hiking"></i>
-                                </i>
-                                10 Activies
-                            </a>
-                            <div class="ui two buttons">
-                                <div class="button">
-                                    <div class="ui basic green button buttonInterested">
-                                        Interested
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
     </div>
 
     <div class="ui small modal">
         <div class="header">Interested ?</div>
         <div class="content">
-            {{ form('class' : 'ui form') }}
+            {{ form('class' : 'ui form', 'data-trip': '-1') }}
 
                 <div class="ui field">
                     {{ interestForm.render('budget') }}
@@ -182,12 +119,15 @@
 
     <script>
         $('.buttonInterested').on("click", function(){
+            var trip = $(this).data('trip');
+            console.log(trip);
+            $('form').data('trip', trip);
             $('.small.modal').modal('show');
         });
 
         $('.sendButton').on('click', function(){
-            var test = $('form').serialize();
-            console.log(test);
+            var trip = $('form').data('trip');
+            console.log(trip);
             $.ajax({
                 type: 'post',
                 url: '{{ url("/guide/trip/interested/1") }}',
