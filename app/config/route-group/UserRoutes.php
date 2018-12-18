@@ -66,6 +66,14 @@ class UserRoutes extends RouterGroup{
             ]
         );
 
+        $this->addPost(
+            '/((tourist)|(guide))/active',
+            [
+                'tipe' => 1,
+                'action' => 'allActive',
+            ]
+        );
+
         $this->addGet(
             '/((tourist)|(guide))/history',
             [

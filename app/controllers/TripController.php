@@ -90,6 +90,7 @@
             $trans = new Transaction();
             $trans->init($trip->getId(), NULL, NULL, date_format($date, 'Y-m-d'), NULL, 'PENDING');
             $trans->save();
+            (new Response())->redirect($tipe.'/dashboard')->send();
         }
 
         public function showTripAction(){
@@ -128,8 +129,17 @@
 
         public function addNewActivityAction(){
             //tambah new activity dari tourist|guide/trip/show dan /tourist/active
+            $tipe = $this->dispatcher->getParam('tipe');
             $idTrip = $this->dispatcher->getParam('tripId');
-            (new Response())->redirect('tourist/trip/show/'.$idTrip)->send();
+            $title = $this->request->getPost('title');
+            $content = $this->request->getPost('message');
+            $date_array = getdate();
+            $curr_date = $date_array['year']."-".$date_array['mon']."-".$date_array['mday'];
+            $activity = new Activity();
+            $activity->init($idTrip,$tipe,$title,$content,$curr_date);
+            $activity->save();
+
+            (new Response())->redirect($tipe.'/trip/show/'.$idTrip)->send();
         }
 
         public function addNewInterestedAction(){

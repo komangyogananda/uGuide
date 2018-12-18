@@ -299,13 +299,16 @@
 
                                         <div id="actionModal" class="ui tiny basic modal">
                                             <div class="ui icon header">
-                                                <i class="archive icon"></i>
+                                                <i class="trash alternate icon"></i>
                                                 Delete Trip
                                             </div>
                                             <div class="content">
                                                 <p>Are you sure want to delete this trip ?</p>
                                             </div>
-                                            <div class="actions">
+                                            <form id="delete" method="post">
+                                                <input type="hidden" name="delete" value="yes">
+                                            </form>
+                                            <div class="deleteButton actions">
                                                 <div class="ui green ok inverted button">
                                                     <i class="checkmark icon"></i>
                                                     Yes
@@ -319,11 +322,15 @@
                                                 $("#actionModal").modal("show");
                                             });
 
+                                            $('.deleteButton').on('click', function(){
+                                                $('form#delete').submit();
+                                            });  
+
                                         </script>
 
                                         {% elseif step[4] == true%}
-                                        <button id="actionButton" class="ui negative labeled icon button">
-                                                <i class="close icon"></i>
+                                            <button id="actionButton" class="ui positive labeled icon button">
+                                                <i class="check icon"></i>
                                                 FeedBack
                                             </button>
     
@@ -337,7 +344,10 @@
 
                                                     </form>
                                                 </div>
-                                                <div class="actions">
+                                                <form id="feedBack" method="post">
+                                                    <input type="hidden" name="feedBack" value="yes">
+                                                </form>
+                                                <div class="feedBackButton actions">
                                                     <div class="ui green ok inverted button">
                                                         <i class="checkmark icon"></i>
                                                         Yes
@@ -350,14 +360,47 @@
                                                 $("#actionButton").on("click", function(){
                                                     $("#actionModal").modal("show");
                                                 });
+
+                                                $('.feedBackButton').on('click', function(){
+                                                    $('form#feedBack').submit();
+                                                }); 
     
                                             </script>
                                         {% endif %}
                                     {% elseif tipe == 'guide' AND step[4] == true %}
-                                        <button class="ui positive labeled icon button">
+                                        <button id="actionButton" class="ui positive labeled icon button">
                                             <i class="check icon"></i>
-                                            Finish Trip
+                                            Finish
                                         </button>
+                                        <div id="actionModal" class="ui tiny modal">
+                                            <div class="ui icon header">
+                                                <i class="check circle icon"></i>
+                                                Finish Trip
+                                            </div>
+                                            <div class="content">
+                                                <p>Finish this trip ?</p>
+                                            </div>
+                                            <form id="finish" method="post">
+                                                <input type="hidden" name="finish" value="yes">
+                                            </form>
+                                            <div class="finishButton actions">
+                                                <div class="ui green ok inverted button">
+                                                    <i class="checkmark icon"></i>
+                                                    Yes
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <script>
+                                        
+                                            $("#actionButton").on("click", function(){
+                                                $("#actionModal").modal("show");
+                                            });
+
+                                            $('.finishButton').on('click', function(){
+                                                $('form#finish').submit();
+                                            });  
+
+                                        </script>
                                     {% endif %}
                                 </div>
                             </div>

@@ -12,8 +12,13 @@
                 </div>
 
                 <div class="actions">
-                    {{ messageForm.render('go', ['class' : 'ui positive button'])}}
+                    <input type="hidden" name="activity" value="yes">
+                    <input type="hidden" name="trip" value="{{ activeTrip.id }}"> 
                 </div>
+
+                <div class="actions">
+                    {{ messageForm.render('go', ['class' : 'ui positive button'])}}
+                </div> 
 
             </form>
         </div>

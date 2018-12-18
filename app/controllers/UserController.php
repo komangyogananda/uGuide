@@ -132,6 +132,14 @@
                     ]
                 ]
             );
+            $nama = array();
+            foreach ($recents as $key => $value) {
+                if ($tipe == 'tourist') $temp = $value->guide_id;
+                else $temp = $value->tourist_id;
+                $user = User::findFirst("id = '$temp'");
+                $nama[$temp] = $user->fname." ".$user->lname;
+            }
+            $this->view->nama = $nama;
             $this->view->recents = $recents;
             $messageForm = new MessageForm();
             $this->view->messageForm = $messageForm;
@@ -172,7 +180,7 @@
             if ($this->request->isPost()) {
                 if ($form->isValid($this->request->getPost()) == false) {
                     foreach ($form->getMessages() as $message) {
-                        $this->flash->error($message);
+                        $this->flashSession->error($message);
                     }
                 } else {
                     $user = new User();
@@ -188,15 +196,65 @@
                     $user->setRating(0);
                     $user->setPicture($this->request->getPost('picture'));
                     if (!$user->save()) {
-                        $this->flash->error($user->getMessages());
+                        $this->flashSession->error($user->getMessages());
                     } else {
-                        $this->flash->success("User was created successfully");
+                        $this->flashSession->success("User was created successfully");
                         Tag::resetInput();
                     }
                 }
             }
-            $this->view->form = $form;
 
+            $this->view->form = $form;
+            (new Response())->redirect($this->request->getPost('tipe').'/login')->send();
+        }
+
+        public function allActiveAction(){
+            $tipe = $this->dispatcher->getParam('tipe');
+            $idTrip = $this->request->getPost('trip');
+            $activityConfirm = $this->request->getPost('activity');
+            $deleteConfirm = $this->request->getPost('delete');
+            $finishConfirm = $this->request->getPost('finish');
+            // die();
+            if($activityConfirm){
+                $title = $this->request->getPost('title');
+                $content = $this->request->getPost('message');
+                $date_array = getdate();
+                $curr_date = $date_array['year']."-".$date_array['mon']."-".$date_array['mday'];
+                $activity = new Activity();
+                $activity->init($idTrip,$tipe,$title,$content,$curr_date);
+                $activity->save();
+            }
+            else if ($finishConfirm) {
+                $trip = Trip::findFirst("id = '$idTrip'");
+                $trip->setStatus(0);
+                $trip->save();
+            }
+            else if ($deleteConfirm) {
+                $feedback = Feedback::find("trip_id = '$idTrip'");
+                foreach ($feedback as $value) {
+                    $value->delete();
+                }
+                $service = Service::find("trip_id = '$idTrip'");
+                foreach ($service as $value) {
+                    $value->delete();
+                }
+                $Transaction = Transaction::find("trip_id = '$idTrip'");
+                foreach ($Transaction as $value) {
+                    $value->delete();
+                }
+                $activity = Activity::find("trip_id = '$idTrip'");
+                foreach ($activity as $value) {
+                    $value->delete();
+                }
+                $interest = Interest::find("trip_id = '$idTrip'");
+                foreach ($interest as $value) {
+                    $value->delete();
+                }
+                $trip = Trip::findFirst("id = '$idTrip'");
+                $trip->delete();
+            }
+
+            (new Response())->redirect($tipe.'/active')->send();
         }
 
     }
