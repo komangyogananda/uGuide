@@ -4,7 +4,7 @@
     use Phalcon\Http\Response;
     use Phalcon\Tag;
 
-    class UserController extends Controller{
+    class UserController extends BaseController{
         public function registerAction(){
             $form = new SignUpForm();
 
@@ -68,13 +68,7 @@
         
         public function dashboardAction(){
             $tipe = $this->dispatcher->getParam('tipe');
-            $resp = new Response();
-            if (!$this->session->has('auth')) (new Response())->redirect('')->send();
-            else if ($this->session->get('auth')['type'] != $tipe) {
-                if ($this->session->get('auth')['type'] == 'tourist') $resp->redirect('tourist/dashboard')->send();
-                else if ($this->session->get('auth')['type'] == 'guide') $resp->redirect('guide/dashboard')->send();
-                else $resp->redirect('moderator')->send();
-            }
+            $this->authorize('dashboard');
             $this->view->tipe = $tipe;
             $id = $this->session->get('auth')['id'];
             $recents = Trip::find(
@@ -120,17 +114,8 @@
             $this->view->activity = $activity;
         }
 
-        public function profileAction(){
-
-            $form = new SignUpForm();
-            $this->view->form = $form;
-
-            $tipe = $this->dispatcher->getParam('tipe');
-            $this->view->tipe = $tipe;
-        }
-
         public function activeAction(){
-
+            $this->authorize('active');
             $id = $this->session->get('auth')['id'];
             $tipe = $this->session->get('auth')['type'];
             
@@ -167,7 +152,7 @@
         }
 
         public function historyAction(){
-            
+            $this->authorize('history');
             $tipe = $this->dispatcher->getParam('tipe');
             $this->view->tipe = $tipe;
             $id = $this->session->get('auth')['id'];

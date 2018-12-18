@@ -54,6 +54,7 @@ class UserRoutes extends RouterGroup{
             [
                 'tipe' => 1,
                 'action' => 'dashboard',
+
             ]
         );
 
