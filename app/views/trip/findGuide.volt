@@ -29,78 +29,47 @@
                 </div>
             </div>
             <div class="ui two column eight wide row">
-                <div class="ui column center aligned">
-                    <div class="ui card centered">
-                        <div class="image">
-                            <img src="/images/avatar2/large/kristy.png">
-                        </div>
-                        <div class="content">
-                            <a class="header">Novan</a>
-                            <div class="meta">
-                                <span class="location">Tangerang</span>
+                {% for tr in trip %}
+                    <div class="ui column center aligned">
+                        <div class="ui card centered">
+                            <div class="image">
+                                <img src="/images/avatar2/large/kristy.png">
                             </div>
-                            <div class="ui star rating" data-rating="5"></div>
-                            <div class="description">
-                                Siap memandu anda kemanapun. Ahli dalam liburan bersama alam.
+                            <div class="content">
+                                <a class="header">Novan</a>
+                                <div class="meta">
+                                    <span class="location">Tangerang</span>
+                                </div>
+                                <div class="ui star rating" data-rating="5"></div>
+                                <div class="description">
+                                    Siap memandu anda kemanapun. Ahli dalam liburan bersama alam.
+                                </div>
                             </div>
-                        </div>
-                        <div class="extra content">
-                            <a>
-                                <i class="icon">
-                                    <i class="fas fa-hiking"></i>
-                                </i>
-                                10 Activies
-                            </a>
-                            <div class="ui two buttons">
-                                <div class="button">
-                                    <div class="ui basic green button buttonInterested">
-                                        Interested
+                            <div class="extra content">
+                                <a>
+                                    <i class="icon">
+                                        <i class="fas fa-hiking"></i>
+                                    </i>
+                                    10 Activies
+                                </a>
+                                <div class="ui two buttons">
+                                    <div class="button">
+                                        <div id="{{ tr.id }}" class="ui basic green button buttonInterested" data-trip-id="{{ tr.id }}" data-tourist-id="{{ tr.tourist_id }}">
+                                            Interested
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="ui column center aligned">
-                    <div class="ui card centered">
-                        <div class="image">
-                            <img src="/images/avatar2/large/kristy.png">
-                        </div>
-                        <div class="content">
-                            <a class="header">Novan</a>
-                            <div class="meta">
-                                <span class="location">Tangerang</span>
-                            </div>
-                            <div class="ui star rating" data-rating="5"></div>
-                            <div class="description">
-                                Siap memandu anda kemanapun. Ahli dalam liburan bersama alam.
-                            </div>
-                        </div>
-                        <div class="extra content">
-                            <a>
-                                <i class="icon">
-                                    <i class="fas fa-hiking"></i>
-                                </i>
-                                10 Activies
-                            </a>
-                            <div class="ui two buttons">
-                                <div class="button">
-                                    <div class="ui basic green button buttonInterested" data-trip="1">
-                                        Interested
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
+                {% endfor %}
             </div>
     </div>
 
     <div class="ui small modal">
         <div class="header">Interested ?</div>
         <div class="content">
-            {{ form('class' : 'ui form', 'data-trip': '-1') }}
+            {{ form('class' : 'ui form') }}
 
                 <div class="ui field">
                     {{ interestForm.render('budget') }}
@@ -119,21 +88,24 @@
 
     <script>
         $('.buttonInterested').on("click", function(){
-            var trip = $(this).data('trip');
-            console.log(trip);
+            var trip = $(this).data('tripId');
+            var touristId = $(this).data('touristId');
             $('form').data('trip', trip);
+            $('form').data('tourist', touristId);
             $('.small.modal').modal('show');
         });
 
         $('.sendButton').on('click', function(){
             var trip = $('form').data('trip');
-            console.log(trip);
             $.ajax({
                 type: 'post',
-                url: '{{ url("/guide/trip/interested/1") }}',
-                data: $('form').serialize(),
+                url: '{{ url("/guide/trip/interested/ajaxPost") }}',
+                data: { 'form' : $('form').serialize(),
+                        'tripId' : $('form').data('trip'),
+                        'touristId' : $('form').data('tourist')
+                        },
                 success: function(){
-                    alert('success');
+                    $('#'+trip).addClass('disabled');
                 }
             });
         });

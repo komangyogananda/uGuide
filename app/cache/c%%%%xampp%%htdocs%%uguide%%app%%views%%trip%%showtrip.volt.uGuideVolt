@@ -303,11 +303,43 @@
                         <div class="ui stackable grid">
                             <div class="row">
                                 <div class="column">
-                                    <?php if ($tipe == 'tourist' && $step[2] == false) { ?>
-                                        <button class="ui negative labeled icon button">
+                                    <?php if ($tipe == 'tourist') { ?>
+                                        <?php if ($step[2] == false) { ?>
+                                        <button id="actionButton" class="ui negative labeled icon button">
                                             <i class="close icon"></i>
                                             Delete Trip
                                         </button>
+
+                                        <div id="deleteModal" class="ui tiny basic modal">
+                                            <div class="ui icon header">
+                                                <i class="archive icon"></i>
+                                                Delete Trip
+                                            </div>
+                                            <div class="content">
+                                                <p>Are you sure want to delete this trip ?</p>
+                                            </div>
+                                            <div class="actions">
+                                                <div class="ui green ok inverted button">
+                                                    <i class="checkmark icon"></i>
+                                                    Yes
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <script>
+                                        
+                                            $("#actionButton").on("click", function(){
+                                                $("#deleteModal").modal("show");
+                                            });
+
+                                        </script>
+
+                                        <?php } elseif ($step[4] == true) { ?>
+                                        <button class="ui positive labeled icon button">
+                                            <i class="check icon"></i>
+                                            FeedBack
+                                        </button>
+                                        <?php } ?>
                                     <?php } elseif ($tipe == 'guide' && $step[4] == true) { ?>
                                         <button class="ui positive labeled icon button">
                                             <i class="check icon"></i>
@@ -320,6 +352,8 @@
                     </div>
                 </div>
             </div>
+            <?php if ($step[4] == true && $tipe == 'tourist') { ?>
+            <?php } ?>
     </div>  
 
     <div id="sidebarMenu" class="ui left vertical inverted sidebar labeled icon stackable menu">

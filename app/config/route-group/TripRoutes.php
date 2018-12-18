@@ -78,11 +78,10 @@ class TripRoutes extends RouterGroup{
         );
 
         $this->addPost(
-            '/guide/trip/interested/:int',
+            '/guide/trip/interested/ajaxPost',
             [
                 'tipe' => 'guide',
                 'action' => 'addNewInterested',
-                'id' => 1,
             ]
         );
 
@@ -99,6 +98,24 @@ class TripRoutes extends RouterGroup{
             [
                 'tipe' => 'tourist',
                 'action' => 'payments',
+                'id' => 1,
+            ]
+        );
+
+        $this->addGet(
+            '/guide/payments/:int',
+            [
+                'tipe' => 'guide',
+                'action' => 'payments',
+                'id' => 1,
+            ]
+        );
+
+        $this->addGet(
+            '/tourist/trip/feedback/:int',
+            [
+                'tipe' => 'tourist',
+                'action' => 'feedBack',
                 'id' => 1,
             ]
         );

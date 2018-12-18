@@ -290,11 +290,69 @@
                         <div class="ui stackable grid">
                             <div class="row">
                                 <div class="column">
-                                    {% if tipe == 'tourist' AND step[2] == false %}
-                                        <button class="ui negative labeled icon button">
+                                    {% if tipe == 'tourist' %}
+                                        {% if step[2] == false %}
+                                        <button id="actionButton" class="ui negative labeled icon button">
                                             <i class="close icon"></i>
                                             Delete Trip
                                         </button>
+
+                                        <div id="actionModal" class="ui tiny basic modal">
+                                            <div class="ui icon header">
+                                                <i class="archive icon"></i>
+                                                Delete Trip
+                                            </div>
+                                            <div class="content">
+                                                <p>Are you sure want to delete this trip ?</p>
+                                            </div>
+                                            <div class="actions">
+                                                <div class="ui green ok inverted button">
+                                                    <i class="checkmark icon"></i>
+                                                    Yes
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <script>
+                                        
+                                            $("#actionButton").on("click", function(){
+                                                $("#actionModal").modal("show");
+                                            });
+
+                                        </script>
+
+                                        {% elseif step[4] == true%}
+                                        <button id="actionButton" class="ui negative labeled icon button">
+                                                <i class="close icon"></i>
+                                                FeedBack
+                                            </button>
+    
+                                            <div id="actionModal" class="ui tiny modal">
+                                                <div class="ui icon header">
+                                                    <i class="archive icon"></i>
+                                                    FeedBack Trip
+                                                </div>
+                                                <div class="content">
+                                                    <form method="post" class="ui form">
+
+                                                    </form>
+                                                </div>
+                                                <div class="actions">
+                                                    <div class="ui green ok inverted button">
+                                                        <i class="checkmark icon"></i>
+                                                        Yes
+                                                    </div>
+                                                </div>
+                                            </div>
+    
+                                            <script>
+                                            
+                                                $("#actionButton").on("click", function(){
+                                                    $("#actionModal").modal("show");
+                                                });
+    
+                                            </script>
+                                        {% endif %}
                                     {% elseif tipe == 'guide' AND step[4] == true %}
                                         <button class="ui positive labeled icon button">
                                             <i class="check icon"></i>
@@ -307,6 +365,8 @@
                     </div>
                 </div>
             </div>
+            {% if step[4] == true AND tipe == 'tourist' %}
+            {% endif %}
     </div>  
 
     {% include 'layouts/sidebar.volt' %}
