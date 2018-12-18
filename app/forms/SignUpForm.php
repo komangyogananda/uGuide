@@ -212,11 +212,11 @@ class SignUpForm extends Form{
         );
 
 
-        $picture->addValidators([
-            new PresenceOf([
-                'message' => 'Picture required.'
-            ])
-        ]);
+        // $picture->addValidators([
+        //     new PresenceOf([
+        //         'message' => 'Picture required.'
+        //     ])
+        // ]);
 
         $this->add($picture);
 

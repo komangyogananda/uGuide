@@ -180,7 +180,7 @@
             if ($this->request->isPost()) {
                 if ($form->isValid($this->request->getPost()) == false) {
                     foreach ($form->getMessages() as $message) {
-                        $this->flashSession->error($message);
+                        $this->flash->error($message);
                     }
                 } else {
                     $user = new User();
@@ -196,9 +196,9 @@
                     $user->setRating(0);
                     $user->setPicture($this->request->getPost('picture'));
                     if (!$user->save()) {
-                        $this->flashSession->error($user->getMessages());
+                        $this->flash->error($user->getMessages());
                     } else {
-                        $this->flashSession->success("User was created successfully");
+                        $this->flash->success("User was created successfully");
                         Tag::resetInput();
                     }
                 }

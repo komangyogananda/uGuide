@@ -50,10 +50,15 @@
         }
 
         public function findTouristAction(){
-            
+
             $form = new HolidayForm();
 
             $tipe = $this->dispatcher->getParam('tipe');
+
+            $user = $this->session->get('auth')['id'];
+            $active = Trip::findFirst("tourist_id = '$user'");
+            if ($active) (new Response())->redirect($tipe.'/trip/interested/'.$active->id)->send();
+
             $this->view->tipe = $tipe;
             $this->view->form = $form;
         }
@@ -124,7 +129,17 @@
         public function interestedGuideAction(){
 
             $tipe = $this->dispatcher->getParam('tipe');
+            $tripID = $this->dispatcher->getParam('tripId');
             $this->view->tipe = $tipe;
+            $interest = Interest::find("trip_id = '$tripID'");
+            $nama = array();
+            foreach ($interest as $key => $value) {
+                $id = $value->guide_id;
+                $temp = User::findFirst("id = '$id'");
+                $nama[$id] = $temp->fname." ".$temp->lname;
+            }
+            $this->view->interest = $interest;
+            $this->view->nama = $nama;
         }
 
         public function addNewActivityAction(){
