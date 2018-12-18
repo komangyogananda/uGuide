@@ -56,7 +56,7 @@
             $tipe = $this->dispatcher->getParam('tipe');
 
             $user = $this->session->get('auth')['id'];
-            $active = Trip::findFirst("tourist_id = '$user'");
+            $active = Trip::findFirst("tourist_id = '$user' AND status = 1");
             if ($active) (new Response())->redirect($tipe.'/trip/interested/'.$active->id)->send();
 
             $this->view->tipe = $tipe;
