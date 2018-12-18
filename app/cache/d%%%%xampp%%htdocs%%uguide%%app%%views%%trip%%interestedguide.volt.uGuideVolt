@@ -2,7 +2,7 @@
 <html>
 
     <head>
-        <title> Find A Tourist - <?php if ($tipe == 'tourist') { ?>Tourist<?php } else { ?>Tour Guide<?php } ?> - uGuide</title>
+        <title> Interested Guide - <?php if ($tipe == 'tourist') { ?>Tourist<?php } else { ?>Tour Guide<?php } ?> - uGuide</title>
         <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -23,7 +23,7 @@
         </a>
         <div class="item">
             <i class="user circle icon"></i>
-            <span class="text">Find A Tourist</span>
+            <span class="text">Interested Guide</span>
         </div>
         <div class="right menu">
             <div class="item">
@@ -38,7 +38,7 @@
     <div class="ui stackable grid centered">
             <div class="row">
                 <div class="ui six wide segment column center aligned">
-                    <h2 class="header">List of tourist in your area</h2>
+                    <h2 class="header">List of Interested Guide</h2>
                 </div>
             </div>
             <div class="ui two column eight wide row">
@@ -66,8 +66,8 @@
                             </a>
                             <div class="ui two buttons">
                                 <div class="button">
-                                    <div class="ui basic green button buttonInterested">
-                                        Interested
+                                    <div class="ui basic green button buttonAccept">
+                                        Accept
                                     </div>
                                 </div>
                             </div>
@@ -98,59 +98,97 @@
                             </a>
                             <div class="ui two buttons">
                                 <div class="button">
-                                    <div class="ui basic green button buttonInterested" data-trip="1">
-                                        Interested
+                                    <div class="ui basic green button buttonAccept">
+                                        Accept
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                
+                <div class="ui column center aligned">
+                    <div class="ui card centered">
+                        <div class="image">
+                            <img src="/images/avatar2/large/kristy.png">
+                        </div>
+                        <div class="content">
+                            <a class="header">Novan</a>
+                            <div class="meta">
+                                <span class="location">Tangerang</span>
+                            </div>
+                            <div class="ui star rating" data-rating="5"></div>
+                            <div class="description">
+                                Siap memandu anda kemanapun. Ahli dalam liburan bersama alam.
+                            </div>
+                        </div>
+                        <div class="extra content">
+                            <a>
+                                <i class="icon">
+                                    <i class="fas fa-hiking"></i>
+                                </i>
+                                10 Activies
+                            </a>
+                            <div class="ui two buttons">
+                                <div class="button">
+                                    <div class="ui basic green button buttonAccept">
+                                        Accept
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui column center aligned">
+                    <div class="ui card centered">
+                        <div class="image">
+                            <img src="/images/avatar2/large/kristy.png">
+                        </div>
+                        <div class="content">
+                            <a class="header">Novan</a>
+                            <div class="meta">
+                                <span class="location">Tangerang</span>
+                            </div>
+                            <div class="ui star rating" data-rating="5"></div>
+                            <div class="description">
+                                Siap memandu anda kemanapun. Ahli dalam liburan bersama alam.
+                            </div>
+                        </div>
+                        <div class="extra content">
+                            <a>
+                                <i class="icon">
+                                    <i class="fas fa-hiking"></i>
+                                </i>
+                                10 Activies
+                            </a>
+                            <div class="ui two buttons">
+                                <div class="button">
+                                    <div class="ui basic green button buttonAccept">
+                                        Accept
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
     </div>
 
-    <div class="ui small modal">
-        <div class="header">Interested ?</div>
+    <div class="ui basic modal">
+        <div class="ui icon header">
+            <i class="blind icon"></i>
+            Are you sure want to accept this propose ?
+        </div>
         <div class="content">
-            <?= $this->tag->form(['class' => 'ui form', 'data-trip' => '-1']) ?>
-
-                <div class="ui field">
-                    <?= $interestForm->render('budget') ?>
-                </div>
-
-                <div class="ui field">
-                    <?= $interestForm->render('desc') ?>
-                </div>
-
-            </form>
+            <p>budget</p>
+            <p>Desc</p>
         </div>
         <div class="actions">
-            <div class="ui positive button sendButton">Send</div>
+            <form method="post">
+                <input type="hidden" name="accept">
+                <input type="submit" value="Yes" class="ui green ok inverted button">
+            </form>
         </div>
     </div>
-
-    <script>
-        $('.buttonInterested').on("click", function(){
-            var trip = $(this).data('trip');
-            console.log(trip);
-            $('form').data('trip', trip);
-            $('.small.modal').modal('show');
-        });
-
-        $('.sendButton').on('click', function(){
-            var trip = $('form').data('trip');
-            console.log(trip);
-            $.ajax({
-                type: 'post',
-                url: '<?= $this->url->get('/guide/trip/interested/1') ?>',
-                data: $('form').serialize(),
-                success: function(){
-                    alert('success');
-                }
-            });
-        });
-    </script>
 
     <div id="sidebarMenu" class="ui left vertical inverted sidebar labeled icon stackable menu">
         <div class="column">
@@ -211,6 +249,10 @@
         $('#services').dropdown();
 
         console.log($("#services").val());
+
+        $('.buttonAccept').on('click', function(){
+            $('.ui.basic.modal').modal('show');
+        });
 
     </script>
 

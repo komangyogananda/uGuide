@@ -78,7 +78,6 @@
         }
 
         public function findGuideAction(){
-            $sameLocation;
             $form = new InterestedForm();
             $tipe = $this->dispatcher->getParam('tipe');
             $this->view->tipe = $tipe;
@@ -89,7 +88,13 @@
                     'loc' => $location
                 ]
             ]);
+            $tourist = array();
+            foreach ($trip as $key => $value) {
+                $temp = $value->tourist_id;
+                $tourist[$temp] = User::findFirst("id = '$temp'");
+            }
             $this->view->trip = $trip;
+            $this->view->tourist = $tourist;
             $this->view->interestForm = $form;
         }
 
@@ -107,7 +112,12 @@
 
         public function addNewInterestedAction(){
             //tambah interested dari guide/find
-            
+            $amount = $this->dispatcher->getPost('budget');
+            $desc = $this->dispatcher->getPost('desc');
+            $trip = $this->dispatcher->getPost('trip');
+            $guide = $this->session->get('auth')['id'];
+            $tourist = $this->dispatcher->getPost('tourist');
+            (new Interest())->init($trip,$guide,$tourist,$amount,$plan)->save();
         }
 
         public function paymentsAction(){

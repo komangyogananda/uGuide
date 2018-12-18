@@ -17,7 +17,7 @@
 
         
 
-    <div class="ui menu">
+    <div class="ui stackable menu">
         <a class="sidebarToggle item">
             <i class="bars icon"></i>
         </a>
@@ -35,94 +35,79 @@
         </div>
     </div>
 
-    <div class="ui grid centered">
-        
-        <div class="row">
-            <div class="eight wide column">
-                <div class="ui column attached segment">
-                    <div class="item">
-                        <div class="ui small image">
-                            <img src="/images/wireframe/image.png">
-                        </div>
-                        <div class="content">
-                            <div class="header">Arrowhead Valley Camp</div>
-                            <div class="meta">
-                                <span class="price">$1200</span>
-                                <span class="stay">1 Month</span>
-                            </div>
-                            <div class="description">
-                                <p></p>
-                            </div>
+    <div class="ui stackable grid centered">
+        <?php if ($this->length($recents) == 0) { ?>
+            <div class="row">
+                <div class="eight wide column">
+                    <div class="ui column attached segment center aligned">
+                        <div class="item">
+                            <h1 class="ui header">
+                                No recent trip yet.
+                            </h 1>
+                            <h2 class="ui header">
+                                <i class="history layout icon"></i>
+                            </h2>
                         </div>
                     </div>
                 </div>
-                <button class="positive fluid ui button">Click here for details.</button>
             </div>
-        </div>
-        
-        <div class="row">
-            <div class="eight wide column">
-                <div class="ui column attached segment">
-                    <div class="item">
-                        <div class="ui small image">
-                            <img src="/images/wireframe/image.png">
-                        </div>
-                        <div class="content">
-                            <div class="header">Arrowhead Valley Camp</div>
-                            <div class="meta">
-                                <span class="price">$1200</span>
-                                <span class="stay">1 Month</span>
+        <?php } else { ?>
+            <div class="row">
+                <div class="eight wide column">
+                    <div class="ui column attached segment">
+                        <?php foreach ($recents as $recent) { ?>
+                            <div class="row">
+                                <div class="column">
+                                    <div class="ui info message">
+                                        <h3 class="header">
+                                            <a class="ui image label">
+                                                <img src="/images/avatar/small/joe.jpg">
+                                                Novan
+                                            </a>
+                                            <div class="header"><?= $recent->title ?></div>
+                                        </h3>
+                                        <div class="item">
+                                            <div class="ui teal horizontal label"><?= $recent->destination ?></div>
+                                            <div class="ui teal horizontal label"><?= date('D, d-M-Y', strtotime($recent->date)) ?></div>
+                                            <div class="ui teal horizontal label"><?= $recent->duration ?> Day(s)</div>
+                                            <div class="ui teal horizontal label"><?= $recent->person ?> Person(s)</div>
+                                            <div class="ui teal horizontal label"><?= 'Rp. ' . $recent->min_budget . ' - Rp. ' . $recent->max_budget ?></div>
+                                            <div class="ui teal horizontal label">service1</div>
+                                            <div class="ui teal horizontal label">service2</div>
+                                            <div class="ui teal horizontal label">service3</div>
+                                            <div class="six wide column center aligned">
+                                                <div>
+                                                    <div class="ui teal horizontal label">
+                                                        Check Guide(s) interested in your trip!Check Guide(s) interested in your trip!Check Guide(s) interested in your trip!
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="description">
-                                <p></p>
-                            </div>
-                        </div>
                     </div>
+                    <a href="<?= $this->url->get($tipe . '/trip/show/' . $recent->id) ?>">
+                        <button class="positive fluid ui button">Click here for details.</button>
+                    </a>
+                    <?php } ?>
                 </div>
-                <button class="positive fluid ui button">Click here for details.</button>
             </div>
-        </div>
-
-        <div class="row">
-            <div class="eight wide column">
-                <div class="ui column attached segment">
-                    <div class="item">
-                        <div class="ui small image">
-                            <img src="/images/wireframe/image.png">
-                        </div>
-                        <div class="content">
-                            <div class="header">Arrowhead Valley Camp</div>
-                            <div class="meta">
-                                <span class="price">$1200</span>
-                                <span class="stay">1 Month</span>
-                            </div>
-                            <div class="description">
-                                <p></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <button class="positive fluid ui button">Click here for details.</button>
-            </div>
-        </div>
+        <?php } ?>
         
     </div>
 
-    <div id="sidebarMenu" class="ui left vertical inverted sidebar labeled icon menu">
+    <div id="sidebarMenu" class="ui left vertical inverted sidebar labeled icon stackable menu">
         <div class="column">
             <img class="image" width=40 src="<?= $this->url->get('src/smallLogo.png') ?>">
         </div>
 
-        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/dashboard') ?>" class="item">
-        <?php } else { ?> <a href="<?= $this->url->get('guide/dashboard') ?>" class="item">
-        <?php } ?>
+        <a href="<?= $this->url->get($tipe . '/dashboard') ?>" class="item">
             <i class="home icon"></i>
             Home
         </a>
 
-        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/find') ?>" class="item">
-        <?php } else { ?> <a href="<?= $this->url->get('guide/find') ?>" class="item">
-        <?php } ?>
+        <a href="<?= $this->url->get($tipe . '/find') ?>" class="item">
             <i class="plus square icon"></i>
             <?php if ($tipe == 'tourist') { ?>
             Find a Guide
@@ -131,38 +116,22 @@
             <?php } ?>
         </a>
         
-        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/history') ?>" class="item">
-        <?php } else { ?> <a href="<?= $this->url->get('guide/history') ?>" class="item">
-        <?php } ?>
+        <a href="<?= $this->url->get($tipe . '/history') ?>" class="item">
             <i class="history layout icon"></i>
             Recent Trip
         </a>
         
-        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/active') ?>" class="item">
-        <?php } else { ?> <a href="<?= $this->url->get('guide/active') ?>" class="item">
-        <?php } ?>
+        <a href="<?= $this->url->get($tipe . '/active') ?>" class="item">
             <i class="suitcase icon"></i>
             My Trip
         </a>
 
-        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/profile') ?>" class="item">
-        <?php } else { ?> <a href="<?= $this->url->get('guide/profile') ?>" class="item">
-        <?php } ?>
+        <a href="<?= $this->url->get($tipe . '/profile/edit') ?>" class="item">
             <i class="user icon"></i>
             Profile
         </a>
-        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/feedback') ?>" class="item">
-        <?php } else { ?> <a href="<?= $this->url->get('guide/feedback') ?>" class="item">
-        <?php } ?>
-            <i class="icon">
-                <i class="fas fa-comment-alt"></i>
-            </i>
-            Feed Back
-        </a>
 
-        <?php if ($tipe == 'tourist') { ?><a href="<?= $this->url->get('tourist/logout') ?>" class="item">
-        <?php } else { ?> <a href="<?= $this->url->get('guide/logout') ?>" class="item">
-        <?php } ?>
+        <a href="<?= $this->url->get($tipe . '/logout') ?>" class="item">
             <i class="arrow alternate circle right icon"></i>
             Logout
         </a>

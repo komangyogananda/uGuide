@@ -34,15 +34,6 @@ class InterestedForm extends Form{
         );
 
         $this->add(
-            new Text(
-                'guide',
-                [
-                    'placeholder' => 'guideId',
-                ]
-            )
-        );
-
-        $this->add(
             new TextArea(
                 'desc',
                 [

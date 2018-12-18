@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 10, 2018 at 08:42 PM
+-- Generation Time: Dec 18, 2018 at 02:51 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.10
 
@@ -35,6 +35,21 @@ CREATE TABLE `activity` (
   `title` varchar(20) NOT NULL,
   `content` text NOT NULL,
   `date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf16;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `feedback`
+--
+
+CREATE TABLE `feedback` (
+  `id` int(11) NOT NULL,
+  `tourist_id` int(11) NOT NULL,
+  `guide_id` int(11) NOT NULL,
+  `trip_id` int(11) NOT NULL,
+  `rating` tinyint(1) NOT NULL,
+  `comment` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf16;
 
 -- --------------------------------------------------------
@@ -165,6 +180,15 @@ ALTER TABLE `activity`
   ADD KEY `fk_activitytrip` (`trip_id`);
 
 --
+-- Indexes for table `feedback`
+--
+ALTER TABLE `feedback`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_feedguide` (`guide_id`),
+  ADD KEY `fk_feedtrip` (`trip_id`),
+  ADD KEY `fk_feedtourist` (`tourist_id`) USING BTREE;
+
+--
 -- Indexes for table `interest`
 --
 ALTER TABLE `interest`
@@ -211,7 +235,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `activity`
 --
 ALTER TABLE `activity`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `feedback`
+--
+ALTER TABLE `feedback`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `interest`
@@ -252,6 +282,14 @@ ALTER TABLE `user`
 --
 ALTER TABLE `activity`
   ADD CONSTRAINT `fk_activitytrip` FOREIGN KEY (`trip_id`) REFERENCES `trip` (`id`);
+
+--
+-- Constraints for table `feedback`
+--
+ALTER TABLE `feedback`
+  ADD CONSTRAINT `fk_feedguide` FOREIGN KEY (`guide_id`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `fk_feedtrip` FOREIGN KEY (`trip_id`) REFERENCES `trip` (`id`),
+  ADD CONSTRAINT `fk_feeduser` FOREIGN KEY (`tourist_id`) REFERENCES `user` (`id`);
 
 --
 -- Constraints for table `interest`
