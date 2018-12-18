@@ -49,13 +49,13 @@
                                 <img src="/images/avatar2/large/kristy.png">
                             </div>
                             <div class="content">
-                                <a class="header">Novan</a>
+                                <a class="header"><?= $tourist[$tr->tourist_id]->fname . ' ' . $tourist[$tr->tourist_id]->lname ?></a>
                                 <div class="meta">
-                                    <span class="location">Tangerang</span>
+                                    <span class="location"><?= $tourist[$tr->tourist_id]->location ?></span>
                                 </div>
                                 <div class="ui star rating" data-rating="5"></div>
                                 <div class="description">
-                                    Siap memandu anda kemanapun. Ahli dalam liburan bersama alam.
+                                    <?= $tourist[$tr->tourist_id]->bio ?>
                                 </div>
                             </div>
                             <div class="extra content">
