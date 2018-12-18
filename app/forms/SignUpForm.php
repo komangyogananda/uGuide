@@ -110,6 +110,17 @@ class SignUpForm extends Form{
         ]);
 
         $this->add($password);
+
+        $newPass = 
+        new Password(
+            'newPass',
+            [
+                'minlength' => 0,
+                'placeholder' => 'newPass',
+            ]
+        );
+
+        $this->add($newPass);
     
         $this->add(
             new Password(
