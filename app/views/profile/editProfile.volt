@@ -115,7 +115,7 @@
                             </form>
 
                             <div class="row">
-                                    <input class="ui button" type="submit" value="Edit">
+                                    <input class="ui button edit" type="submit" value="Edit">
                             </div>
                         </div>
                     </div>
@@ -124,6 +124,12 @@
         </div>
 
     </div>
+
+    <script>
+        $('.edit').on('click', function(){
+            $('form').submit();
+        });
+    </script>
 
     {% include 'layouts/sidebar.volt' %}
 
