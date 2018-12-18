@@ -5,6 +5,50 @@
 
     class TripController extends Controller{
 
+        private function validateStep(){
+            $id = $this->session->get('auth')['id'];
+            $tipe = $this->session->get('auth')['type'];
+            $idTrip = $this->dispatcher->getParam('tripId');
+            $step = array(
+                1 => false,
+                2 => false,
+                3 => false,
+                4 => false,
+                5 => false,
+            );
+            $trip = Trip::findFirst("id = '$idTrip'");
+            $activity = Activity::find("trip_id = '$trip->id'");
+            if (!$trip){
+                (new Response())->redirect('404')->send();
+            }
+            $trans = Transaction::findFirst("trip_id = '$trip->id'");
+            $transID = $trans->id;
+            $find = false;
+            if ($trip) $find = true;
+            if ($find) {
+                if ($tipe == 'tourist') {
+                    if ($trip->guide_id != NULL) $step[1] = true;
+                }
+                else if ($tipe == 'guide') $step[1] = true;
+                if ($trans->status == 'ACCEPTED' && $step[1]) $step[2] = true;
+                $date_array = getdate();
+                $curr_date = $date_array['year']."-".$date_array['mon']."-".$date_array['mday'];
+                if ($curr_date >= $trip->date && $step[2]) $step[3] = true;
+                $date_finish = date_create($trip->date);
+                date_add($date_finish, date_interval_create_from_date_string("'$trip->duration' days"));
+                $date_finish = date_format($date_finish, 'Y-m-d');
+                if ($curr_date >= $date_finish && $step[3]) $step[4] = true;
+                $feedback = Feedback::findFirst("trip_id = '$trip->id'");
+                if ($feedback && $step[4]) $step[5] = true;
+            }
+            $this->view->find = $find;
+            $this->view->trip = $trip;
+            $this->view->step = $step;
+            $this->view->transID = $transID;
+            $this->view->activity = $activity;
+            $this->view->tipe = $tipe;
+        }
+
         public function findTouristAction(){
             
             $form = new HolidayForm();
@@ -49,30 +93,8 @@
         }
 
         public function showTripAction(){
-            $id = $this->session->get('auth')['id'];
-            $tipeUser = $this->session->get('auth')['type'];
-            $tipe = $this->dispatcher->getParam('tipe');
-            $idTrip = $this->dispatcher->getParam('tripId');
             $messageForm = new MessageForm();
-
-            $step = array(
-                1 => false,
-                2 => false,
-                3 => false,
-                4 => false,
-                5 => false,
-            );
-
-            $trip = Trip::findFirst("id = '$idTrip'");
-            $activity = Activity::find("trip_id = '$idTrip'");
-
-            if (!$trip){
-                (new Response())->redirect('404')->send();
-            }
-
-            $this->view->trip = $trip;
-            $this->view->step = $step;
-            $this->view->tipe = $tipe;
+            $this->validateStep();
             $this->view->activity = $activity;
             $this->view->messageForm = $messageForm;
         }
@@ -112,17 +134,28 @@
 
         public function addNewInterestedAction(){
             //tambah interested dari guide/find
-            $amount = $this->dispatcher->getPost('budget');
-            $desc = $this->dispatcher->getPost('desc');
-            $trip = $this->dispatcher->getPost('trip');
-            $guide = $this->session->get('auth')['id'];
-            $tourist = $this->dispatcher->getPost('tourist');
-            (new Interest())->init($trip,$guide,$tourist,$amount,$plan)->save();
+            $request = $this->request;
+            if ($request->isPost() == true){
+                if ($request->isAjax() == true){
+                    $amount = $this->request->getPost('budget');
+                    $desc = $this->request->getPost('desc');
+                    $trip = $this->request->getPost('tripId');
+                    $guide = $this->session->get('auth')['id'];
+                    $tourist = $this->request->getPost('touristId');
+                    $interest = new Interest();
+                    $interest->init($trip,$guide,$tourist,$amount,$desc);
+                    $interest->save();
+                }
+            }
+            
+            //die();
         }
 
         public function paymentsAction(){
             //payments
 
+            $tipe = $this->dispatcher->getParam('tipe');
+            $this->view->tipe = $tipe;
         }
 
         public function feedBackAction(){

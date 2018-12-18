@@ -98,17 +98,20 @@
         $('.sendButton').on('click', function(){
             var trip = $('form').data('trip');
             $.ajax({
-                type: 'post',
-                url: '{{ url("/guide/trip/interested/ajaxPost") }}',
-                data: { 'form' : $('form').serialize(),
+                url: '{{ url("guide/trip/interested/ajaxPost") }}',
+                method: 'POST',
+                data: { 'budget' : $('#budget').val(),
+                        'desc' : $('#desc').val(),
                         'tripId' : $('form').data('trip'),
                         'touristId' : $('form').data('tourist')
                         },
                 success: function(){
                     $('#'+trip).addClass('disabled');
+                    console.log(this.data);
                 }
             });
         });
+
     </script>
 
     {% include 'layouts/sidebar.volt' %}

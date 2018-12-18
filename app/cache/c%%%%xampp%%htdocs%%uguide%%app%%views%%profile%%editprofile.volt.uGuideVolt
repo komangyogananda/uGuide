@@ -127,7 +127,7 @@
                             </form>
 
                             <div class="row">
-                                    <input class="ui button" type="submit" value="Edit">
+                                    <input class="ui button edit" type="submit" value="Edit">
                             </div>
                         </div>
                     </div>
@@ -136,6 +136,12 @@
         </div>
 
     </div>
+
+    <script>
+        $('.edit').on('click', function(){
+            $('form').submit();
+        });
+    </script>
 
     <div id="sidebarMenu" class="ui left vertical inverted sidebar labeled icon stackable menu">
         <div class="column">

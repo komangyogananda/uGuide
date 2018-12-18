@@ -16,6 +16,14 @@ class ProfileRoutes extends RouterGroup{
             ]
         );
 
+        $this->addPost(
+            '/((tourist)|(guide))/profile/edit',
+            [
+                'action' => 'editProfileSubmit',
+                'tipe' => 1,
+            ]
+        );
+
         $this->addGet(
             '/guide/profile/show/:params',
             [

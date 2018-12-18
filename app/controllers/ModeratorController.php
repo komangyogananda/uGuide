@@ -3,7 +3,7 @@
 use Phalcon\Mvc\Controller;
 use Phalcon\Http\Response;
 
-class ModeratorController extends Controller{
+class ModeratorController extends BaseController{
     public function indexAction(){
     	$resp = new Response();
     	if (!$this->session->has('auth')) $resp->redirect('')->send();
