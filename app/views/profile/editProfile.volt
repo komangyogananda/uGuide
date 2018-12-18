@@ -36,20 +36,19 @@
                 <div class="ui stackable grid centered">
                     <div class="two column row center aligned">
                         <div class="column center aligned">
-                                {{ form('class' : 'ui form segment') }}
+                                {{ form('class' : 'ui form segment',
+                                'enctype': 'multipart/form-data']) }}
 
                                 <div class="ui medium bordered image">
-                                    <?php
-                                    ?>
                                     <!-- <img src="data:image/jpeg;base64, {{ user.getPicture() }}"> -->
-                                    <!-- <img src="https://www.gettyimages.ca/gi-resources/images/Homepage/Hero/UK/CMS_Creative_164657191_Kingfisher.jpg"> -->
+                                    <img src="data:image/jpeg;base64,<?php echo $user->getPicture() ?>">
                                 </div>
 
                                 {% if tipe == 'tourist' %}
                                     <div class="field">
                                     <label>Username</label>
                                         {{ form.render('username', ['disabled': true, 
-                                                                    'value': user.getUsername()]) }}
+                                                                    'value': user.getUsername()) }}
                                     </div>
                                 {% endif %}
     

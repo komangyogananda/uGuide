@@ -46,7 +46,8 @@
                                     <div class="field">
                                     <label>Username</label>
                                         {{ form.render('username', ['disabled': true, 
-                                                                    'value': 'tourist123']) }}
+                                                                    'value': 'tourist123',
+                                                                    'enctype': 'multipart/form-data']) }}
                                     </div>
                                 {% endif %}
     
