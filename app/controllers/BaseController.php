@@ -14,6 +14,10 @@
                 $resp->redirect($this->session->get('auth')['type'].'/'.$url)->send();
             }
         }
+
+        public function show404Action(){
+            
+        }
     }
 
 ?>

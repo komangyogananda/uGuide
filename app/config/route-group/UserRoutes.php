@@ -59,14 +59,6 @@ class UserRoutes extends RouterGroup{
         );
 
         $this->addGet(
-            '/((tourist)|(guide))/profile',
-            [
-                'tipe' => 1,
-                'action' => 'profile',
-            ]
-        );
-
-        $this->addGet(
             '/((tourist)|(guide))/active',
             [
                 'tipe' => 1,
