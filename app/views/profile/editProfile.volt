@@ -47,8 +47,8 @@
                                 {% if tipe == 'tourist' %}
                                     <div class="field">
                                     <label>Username</label>
-                                        {{ form.render('username', ['disabled': true, 
-                                                                    'value': user.getUsername()]) }}
+                                        {{ form.render('username', ['disabled': true,
+                                        'value': user.getUsername()]) }}
                                     </div>
                                 {% endif %}
     
