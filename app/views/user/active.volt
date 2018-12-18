@@ -292,12 +292,12 @@
                             <div class="row">
                                 <div class="column">
                                     {% if tipe == 'tourist' AND step[2] == false %}
-                                        <button class="ui negative labeled icon button">
+                                        <button class="ui negative labeled icon button endButton">
                                             <i class="close icon"></i>
                                             Delete Trip
                                         </button>
                                     {% elseif tipe == 'guide' AND step[4] == true %}
-                                        <button class="ui positive labeled icon button">
+                                        <button class="ui positive labeled icon button endButton">
                                             <i class="check icon"></i>
                                             Finish Trip
                                         </button>
@@ -327,7 +327,49 @@
                 </div>
             </div>
         {% endif %}
-    </div>  
+    </div>
+
+    {% if tipe == 'tourist' AND step[2] == false %}
+        <div id="endAction" class="ui tiny modal">
+            <div class="ui icon header">
+                <i class="trash alternate icon"></i>
+                Delete Trip
+            </div>
+            <div class="content">
+                <p>Are you sure want to delete this trip ?</p>
+            </div>
+            <div class="actions">
+                <div class="ui green ok inverted button">
+                    <i class="checkmark icon"></i>
+                    Yes
+                </div>
+            </div>
+        </div>
+    {% elseif tipe == 'guide' AND step[4] == true %}
+        <div id="endAction" class="ui tiny modal">
+            <div class="ui icon header">
+                <i class="check circle icon"></i>
+                Finish Trip
+            </div>
+            <div class="content">
+                <p>Finish this trip ?</p>
+            </div>
+            <div class="actions">
+                <div class="ui green ok inverted button">
+                    <i class="checkmark icon"></i>
+                    Yes
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    <script>
+
+        $('.endButton').on('click', function(){
+            $('#endAction').modal('show');
+        });
+        
+    </script>
 
     {% include 'layouts/sidebar.volt' %}
     
