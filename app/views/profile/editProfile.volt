@@ -36,7 +36,8 @@
                 <div class="ui stackable grid centered">
                     <div class="two column row center aligned">
                         <div class="column center aligned">
-                                {{ form('class' : 'ui form segment') }}
+                                {{ form('class' : 'ui form segment',
+                                'enctype': 'multipart/form-data']) }}
 
                                 <div class="ui medium bordered image">
                                     <!-- <img src="data:image/jpeg;base64, {{ user.getPicture() }}"> -->
@@ -47,8 +48,7 @@
                                     <div class="field">
                                     <label>Username</label>
                                         {{ form.render('username', ['disabled': true, 
-                                                                    'value': user.getUsername(),
-                                                                    'enctype': 'multipart/form-data']) }}
+                                                                    'value': user.getUsername()) }}
                                     </div>
                                 {% endif %}
     
