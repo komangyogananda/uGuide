@@ -41,9 +41,6 @@
                                     <span class="location">{{ tourist[tr.tourist_id].location|capitalize }}</span>
                                 </div>
                                 <div class="ui star rating" data-rating="5"></div>
-                                <div class="description">
-                                    {{ tourist[tr.tourist_id].bio }}
-                                </div>
                             </div>
                             <div class="extra content">
                                 <a>

@@ -49,9 +49,9 @@
                                 <img src="/images/avatar2/large/kristy.png">
                             </div>
                             <div class="content">
-                                <a class="header"><?= $tourist[$tr->tourist_id]->fname . ' ' . $tourist[$tr->tourist_id]->lname ?></a>
+                                <a class="header"><?= ucwords($tourist[$tr->tourist_id]->fname) . ' ' . ucwords($tourist[$tr->tourist_id]->lname) ?></a>
                                 <div class="meta">
-                                    <span class="location"><?= $tourist[$tr->tourist_id]->location ?></span>
+                                    <span class="location"><?= ucwords($tourist[$tr->tourist_id]->location) ?></span>
                                 </div>
                                 <div class="ui star rating" data-rating="5"></div>
                                 <div class="description">
@@ -111,17 +111,20 @@
         $('.sendButton').on('click', function(){
             var trip = $('form').data('trip');
             $.ajax({
-                type: 'post',
-                url: '<?= $this->url->get('/guide/trip/interested/ajaxPost') ?>',
-                data: { 'form' : $('form').serialize(),
+                url: '<?= $this->url->get('guide/trip/interested/ajaxPost') ?>',
+                method: 'POST',
+                data: { 'budget' : $('#budget').val(),
+                        'desc' : $('#desc').val(),
                         'tripId' : $('form').data('trip'),
                         'touristId' : $('form').data('tourist')
                         },
                 success: function(){
                     $('#'+trip).addClass('disabled');
+                    console.log(this.data);
                 }
             });
         });
+
     </script>
 
     <div id="sidebarMenu" class="ui left vertical inverted sidebar labeled icon stackable menu">
