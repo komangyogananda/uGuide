@@ -183,6 +183,9 @@
                         $this->flash->error($message);
                     }
                 } else {
+                    if (!$this->request->hasFiles()) {
+                        $this->flash->error("CUK");
+                    }
                     $user = new User();
                     $user->setType($this->request->getPost('tipe'));
                     $user->setUsername($this->request->getPost('username'));
@@ -194,7 +197,7 @@
                     $user->setLocation($this->request->getPost('location'));
                     $user->setGender($this->request->getPost('gender'));
                     $user->setRating(0);
-                    $user->setPicture($this->request->getPost('picture'));
+                    $user->setPicture(base64_encode(file_get_contents($this->request->getUploadedFiles()[0]->getTempName())));
                     if (!$user->save()) {
                         $this->flash->error($user->getMessages());
                     } else {
@@ -205,7 +208,7 @@
             }
 
             $this->view->form = $form;
-            (new Response())->redirect($this->request->getPost('tipe').'/login')->send();
+            //(new Response())->redirect($this->request->getPost('tipe').'/login')->send();
         }
 
         public function allActiveAction(){

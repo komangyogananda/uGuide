@@ -5,7 +5,8 @@
 {% block content %}
 
 <div class="ui two column centered stackable grid customBox">
-        {{ form('class' : 'ui form segment')}}
+        {{ form('class' : 'ui form segment',
+        'enctype': 'multipart/form-data') }}
 
         {% if tipe == 'tourist' %}
             <div class="column">

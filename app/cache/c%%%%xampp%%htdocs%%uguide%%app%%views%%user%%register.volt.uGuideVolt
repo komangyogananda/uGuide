@@ -18,7 +18,7 @@
         
 
 <div class="ui two column centered stackable grid customBox">
-    <?= $this->tag->form(['class' => 'ui form segment']) ?>
+        <?= $this->tag->form(['class' => 'ui form segment', 'enctype' => 'multipart/form-data']) ?>
 
         <?php if ($tipe == 'tourist') { ?>
             <div class="column">
