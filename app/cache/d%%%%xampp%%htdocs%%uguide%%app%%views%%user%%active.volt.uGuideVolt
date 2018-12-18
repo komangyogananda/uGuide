@@ -17,7 +17,7 @@
 
         
 
-    <div class="ui menu">
+    <div class="ui stackable menu">
         <a class="sidebarToggle item">
             <i class="bars icon"></i>
         </a>
@@ -35,13 +35,13 @@
         </div>
     </div>
 
-    <div class="ui grid centered">
+    <div class="ui stackable grid centered">
         <?php if ($find == true) { ?>
             <div class="row">
                 <div class="ten wide column center aligned">
                     <div class="ui tablet stackable five steps">
                         <a class="<?php if ($step[1] == true) { ?>
-                        completed
+                        completed disabled
                         <?php } else { ?>
                         active
                         <?php } ?> step" 
@@ -60,7 +60,7 @@
                             </div>
                         </a>
                         <a class="<?php if ($step[2] == true) { ?>
-                        completed
+                        completed disabled
                         <?php } elseif ($step[1] == true && $step[2] == false) { ?>
                         active
                         <?php } else { ?>
@@ -76,7 +76,7 @@
                             </div>
                         </a>
                         <a class="<?php if ($step[3] == true) { ?>
-                        completed
+                        completed disabled
                         <?php } elseif ($step[2] == true && $step[3] == false) { ?>
                         active
                         <?php } else { ?>
@@ -89,7 +89,7 @@
                             </div>
                         </a>
                         <a class="<?php if ($step[4] == true) { ?>
-                        completed
+                        completed disabled
                         <?php } elseif ($step[3] == true && $step[4] == false) { ?>
                         active
                         <?php } else { ?>
@@ -101,7 +101,7 @@
                             </div>
                         </a>
                         <a class="<?php if ($step[5] == true) { ?>
-                        completed
+                        completed disabled
                         <?php } elseif ($step[4] == true && $step[5] == false) { ?>
                         active
                         <?php } else { ?>
@@ -144,7 +144,69 @@
                                 </h2>
                             </div>
                         </div>
-                        <div class="ui grid">
+                        <div class="ui stackable grid centered" style="margin-top:10px">
+                            <div class="eight wide column row">
+                                <div class="column">
+                                    <div class="ui info message">
+                                        <h2 class="header">
+                                            Trip Info
+                                        </h2>
+                                        <div class="ui divided list">
+                                            <div class="item">
+                                                <div class="ui blue horizontal label">Location</div>
+                                                <div class="ui teal horizontal label"><?= Phalcon\Text::upper($activeTrip->destination) ?></div>
+                                            </div>
+                                            <div class="item">
+                                                <div class="ui blue horizontal label">Minimum Budget</div>
+                                                <div class="ui teal horizontal label">Rp. <?= $activeTrip->min_budget ?></div>
+                                            </div>
+                                            <div class="item">
+                                                <div class="ui blue horizontal label">Maximum Budget</div>
+                                                <div class="ui teal horizontal label">Rp. <?= $activeTrip->max_budget ?></div>
+                                            </div>
+                                            <div class="item">
+                                                <div class="ui blue horizontal label">Service(s)</div><br>
+                                                <div class="item">
+                                                    <div class="ui teal horizontal label">asdflksf</div>
+                                                </div>
+                                                <div class="item">
+                                                    <div class="ui teal horizontal label">asdflksf</div>
+                                                </div>
+                                                <div class="item">
+                                                    <div class="ui teal horizontal label">asdflksf</div>
+                                                </div>
+                                                <div class="item">
+                                                    <div class="ui teal horizontal label">asdflksf</div>
+                                                </div>
+                                            </div>
+                                            <div class="item">
+                                                <div class="ui blue horizontal label">Start Date</div>
+                                                <div class="ui teal horizontal label"><?= date('D, d-M-Y', strtotime($activeTrip->date)) ?></div>
+                                            </div>
+                                            <div class="item">                                                
+                                                <div class="ui blue horizontal label">Duration</div>
+                                                <div class="ui teal horizontal label"><?= $activeTrip->duration ?> Day(s)</div>
+                                            </div>
+                                            <div class="item">                                                
+                                                <div class="ui blue horizontal label">Person</div>
+                                                <div class="ui teal horizontal label"><?= $activeTrip->person ?> Person(s)</div>                                           
+                                            </div>
+                                            <div class="item">
+                                                <div class="ui blue horizontal label">Description</div>
+                                                <div class="six wide column center aligned">
+                                                        <div>
+                                                            <div class="ui teal horizontal label">
+                                                                Check Guide(s) interested in your trip!Check Guide(s) interested in your trip!Check Guide(s) interested in your trip!
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                        </div>
+                                      </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui stackable grid">
                             <div class="row">
                                 <div class="column middle aligned">
                                     <h3 class="header">Your Guide</h3>
@@ -180,7 +242,7 @@
                                             </div>
                                         </div>
                                     <?php } else { ?>
-                                        <div class="ui grid centered">
+                                        <div class="ui stackable grid centered">
                                             <div class="row">
                                                 <div class="six wide column center aligned">
                                                     <div class="ui info message">
@@ -203,7 +265,7 @@
                                 <div class="column">
                                     <h3 class="header">Activities</h3>
                                         <?php if ($this->length($activity) != 0) { ?>
-                                            <div class="ui grid">
+                                            <div class="ui stackable grid">
                                                 <div class="row">
                                                     <div class="twelve wide column right floated">
                                                         <div class="ui message green">
@@ -239,16 +301,16 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="ui grid">
+                        <div class="ui stackable grid">
                             <div class="row">
                                 <div class="column">
                                     <?php if ($tipe == 'tourist' && $step[2] == false) { ?>
-                                        <button class="ui negative labeled icon button">
+                                        <button class="ui negative labeled icon button endButton">
                                             <i class="close icon"></i>
                                             Delete Trip
                                         </button>
                                     <?php } elseif ($tipe == 'guide' && $step[4] == true) { ?>
-                                        <button class="ui positive labeled icon button">
+                                        <button class="ui positive labeled icon button endButton">
                                             <i class="check icon"></i>
                                             Finish Trip
                                         </button>
@@ -272,15 +334,57 @@
                             </h2>
                         </div>
                     </div>
-                    <a href="<?= $this->url->get('tourist/find') ?>">
-                        <button class="positive fluid ui button">Click here to create new Trip.</button>
+                    <a href="<?= $this->url->get($tipe . '/find') ?>">
+                        <button class="positive fluid ui button">Click here to <?php if ($tipe == 'tourist') { ?>create<?php } else { ?>find<?php } ?> a new Trip.</button>
                     </a>
                 </div>
             </div>
         <?php } ?>
-    </div>  
+    </div>
 
-    <div id="sidebarMenu" class="ui left vertical inverted sidebar labeled icon menu">
+    <?php if ($tipe == 'tourist' && $step[2] == false) { ?>
+        <div id="endAction" class="ui tiny modal">
+            <div class="ui icon header">
+                <i class="trash alternate icon"></i>
+                Delete Trip
+            </div>
+            <div class="content">
+                <p>Are you sure want to delete this trip ?</p>
+            </div>
+            <div class="actions">
+                <div class="ui green ok inverted button">
+                    <i class="checkmark icon"></i>
+                    Yes
+                </div>
+            </div>
+        </div>
+    <?php } elseif ($tipe == 'guide' && $step[4] == true) { ?>
+        <div id="endAction" class="ui tiny modal">
+            <div class="ui icon header">
+                <i class="check circle icon"></i>
+                Finish Trip
+            </div>
+            <div class="content">
+                <p>Finish this trip ?</p>
+            </div>
+            <div class="actions">
+                <div class="ui green ok inverted button">
+                    <i class="checkmark icon"></i>
+                    Yes
+                </div>
+            </div>
+        </div>
+    <?php } ?>
+
+    <script>
+
+        $('.endButton').on('click', function(){
+            $('#endAction').modal('show');
+        });
+        
+    </script>
+
+    <div id="sidebarMenu" class="ui left vertical inverted sidebar labeled icon stackable menu">
         <div class="column">
             <img class="image" width=40 src="<?= $this->url->get('src/smallLogo.png') ?>">
         </div>

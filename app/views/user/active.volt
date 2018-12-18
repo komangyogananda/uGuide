@@ -28,7 +28,7 @@
                 <div class="ten wide column center aligned">
                     <div class="ui tablet stackable five steps">
                         <a class="{% if step[1] == true %}
-                        completed
+                        completed disabled
                         {% else %}
                         active
                         {% endif %} step" 
@@ -47,7 +47,7 @@
                             </div>
                         </a>
                         <a class="{% if step[2] == true %}
-                        completed
+                        completed disabled
                         {% elseif step[1] == true and step[2] == false %}
                         active
                         {% else %}
@@ -63,7 +63,7 @@
                             </div>
                         </a>
                         <a class="{% if step[3] == true %}
-                        completed
+                        completed disabled
                         {% elseif step[2] == true and step[3] == false %}
                         active
                         {% else %}
@@ -76,7 +76,7 @@
                             </div>
                         </a>
                         <a class="{% if step[4] == true %}
-                        completed
+                        completed disabled
                         {% elseif step[3] == true and step[4] == false %}
                         active
                         {% else %}
@@ -88,7 +88,7 @@
                             </div>
                         </a>
                         <a class="{% if step[5] == true %}
-                        completed
+                        completed disabled
                         {% elseif step[4] == true and step[5] == false %}
                         active
                         {% else %}

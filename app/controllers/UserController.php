@@ -5,6 +5,54 @@
     use Phalcon\Tag;
 
     class UserController extends Controller{
+
+        private function validateStep(){
+            $id = $this->session->get('auth')['id'];
+            $tipe = $this->session->get('auth')['type'];
+            
+            $step = array(
+                1 => false,
+                2 => false,
+                3 => false,
+                4 => false,
+                5 => false,
+            );
+            
+            
+            if ($tipe == 'tourist'){
+                $activeTrip = Trip::findFirst("tourist_id = '$id' AND status = 1");
+                $activity = Activity::find("trip_id = '$activeTrip->id'");
+            }else{
+                $activeTrip = Trip::findFirst("guide_id = '$id' AND status = 1");
+                $activity = Activity::find("trip_id = '$activeTrip->id'");
+            }
+            $trans = Transaction::findFirst("trip_id = '$activeTrip->id'");
+            $transID = $trans->id;
+            $find = false;
+            if ($activeTrip) $find = true;
+            if ($find) {
+                if ($tipe == 'tourist') {
+                    if ($activeTrip->guide_id != NULL) $step[1] = true;
+                }
+                else if ($tipe == 'guide') $step[1] = true;
+                if ($trans->status == 'ACCEPTED' && $step[1]) $step[2] = true;
+                $date_array = getdate();
+                $curr_date = $date_array['year']."-".$date_array['mon']."-".$date_array['mday'];
+                if ($curr_date >= $trip->date && $step[2]) $step[3] = true;
+                $date_finish = date_create($activeTrip->date);
+                date_add($date_finish, date_interval_create_from_date_string("'$activeTrip->duration' days"));
+                $date_finish = date_format($date_finish, 'Y-m-d');
+                if ($curr_date >= $date_finish && $step[3]) $step[4] = true;
+                $feedback = Feedback::findFirst("trip_id = '$activeTrip->id'");
+                if ($feedback && $step[4]) $step[5] = true;
+            }
+            $this->view->find = $find;
+            $this->view->activeTrip = $activeTrip;
+            $this->view->step = $step;
+            $this->view->transID = $transID;
+            $this->view->activity = $activity;
+        }
+
         public function registerAction(){
             $form = new SignUpForm();
 
@@ -94,30 +142,7 @@
             $messageForm = new MessageForm();
             $this->view->messageForm = $messageForm;
 
-            $step = array(
-                1 => false,
-                2 => false,
-                3 => false,
-                4 => false,
-                5 => false,
-            );
-
-            if ($tipe == 'tourist'){
-                $activeTrip = Trip::findFirst("tourist_id = '$id'");
-                $activity = Activity::find("trip_id = '$activeTrip->id'");
-            }else{
-                $activeTrip = Trip::findFirst("guide_id = '$id'");
-                $activity = Activity::find("trip_id = '$activeTrip->id'");
-            }
-            $find;
-            if ($activeTrip){
-                $find = true;
-            }else{
-                $find = false;
-            }
-            $this->view->find = $find;
-            $this->view->activeTrip = $activeTrip;
-            $this->view->activity = $activity;
+            $this->validateStep();
         }
 
         public function profileAction(){
@@ -131,37 +156,10 @@
 
         public function activeAction(){
 
-            $id = $this->session->get('auth')['id'];
-            $tipe = $this->session->get('auth')['type'];
-            
-            $step = array(
-                1 => false,
-                2 => false,
-                3 => false,
-                4 => false,
-                5 => false,
-            );
-            
-            // masih salah status = 1;
-            if ($tipe == 'tourist'){
-                $activeTrip = Trip::findFirst("tourist_id = '$id'");
-                $activity = Activity::find("trip_id = '$activeTrip->id'");
-            }else{
-                $activeTrip = Trip::findFirst("guide_id = '$id'");
-                $activity = Activity::find("trip_id = '$activeTrip->id'");
-            }
-            $find;
-            if ($activeTrip){
-                $find = true;
-            }else{
-                $find = false;
-            }
-            $this->view->find = $find;
-            $this->view->activeTrip = $activeTrip;
-            $this->view->step = $step;
+            $this->validateStep();
+
             $tipe = $this->dispatcher->getParam('tipe');
             $this->view->tipe = $tipe;
-            $this->view->activity = $activity;
             $messageForm = new MessageForm();
             $this->view->messageForm = $messageForm;
         }
