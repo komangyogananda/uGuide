@@ -179,15 +179,15 @@
             $this->view->recents = $recents;
         }
 
-        public function storeAction(){
+        public function storeAction(){  
             $tipe = $this->dispatcher->getParam('tipe');
             $form = new SignUpForm();
             if ($this->request->isPost()) {
                 if ($form->isValid($this->request->getPost()) == false) {
                     foreach ($form->getMessages() as $message) {
                         $this->flashSession->error($message);
-                        return (new Response())->redirect($tipe)->send();
                     }
+                    return (new Response())->redirect($tipe)->send();
                 } else {
                     if (strlen($this->request->getPost('password')) < 8) {
                         $this->flashSession->error('Password must be at least 8 characters!');
@@ -208,8 +208,8 @@
                     if (!$user->save()) {
                         foreach ($user->getMessages() as $message) {
                             $this->flashSession->error($message);
-                            return (new Response())->redirect($tipe)->send();
                         }
+                        return (new Response())->redirect($tipe)->send();
                     } else {
                         $this->flashSession->success("User was created successfully");
                         return (new Response())->redirect($tipe.'/login')->send();
