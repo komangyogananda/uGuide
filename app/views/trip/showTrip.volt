@@ -330,6 +330,10 @@
                                                 </div>
                                                 <form id="feedBack" method="post" class='ui form'>
                                                     <input type="hidden" name="feedBack" value="yes">
+                                                    <input id="ratingNew" type="hidden" name="ratingNew">
+                                                    <input type="hidden" name="guideId" value="{{ trip.guide_id }}">
+                                                    <input type="hidden" name="tripId" value="{{ trip.id }}">
+                                                    <input type="hidden" name="touristId" value="{{ trip.tourist_id }}">
                                                     <div class="field">
                                                         <input type="text" name="feedBackDesc" id="feedBackDesc" placeholder="Your comments...">
                                                     </div>
@@ -365,7 +369,7 @@
 
                                                 $('.massive.rating').on('click', function(){
                                                     var rating = $('.rating').rating('get rating')[1];
-                                                    console.log(rating);
+                                                    $('#ratingNew').val($rating);
                                                     $('.rating').rating('disable');
                                                 });
     

@@ -78,7 +78,14 @@
             $password = $this->request->getPost('password');
             $email = $this->request->getPost('email');
             $user = User::findFirst("email = '$email'");
-            if ($user->getType() !== $tipe) echo "$tipe user not found";
+            if ($user == null) {
+                $this->flashSession->error('User not found!');
+                return (New Response())->redirect($tipe.'/login');
+            }
+            if ($user->getType() !== $tipe) {
+                $this->flashSession->error('User Type not Found!');
+                return (New Response())->redirect($tipe.'/login');
+            }
             else if ($user){
                 if (password_verify($password, $user->getPassword())){
                     $this->session->set(
@@ -93,7 +100,6 @@
                             'location' => $user->getLocation()
                         ]
                     );
-                    echo "Login Success";
                     $resp = new Response();
                     if ($tipe == 'tourist') {
                         $resp->redirect('tourist/dashboard')->send();
@@ -105,10 +111,9 @@
                         $resp->redirect('moderator')->send();
                     }
                 }else{
-                    echo "failed to verify";
+                    $this->flashSession->error('Wrong Username/Password Combination!');
+                    return (New Response())->redirect($tipe.'/login');
                 }
-            }else{
-                echo "user not found";
             }
 
         }
@@ -179,15 +184,15 @@
             $this->view->recents = $recents;
         }
 
-        public function storeAction(){
+        public function storeAction(){  
             $tipe = $this->dispatcher->getParam('tipe');
             $form = new SignUpForm();
             if ($this->request->isPost()) {
                 if ($form->isValid($this->request->getPost()) == false) {
                     foreach ($form->getMessages() as $message) {
                         $this->flashSession->error($message);
-                        return (new Response())->redirect($tipe)->send();
                     }
+                    return (new Response())->redirect($tipe)->send();
                 } else {
                     if (strlen($this->request->getPost('password')) < 8) {
                         $this->flashSession->error('Password must be at least 8 characters!');
@@ -208,8 +213,8 @@
                     if (!$user->save()) {
                         foreach ($user->getMessages() as $message) {
                             $this->flashSession->error($message);
-                            return (new Response())->redirect($tipe)->send();
                         }
+                        return (new Response())->redirect($tipe)->send();
                     } else {
                         $this->flashSession->success("User was created successfully");
                         return (new Response())->redirect($tipe.'/login')->send();

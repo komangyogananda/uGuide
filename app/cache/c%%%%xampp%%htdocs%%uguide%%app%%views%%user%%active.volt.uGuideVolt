@@ -382,10 +382,6 @@
                 $('form#finish').submit();
                 // $('form#trip').submit();
             });
-            $('.rating').rating({
-                initialRating: 2,
-                maxRating: 5
-            });
         </script>
     <?php } ?>
 
