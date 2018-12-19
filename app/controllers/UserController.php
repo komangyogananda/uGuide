@@ -27,6 +27,12 @@
                 $activity = Activity::find("trip_id = '$activeTrip->id'");
                 $client = User::findFirst("id = '$activeTrip->tourist_id'");
             }
+            $total = Feedback::sum([
+                'column' => 'rating',
+                'conditions' => "guide_id = '$client->id'"
+            ]);
+            $count = Feedback::count("guide_id = '$client->id'");
+            $rating = $total / $count;
             $trans = Transaction::findFirst("trip_id = '$activeTrip->id'");
             $transID = $trans->id;
             $service = Service::find("trip_id = '$activeTrip->id'");
@@ -54,6 +60,7 @@
             $this->view->transID = $transID;
             $this->view->activity = $activity;
             $this->view->client = $client;
+            $this->view->rating = $rating;
         }
 
         public function registerAction(){
