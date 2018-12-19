@@ -120,6 +120,15 @@ class TripRoutes extends RouterGroup{
             ]
         );
 
+        $this->addPost(
+            '/tourist/payments/:int',
+            [
+                'tipe' => 'tourist',
+                'action' => 'addPay',
+                'id' => 1,
+            ]
+        );
+
         return $this;
     }
 }
