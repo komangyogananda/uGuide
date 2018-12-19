@@ -43,11 +43,10 @@
                 $curr_date = $date_array['year']."-".$date_array['mon']."-".$date_array['mday'];
                 if ($curr_date >= $trip->date && $step[2]) $step[3] = true;
                 $date_finish = date_create($trip->date);
-                date_add($date_finish, date_interval_create_from_date_string("'$trip->duration' days"));
+                date_add($date_finish, date_interval_create_from_date_string(($trip->duration+1)." days"));
                 $date_finish = date_format($date_finish, 'Y-m-d');
                 if ($curr_date >= $date_finish && $step[3]) $step[4] = true;
-                $feedback = Feedback::findFirst("trip_id = '$trip->id'");
-                if ($feedback && $step[4]) $step[5] = true;
+                if (!$trip->status && $step[4]) $step[5] = true;
             }
             $this->view->find = $find;
             $this->view->trip = $trip;
@@ -181,7 +180,7 @@
 
         public function addNewActivityAction(){
             //tambah new activity dari tourist|guide/trip/show dan /tourist/active
-            $idTrip = $this->request->getPost('tripId');
+            $idTrip = $this->dispatcher->getParam('tripId');
             $tipe = $this->dispatcher->getParam('tipe');
             $activityConfirm = $this->request->getPost('activity');
             $deleteConfirm = $this->request->getPost('delete');
@@ -189,7 +188,7 @@
             $feedBackConfirm = $this->request->getPost('feedBack');
 
             if ($activityConfirm) {
-                
+                $idTrip = $this->dispatcher->getParam('tripId');
                 $title = $this->request->getPost('title');
                 $content = $this->request->getPost('message');
                 $date_array = getdate();

@@ -50,7 +50,7 @@
                    $user->setPicture(base64_encode(file_get_contents($this->request->getUploadedFiles()[0]->getTempName())));
 
                 if (!$user->save()) {
-                    $this->flashSession->error("ERROR");
+                    // $this->flashSession->error("ERROR");
                     foreach ($user->getMessages() as $message) {
                         $this->flashSession->error($message);
                     }

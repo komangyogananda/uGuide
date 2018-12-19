@@ -43,7 +43,10 @@
                 </div>
             </div>
             <div class="ui two column row">
-                <?php foreach ($trip as $tr) { ?>
+                <?php if ($this->length($trip) == 0) { ?>
+                    <div class="ui info message">There is no trip available in your area.</div>
+                <?php } else { ?>
+                    <?php foreach ($trip as $tr) { ?>
                     <div class="ui column center aligned">
                         <div class="ui card centered">
                             <div class="image">
@@ -124,6 +127,7 @@
                             </div>
                         </div>
                     </div>
+                <?php } ?>
                 <?php } ?>
             </div>
     </div>

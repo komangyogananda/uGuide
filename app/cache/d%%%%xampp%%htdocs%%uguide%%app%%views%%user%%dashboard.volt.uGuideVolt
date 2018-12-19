@@ -292,12 +292,6 @@
                                             There is no activity yet.
                                         </div>
                                     <?php } ?>
-                                    <?php if ($step[2] == true) { ?>
-                                        <button id="addActivity" class="ui right floated button">
-                                            <i class="plus icon"></i>
-                                            Add New Message
-                                        </button> 
-                                    <?php } ?>
                                 </div>
                         </div>
                     </div>
@@ -336,8 +330,13 @@
                                         <div class="ui info message">
                                             <h3 class="header">
                                                 <a class="ui image label">
-                                                    <img src="/images/avatar/small/joe.jpg">
-                                                    Novan
+                                                    <?php if ($tipe == 'tourist') { ?>
+                                                        <img src="data:image/jpeg;base64,<?= $nama[$recent->guide_id]->picture ?>">
+                                                        <?= ucwords($nama[$recent->guide_id]->fname) . ' ' . ucwords($nama[$recent->guide_id]->lname) ?>
+                                                    <?php } else { ?>
+                                                        <img src="data:image/jpeg;base64,<?= $nama[$recent->tourist_id]->picture ?>">
+                                                        <?= ucwords($nama[$recent->tourist_id]->fname) . ' ' . ucwords($nama[$recent->tourist_id]->lname) ?>
+                                                    <?php } ?>
                                                 </a>
                                                 <div class="header"><?= $recent->title ?></div>
                                             </h3>
@@ -347,13 +346,13 @@
                                                 <div class="ui teal horizontal label"><?= $recent->duration ?> Day(s)</div>
                                                 <div class="ui teal horizontal label"><?= $recent->person ?> Person(s)</div>
                                                 <div class="ui teal horizontal label"><?= 'Rp. ' . $recent->min_budget . ' - Rp. ' . $recent->max_budget ?></div>
-                                                <div class="ui teal horizontal label">service1</div>
-                                                <div class="ui teal horizontal label">service2</div>
-                                                <div class="ui teal horizontal label">service3</div>
+                                                <?php foreach ($services[$recent->id] as $sr) { ?>
+                                                    <div class="ui teal horizontal label"><?= $sr->value ?></div>
+                                                <?php } ?>
                                                 <div class="six wide column center aligned">
                                                     <div>
                                                         <div class="ui teal horizontal label">
-                                                            Check Guide(s) interested in your trip!Check Guide(s) interested in your trip!Check Guide(s) interested in your trip!
+                                                            <?= $recent->description ?>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -370,22 +369,6 @@
             <a href="<?= $this->url->get('tourist/history') ?>">
                 <button class="positive fluid ui button">Click here for details.</button>
             </a>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="segment ten wide column middle aligned">
-            <div class="ui attached segment">
-                <div class="column center aligned">
-                    <h1 class="ui header">
-                    News
-                    </h 1>
-                    <h2 class="ui header">
-                        <i class="newspaper icon"></i>
-                    </h2>
-                </div>
-            </div>
-            <button class="positive fluid ui button">Click here for details.</button>
         </div>
     </div>
 

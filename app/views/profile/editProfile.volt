@@ -17,7 +17,13 @@
     <div class="ui two column centered stackable grid">
         <div class="row">
             <div class="ui segment column middle aligned">
-                {{ flashSession.output() }}
+                <div class="row">
+                    <div class="ui grid centered">
+                        <div class="three column wide row">
+                            {{flashSession.output()}}
+                        </div>
+                    </div>
+                </div>
                 <div class="column center aligned">
                     <h1 class="ui header">
                         <i class="user icon"></i>

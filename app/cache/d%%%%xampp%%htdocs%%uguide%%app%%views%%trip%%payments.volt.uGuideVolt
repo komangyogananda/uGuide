@@ -68,23 +68,35 @@
                             </div>
                             <p><?= date('D, d-M-Y', strtotime($trans->date_expired)) ?></p>
                         </div>
-                        <div class="ui placeholder segment">
-                            <div class="ui icon header">
-                                <i class="pdf file outline icon"></i>
-                                <?php if ($trans->proof == null && $trans->status == 'PENDING') { ?>
-                                    No payment's proof uploaded.
+                        <div class="ui placeholder segment centered">
+                             <?php if ($trans->proof == null && $trans->status == 'PENDING') { ?>
+                                <div class="ui icon header">
+                                    <i class="pdf file outline icon"></i>
+                                   
+                                        No payment's proof uploaded.
+                                 </div>     
                                 <?php } elseif ($trans->proof != null) { ?>
-                                    <div class="ui bordered image">
-                                        <img src="data:image/jpeg;base64,<?= $trans->picture ?>">
+                                    <div class="ui bordered image centered">
+                                        <img src="data:image/jpeg;base64,<?= $trans->proof ?>">
                                     </div>
                                 <?php } ?>
-                            </div>
+                           
                             <?php if ($tipe == 'tourist' && $trans->status == 'PENDING') { ?>
                                 <div class="ui primary button">
                                     <form method="post" enctype="multipart/form-data">
                                         <input type="file" name="proof" id="proof" type="image">
                                     </form>
                                 </div>
+                                <div id="uploadButton" class="ui positive button">
+                                    Upload
+                                </div>
+                                <script>
+                                
+                                    $("#uploadButton").on('click', function(){
+                                        $('form').submit();
+                                    });
+
+                                </script>
                             <?php } ?>
                         </div>
                         <?php if ($trans->proof != null && $trans->status == 'PENDING') { ?>
