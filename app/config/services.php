@@ -27,7 +27,10 @@
     $di->set(
         'flashSession',
         function () {
-            return new FlashSession();
+            return new FlashSession([
+                'error' => 'ui negative message center aligned five column wide row',
+                'success' => 'ui positive message center aligned row'
+            ]);
         }
     );
 

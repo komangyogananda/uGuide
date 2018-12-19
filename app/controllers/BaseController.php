@@ -16,6 +16,9 @@
                 if ($url == 'login') {
                     $resp->redirect($tp.'/dashboard')->send();
                 }
+                if ($tipe != $tp) {
+                    $resp->redirect($tp.'/'.$url)->send();
+                }
             }
             else if (!$this->session->has('auth')) {
                 if ($url != 'login')
@@ -33,8 +36,8 @@
 
         public function checkRememberMe() {
             if ($this->hasRememberMe()) {
-                if ($this->hasRememberMe()->getExpiration() < time()) {
-                    $this->hasRememberMe()->delete();
+                if ($this->cookies->get('remember-me')->getExpiration() < time()) {
+                   $this->cookies->get('remember-me')->delete();
                     return 0;
                 }
                 return $this->cookies->get('remember-me')->getValue();

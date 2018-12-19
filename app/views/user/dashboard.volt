@@ -359,22 +359,6 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="segment ten wide column middle aligned">
-            <div class="ui attached segment">
-                <div class="column center aligned">
-                    <h1 class="ui header">
-                    News
-                    </h 1>
-                    <h2 class="ui header">
-                        <i class="newspaper icon"></i>
-                    </h2>
-                </div>
-            </div>
-            <button class="positive fluid ui button">Click here for details.</button>
-        </div>
-    </div>
-
     {% include 'layouts/sidebar.volt' %}
 
 {% endblock %}

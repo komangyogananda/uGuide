@@ -5,7 +5,13 @@
 {% block content %}
 
 <div class="ui two column centered stackable grid customBox">
-    {{flashSession.output()}}
+    <div class="row">
+        <div class="ui grid centered">
+            <div class="column wide row">
+                {{flashSession.output()}}
+            </div>
+        </div>
+    </div>
     {{ form('class' : 'ui form segment') }}
 
         {% if tipe == 'tourist' %}

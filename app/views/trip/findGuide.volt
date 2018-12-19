@@ -30,7 +30,10 @@
                 </div>
             </div>
             <div class="ui two column row">
-                {% for tr in trip %}
+                {% if trip|length == 0 %}
+                    <div class="ui info message">There is no trip available in your area.</div>
+                {% else %}
+                    {% for tr in trip %}
                     <div class="ui column center aligned">
                         <div class="ui card centered">
                             <div class="image">
@@ -112,6 +115,7 @@
                         </div>
                     </div>
                 {% endfor %}
+                {% endif %}
             </div>
     </div>
 

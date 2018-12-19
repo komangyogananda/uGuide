@@ -17,10 +17,18 @@
 
         
 
-<div class="ui two column centered stackable grid customBox">
-        <?= $this->flashSession->output() ?>
-        <?= $this->tag->form(['class' => 'ui form segment', 'enctype' => 'multipart/form-data']) ?>
 
+
+<div class="ui two column centered stackable grid customBox">
+        <div class="row">
+            <div class="ui grid centered">
+                <div class="five column wide row">
+                    <?= $this->flashSession->output() ?>
+                </div>
+            </div>
+        </div>
+        <?= $this->tag->form(['class' => 'ui form segment', 'enctype' => 'multipart/form-data']) ?>
+            
         <?php if ($tipe == 'tourist') { ?>
             <div class="column">
                 <div class="ui icon header">
@@ -115,7 +123,10 @@
             <?php } ?>
         </div>
 
+        
+
     </form>
+    
 </div>
 
 

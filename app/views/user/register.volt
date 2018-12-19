@@ -4,11 +4,19 @@
 
 {% block content %}
 
+
+
 <div class="ui two column centered stackable grid customBox">
-        {{flashSession.output()}}
+        <div class="row">
+            <div class="ui grid centered">
+                <div class="five column wide row">
+                    {{flashSession.output()}}
+                </div>
+            </div>
+        </div>
         {{ form('class' : 'ui form segment',
         'enctype': 'multipart/form-data') }}
-
+            
         {% if tipe == 'tourist' %}
             <div class="column">
                 <div class="ui icon header">
@@ -103,7 +111,10 @@
             {% endif %}
         </div>
 
+        
+
     </form>
+    
 </div>
 
 {% endblock %}
