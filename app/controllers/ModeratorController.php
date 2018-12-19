@@ -8,7 +8,32 @@ class ModeratorController extends BaseController{
     	$resp = new Response();
     	if (!$this->session->has('auth')) $resp->redirect('')->send();
     	else if ($this->session->get('auth')['type']!='moderator') $resp->redirect('')->send();
+
+    	$pending = Transaction::find([
+    		"status = 'PENDING'",
+    		'order' => 'id'
+    	]);
+    	$this->view->pending = $pending;
+    	$other = Transaction::find([
+    		"status <> 'PENDING'",
+    		'order' => 'id'
+    	]);
+    	$this->view->other = $other;
+
     }
+
+	public function acceptAction(){
+    	$resp = new Response();
+    	if (!$this->session->has('auth')) $resp->redirect('')->send();
+    	else if ($this->session->get('auth')['type']!='moderator') $resp->redirect('')->send();
+
+    	$this->request->getPost('payID');
+    	$trans = Transaction::findFirst("id = '$payID'");
+    	$trans->setStatus("ACCEPTED");
+    	$trans->save();
+
+    }
+
     public function logoutAction(){
         $this->session->destroy('auth');
         (new Response())->redirect('')->send();

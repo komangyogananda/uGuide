@@ -15,6 +15,13 @@ class ModeratorRoutes extends RouterGroup{
             ]
         );
 
+        $this->addPost(
+            '/moderator',
+            [
+                'action' => 'accept',
+            ]
+        );
+
         $this->addGet(
             '/moderator/xxx/yyy/logout',
             [
