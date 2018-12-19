@@ -27,10 +27,12 @@ class ModeratorController extends BaseController{
     	if (!$this->session->has('auth')) $resp->redirect('')->send();
     	else if ($this->session->get('auth')['type']!='moderator') $resp->redirect('')->send();
 
-    	$this->request->getPost('payID');
+    	$payID = $this->request->getPost('payID');
     	$trans = Transaction::findFirst("id = '$payID'");
     	$trans->setStatus("ACCEPTED");
-    	$trans->save();
+		$trans->save();
+		
+		(new Response())->redirect('moderator')->send();
 
     }
 

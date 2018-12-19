@@ -199,7 +199,7 @@
                                                 <div class="meta">
                                                     <span class="location">{{ client.location }}</span>
                                                 </div>
-                                                <div class="ui star rating" data-rating="2"></div>
+                                                <div class="ui star guideRating rating" data-rating="2"></div>
                                             </div>
                                             <div class="extra content">
                                                 <a>
@@ -377,11 +377,11 @@
                                         {% endif %}
                                         <script>
                                         
-                                                $('.rating').rating({
+                                                $('.guideRating').rating({
                                                     maxRating: 5
                                                 });
 
-                                                $('.rating').rating('disable');
+                                                $('.guideRating').rating('disable');
 
                                         </script>
                                     {% elseif tipe == 'guide' AND step[4] == true %}
