@@ -5,9 +5,8 @@ use Phalcon\Http\Response;
 
 class ModeratorController extends BaseController{
     public function indexAction(){
+    	$this->authorize('');
     	$resp = new Response();
-    	if (!$this->session->has('auth')) $resp->redirect('')->send();
-    	else if ($this->session->get('auth')['type']!='moderator') $resp->redirect('')->send();
 
     	$pending = Transaction::find([
     		"status = 'PENDING'",
@@ -24,8 +23,6 @@ class ModeratorController extends BaseController{
 
 	public function acceptAction(){
     	$resp = new Response();
-    	if (!$this->session->has('auth')) $resp->redirect('')->send();
-    	else if ($this->session->get('auth')['type']!='moderator') $resp->redirect('')->send();
 
     	$payID = $this->request->getPost('payID');
     	$trans = Transaction::findFirst("id = '$payID'");
@@ -37,8 +34,7 @@ class ModeratorController extends BaseController{
     }
 
     public function logoutAction(){
-        $this->session->destroy('auth');
-        (new Response())->redirect('')->send();
+    	$this->destroySession();
     }
 }
 

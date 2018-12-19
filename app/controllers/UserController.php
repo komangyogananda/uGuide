@@ -166,7 +166,7 @@
         }
 
         public function activeAction(){
-
+            $this->authorize('active');
             $this->validateStep();
 
             $tipe = $this->dispatcher->getParam('tipe');
