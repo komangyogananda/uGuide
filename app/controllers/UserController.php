@@ -114,8 +114,6 @@
                     $this->flashSession()->error('Wrong Username/Password Combination!');
                     return (New Response())->redirect(tipe.'/login');
                 }
-            }else{
-                echo "user not found";
             }
 
         }
