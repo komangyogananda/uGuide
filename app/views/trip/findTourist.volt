@@ -12,14 +12,6 @@
             <i class="square plus icon"></i>
             <span class="text">Find A Guide</span>
         </div>
-        <div class="right menu">
-            <div class="item">
-                <div class="ui icon input">
-                    <input type="text" placeholder="Search...">
-                    <i class="search link icon"></i>
-                </div>
-            </div>
-        </div>
     </div>
 
     <div class="ui centered stackable grid">

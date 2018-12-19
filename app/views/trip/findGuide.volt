@@ -12,14 +12,6 @@
             <i class="user circle icon"></i>
             <span class="text">Find A Tourist</span>
         </div>
-        <div class="right menu">
-            <div class="item">
-                <div class="ui icon input">
-                    <input type="text" placeholder="Search...">
-                    <i class="search link icon"></i>
-                </div>
-            </div>
-        </div>
     </div>
     
 
@@ -44,7 +36,6 @@
                                 <div class="meta">
                                     <span class="location">{{ tourist[tr.tourist_id].location|capitalize }}</span>
                                 </div>
-                                <div class="ui star rating" data-rating="5"></div>
                                 <div class="ui info message">
                                     <h2 class="header">
                                         Trip Info
@@ -98,12 +89,6 @@
                                 </div>
                             </div>
                             <div class="extra content">
-                                <a>
-                                    <i class="icon">
-                                        <i class="fas fa-hiking"></i>
-                                    </i>
-                                    10 Activies
-                                </a>
                                 <div class="ui two buttons">
                                     <div class="button">
                                         <div id="{{ tr.id }}" class="ui basic green button buttonInterested" data-trip-id="{{ tr.id }}" data-tourist-id="{{ tr.tourist_id }}">

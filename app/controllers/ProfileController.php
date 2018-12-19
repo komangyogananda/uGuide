@@ -80,6 +80,7 @@
             $count = Feedback::count("guide_id = '$guide->id'");
             $rating = $total / $count;
             $this->view->rating = $rating;
+            $this->view->total = $count;
 
 
             $this->view->tipe = 'tourist';

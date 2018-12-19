@@ -63,6 +63,7 @@
             $this->view->tipe = $tipe;
             $this->view->client = $client;
             $this->view->service = $service;
+            $this->view->count = $count;
         }
 
         public function findTouristAction(){
@@ -156,16 +157,30 @@
          
             $interests = Interest::find("trip_id = '$tripID'");
             $nama = array();
+            $rating = array();
+            $count = array();
             foreach ($interests as $key => $value) {
                 $id = $value->guide_id;
                 $temp = User::findFirst("id = '$id'");
                 $nama[$id] = $temp;
+                $total = Feedback::sum([
+                    'column' => 'rating',
+                    'conditions' => "guide_id = '$id'"
+                ]);
+                $tmpcount = Feedback::count("guide_id = '$id'");
+                $tmprating = $total / $tmpcount;
+                $rating[$id] = $tmprating; 
+                $count[$id] = $tmpcount;
             }
             $status = true;
             if ($trip) $status = false;
             $this->view->interests = $interests;
             $this->view->status = $status;
             $this->view->nama = $nama;
+
+            
+            $this->view->count = $count;
+            $this->view->rating = $rating;
         }
 
         public function acceptInterestAction(){

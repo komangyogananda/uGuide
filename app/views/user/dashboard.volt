@@ -12,14 +12,6 @@
             <i class="home icon"></i>
             <span class="text">Home</span>
         </div>
-        <div class="right menu">
-            <div class="item">
-                <div class="ui icon input">
-                    <input type="text" placeholder="Search...">
-                    <i class="search link icon"></i>
-                </div>
-            </div>
-        </div>
     </div>
 
     <div class="ui centered stackable grid">
@@ -221,14 +213,25 @@
                                                     <div class="meta">
                                                         <span class="location">{{ client.location }}</span>
                                                     </div>
-                                                    <div class="ui star rating" data-rating="5"></div>
+                                                    {% if tipe == 'tourist' %}
+                                                        <div id="guideRating" class="ui star rating" data-rating="{{ rating }}"></div>
+                                                        <script>
+                                                        
+                                                        $('#guideRating').rating({
+                                                            maxRating: 5
+                                                        });
+
+                                                        $('#guideRating').rating('disable');
+
+                                                        </script>
+                                                    {% endif %}
                                                 </div>
                                                 <div class="extra content">
                                                     <a>
                                                         <i class="icon">
                                                             <i class="fas fa-hiking"></i>
                                                         </i>
-                                                        10 Activies
+                                                        {{ count }} Feedback(s)
                                                     </a>
                                                     {% if tipe == 'tourist' %}
                                                         <a href="{{ url('guide/profile/show/' ~ client.id) }}">

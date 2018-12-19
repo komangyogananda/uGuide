@@ -12,14 +12,6 @@
             <i class="blind icon"></i>
             <span class="text">Guide Profile</span>
         </div>
-        <div class="right menu">
-            <div class="item">
-                <div class="ui icon input">
-                    <input type="text" placeholder="Search...">
-                    <i class="search link icon"></i>
-                </div>
-            </div>
-        </div>
     </div>
     
     <div class="ui stackable grid centered">
@@ -37,14 +29,14 @@
                                             <div class="meta">
                                                 <span class="location">{{guide.location}}</span>
                                             </div>
-                                            <div class="ui star rating" data-rating="5"></div>
+                                            <div id="guideRating" class="ui star rating" data-rating="{{ rating }}"></div>
                                         </div>
                                         <div class="extra content">
                                             <a>
                                                 <i class="icon">
                                                     <i class="fas fa-hiking"></i>
                                                 </i>
-                                                10 Activies
+                                                {{ total }} Feedback(s)
                                             </a>
                                         </div>
                                     </div>
@@ -60,43 +52,17 @@
                                             </div>
                                             <div class="content">
                                                 <div class="summary">
-                                                    <a>Joe Henderson</a> posted on his page
-                                                    <div class="date">
-                                                    3 days ago
-                                                    </div>
+                                                    <a>{{ nama[fb.tourist_id].fname|capitalize ~ ' ' ~ nama[fb.tourist_id].lname|capitalize }}</a> posted this
                                                 </div>
                                                 <div class="extra text">
-                                                    Ours is a life of constant reruns. We're always circling back to where we'd we started, then starting all over again. Even if we don't run extra laps that day, we surely will come back for more of the same another day soon.
+                                                        {{ fb.comment }}
                                                 </div>
                                                 <div class="meta">
-                                                    <a class="like">
-                                                    <i class="like icon"></i> 5 Likes
-                                                    </a>
+                                                    <div class="ui star rating userRating" data-rating="{{ fb.rating }}"></div>
                                                 </div>
                                             </div>
                                         </div>
                                     {% endfor %}
-                                    <div class="event">
-                                        <div class="label">
-                                        <img src="/images/avatar/small/joe.jpg">
-                                        </div>
-                                        <div class="content">
-                                        <div class="summary">
-                                            <a>Joe Henderson</a> posted on his page
-                                            <div class="date">
-                                            3 days ago
-                                            </div>
-                                        </div>
-                                        <div class="extra text">
-                                            Ours is a life of constant reruns. We're always circling back to where we'd we started, then starting all over again. Even if we don't run extra laps that day, we surely will come back for more of the same another day soon.
-                                        </div>
-                                        <div class="meta">
-                                            <a class="like">
-                                            <i class="like icon"></i> 5 Likes
-                                            </a>
-                                        </div>
-                                        </div>
-                                    </div>
         
                                 </div>
                             </div>
@@ -104,6 +70,23 @@
             </div>
         </div>
     </div>
+
+    <script>
+    
+
+        $('.userRating').rating({
+            maxRating: 5
+        });
+
+        $('.userRating').rating('disable');
+
+        $('#guideRating').rating({
+            maxRating: 5
+        });
+
+        $('#guideRating').rating('disable');
+
+    </script>
 
     {% include 'layouts/sidebar.volt' %}
 

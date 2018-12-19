@@ -61,6 +61,7 @@
             $this->view->activity = $activity;
             $this->view->client = $client;
             $this->view->rating = $rating;
+            $this->view->count = $count;
         }
 
         public function registerAction(){

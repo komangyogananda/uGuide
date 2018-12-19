@@ -12,14 +12,6 @@
             <i class="user circle icon"></i>
             <span class="text">Interested Guide</span>
         </div>
-        <div class="right menu">
-            <div class="item">
-                <div class="ui icon input">
-                    <input type="text" placeholder="Search...">
-                    <i class="search link icon"></i>
-                </div>
-            </div>
-        </div>
     </div>
 
     <div class="ui stackable grid centered">
@@ -45,11 +37,11 @@
                                     <div class="meta">
                                         <span class="location">{{ nama[interest.guide_id].location|capitalize }}</span>
                                     </div>
-                                    <div class="ui star rating" data-rating="5"></div>
+                                    <div class="ui star rating guideRating" data-rating="{{ rating[interest.guide_id] }}"></div>
                                     <div class="description">
                                         <div class="item">
                                             <div class="ui blue horizontal label">Budget</div>
-                                            <div class="ui teal horizontal label">{{ interest.budget }}</div>
+                                            <div class="ui teal horizontal label">Rp. {{ interest.budget }}</div>
                                         </div>
                                         <div class="item">
                                             <div class="six wide column center aligned">
@@ -68,7 +60,7 @@
                                         <i class="icon">
                                             <i class="fas fa-hiking"></i>
                                         </i>
-                                        10 Activies
+                                        {{ count[interest.guide_id] }} Feedback(s)
                                     </a>
                                     <div class="ui two buttons">
                                         <div class="button">
@@ -121,6 +113,14 @@
             console.log($('form').serialize());
             $('.ui.basic.modal').modal('show');
         });
+
+                                    
+        $('.guideRating').rating({
+            maxRating: 5
+        });
+
+        $('.guideRating').rating('disable');
+
 
     </script>
 
