@@ -181,14 +181,16 @@
 
         public function addNewActivityAction(){
             //tambah new activity dari tourist|guide/trip/show dan /tourist/active
+            $idTrip = $this->request->getPost('tripId');
             $tipe = $this->dispatcher->getParam('tipe');
             $activityConfirm = $this->request->getPost('activity');
             $deleteConfirm = $this->request->getPost('delete');
             $finishConfirm = $this->request->getPost('finish');
+            $feedBackConfirm = $this->request->getPost('feedBack');
+
 
             if ($activityConfirm) {
                 
-                $idTrip = $this->dispatcher->getParam('tripId');
                 $title = $this->request->getPost('title');
                 $content = $this->request->getPost('message');
                 $date_array = getdate();
@@ -197,20 +199,43 @@
                 $activity->init($idTrip,$tipe,$title,$content,$curr_date);
                 $activity->save();
             }
-            else if ($deleteConfirm) {
-
-            }
-            else if ($finishConfirm) {
-                $tripID = $this->request->getPost('tripId');
+            else if ($feedBackConfirm) {
                 $guideID = $this->request->getPost('guideId');
                 $touristID = $this->request->getPost('touristId');
                 $desc = $this->request->getPost('feedBackDesc');
                 $rating = $this->request->getPost('ratingNew');
                 $feedback = new Feedback();
-                $feedback->init($tripID,$guideID,$touristID,$ratingNew,$desc);
-                print_r($feedback);
-                die();
-                // $feedback->save();
+                $feedback->init($idTrip,$guideID,$touristID,$rating,$desc);
+                $feedback->save();
+            }
+            else if ($finishConfirm) {
+                $trip = Trip::findFirst("id = '$idTrip'");
+                $trip->setStatus(0);
+                $trip->save();
+            }
+            else if ($deleteConfirm) {
+                $feedback = Feedback::find("trip_id = '$idTrip'");
+                foreach ($feedback as $value) {
+                    $value->delete();
+                }
+                $service = Service::find("trip_id = '$idTrip'");
+                foreach ($service as $value) {
+                    $value->delete();
+                }
+                $Transaction = Transaction::find("trip_id = '$idTrip'");
+                foreach ($Transaction as $value) {
+                    $value->delete();
+                }
+                $activity = Activity::find("trip_id = '$idTrip'");
+                foreach ($activity as $value) {
+                    $value->delete();
+                }
+                $interest = Interest::find("trip_id = '$idTrip'");
+                foreach ($interest as $value) {
+                    $value->delete();
+                }
+                $trip = Trip::findFirst("id = '$idTrip'");
+                $trip->delete();
             }
 
 
@@ -252,7 +277,7 @@
             $tipe = $this->dispatcher->getParam('tipe');
             $idtrans = $this->dispatcher->getParam('id');
             $trans = Transaction::findFirst("trip_id = '$idtrans'");
-            $trans->setPicture(base64_encode(file_get_contents($this->request->getUploadedFiles()[0]->getTempName())));
+            $trans->setProof(base64_encode(file_get_contents($this->request->getUploadedFiles()[0]->getTempName())));
             $trans->save();
             (new Response())->redirect('tourist/payments/'.$idtrans)->send();
         }

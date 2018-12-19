@@ -43,49 +43,39 @@
                                 <tr>
                                     <th>Id</th>
                                     <th>Trip Id</th>
-                                    <th>Tourist Id</th>
-                                    <th>Guide Id</th>
                                     <th>Amount</th>
                                     <th>Date Expired</th>
                                     <th>Date Payment</th>
                                     <th>Status</th>
+                                    <th>Picture</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>001</td>
-                                    <td>001</td>
-                                    <td>001</td>
-                                    <td>002</td>
-                                    <td>5000000</td>
-                                    <td>24/12/2018</td>
-                                    <td>23/12/2018</td>
-                                    <td>Not Expired</td>
-                                    <td>
-                                        <div class="ui positive button">
-                                            Set Active
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>003</td>
-                                    <td>003</td>
-                                    <td>003</td>
-                                    <td>004</td>
-                                    <td>5000000</td>
-                                    <td>24/12/2018</td>
-                                    <td>23/12/2018</td>
-                                    <td>Not Expired</td>
-                                    <td>
-                                        <div class="ui positive button">
-                                            Set Active
-                                        </div>
-                                    </td>
-                                </tr>
+                                <?php foreach ($pending as $waiting) { ?>
+
+                                    <tr>
+                                        <td><?= $waiting->id ?></td>
+                                        <td><?= $waiting->trip_id ?></td>
+                                        <td><?= $waiting->amount ?></td>
+                                        <td><?= $waiting->date_expired ?></td>
+                                        <td><?= $waiting->date_paid ?></td>
+                                        <td><?= $waiting->status ?></td>
+                                        <td>
+                                            <img src="data:image/jpeg;base64,<?= $waiting->proof ?>">
+                                        </td>
+                                        <td>
+                                            <div class="ui positive button setActive" data-id="<?= $waiting->id ?>">
+                                                Set Active
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                <?php } ?>
+
                             </tbody>
-                            <tfoot>
-                                <tr><th colspan="9">
+                            <!-- <tfoot>
+                                <tr><th colspan="8">
                                   <div class="ui right floated pagination menu">
                                     <a class="icon item">
                                       <i class="left chevron icon"></i>
@@ -100,11 +90,15 @@
                                   </div>
                                 </th>
                               </tr>
-                            </tfoot>
+                            </tfoot> -->
                         </table>
                 </div>
             </div>
         </div>
+
+        <form method="post">
+            <input id="payID" type="hidden" name="payID">
+        </form>
 
         <div class="row">
             <div class="ui twelve wide column segment row">
@@ -115,38 +109,32 @@
                                 <tr>
                                     <th>Id</th>
                                     <th>Trip Id</th>
-                                    <th>Tourist Id</th>
-                                    <th>Guide Id</th>
                                     <th>Amount</th>
                                     <th>Date Expired</th>
                                     <th>Date Payment</th>
                                     <th>Status</th>
+                                    <th>Picture</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="error" >
-                                    <td>001</td>
-                                    <td>001</td>
-                                    <td>001</td>
-                                    <td>002</td>
-                                    <td>5000000</td>
-                                    <td>24/12/2018</td>
-                                    <td>23/12/2018</td>
-                                    <td>Expired</td>
-                                </tr>
-                                <tr class="positive" >
-                                    <td>003</td>
-                                    <td>003</td>
-                                    <td>003</td>
-                                    <td>004</td>
-                                    <td>5000000</td>
-                                    <td>24/12/2018</td>
-                                    <td>23/12/2018</td>
-                                    <td>Approved</td>
-                                </tr>
+                                <?php foreach ($other as $waiting) { ?>
+
+                                    <tr class="<?php if ($waiting->status == 'ACCEPTED') { ?>positive<?php } else { ?>error<?php } ?>">
+                                        <td><?= $waiting->id ?></td>
+                                        <td><?= $waiting->trip_id ?></td>
+                                        <td><?= $waiting->amount ?></td>
+                                        <td><?= $waiting->date_expired ?></td>
+                                        <td><?= $waiting->date_paid ?></td>
+                                        <td><?= $waiting->status ?></td>
+                                        <td>
+                                            <img src="data:image/jpeg;base64,<?= $waiting->proof ?>">
+                                        </td>
+                                    </tr>
+
+                                <?php } ?>
                             </tbody>
-                            <tfoot>
-                                <tr><th colspan="9">
+                            <!-- <tfoot>
+                                <tr><th colspan="7">
                                   <div class="ui right floated pagination menu">
                                     <a class="icon item">
                                       <i class="left chevron icon"></i>
@@ -161,12 +149,22 @@
                                   </div>
                                 </th>
                               </tr>
-                            </tfoot>
+                            </tfoot> -->
                         </table>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+    
+        $('.setActive').on('click', function(){
+            $id = $(this).data('id');
+            $('#payID').val($id);
+            $('form').submit();
+        });
+    
+    </script>
 
 
 

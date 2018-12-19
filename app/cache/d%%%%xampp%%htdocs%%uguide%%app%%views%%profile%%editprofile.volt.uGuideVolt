@@ -30,6 +30,7 @@
     <div class="ui two column centered stackable grid">
         <div class="row">
             <div class="ui segment column middle aligned">
+                <?= $this->flashSession->output() ?>
                 <div class="column center aligned">
                     <h1 class="ui header">
                         <i class="user icon"></i>
@@ -44,6 +45,7 @@
                                 <?= $this->tag->form(['class' => 'ui form segment', 'enctype' => 'multipart/form-data']) ?>
 
                                 <div class="ui bordered image">
+                                    <!-- <img src="data:image/jpeg;base64, <?= $user->getPicture() ?>"> -->
                                     <img src="data:image/jpeg;base64,<?php echo $user->getPicture() ?>">
                                 </div>
 
@@ -80,7 +82,7 @@
                                     </div>
                                     <label>New Password</label>
                                     <div class="field">
-                                        <?= $form->render('password', ['placeholder' => 'New Password']) ?>
+                                        <?= $form->render('newPass', ['placeholder' => 'New Password']) ?>
                                     </div>
                                     <div class="field">
                                         <?= $form->render('confpassword', ['placeholder' => 'New Password Confirmation']) ?>
