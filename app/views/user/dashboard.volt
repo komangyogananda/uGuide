@@ -263,10 +263,10 @@
                                         <div class="ui stackable grid">
                                             {% for ac in activity %}
                                                 <div class="row">
-                                                    <div class="twelve wide column {% if ac.sender_type == 0%}right{% else %}left{% endif %} floated">
-                                                        <div class="ui message {% if ac.sender_type == 0%}green{% else %}blue{% endif %}">
+                                                    <div class="twelve wide column {% if ac.sender_type == 'tourist'%}right{% else %}left{% endif %} floated">
+                                                        <div class="ui message {% if ac.sender_type == 'tourist'%}green{% else %}blue{% endif %}">
                                                             <div class="header">
-                                                                {% if ac.sender_type == 0%}Tourist{% else %}Guide{% endif %} - {{ ac.title }}
+                                                                {% if ac.sender_type == 'tourist'%}Tourist{% else %}Guide{% endif %} - {{ ac.title }}
                                                             </div>
                                                             <p>{{ ac.content }}</p>
                                                         </div>
