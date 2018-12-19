@@ -4,6 +4,18 @@
     use Phalcon\Mvc\Model\Manager;
     use Phalcon\Flash\Direct as FlashDirect;
     use Phalcon\Flash\Session as FlashSession;
+    use Phalcon\Http\Response\Cookies;
+
+    $di->set(
+        'cookies',
+        function () {
+            $cookies = new Cookies();
+
+            $cookies->useEncryption(false);
+
+            return $cookies;
+        }
+    );
 
     $di->set(
         'flash',
