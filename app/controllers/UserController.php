@@ -79,12 +79,12 @@
             $email = $this->request->getPost('email');
             $user = User::findFirst("email = '$email'");
             if ($user == null) {
-                $this->flashSession()->error('User not found!');
-                return (New Response())->redirect(tipe.'/login');
+                $this->flashSession->error('User not found!');
+                return (New Response())->redirect($tipe.'/login');
             }
             if ($user->getType() !== $tipe) {
-                $this->flashSession()->error('User Type not Found!');
-                return (New Response())->redirect(tipe.'/login');
+                $this->flashSession->error('User Type not Found!');
+                return (New Response())->redirect($tipe.'/login');
             }
             else if ($user){
                 if (password_verify($password, $user->getPassword())){
@@ -111,8 +111,8 @@
                         $resp->redirect('moderator')->send();
                     }
                 }else{
-                    $this->flashSession()->error('Wrong Username/Password Combination!');
-                    return (New Response())->redirect(tipe.'/login');
+                    $this->flashSession->error('Wrong Username/Password Combination!');
+                    return (New Response())->redirect($tipe.'/login');
                 }
             }
 
