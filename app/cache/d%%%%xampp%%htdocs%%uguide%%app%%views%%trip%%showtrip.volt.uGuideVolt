@@ -117,8 +117,7 @@
                                 <div class="title">FeedBack</div>
                             </div>
                         <?php } else { ?>
-                            <i class="icon">
-                                <i class="fas fa-clipboard-check"></i>
+                            <i class="flag checkered icon">
                             </i>
                             <div class="content">
                                 <div class="title">Finish Trip</div>
@@ -261,10 +260,10 @@
                                         <div class="ui stackable grid">
                                             <?php foreach ($activity as $ac) { ?>
                                                 <div class="row">
-                                                    <div class="twelve wide column <?php if ($ac->sender_type == 0) { ?>right<?php } else { ?>left<?php } ?> floated">
-                                                        <div class="ui message <?php if ($ac->sender_type == 0) { ?>green<?php } else { ?>blue<?php } ?>">
+                                                    <div class="twelve wide column <?php if ($ac->sender_type == 'tourist') { ?>right<?php } else { ?>left<?php } ?> floated">
+                                                        <div class="ui message <?php if ($ac->sender_type == 'tourist') { ?>green<?php } else { ?>blue<?php } ?>">
                                                             <div class="header">
-                                                                <?php if ($ac->sender_type == 0) { ?>Tourist<?php } else { ?>Guide<?php } ?> - <?= $ac->title ?>
+                                                                <?php if ($ac->sender_type == 'tourist') { ?>Tourist<?php } else { ?>Guide<?php } ?> - <?= $ac->title ?>
                                                             </div>
                                                             <p><?= $ac->content ?></p>
                                                         </div>
@@ -339,7 +338,7 @@
                                                     FeedBack Trip
                                                 </div>
                                                 <div class="content center aligned">
-                                                    <div class="ui massive star rating"></div>
+                                                    <div id="getRating" class="ui massive star rating"></div>
                                                 </div>
                                                 <form id="feedBack" method="post" class='ui form'>
                                                     <input type="hidden" name="feedBack" value="yes">
@@ -351,8 +350,8 @@
                                                         <input type="text" name="feedBackDesc" id="feedBackDesc" placeholder="Your comments...">
                                                     </div>
                                                 </form>
-                                                <div class="feedBackButton actions">
-                                                    <div class="ui green ok inverted button">
+                                                <div class="actions">
+                                                    <div class="ui green ok feedBackButton inverted button">
                                                         <i class="checkmark icon"></i>
                                                         Yes
                                                     </div>
@@ -374,16 +373,10 @@
                                                     maxRating: 5
                                                 });
 
-                                                $('.massive.rating').rating({
-                                                    initialRating: 0,
-                                                    maxRating: 5
-                                                });
 
-
-                                                $('.massive.rating').on('click', function(){
-                                                    var rating = $('.rating').rating('get rating')[1];
-                                                    $('#ratingNew').val($rating);
-                                                    $('.rating').rating('disable');
+                                                $('#getRating').on('click', function(){
+                                                    var rating = $('#getRating').rating('get rating');
+                                                    $('#ratingNew').val(rating);
                                                 });
     
                                             </script>
@@ -397,7 +390,7 @@
                                                 $('.guideRating').rating('disable');
 
                                         </script>
-                                    <?php } elseif ($tipe == 'guide' && $step[4] == true) { ?>
+                                    <?php } elseif ($tipe == 'guide' && $step[4] == true && $step[5] == false) { ?>
                                         <button id="actionButton" class="ui positive labeled icon button">
                                             <i class="check icon"></i>
                                             Finish
@@ -438,8 +431,6 @@
                     </div>
                 </div>
             </div>
-            <?php if ($step[4] == true && $tipe == 'tourist') { ?>
-            <?php } ?>
     </div>  
 
     <div id="sidebarMenu" class="ui left vertical inverted sidebar labeled icon stackable menu">

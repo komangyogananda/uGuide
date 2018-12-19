@@ -46,8 +46,7 @@
                 date_add($date_finish, date_interval_create_from_date_string("'$activeTrip->duration' days"));
                 $date_finish = date_format($date_finish, 'Y-m-d');
                 if ($curr_date >= $date_finish && $step[3]) $step[4] = true;
-                $feedback = Feedback::findFirst("trip_id = '$activeTrip->id'");
-                if ($feedback && $step[4]) $step[5] = true;
+                if (!$trip->status && $step[4]) $step[5] = true;
             }
             $this->view->find = $find;
             $this->view->activeTrip = $activeTrip;
@@ -142,12 +141,15 @@
                 ]
             );
             $nama = array();
+            $services = array();
             foreach ($recents as $key => $value) {
                 if ($tipe == 'tourist') $temp = $value->guide_id;
                 else $temp = $value->tourist_id;
                 $user = User::findFirst("id = '$temp'");
                 $nama[$temp] = $user;
+                $services[$value->id] = Service::find("trip_id = '$value->id'");
             }
+            $this->view->services = $services;
             $this->view->nama = $nama;
             $this->view->recents = $recents;
             $messageForm = new MessageForm();
@@ -181,6 +183,17 @@
                     'order' => 'date'
                 ]
             );
+            $nama = array();
+            $services = array();
+            foreach ($recents as $key => $value) {
+                if ($tipe == 'tourist') $temp = $value->guide_id;
+                else $temp = $value->tourist_id;
+                $user = User::findFirst("id = '$temp'");
+                $nama[$temp] = $user;
+                $services[$value->id] = Service::find("trip_id = '$value->id'");
+            }
+            $this->view->services = $services;
+            $this->view->nama = $nama;
             $this->view->recents = $recents;
         }
 

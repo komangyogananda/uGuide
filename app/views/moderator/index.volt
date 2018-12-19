@@ -49,7 +49,9 @@
                                         <td>{{ waiting.date_paid }}</td>
                                         <td>{{ waiting.status }}</td>
                                         <td>
-                                            <img src="data:image/jpeg;base64,{{ waiting.proof }}">
+                                            <a target="_blank" href="data:image/jpeg;base64,{{ waiting.proof }}">
+                                                <img class="ui tiny image centered bordered" src="data:image/jpeg;base64,{{ waiting.proof }}">
+                                            </a>
                                         </td>
                                         <td>
                                             <div class="ui positive button setActive" data-id="{{ waiting.id }}">
@@ -114,7 +116,11 @@
                                         <td>{{ waiting.date_paid }}</td>
                                         <td>{{ waiting.status }}</td>
                                         <td>
-                                            <img src="data:image/jpeg;base64,{{ waiting.proof }}">
+                        
+                                            <a target="_blank" href="data:image/jpeg;base64,{{ waiting.proof }}">
+                                                <img class="ui tiny image centered bordered" src="data:image/jpeg;base64,{{ waiting.proof }}">
+                                            </a>
+                                            
                                         </td>
                                     </tr>
 

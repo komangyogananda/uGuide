@@ -279,12 +279,6 @@
                                             There is no activity yet.
                                         </div>
                                     {% endif %}
-                                    {% if step[2] == true %}
-                                        <button id="addActivity" class="ui right floated button">
-                                            <i class="plus icon"></i>
-                                            Add New Message
-                                        </button> 
-                                    {% endif %}
                                 </div>
                         </div>
                     </div>
@@ -323,8 +317,13 @@
                                         <div class="ui info message">
                                             <h3 class="header">
                                                 <a class="ui image label">
-                                                    <img src="/images/avatar/small/joe.jpg">
-                                                    Novan
+                                                    {% if tipe == 'tourist' %}
+                                                        <img src="data:image/jpeg;base64,{{ nama[recent.guide_id].picture }}">
+                                                        {{ nama[recent.guide_id].fname|capitalize ~ ' ' ~ nama[recent.guide_id].lname|capitalize }}
+                                                    {% else %}
+                                                        <img src="data:image/jpeg;base64,{{ nama[recent.tourist_id].picture }}">
+                                                        {{ nama[recent.tourist_id].fname|capitalize ~ ' ' ~ nama[recent.tourist_id].lname|capitalize }}
+                                                    {% endif %}
                                                 </a>
                                                 <div class="header">{{ recent.title }}</div>
                                             </h3>
@@ -333,14 +332,14 @@
                                                 <div class="ui teal horizontal label">{{ date('D, d-M-Y', strtotime(recent.date)) }}</div>
                                                 <div class="ui teal horizontal label">{{ recent.duration }} Day(s)</div>
                                                 <div class="ui teal horizontal label">{{ recent.person }} Person(s)</div>
-                                                <div class="ui teal horizontal label">{{ 'Rp. ' ~ recent.min_budget ~ ' - Rp. ' ~ recent.max_budget}}</div>
-                                                <div class="ui teal horizontal label">service1</div>
-                                                <div class="ui teal horizontal label">service2</div>
-                                                <div class="ui teal horizontal label">service3</div>
+                                                <div class="ui teal horizontal label">{{ 'Rp. ' ~ recent.min_budget ~ ' - Rp. ' ~ recent.max_budget }}</div>
+                                                {% for sr in services[recent.id] %}
+                                                    <div class="ui teal horizontal label">{{ sr.value }}</div>
+                                                {% endfor %}
                                                 <div class="six wide column center aligned">
                                                     <div>
                                                         <div class="ui teal horizontal label">
-                                                            Check Guide(s) interested in your trip!Check Guide(s) interested in your trip!Check Guide(s) interested in your trip!
+                                                            {{ recent.description }}
                                                         </div>
                                                     </div>
                                                 </div>

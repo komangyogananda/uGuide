@@ -55,17 +55,19 @@
                             </div>
                             <p>{{ date('D, d-M-Y', strtotime(trans.date_expired)) }}</p>
                         </div>
-                        <div class="ui placeholder segment">
-                            <div class="ui icon header">
-                                <i class="pdf file outline icon"></i>
-                                {% if trans.proof == NULL AND trans.status == 'PENDING' %}
-                                    No payment's proof uploaded.
+                        <div class="ui placeholder segment centered">
+                             {% if trans.proof == NULL AND trans.status == 'PENDING' %}
+                                <div class="ui icon header">
+                                    <i class="pdf file outline icon"></i>
+                                   
+                                        No payment's proof uploaded.
+                                 </div>     
                                 {% elseif trans.proof != NULL %}
-                                    <div class="ui bordered image">
-                                        <img src="data:image/jpeg;base64,{{ trans.picture }}">
+                                    <div class="ui bordered image centered">
+                                        <img src="data:image/jpeg;base64,{{ trans.proof }}">
                                     </div>
                                 {% endif %}
-                            </div>
+                           
                             {% if tipe == 'tourist' AND trans.status == 'PENDING' %}
                                 <div class="ui primary button">
                                     <form method="post" enctype="multipart/form-data">
