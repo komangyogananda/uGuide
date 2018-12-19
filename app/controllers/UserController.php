@@ -18,13 +18,14 @@
                 5 => false,
             );
             
-            
             if ($tipe == 'tourist'){
                 $activeTrip = Trip::findFirst("tourist_id = '$id' AND status = 1");
                 $activity = Activity::find("trip_id = '$activeTrip->id'");
+                $client = User::findFirst("id = '$activeTrip->guide_id'");
             }else{
                 $activeTrip = Trip::findFirst("guide_id = '$id' AND status = 1");
                 $activity = Activity::find("trip_id = '$activeTrip->id'");
+                $client = User::findFirst("id = '$activeTrip->tourist_id'");
             }
             $trans = Transaction::findFirst("trip_id = '$activeTrip->id'");
             $transID = $trans->id;
@@ -51,6 +52,7 @@
             $this->view->step = $step;
             $this->view->transID = $transID;
             $this->view->activity = $activity;
+            $this->view->client = $client;
         }
 
         public function registerAction(){

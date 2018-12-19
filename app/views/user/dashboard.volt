@@ -70,7 +70,7 @@
                             active
                             {% else %}
                             disabled
-                            {% endif %} step" href="{{ url('payments/' ~ trip.id) }}">
+                            {% endif %} step" href="{{ url(tipe ~ '/payments/' ~ activeTrip.id) }}">
                                 <i class="payment icon"></i>
                                 <div class="content">
                                     {% if tipe == 'tourist' %}
@@ -155,7 +155,7 @@
                                             <div class="ui divided list">
                                                 <div class="item">
                                                     <div class="ui blue horizontal label">Location</div>
-                                                    <div class="ui teal horizontal label">{{ activeTrip.destination|upper }}</div>
+                                                    <div class="ui teal horizontal label">{{ activeTrip.destination|capitalize }}</div>
                                                 </div>
                                                 <div class="item">
                                                     <div class="ui blue horizontal label">Minimum Budget</div>
@@ -193,7 +193,7 @@
                                                     <div class="six wide column center aligned">
                                                         <div>
                                                             <div class="ui teal horizontal label">
-                                                                Check Guide(s) interested in your trip!Check Guide(s) interested in your trip!Check Guide(s) interested in your trip!
+                                                                    {{ activeTrip.description }}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -207,23 +207,22 @@
                                 <div class="column middle aligned">
                                         {% if tipe == 'tourist' %}
                                             <h3 class="header">Your Guide</h3>
+                                            {% set idClient = activeTrip.guide_id %}
                                         {% else %}
                                             <h3 class="header">Your Tourist</h3>
+                                            {% set idClient = activeTrip.tourist_id %}
                                         {% endif %}
                                         {% if activeTrip.guide_id != NULL %}
                                             <div class="ui card centered">
                                                 <div class="image">
-                                                        <img src="data:image/jpeg;base64,{{ nama[activeTrip.guide_id].picture }}">
+                                                        <img src="data:image/jpeg;base64,{{ client.picture }}">
                                                 </div>
                                                 <div class="content">
-                                                <a class="header">{{ nama[activeTrip.guide_id].fname|capitalize ~ ' ' ~ nama[activeTrip.guide_id].lname|capitalize }}</a>
+                                                <a class="header">{{ client.fname|capitalize ~ ' ' ~ client.lname|capitalize }}</a>
                                                     <div class="meta">
-                                                        <span class="location">Tangerang</span>
+                                                        <span class="location">{{ client.location }}</span>
                                                     </div>
                                                     <div class="ui star rating" data-rating="5"></div>
-                                                    <div class="description">
-                                                        Siap memandu anda kemanapun. Ahli dalam liburan bersama alam.
-                                                    </div>
                                                 </div>
                                                 <div class="extra content">
                                                     <a>
@@ -233,13 +232,15 @@
                                                         10 Activies
                                                     </a>
                                                     {% if tipe == 'tourist' %}
-                                                        <div class="ui two buttons">
-                                                            <div class="button">
-                                                                <div class="ui basic green button">
-                                                                    Show Profile
+                                                        <a href="{{ url('guide/profile/show/' ~ client.id) }}">
+                                                            <div class="ui two buttons">
+                                                                <div class="button">
+                                                                    <div class="ui basic green button">
+                                                                        Show Profile
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
+                                                        </a>
                                                     {% endif %}
                                                 </div>
                                             </div>

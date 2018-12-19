@@ -17,6 +17,11 @@
                 5 => false,
             );
             $trip = Trip::findFirst("id = '$idTrip'");
+            if ($tipe == 'guide'){
+                $client = User::findFirst("id = '$trip->tourist_id'");
+            }else{
+                $client = User::findFirst("id = '$trip->guide_id'");
+            }
             $activity = Activity::find("trip_id = '$trip->id'");
             if (!$trip){
                 (new Response())->redirect('404')->send();
@@ -47,6 +52,7 @@
             $this->view->transID = $transID;
             $this->view->activity = $activity;
             $this->view->tipe = $tipe;
+            $this->view->client = $client;
         }
 
         public function findTouristAction(){
