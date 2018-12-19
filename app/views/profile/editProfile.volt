@@ -12,14 +12,6 @@
             <i class="user icon"></i>
             <span class="text">Profile</span>
         </div>
-        <div class="right menu">
-            <div class="item">
-                <div class="ui icon input">
-                    <input type="text" placeholder="Search...">
-                    <i class="search link icon"></i>
-                </div>
-            </div>
-        </div>
     </div>
 
     <div class="ui two column centered stackable grid">
@@ -40,7 +32,7 @@
                                 {{ form('class' : 'ui form segment',
                                 'enctype': 'multipart/form-data') }}
 
-                                <div class="ui medium bordered image">
+                                <div class="ui bordered image">
                                     <!-- <img src="data:image/jpeg;base64, {{ user.getPicture() }}"> -->
                                     <img src="data:image/jpeg;base64,<?php echo $user->getPicture() ?>">
                                 </div>
