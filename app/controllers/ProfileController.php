@@ -67,9 +67,15 @@
                 return (New Response())->redirect('show404')->send();
             }
             $feedback = Feedback::find("guide_id = '$id'");
+            $nama = array();
+            foreach ($feedback as $fb) {
+                $nama[$fb->tourist_id] = User::findFirst("id = '$fb->tourist_id'");
+            }
             $tipe = 'tourist';
             $this->view->tipe = 'tourist';
             $this->view->guide = $guide;
+            $this->view->feedback = $feedback;
+            $this->view->nama = $nama;
         }
     }
 

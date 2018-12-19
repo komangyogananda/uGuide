@@ -65,11 +65,6 @@
 
         {{ form.render('go', ['class' : 'ui button']) }}
 
-        <div class="ui column">
-            {{ link_to('login/forgotPassword', 'Forgot Password') }}
-        </div>
-        
-
     </form>
 </div>
 
