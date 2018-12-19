@@ -120,15 +120,6 @@ class TripRoutes extends RouterGroup{
             ]
         );
 
-        $this->addGet(
-            '/tourist/trip/feedback/:int',
-            [
-                'tipe' => 'tourist',
-                'action' => 'feedBack',
-                'id' => 1,
-            ]
-        );
-
         return $this;
     }
 }

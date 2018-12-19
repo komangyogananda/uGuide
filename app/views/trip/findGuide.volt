@@ -21,6 +21,7 @@
             </div>
         </div>
     </div>
+    
 
     <div class="ui stackable grid centered">
             <div class="row">

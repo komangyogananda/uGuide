@@ -40,7 +40,7 @@
                 <div class="ten wide column center aligned">
                     <div class="ui tablet stackable five steps">
                         <a class="<?php if ($step[1] == true) { ?>
-                        completed
+                        completed disabled
                         <?php } else { ?>
                         active
                         <?php } ?> step" 
@@ -59,7 +59,7 @@
                             </div>
                         </a>
                         <a class="<?php if ($step[2] == true) { ?>
-                        completed
+                        completed disabled
                         <?php } elseif ($step[1] == true && $step[2] == false) { ?>
                         active
                         <?php } else { ?>
@@ -75,7 +75,7 @@
                             </div>
                         </a>
                         <a class="<?php if ($step[3] == true) { ?>
-                        completed
+                        completed disabled
                         <?php } elseif ($step[2] == true && $step[3] == false) { ?>
                         active
                         <?php } else { ?>
@@ -88,7 +88,7 @@
                             </div>
                         </a>
                         <a class="<?php if ($step[4] == true) { ?>
-                        completed
+                        completed disabled
                         <?php } elseif ($step[3] == true && $step[4] == false) { ?>
                         active
                         <?php } else { ?>
@@ -100,7 +100,7 @@
                             </div>
                         </a>
                         <a class="<?php if ($step[5] == true) { ?>
-                        completed
+                        completed disabled
                         <?php } elseif ($step[4] == true && $step[5] == false) { ?>
                         active
                         <?php } else { ?>
@@ -166,16 +166,9 @@
                                             <div class="item">
                                                 <div class="ui blue horizontal label">Service(s)</div><br>
                                                 <div class="item">
-                                                    <div class="ui teal horizontal label">asdflksf</div>
-                                                </div>
-                                                <div class="item">
-                                                    <div class="ui teal horizontal label">asdflksf</div>
-                                                </div>
-                                                <div class="item">
-                                                    <div class="ui teal horizontal label">asdflksf</div>
-                                                </div>
-                                                <div class="item">
-                                                    <div class="ui teal horizontal label">asdflksf</div>
+                                                    <?php foreach ($service as $sr) { ?>
+                                                        <div class="ui teal horizontal label"><?= $sr->value ?></div>
+                                                    <?php } ?>
                                                 </div>
                                             </div>
                                             <div class="item">
@@ -208,7 +201,7 @@
                         <div class="ui stackable grid">
                             <div class="row">
                                 <div class="column middle aligned">
-                                    <h3 class="header">Your Guide</h3>
+                                    <h3 class="header">Your <?php if ($tipe == 'tourist') { ?>Guide<?php } else { ?>Tourist<?php } ?></h3>
                                     <?php if ($trip->guide_id != null) { ?>
                                         <div class="ui card centered">
                                             <div class="image">
@@ -219,7 +212,7 @@
                                                 <div class="meta">
                                                     <span class="location"><?= $client->location ?></span>
                                                 </div>
-                                                <div class="ui star rating" data-rating="5"></div>
+                                                <div class="ui star rating" data-rating="2"></div>
                                             </div>
                                             <div class="extra content">
                                                 <a>
@@ -264,40 +257,32 @@
                             <div class="row">
                                 <div class="column">
                                     <h3 class="header">Activities</h3>
-                                        <?php if ($this->length($activity) != 0) { ?>
-                                            <div class="ui stackable grid">
+                                    <?php if ($this->length($activity) != 0) { ?>
+                                        <div class="ui stackable grid">
+                                            <?php foreach ($activity as $ac) { ?>
                                                 <div class="row">
-                                                    <div class="twelve wide column right floated">
-                                                        <div class="ui message green">
+                                                    <div class="twelve wide column <?php if ($ac->sender_type == 0) { ?>right<?php } else { ?>left<?php } ?> floated">
+                                                        <div class="ui message <?php if ($ac->sender_type == 0) { ?>green<?php } else { ?>blue<?php } ?>">
                                                             <div class="header">
-                                                                Tourist - Arrival
+                                                                <?php if ($ac->sender_type == 0) { ?>Tourist<?php } else { ?>Guide<?php } ?> - <?= $ac->title ?>
                                                             </div>
-                                                            <p>Kita dateng tanggal 20.</p>
+                                                            <p><?= $ac->content ?></p>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="row">
-                                                    <div class="twelve wide column left floated">
-                                                        <div class="ui message blue">
-                                                            <div class="header">
-                                                                Guide - Response Arrival
-                                                            </div>
-                                                            <p>Saya tunggu di bandara.</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        <?php } else { ?>
-                                            <div class="ui info message">
-                                                There is no activity yet.
-                                            </div>
-                                        <?php } ?>
-                                        <?php if ($step[2] == true) { ?>
-                                            <button id="addActivity" class="ui right floated button">
-                                                <i class="plus icon"></i>
-                                                Add New Message
-                                            </button> 
-                                        <?php } ?>
+                                            <?php } ?>
+                                        </div>
+                                    <?php } else { ?>
+                                        <div class="ui info message">
+                                            There is no activity yet.
+                                        </div>
+                                    <?php } ?>
+                                    <?php if ($step[2] == true) { ?>
+                                        <button id="addActivity" class="ui right floated button">
+                                            <i class="plus icon"></i>
+                                            Add New Message
+                                        </button> 
+                                    <?php } ?>
                                 </div>
                             </div>
                         </div>
@@ -353,13 +338,18 @@
                                                     <i class="archive icon"></i>
                                                     FeedBack Trip
                                                 </div>
-                                                <div class="content">
-                                                    <form method="post" class="ui form">
-
-                                                    </form>
+                                                <div class="content center aligned">
+                                                    <div class="ui massive star rating"></div>
                                                 </div>
-                                                <form id="feedBack" method="post">
+                                                <form id="feedBack" method="post" class='ui form'>
                                                     <input type="hidden" name="feedBack" value="yes">
+                                                    <input id="ratingNew" type="hidden" name="ratingNew">
+                                                    <input type="hidden" name="guideId" value="<?= $trip->guide_id ?>">
+                                                    <input type="hidden" name="tripId" value="<?= $trip->id ?>">
+                                                    <input type="hidden" name="touristId" value="<?= $trip->tourist_id ?>">
+                                                    <div class="field">
+                                                        <input type="text" name="feedBackDesc" id="feedBackDesc" placeholder="Your comments...">
+                                                    </div>
                                                 </form>
                                                 <div class="feedBackButton actions">
                                                     <div class="ui green ok inverted button">
@@ -378,9 +368,35 @@
                                                 $('.feedBackButton').on('click', function(){
                                                     $('form#feedBack').submit();
                                                 }); 
+
+                                                $('.massive.rating').rating({
+                                                    initialRating: 0,
+                                                    maxRating: 5
+                                                });
+
+                                                $('.massive.rating').rating({
+                                                    initialRating: 0,
+                                                    maxRating: 5
+                                                });
+
+
+                                                $('.massive.rating').on('click', function(){
+                                                    var rating = $('.rating').rating('get rating')[1];
+                                                    $('#ratingNew').val($rating);
+                                                    $('.rating').rating('disable');
+                                                });
     
                                             </script>
                                         <?php } ?>
+                                        <script>
+                                        
+                                                $('.rating').rating({
+                                                    maxRating: 5
+                                                });
+
+                                                $('.rating').rating('disable');
+
+                                        </script>
                                     <?php } elseif ($tipe == 'guide' && $step[4] == true) { ?>
                                         <button id="actionButton" class="ui positive labeled icon button">
                                             <i class="check icon"></i>

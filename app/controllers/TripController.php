@@ -130,7 +130,7 @@
             foreach ($trip as $key => $value) {
                 $temp = $value->tourist_id;
                 $tourist[$temp] = User::findFirst("id = '$temp'");
-                $temp2 = $value->trip_id;
+                $temp2 = $value->id;
                 $service[$temp2] = Service::find("trip_id = '$temp2'");
             }
             $this->view->trip = $trip;
@@ -182,14 +182,37 @@
         public function addNewActivityAction(){
             //tambah new activity dari tourist|guide/trip/show dan /tourist/active
             $tipe = $this->dispatcher->getParam('tipe');
-            $idTrip = $this->dispatcher->getParam('tripId');
-            $title = $this->request->getPost('title');
-            $content = $this->request->getPost('message');
-            $date_array = getdate();
-            $curr_date = $date_array['year']."-".$date_array['mon']."-".$date_array['mday'];
-            $activity = new Activity();
-            $activity->init($idTrip,$tipe,$title,$content,$curr_date);
-            $activity->save();
+            $activityConfirm = $this->request->getPost('activity');
+            $deleteConfirm = $this->request->getPost('delete');
+            $finishConfirm = $this->request->getPost('finish');
+
+            if ($activityConfirm) {
+                
+                $idTrip = $this->dispatcher->getParam('tripId');
+                $title = $this->request->getPost('title');
+                $content = $this->request->getPost('message');
+                $date_array = getdate();
+                $curr_date = $date_array['year']."-".$date_array['mon']."-".$date_array['mday'];
+                $activity = new Activity();
+                $activity->init($idTrip,$tipe,$title,$content,$curr_date);
+                $activity->save();
+            }
+            else if ($deleteConfirm) {
+                
+            }
+            else if ($finishConfirm) {
+                $tripID = $this->request->getPost('tripId');
+                $guideID = $this->request->getPost('guideId');
+                $touristID = $this->request->getPost('touristId');
+                $desc = $this->request->getPost('feedBackDesc');
+                $rating = $this->request->getPost('ratingNew');
+                $feedback = new Feedback();
+                $feedback->init($tripID,$guideID,$touristID,$ratingNew,$desc);
+                print_r($feedback);
+                die();
+                // $feedback->save();
+            }
+
 
             (new Response())->redirect($tipe.'/trip/show/'.$idTrip)->send();
         }
@@ -222,10 +245,5 @@
             $this->view->tipe = $tipe;
             $this->view->trans = $trans;
         }
-
-        public function feedBackAction(){
-
-        }
-
     }
 ?>
