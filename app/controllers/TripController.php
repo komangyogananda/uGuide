@@ -185,6 +185,7 @@
             $activityConfirm = $this->request->getPost('activity');
             $deleteConfirm = $this->request->getPost('delete');
             $finishConfirm = $this->request->getPost('finish');
+            $feedBackConfirm = $this->request->getPost('feedBack');
 
             if ($activityConfirm) {
                 
@@ -200,17 +201,17 @@
             else if ($deleteConfirm) {
                 
             }
-            else if ($finishConfirm) {
-                $tripID = $this->request->getPost('tripId');
+            else if ($feedBackConfirm) {
+                $idTrip = $this->request->getPost('tripId');
                 $guideID = $this->request->getPost('guideId');
                 $touristID = $this->request->getPost('touristId');
                 $desc = $this->request->getPost('feedBackDesc');
                 $rating = $this->request->getPost('ratingNew');
                 $feedback = new Feedback();
-                $feedback->init($tripID,$guideID,$touristID,$ratingNew,$desc);
-                print_r($feedback);
-                die();
-                // $feedback->save();
+                $feedback->init($idTrip,$guideID,$touristID,$rating,$desc);
+                // print_r($feedback);
+                // die();
+                $feedback->save();
             }
 
 

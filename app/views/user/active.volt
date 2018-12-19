@@ -276,16 +276,142 @@
                         <div class="ui stackable grid">
                             <div class="row">
                                 <div class="column">
-                                    {% if tipe == 'tourist' AND step[2] == false %}
-                                        <button class="ui negative labeled icon button endButton">
+                                        {% if tipe == 'tourist' %}
+                                        {% if step[2] == false %}
+                                        <button id="actionButton" class="ui negative labeled icon button">
                                             <i class="close icon"></i>
                                             Delete Trip
                                         </button>
+                            
+                                        <div id="actionModal" class="ui tiny basic modal">
+                                            <div class="ui icon header">
+                                                <i class="trash alternate icon"></i>
+                                                Delete Trip
+                                            </div>
+                                            <div class="content">
+                                                <p>Are you sure want to delete this trip ?</p>
+                                            </div>
+                                            <form id="delete" method="post">
+                                                <input type="hidden" name="delete" value="yes">
+                                            </form>
+                                            <div class="deleteButton actions">
+                                                <div class="ui green ok inverted button">
+                                                    <i class="checkmark icon"></i>
+                                                    Yes
+                                                </div>
+                                            </div>
+                                        </div>
+                            
+                                        <script>
+                                        
+                                            $("#actionButton").on("click", function(){
+                                                $("#actionModal").modal("show");
+                                            });
+                            
+                                            $('.deleteButton').on('click', function(){
+                                                $('form#delete').submit();
+                                            });  
+                            
+                                        </script>
+                            
+                                        {% elseif step[4] == true%}
+                                            <button id="actionButton" class="ui positive labeled icon button">
+                                                <i class="check icon"></i>
+                                                FeedBack
+                                            </button>
+                            
+                                            <div id="actionModal" class="ui tiny modal">
+                                                <div class="ui icon header">
+                                                    <i class="archive icon"></i>
+                                                    FeedBack Trip
+                                                </div>
+                                                <div class="content center aligned">
+                                                    <div id="getRating" class="ui massive star rating"></div>
+                                                </div>
+                                                <form id="feedBack" method="post" class='ui form'>
+                                                    <input type="hidden" name="feedBack" value="yes">
+                                                    <input id="ratingNew" type="hidden" name="ratingNew">
+                                                    <input type="hidden" name="guideId" value="{{ trip.guide_id }}">
+                                                    <input type="hidden" name="tripId" value="{{ trip.id }}">
+                                                    <input type="hidden" name="touristId" value="{{ trip.tourist_id }}">
+                                                    <div class="field">
+                                                        <input type="text" name="feedBackDesc" id="feedBackDesc" placeholder="Your comments...">
+                                                    </div>
+                                                </form>
+                                                <div class="actions">
+                                                    <div class="ui green ok feedBackButton inverted button">
+                                                        <i class="checkmark icon"></i>
+                                                        Yes
+                                                    </div>
+                                                </div>
+                                            </div>
+                            
+                                            <script>
+                                            
+                                                $("#actionButton").on("click", function(){
+                                                    $("#actionModal").modal("show");
+                                                });
+                            
+                                                $('.feedBackButton').on('click', function(){
+                                                    $('form#feedBack').submit();
+                                                }); 
+                            
+                                                $('.massive.rating').rating({
+                                                    initialRating: 0,
+                                                    maxRating: 5
+                                                });
+                            
+                            
+                                                $('#getRating').on('click', function(){
+                                                    var rating = $('#getRating').rating('get rating');
+                                                    $('#ratingNew').val(rating);
+                                                });
+                            
+                                            </script>
+                                        {% endif %}
+                                        <script>
+                                        
+                                                $('.guideRating').rating({
+                                                    maxRating: 5
+                                                });
+                            
+                                                $('.guideRating').rating('disable');
+                            
+                                        </script>
                                     {% elseif tipe == 'guide' AND step[4] == true %}
-                                        <button class="ui positive labeled icon button endButton">
+                                        <button id="actionButton" class="ui positive labeled icon button">
                                             <i class="check icon"></i>
-                                            Finish Trip
+                                            Finish
                                         </button>
+                                        <div id="actionModal" class="ui tiny modal">
+                                            <div class="ui icon header">
+                                                <i class="check circle icon"></i>
+                                                Finish Trip
+                                            </div>
+                                            <div class="content">
+                                                <p>Finish this trip ?</p>
+                                            </div>
+                                            <form id="finish" method="post">
+                                                <input type="hidden" name="finish" value="yes">
+                                            </form>
+                                            <div class="finishButton actions">
+                                                <div class="ui green ok inverted button">
+                                                    <i class="checkmark icon"></i>
+                                                    Yes
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <script>
+                                        
+                                            $("#actionButton").on("click", function(){
+                                                $("#actionModal").modal("show");
+                                            });
+                            
+                                            $('.finishButton').on('click', function(){
+                                                $('form#finish').submit();
+                                            });  
+                            
+                                        </script>
                                     {% endif %}
                                 </div>
                             </div>
@@ -313,64 +439,6 @@
             </div>
         {% endif %}
     </div>
-
-    {% if tipe == 'tourist' AND step[2] == false %}
-        <div id="endAction" class="ui tiny modal">
-            <div class="ui icon header">
-                <i class="trash alternate icon"></i>
-                Delete Trip
-            </div>
-            <div class="content">
-                <p>Are you sure want to delete this trip ?</p>
-            </div>
-            <form id="delete" method="post">
-                <input type="hidden" name="delete" value="yes">
-                <input type="hidden" name="trip" value="{{ activeTrip.id }}"> 
-            </form>
-            <div class="deleteButton actions">
-                <div class="ui green ok inverted button">
-                    <i class="checkmark icon"></i>
-                    Yes
-                </div>
-            </div>
-        </div>
-
-        <script>
-            $('.deleteButton').on('click', function(){
-                $('form#delete').submit();
-                // $('form#trip').submit();
-            });    
-        </script>
-        
-    {% elseif tipe == 'guide' AND step[4] == true %}
-        <div id="endAction" class="ui tiny modal">
-            <div class="ui icon header">
-                <i class="check circle icon"></i>
-                Finish Trip
-            </div>
-            <div class="content">
-                <p>Finish this trip ?</p>
-            </div>
-            <div class="ui massive star rating"></div>
-            <form id="finish" method="post">
-                <input type="hidden" name="finish" value="yes">
-                <input type="hidden" name="trip" value="{{ activeTrip.id }}"> 
-            </form>
-            <div class="finishButton actions">
-                <div class="ui green ok inverted button">
-                    <i class="checkmark icon"></i>
-                    Yes
-                </div>
-            </div>
-        </div>
-
-        <script>
-            $('.finishButton').on('click', function(){
-                $('form#finish').submit();
-                // $('form#trip').submit();
-            });
-        </script>
-    {% endif %}
 
     <script>
 
