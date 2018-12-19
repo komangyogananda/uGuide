@@ -10,7 +10,7 @@
                 <img src="{{ url('src/smallLogo.png') }}" height="20%" width="20%">
                 <div class="content">
                     uGuide
-                    <div class="sub header">Tersesat? Traveloka aja!</div>
+                    <div class="sub header">Liburan? uGuide aja!</div>
                 </div>
             </h2>
     </div>
