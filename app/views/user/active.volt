@@ -351,6 +351,7 @@
             <div class="content">
                 <p>Finish this trip ?</p>
             </div>
+            <div class="ui massive star rating"></div>
             <form id="finish" method="post">
                 <input type="hidden" name="finish" value="yes">
                 <input type="hidden" name="trip" value="{{ activeTrip.id }}"> 
@@ -367,7 +368,7 @@
             $('.finishButton').on('click', function(){
                 $('form#finish').submit();
                 // $('form#trip').submit();
-            });    
+            });
         </script>
     {% endif %}
 

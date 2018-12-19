@@ -199,7 +199,7 @@
                                                 <div class="meta">
                                                     <span class="location">{{ client.location }}</span>
                                                 </div>
-                                                <div class="ui star rating" data-rating="5"></div>
+                                                <div class="ui star rating" data-rating="2"></div>
                                             </div>
                                             <div class="extra content">
                                                 <a>
@@ -325,13 +325,14 @@
                                                     <i class="archive icon"></i>
                                                     FeedBack Trip
                                                 </div>
-                                                <div class="content">
-                                                    <form method="post" class="ui form">
-
-                                                    </form>
+                                                <div class="content center aligned">
+                                                    <div class="ui massive star rating"></div>
                                                 </div>
-                                                <form id="feedBack" method="post">
+                                                <form id="feedBack" method="post" class='ui form'>
                                                     <input type="hidden" name="feedBack" value="yes">
+                                                    <div class="field">
+                                                        <input type="text" name="feedBackDesc" id="feedBackDesc" placeholder="Your comments...">
+                                                    </div>
                                                 </form>
                                                 <div class="feedBackButton actions">
                                                     <div class="ui green ok inverted button">
@@ -350,9 +351,35 @@
                                                 $('.feedBackButton').on('click', function(){
                                                     $('form#feedBack').submit();
                                                 }); 
+
+                                                $('.massive.rating').rating({
+                                                    initialRating: 0,
+                                                    maxRating: 5
+                                                });
+
+                                                $('.massive.rating').rating({
+                                                    initialRating: 0,
+                                                    maxRating: 5
+                                                });
+
+
+                                                $('.massive.rating').on('click', function(){
+                                                    var rating = $('.rating').rating('get rating')[1];
+                                                    console.log(rating);
+                                                    $('.rating').rating('disable');
+                                                });
     
                                             </script>
                                         {% endif %}
+                                        <script>
+                                        
+                                                $('.rating').rating({
+                                                    maxRating: 5
+                                                });
+
+                                                $('.rating').rating('disable');
+
+                                        </script>
                                     {% elseif tipe == 'guide' AND step[4] == true %}
                                         <button id="actionButton" class="ui positive labeled icon button">
                                             <i class="check icon"></i>
