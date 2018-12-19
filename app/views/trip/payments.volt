@@ -72,6 +72,16 @@
                                         <input type="file" name="proof" id="proof" type="image">
                                     </form>
                                 </div>
+                                <div id="uploadButton" class="ui positive button">
+                                    Upload
+                                </div>
+                                <script>
+                                
+                                    $("#uploadButton").on('click', function(){
+                                        $('form').submit();
+                                    });
+
+                                </script>
                             {% endif %}
                         </div>
                         {% if trans.proof != NULL AND trans.status == 'PENDING' %}
