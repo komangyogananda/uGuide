@@ -49,7 +49,7 @@
                             <div class="header">
                                 Your payments will be expired in
                             </div>
-                            <p>24-DEC-2018</p>
+                            <p>{{ date('D, d-M-Y', strtotime(trans.date_expired)) }}</p>
                         </div>
                         <div class="ui placeholder segment">
                             <div class="ui icon header">

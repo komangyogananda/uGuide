@@ -111,7 +111,6 @@
         public function showTripAction(){
             $messageForm = new MessageForm();
             $this->validateStep();
-            $this->view->activity = $activity;
             $this->view->messageForm = $messageForm;
         }
 
@@ -219,7 +218,7 @@
 
             $tipe = $this->dispatcher->getParam('tipe');
             $idtrans = $this->dispatcher->getParam('id');
-            $trans = findFirst("trip_id = '$idtrans'");
+            $trans = Transaction::findFirst("trip_id = '$idtrans'");
             $this->view->tipe = $tipe;
             $this->view->trans = $trans;
         }

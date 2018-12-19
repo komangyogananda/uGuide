@@ -34,8 +34,8 @@
             </div>
         </div>
     </div>
-
     <div class="ui stackable grid centered">
+        <?php if ($find == true) { ?>
             <div class="row">
                 <div class="ten wide column center aligned">
                     <div class="ui tablet stackable five steps">
@@ -45,7 +45,7 @@
                         active
                         <?php } ?> step" 
                         href="<?php if ($tipe == 'tourist') { ?>
-                            <?= $this->url->get('tourist/trip/interested/' . $trip->id) ?>
+                            <?= $this->url->get('tourist/trip/interested/' . $activeTrip->id) ?>
                         <?php } else { ?>
                             <?= $this->url->get('guide/find') ?>
                         <?php } ?>">
@@ -64,7 +64,7 @@
                         active
                         <?php } else { ?>
                         disabled
-                        <?php } ?> step" href="<?= $this->url->get($tipe . '/payments/' . $trip->id) ?>">
+                        <?php } ?> step" href="<?= $this->url->get($tipe . '/payments/' . $activeTrip->id) ?>">
                             <i class="payment icon"></i>
                             <div class="content">
                                 <?php if ($tipe == 'tourist') { ?>
@@ -80,7 +80,7 @@
                         active
                         <?php } else { ?>
                         disabled
-                        <?php } ?> step" href="<?= $this->url->get($tipe . '/trip/show/' . $trip->id) ?>">
+                        <?php } ?> step" href="<?= $this->url->get($tipe . '/trip/show/' . $activeTrip->id) ?>">
                             <i class="comments icon">
                             </i>
                             <div class="content">
@@ -93,7 +93,7 @@
                         active
                         <?php } else { ?>
                         disabled
-                        <?php } ?> step step" href="<?= $this->url->get($tipe . '/trip/show/' . $trip->id) ?>">
+                        <?php } ?> step step" href="<?= $this->url->get($tipe . '/trip/show/' . $activeTrip->id) ?>">
                             <i class="suitcase icon"></i>
                             <div class="content">
                                 <div class="title">Trip Day!</div>
@@ -107,9 +107,9 @@
                         disabled
                         <?php } ?> step step" 
                         href="<?php if ($tipe == 'tourist') { ?>
-                            <?= $this->url->get('tourist/trip/feedback/' . $trip->id) ?>
+                            <?= $this->url->get('tourist/trip/feedback/' . $activeTrip->id) ?>
                         <?php } else { ?>
-                            <?= $this->url->get($tipe . '/trip/show/' . $trip->id) ?>
+                            <?= $this->url->get($tipe . '/trip/show/' . $activeTrip->id) ?>
                         <?php } ?>">
                         <?php if ($tipe == 'tourist') { ?>
                             <i class="star icon"></i>
@@ -153,15 +153,15 @@
                                         <div class="ui divided list">
                                             <div class="item">
                                                 <div class="ui blue horizontal label">Location</div>
-                                                <div class="ui teal horizontal label"><?= ucwords($trip->destination) ?></div>
+                                                <div class="ui teal horizontal label"><?= ucwords($activeTrip->destination) ?></div>
                                             </div>
                                             <div class="item">
                                                 <div class="ui blue horizontal label">Minimum Budget</div>
-                                                <div class="ui teal horizontal label">Rp. <?= $trip->min_budget ?></div>
+                                                <div class="ui teal horizontal label">Rp. <?= $activeTrip->min_budget ?></div>
                                             </div>
                                             <div class="item">
                                                 <div class="ui blue horizontal label">Maximum Budget</div>
-                                                <div class="ui teal horizontal label">Rp. <?= $trip->max_budget ?></div>
+                                                <div class="ui teal horizontal label">Rp. <?= $activeTrip->max_budget ?></div>
                                             </div>
                                             <div class="item">
                                                 <div class="ui blue horizontal label">Service(s)</div><br>
@@ -173,67 +173,67 @@
                                             </div>
                                             <div class="item">
                                                 <div class="ui blue horizontal label">Start Date</div>
-                                                <div class="ui teal horizontal label"><?= date('D, d-M-Y', strtotime($trip->date)) ?></div>
+                                                <div class="ui teal horizontal label"><?= date('D, d-M-Y', strtotime($activeTrip->date)) ?></div>
                                             </div>
                                             <div class="item">                                                
                                                 <div class="ui blue horizontal label">Duration</div>
-                                                <div class="ui teal horizontal label"><?= $trip->duration ?> Day(s)</div>
+                                                <div class="ui teal horizontal label"><?= $activeTrip->duration ?> Day(s)</div>
                                             </div>
                                             <div class="item">                                                
                                                 <div class="ui blue horizontal label">Person</div>
-                                                <div class="ui teal horizontal label"><?= $trip->person ?> Person(s)</div>                                           
+                                                <div class="ui teal horizontal label"><?= $activeTrip->person ?> Person(s)</div>                                           
                                             </div>
                                             <div class="item">
                                                 <div class="ui blue horizontal label">Description</div>
                                                 <div class="six wide column center aligned">
-                                                        <div>
-                                                            <div class="ui teal horizontal label">
-                                                                <?= $trip->description ?>
-                                                            </div>
+                                                    <div>
+                                                        <div class="ui teal horizontal label">
+                                                            <?= $activeTrip->description ?>
                                                         </div>
                                                     </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                      </div>
                                 </div>
                             </div>
                         </div>
                         <div class="ui stackable grid">
                             <div class="row">
                                 <div class="column middle aligned">
-                                    <h3 class="header">Your <?php if ($tipe == 'tourist') { ?>Guide<?php } else { ?>Tourist<?php } ?></h3>
-                                    <?php if ($trip->guide_id != null) { ?>
+                                    <h3 class="header">Your <?php if ($tipe == 'tourist') { ?>Guide<?php } ?></h3>
+                                    <?php if ($activeTrip->guide_id != null) { ?>
                                         <div class="ui card centered">
-                                            <div class="image">
-                                                    <img src="data:image/jpeg;base64,<?= $client->picture ?>">
-                                            </div>
-                                            <div class="content">
-                                            <a class="header"><?= ucwords($client->fname) . ' ' . ucwords($client->lname) ?></a>
-                                                <div class="meta">
-                                                    <span class="location"><?= $client->location ?></span>
+                                                <div class="image">
+                                                        <img src="data:image/jpeg;base64,<?= $client->picture ?>">
                                                 </div>
-                                                <div class="ui star rating" data-rating="5"></div>
-                                            </div>
-                                            <div class="extra content">
-                                                <a>
-                                                    <i class="icon">
-                                                        <i class="fas fa-hiking"></i>
-                                                    </i>
-                                                    10 Activies
-                                                </a>
-                                                <?php if ($tipe == 'tourist') { ?>
-                                                    <a href="<?= $this->url->get('guide/profile/show/' . $client->id) ?>">
-                                                        <div class="ui two buttons">
-                                                            <div class="button">
-                                                                <div class="ui basic green button">
-                                                                    Show Profile
+                                                <div class="content">
+                                                <a class="header"><?= ucwords($client->fname) . ' ' . ucwords($client->lname) ?></a>
+                                                    <div class="meta">
+                                                        <span class="location"><?= ucwords($client->location) ?></span>
+                                                    </div>
+                                                    <div class="ui star rating" data-rating="5"></div>
+                                                </div>
+                                                <div class="extra content">
+                                                    <a>
+                                                        <i class="icon">
+                                                            <i class="fas fa-hiking"></i>
+                                                        </i>
+                                                        10 Activies
+                                                    </a>
+                                                    <?php if ($tipe == 'tourist') { ?>
+                                                        <a href="<?= $this->url->get('guide/profile/show/' . $client->id) ?>">
+                                                            <div class="ui two buttons">
+                                                                <div class="button">
+                                                                    <div class="ui basic green button">
+                                                                        Show Profile
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                    </a>
-                                                <?php } ?>
+                                                        </a>
+                                                    <?php } ?>
+                                                </div>
                                             </div>
-                                        </div>
                                     <?php } else { ?>
                                         <div class="ui stackable grid centered">
                                             <div class="row">
@@ -243,7 +243,7 @@
                                                             Find a Guide First.
                                                         </h3>
                                                     </div>
-                                                    <a href="<?= $this->url->get('tourist/trip/interested/' . $trip->id) ?>">
+                                                    <a href="<?= $this->url->get('tourist/trip/interested/' . $activeTrip->id) ?>">
                                                         <div class="ui positive button">
                                                             Check Guide(s) interested in your trip!
                                                         </div>
@@ -257,149 +257,48 @@
                             <div class="row">
                                 <div class="column">
                                     <h3 class="header">Activities</h3>
-                                    <?php if ($this->length($activity) != 0) { ?>
-                                        <div class="ui stackable grid">
-                                            <?php foreach ($activity as $ac) { ?>
-                                                <div class="row">
-                                                    <div class="twelve wide column <?php if ($ac->sender_type == 0) { ?>right<?php } else { ?>left<?php } ?> floated">
-                                                        <div class="ui message <?php if ($ac->sender_type == 0) { ?>green<?php } else { ?>blue<?php } ?>">
-                                                            <div class="header">
-                                                                <?php if ($ac->sender_type == 0) { ?>Tourist<?php } else { ?>Guide<?php } ?> - <?= $ac->title ?>
+                                        <?php if ($this->length($activity) != 0) { ?>
+                                            <div class="ui stackable grid">
+                                                <?php foreach ($activity as $ac) { ?>
+                                                    <div class="row">
+                                                        <div class="twelve wide column <?php if ($ac->sender_type == 0) { ?>right<?php } else { ?>left<?php } ?> floated">
+                                                            <div class="ui message <?php if ($ac->sender_type == 0) { ?>green<?php } else { ?>blue<?php } ?>">
+                                                                <div class="header">
+                                                                    <?php if ($ac->sender_type == 0) { ?>Tourist<?php } else { ?>Guide<?php } ?> - <?= $ac->title ?>
+                                                                </div>
+                                                                <p><?= $ac->content ?></p>
                                                             </div>
-                                                            <p><?= $ac->content ?></p>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            <?php } ?>
-                                        </div>
-                                    <?php } else { ?>
-                                        <div class="ui info message">
-                                            There is no activity yet.
-                                        </div>
-                                    <?php } ?>
-                                    <?php if ($step[2] == true) { ?>
-                                        <button id="addActivity" class="ui right floated button">
-                                            <i class="plus icon"></i>
-                                            Add New Message
-                                        </button> 
-                                    <?php } ?>
+                                                <?php } ?>
+                                            </div>
+                                        <?php } else { ?>
+                                            <div class="ui info message">
+                                                There is no activity yet.
+                                            </div>
+                                        <?php } ?>
+                                        <?php if ($step[2] == true) { ?>
+                                            <button id="addActivity" class="ui right floated button">
+                                                <i class="plus icon"></i>
+                                                Add New Message
+                                            </button> 
+                                        <?php } ?>
                                 </div>
                             </div>
                         </div>
                         <div class="ui stackable grid">
                             <div class="row">
                                 <div class="column">
-                                    <?php if ($tipe == 'tourist') { ?>
-                                        <?php if ($step[2] == false) { ?>
-                                        <button id="actionButton" class="ui negative labeled icon button">
+                                    <?php if ($tipe == 'tourist' && $step[2] == false) { ?>
+                                        <button class="ui negative labeled icon button endButton">
                                             <i class="close icon"></i>
                                             Delete Trip
                                         </button>
-
-                                        <div id="actionModal" class="ui tiny basic modal">
-                                            <div class="ui icon header">
-                                                <i class="trash alternate icon"></i>
-                                                Delete Trip
-                                            </div>
-                                            <div class="content">
-                                                <p>Are you sure want to delete this trip ?</p>
-                                            </div>
-                                            <form id="delete" method="post">
-                                                <input type="hidden" name="delete" value="yes">
-                                            </form>
-                                            <div class="deleteButton actions">
-                                                <div class="ui green ok inverted button">
-                                                    <i class="checkmark icon"></i>
-                                                    Yes
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <script>
-                                        
-                                            $("#actionButton").on("click", function(){
-                                                $("#actionModal").modal("show");
-                                            });
-
-                                            $('.deleteButton').on('click', function(){
-                                                $('form#delete').submit();
-                                            });  
-
-                                        </script>
-
-                                        <?php } elseif ($step[4] == true) { ?>
-                                            <button id="actionButton" class="ui positive labeled icon button">
-                                                <i class="check icon"></i>
-                                                FeedBack
-                                            </button>
-    
-                                            <div id="actionModal" class="ui tiny modal">
-                                                <div class="ui icon header">
-                                                    <i class="archive icon"></i>
-                                                    FeedBack Trip
-                                                </div>
-                                                <div class="content">
-                                                    <form method="post" class="ui form">
-
-                                                    </form>
-                                                </div>
-                                                <form id="feedBack" method="post">
-                                                    <input type="hidden" name="feedBack" value="yes">
-                                                </form>
-                                                <div class="feedBackButton actions">
-                                                    <div class="ui green ok inverted button">
-                                                        <i class="checkmark icon"></i>
-                                                        Yes
-                                                    </div>
-                                                </div>
-                                            </div>
-    
-                                            <script>
-                                            
-                                                $("#actionButton").on("click", function(){
-                                                    $("#actionModal").modal("show");
-                                                });
-
-                                                $('.feedBackButton').on('click', function(){
-                                                    $('form#feedBack').submit();
-                                                }); 
-    
-                                            </script>
-                                        <?php } ?>
                                     <?php } elseif ($tipe == 'guide' && $step[4] == true) { ?>
-                                        <button id="actionButton" class="ui positive labeled icon button">
+                                        <button class="ui positive labeled icon button endButton">
                                             <i class="check icon"></i>
-                                            Finish
+                                            Finish Trip
                                         </button>
-                                        <div id="actionModal" class="ui tiny modal">
-                                            <div class="ui icon header">
-                                                <i class="check circle icon"></i>
-                                                Finish Trip
-                                            </div>
-                                            <div class="content">
-                                                <p>Finish this trip ?</p>
-                                            </div>
-                                            <form id="finish" method="post">
-                                                <input type="hidden" name="finish" value="yes">
-                                            </form>
-                                            <div class="finishButton actions">
-                                                <div class="ui green ok inverted button">
-                                                    <i class="checkmark icon"></i>
-                                                    Yes
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <script>
-                                        
-                                            $("#actionButton").on("click", function(){
-                                                $("#actionModal").modal("show");
-                                            });
-
-                                            $('.finishButton').on('click', function(){
-                                                $('form#finish').submit();
-                                            });  
-
-                                        </script>
                                     <?php } ?>
                                 </div>
                             </div>
@@ -407,9 +306,91 @@
                     </div>
                 </div>
             </div>
-            <?php if ($step[4] == true && $tipe == 'tourist') { ?>
-            <?php } ?>
-    </div>  
+        <?php } else { ?>
+            <div class="row">
+                <div class="segment eight wide column middle aligned">
+                    <div class="ui attached segment">
+                        <div class="column center aligned">
+                            <h1 class="ui header">
+                                <i class="window close outline icon"></i>
+                            </h1>
+                            <h2 class="ui header">
+                            You have no active trip
+                            </h2>
+                        </div>
+                    </div>
+                    <a href="<?= $this->url->get($tipe . '/find') ?>">
+                        <button class="positive fluid ui button">Click here to <?php if ($tipe == 'tourist') { ?>create<?php } else { ?>find<?php } ?> a new Trip.</button>
+                    </a>
+                </div>
+            </div>
+        <?php } ?>
+    </div>
+
+    <?php if ($tipe == 'tourist' && $step[2] == false) { ?>
+        <div id="endAction" class="ui tiny modal">
+            <div class="ui icon header">
+                <i class="trash alternate icon"></i>
+                Delete Trip
+            </div>
+            <div class="content">
+                <p>Are you sure want to delete this trip ?</p>
+            </div>
+            <form id="delete" method="post">
+                <input type="hidden" name="delete" value="yes">
+                <input type="hidden" name="trip" value="<?= $activeTrip->id ?>"> 
+            </form>
+            <div class="deleteButton actions">
+                <div class="ui green ok inverted button">
+                    <i class="checkmark icon"></i>
+                    Yes
+                </div>
+            </div>
+        </div>
+
+        <script>
+            $('.deleteButton').on('click', function(){
+                $('form#delete').submit();
+                // $('form#trip').submit();
+            });    
+        </script>
+        
+    <?php } elseif ($tipe == 'guide' && $step[4] == true) { ?>
+        <div id="endAction" class="ui tiny modal">
+            <div class="ui icon header">
+                <i class="check circle icon"></i>
+                Finish Trip
+            </div>
+            <div class="content">
+                <p>Finish this trip ?</p>
+            </div>
+            <form id="finish" method="post">
+                <input type="hidden" name="finish" value="yes">
+                <input type="hidden" name="trip" value="<?= $activeTrip->id ?>"> 
+            </form>
+            <div class="finishButton actions">
+                <div class="ui green ok inverted button">
+                    <i class="checkmark icon"></i>
+                    Yes
+                </div>
+            </div>
+        </div>
+
+        <script>
+            $('.finishButton').on('click', function(){
+                $('form#finish').submit();
+                // $('form#trip').submit();
+            });    
+        </script>
+    <?php } ?>
+
+    <script>
+
+        $('.endButton').on('click', function(){
+            $('#endAction').modal('show');
+        });
+        
+    </script>
 
     <div id="sidebarMenu" class="ui left vertical inverted sidebar labeled icon stackable menu">
         <div class="column">

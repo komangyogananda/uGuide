@@ -46,12 +46,12 @@
                     <div class="segment ten wide column middle aligned">
                         <div class="ui five top attached steps">
                             <a class="{% if step[1] == true %}
-                            completed
+                            completed disabled
                             {% else %}
                             active
                             {% endif %} step" 
                             href="{% if tipe == 'tourist' %}
-                                {{ url('tourist/trip/interested/' ~ trip.id) }}
+                                {{ url('tourist/trip/interested/' ~ activeTrip.id) }}
                             {% else %}
                                 {{ url('guide/find') }}
                             {% endif %}">
@@ -65,7 +65,7 @@
                                 </div>
                             </a>
                             <a class="{% if step[2] == true %}
-                            completed
+                            completed disabled
                             {% elseif step[1] == true and step[2] == false %}
                             active
                             {% else %}
@@ -81,12 +81,12 @@
                                 </div>
                             </a>
                             <a class="{% if step[3] == true %}
-                            completed
+                            completed disabled
                             {% elseif step[2] == true and step[3] == false %}
                             active
                             {% else %}
                             disabled
-                            {% endif %} step" href="{{ url(tipe ~'/trip/show/' ~ trip.id) }}">
+                            {% endif %} step" href="{{ url(tipe ~'/trip/show/' ~ activeTrip.id) }}">
                                 <i class="comments icon">
                                 </i>
                                 <div class="content">
@@ -94,28 +94,28 @@
                                 </div>
                             </a>
                             <a class="{% if step[4] == true %}
-                            completed
+                            completed disabled
                             {% elseif step[3] == true and step[4] == false %}
                             active
                             {% else %}
                             disabled
-                            {% endif %} step step" href="{{ url(tipe ~ '/trip/show/' ~ trip.id) }}">
+                            {% endif %} step step" href="{{ url(tipe ~ '/trip/show/' ~ activeTrip.id) }}">
                                 <i class="suitcase icon"></i>
                                 <div class="content">
                                     <div class="title">Trip Day!</div>
                                 </div>
                             </a>
                             <a class="{% if step[5] == true %}
-                            completed
+                            completed disabled
                             {% elseif step[4] == true and step[5] == false %}
                             active
                             {% else %}
                             disabled
                             {% endif %} step step" 
                             href="{% if tipe == 'tourist' %}
-                                {{ url('tourist/trip/feedback/' ~ trip.id) }}
+                                {{ url('tourist/trip/feedback/' ~ activeTrip.id) }}
                             {% else %}
-                                {{ url(tipe ~ '/trip/show/' ~ trip.id) }}
+                                {{ url(tipe ~ '/trip/show/' ~ activeTrip.id) }}
                             {% endif %}">
                             {% if tipe == 'tourist' %}
                                 <i class="star icon"></i>
@@ -168,12 +168,11 @@
                                                 <div class="item">
                                                     <div class="ui blue horizontal label">Service(s)</div>
                                                     <div class="six wide column center aligned">
-                                                            <div class="ui teal horizontal label">asdflksf</div>
-                                                            <div class="ui teal horizontal label">asdflksf</div>
-                                                            <div class="ui teal horizontal label">asdflksf</div>
-                                                            <div class="ui teal horizontal label">asdflksf</div>
-                                                            <div class="ui teal horizontal label">asdflksf</div>
-                                                            <div class="ui teal horizontal label">asdflksf</div>
+                                                        <div class="item">
+                                                            {% for sr in service %}
+                                                                <div class="ui teal horizontal label">{{ sr.value }}</div>
+                                                            {% endfor %}
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="item">
@@ -262,31 +261,29 @@
                                     <h3 class="header">Activities</h3>
                                     {% if activity|length != 0 %}
                                         <div class="ui stackable grid">
-                                            <div class="row">
-                                                <div class="twelve wide column right floated">
-                                                    <div class="ui message green">
-                                                        <div class="header">
-                                                            Tourist - Arrival
+                                            {% for ac in activity %}
+                                                <div class="row">
+                                                    <div class="twelve wide column {% if ac.sender_type == 0%}right{% else %}left{% endif %} floated">
+                                                        <div class="ui message {% if ac.sender_type == 0%}green{% else %}blue{% endif %}">
+                                                            <div class="header">
+                                                                {% if ac.sender_type == 0%}Tourist{% else %}Guide{% endif %} - {{ ac.title }}
+                                                            </div>
+                                                            <p>{{ ac.content }}</p>
                                                         </div>
-                                                        <p>Kita dateng tanggal 20.</p>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="twelve wide column left floated">
-                                                    <div class="ui message blue">
-                                                        <div class="header">
-                                                            Guide - Response Arrival
-                                                        </div>
-                                                        <p>Saya tunggu di bandara.</p>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            {% endfor %}
                                         </div>
                                     {% else %}
                                         <div class="ui info message">
                                             There is no activity yet.
                                         </div>
+                                    {% endif %}
+                                    {% if step[2] == true %}
+                                        <button id="addActivity" class="ui right floated button">
+                                            <i class="plus icon"></i>
+                                            Add New Message
+                                        </button> 
                                     {% endif %}
                                 </div>
                         </div>

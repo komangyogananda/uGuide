@@ -30,8 +30,10 @@
             </div>
             <div class="ui two column eight wide row">
                 <div class="ui column center aligned">
-                    {% if interests|length == 0 %}
-                        <div class="ui info message">There is no guide interested with your trip yet.</div>
+                    {% if status == true %}
+                        <div class="ui info message">This trip already has an active guide.</div>
+                    {% elseif interests|length == 0 %}
+                        <div class="ui info message">We are Sorry! There is no guide interested with your trip yet.</div>
                     {% else %}
                         {% for interest in interests %}
                             <div class="ui card centered">
