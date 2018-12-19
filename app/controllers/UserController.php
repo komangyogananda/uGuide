@@ -29,6 +29,8 @@
             }
             $trans = Transaction::findFirst("trip_id = '$activeTrip->id'");
             $transID = $trans->id;
+            $service = Service::find("trip_id = '$activeTrip->id'");
+            $this->view->service = $service;
             $find = false;
             if ($activeTrip) $find = true;
             if ($find) {

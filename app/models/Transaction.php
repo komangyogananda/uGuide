@@ -52,4 +52,8 @@ class Transaction extends Model
     {
         return $this->status;
     }
+    public function setAmount($amount)
+    {
+        $this->amount = $amount;
+    }
 }
