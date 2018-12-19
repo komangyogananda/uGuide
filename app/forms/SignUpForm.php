@@ -108,10 +108,6 @@ class SignUpForm extends Form{
         $password->addValidators([
             new PresenceOf([
                 'message' => 'Password is required.'
-            ]),
-            new StringLength([
-                "min"            => 8,
-                "messageMinimum" => "Password must be at least 8 characters"
             ])
         ]);
 
@@ -125,13 +121,6 @@ class SignUpForm extends Form{
                 'placeholder' => 'newPass',
             ]
         );
-
-        $newPass->addValidators([
-            new StringLength([
-                "min"            => 8,
-                "messageMinimum" => "Password must be at least 8 characters"
-            ])
-        ]);
 
         $this->add($newPass);
     
@@ -223,18 +212,6 @@ class SignUpForm extends Form{
         new File(
             'picture'
         );
-
-        $picture = 
-        new File(
-            'newPicture'
-        );
-
-
-        $picture->addValidators([
-            new PresenceOf([
-                'message' => 'Picture required.'
-            ])
-        ]);
 
         $this->add($picture);
 
