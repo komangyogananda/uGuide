@@ -61,8 +61,14 @@
             }
         }
         public function showGuideAction(){
+            $id = $this->dispatcher->getParam('id');
+            $guide = User::findFirst("id = '$id'");
+            if ($guide == null) {
+                return (New Response())->redirect('show404')->send();
+            }
             $tipe = 'tourist';
             $this->view->tipe = 'tourist';
+            $this->view->guide = $guide;
         }
     }
 
