@@ -18,7 +18,6 @@
         
 
 <div class="ui two column centered stackable grid customBox">
-        <?= $this->flashSession->output() ?>
         <?= $this->tag->form(['class' => 'ui form segment', 'enctype' => 'multipart/form-data']) ?>
 
         <?php if ($tipe == 'tourist') { ?>

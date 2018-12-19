@@ -28,12 +28,12 @@
                     <h2 class="header">List of tourist in your area</h2>
                 </div>
             </div>
-            <div class="ui two column eight wide row">
+            <div class="ui two column row">
                 {% for tr in trip %}
                     <div class="ui column center aligned">
                         <div class="ui card centered">
                             <div class="image">
-                                <img src="/images/avatar2/large/kristy.png">
+                                    <img src="data:image/jpeg;base64,{{ tourist[tr.tourist_id].picture }}">
                             </div>
                             <div class="content">
                                 <a class="header">{{ tourist[tr.tourist_id].fname|capitalize ~ ' ' ~ tourist[tr.tourist_id].lname|capitalize }}</a>
@@ -41,6 +41,57 @@
                                     <span class="location">{{ tourist[tr.tourist_id].location|capitalize }}</span>
                                 </div>
                                 <div class="ui star rating" data-rating="5"></div>
+                                <div class="ui info message">
+                                    <h2 class="header">
+                                        Trip Info
+                                    </h2>
+                                    <div class="ui divided list">
+                                        <div class="item">
+                                            <div class="ui blue horizontal label">Location</div>
+                                            <div class="ui teal horizontal label">{{ tr.destination|capitalize }}</div>
+                                        </div>
+                                        <div class="item">
+                                            <div class="ui blue horizontal label">Minimum Budget</div>
+                                            <div class="ui teal horizontal label">Rp. {{ tr.min_budget }}</div>
+                                        </div>
+                                        <div class="item">
+                                            <div class="ui blue horizontal label">Maximum Budget</div>
+                                            <div class="ui teal horizontal label">Rp. {{ tr.max_budget }}</div>
+                                        </div>
+                                        <div class="item">
+                                            <div class="ui blue horizontal label">Service(s)</div>
+                                            <div class="six wide column center aligned">
+                                                <div class="item">
+                                                {% for sr in service[tr.id] %}
+                                                    <div class="ui teal horizontal label">{{ sr.value }}</div>
+                                                {% endfor %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="item">
+                                            <div class="ui blue horizontal label">Start Date</div>
+                                            <div class="ui teal horizontal label">{{ date('D, d-M-Y', strtotime(tr.date)) }}</div>
+                                        </div>
+                                        <div class="item">                                                
+                                            <div class="ui blue horizontal label">Duration</div>
+                                            <div class="ui teal horizontal label">{{ tr.duration }} Day(s)</div>
+                                        </div>
+                                        <div class="item">                                                
+                                            <div class="ui blue horizontal label">Person</div>
+                                            <div class="ui teal horizontal label">{{ tr.person }} Person(s)</div>                                           
+                                        </div>
+                                        <div class="item">
+                                            <div class="ui blue horizontal label">Description</div>
+                                            <div class="six wide column center aligned">
+                                                <div>
+                                                    <div class="ui teal horizontal label">
+                                                            {{ tr.description }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="extra content">
                                 <a>

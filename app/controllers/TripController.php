@@ -111,7 +111,6 @@
         public function showTripAction(){
             $messageForm = new MessageForm();
             $this->validateStep();
-            $this->view->activity = $activity;
             $this->view->messageForm = $messageForm;
         }
 

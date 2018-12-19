@@ -51,7 +51,7 @@
                         active
                         {% else %}
                         disabled
-                        {% endif %} step" href="{{ url('payments/' ~ activeTrip.id) }}">
+                        {% endif %} step" href="{{ url(tipe ~ '/payments/' ~ activeTrip.id) }}">
                             <i class="payment icon"></i>
                             <div class="content">
                                 {% if tipe == 'tourist' %}
@@ -140,7 +140,7 @@
                                         <div class="ui divided list">
                                             <div class="item">
                                                 <div class="ui blue horizontal label">Location</div>
-                                                <div class="ui teal horizontal label">{{ activeTrip.destination|upper }}</div>
+                                                <div class="ui teal horizontal label">{{ activeTrip.destination|capitalize }}</div>
                                             </div>
                                             <div class="item">
                                                 <div class="ui blue horizontal label">Minimum Budget</div>
@@ -153,16 +153,9 @@
                                             <div class="item">
                                                 <div class="ui blue horizontal label">Service(s)</div><br>
                                                 <div class="item">
-                                                    <div class="ui teal horizontal label">asdflksf</div>
-                                                </div>
-                                                <div class="item">
-                                                    <div class="ui teal horizontal label">asdflksf</div>
-                                                </div>
-                                                <div class="item">
-                                                    <div class="ui teal horizontal label">asdflksf</div>
-                                                </div>
-                                                <div class="item">
-                                                    <div class="ui teal horizontal label">asdflksf</div>
+                                                    {% for sr in service %}
+                                                        <div class="ui teal horizontal label">{{ sr.value }}</div>
+                                                    {% endfor %}
                                                 </div>
                                             </div>
                                             <div class="item">
@@ -195,7 +188,7 @@
                         <div class="ui stackable grid">
                             <div class="row">
                                 <div class="column middle aligned">
-                                    <h3 class="header">Your Guide</h3>
+                                    <h3 class="header">Your {% if tipe == 'tourist'%}Guide{% else %}{% endif %}</h3>
                                     {% if activeTrip.guide_id != NULL %}
                                         <div class="ui card centered">
                                                 <div class="image">
@@ -204,7 +197,7 @@
                                                 <div class="content">
                                                 <a class="header">{{ client.fname|capitalize ~ ' ' ~ client.lname|capitalize }}</a>
                                                     <div class="meta">
-                                                        <span class="location">{{ client.location }}</span>
+                                                        <span class="location">{{ client.location|capitalize }}</span>
                                                     </div>
                                                     <div class="ui star rating" data-rating="5"></div>
                                                 </div>
@@ -253,26 +246,18 @@
                                     <h3 class="header">Activities</h3>
                                         {% if activity|length != 0 %}
                                             <div class="ui stackable grid">
-                                                <div class="row">
-                                                    <div class="twelve wide column right floated">
-                                                        <div class="ui message green">
-                                                            <div class="header">
-                                                                Tourist - Arrival
+                                                {% for ac in activity %}
+                                                    <div class="row">
+                                                        <div class="twelve wide column {% if ac.sender_type == 0%}right{% else %}left{% endif %} floated">
+                                                            <div class="ui message {% if ac.sender_type == 0%}green{% else %}blue{% endif %}">
+                                                                <div class="header">
+                                                                    {% if ac.sender_type == 0%}Tourist{% else %}Guide{% endif %} - {{ ac.title }}
+                                                                </div>
+                                                                <p>{{ ac.content }}</p>
                                                             </div>
-                                                            <p>Kita dateng tanggal 20.</p>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="twelve wide column left floated">
-                                                        <div class="ui message blue">
-                                                            <div class="header">
-                                                                Guide - Response Arrival
-                                                            </div>
-                                                            <p>Saya tunggu di bandara.</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                {% endfor %}
                                             </div>
                                         {% else %}
                                             <div class="ui info message">

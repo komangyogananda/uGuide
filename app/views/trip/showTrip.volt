@@ -27,7 +27,7 @@
                 <div class="ten wide column center aligned">
                     <div class="ui tablet stackable five steps">
                         <a class="{% if step[1] == true %}
-                        completed
+                        completed disabled
                         {% else %}
                         active
                         {% endif %} step" 
@@ -46,7 +46,7 @@
                             </div>
                         </a>
                         <a class="{% if step[2] == true %}
-                        completed
+                        completed disabled
                         {% elseif step[1] == true and step[2] == false %}
                         active
                         {% else %}
@@ -62,7 +62,7 @@
                             </div>
                         </a>
                         <a class="{% if step[3] == true %}
-                        completed
+                        completed disabled
                         {% elseif step[2] == true and step[3] == false %}
                         active
                         {% else %}
@@ -75,7 +75,7 @@
                             </div>
                         </a>
                         <a class="{% if step[4] == true %}
-                        completed
+                        completed disabled
                         {% elseif step[3] == true and step[4] == false %}
                         active
                         {% else %}
@@ -87,7 +87,7 @@
                             </div>
                         </a>
                         <a class="{% if step[5] == true %}
-                        completed
+                        completed disabled
                         {% elseif step[4] == true and step[5] == false %}
                         active
                         {% else %}
@@ -153,16 +153,9 @@
                                             <div class="item">
                                                 <div class="ui blue horizontal label">Service(s)</div><br>
                                                 <div class="item">
-                                                    <div class="ui teal horizontal label">asdflksf</div>
-                                                </div>
-                                                <div class="item">
-                                                    <div class="ui teal horizontal label">asdflksf</div>
-                                                </div>
-                                                <div class="item">
-                                                    <div class="ui teal horizontal label">asdflksf</div>
-                                                </div>
-                                                <div class="item">
-                                                    <div class="ui teal horizontal label">asdflksf</div>
+                                                    {% for sr in service %}
+                                                        <div class="ui teal horizontal label">{{ sr.value }}</div>
+                                                    {% endfor %}
                                                 </div>
                                             </div>
                                             <div class="item">
@@ -195,7 +188,7 @@
                         <div class="ui stackable grid">
                             <div class="row">
                                 <div class="column middle aligned">
-                                    <h3 class="header">Your Guide</h3>
+                                    <h3 class="header">Your {% if tipe == 'tourist'%}Guide{% else %}Tourist{% endif %}</h3>
                                     {% if trip.guide_id != NULL %}
                                         <div class="ui card centered">
                                             <div class="image">
@@ -251,40 +244,32 @@
                             <div class="row">
                                 <div class="column">
                                     <h3 class="header">Activities</h3>
-                                        {% if activity|length != 0 %}
-                                            <div class="ui stackable grid">
+                                    {% if activity|length != 0 %}
+                                        <div class="ui stackable grid">
+                                            {% for ac in activity %}
                                                 <div class="row">
-                                                    <div class="twelve wide column right floated">
-                                                        <div class="ui message green">
+                                                    <div class="twelve wide column {% if ac.sender_type == 0%}right{% else %}left{% endif %} floated">
+                                                        <div class="ui message {% if ac.sender_type == 0%}green{% else %}blue{% endif %}">
                                                             <div class="header">
-                                                                Tourist - Arrival
+                                                                {% if ac.sender_type == 0%}Tourist{% else %}Guide{% endif %} - {{ ac.title }}
                                                             </div>
-                                                            <p>Kita dateng tanggal 20.</p>
+                                                            <p>{{ ac.content }}</p>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="row">
-                                                    <div class="twelve wide column left floated">
-                                                        <div class="ui message blue">
-                                                            <div class="header">
-                                                                Guide - Response Arrival
-                                                            </div>
-                                                            <p>Saya tunggu di bandara.</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        {% else %}
-                                            <div class="ui info message">
-                                                There is no activity yet.
-                                            </div>
-                                        {% endif %}
-                                        {% if step[2] == true %}
-                                            <button id="addActivity" class="ui right floated button">
-                                                <i class="plus icon"></i>
-                                                Add New Message
-                                            </button> 
-                                        {% endif %}
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        <div class="ui info message">
+                                            There is no activity yet.
+                                        </div>
+                                    {% endif %}
+                                    {% if step[2] == true %}
+                                        <button id="addActivity" class="ui right floated button">
+                                            <i class="plus icon"></i>
+                                            Add New Message
+                                        </button> 
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>

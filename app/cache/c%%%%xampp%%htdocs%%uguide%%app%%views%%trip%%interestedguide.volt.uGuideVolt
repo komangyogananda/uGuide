@@ -43,8 +43,10 @@
             </div>
             <div class="ui two column eight wide row">
                 <div class="ui column center aligned">
-                    <?php if ($this->length($interests) == 0) { ?>
-                        <div class="ui info message">There is no guide interested with your trip yet.</div>
+                    <?php if ($status == true) { ?>
+                        <div class="ui info message">This trip already has an active guide.</div>
+                    <?php } elseif ($this->length($interests) == 0) { ?>
+                        <div class="ui info message">We are Sorry! There is no guide interested with your trip yet.</div>
                     <?php } else { ?>
                         <?php foreach ($interests as $interest) { ?>
                             <div class="ui card centered">
