@@ -142,6 +142,14 @@
             $this->view->nama = $nama;
         }
 
+        public function acceptInterestAction(){
+
+            $tipe = $this->dispatcher->getParam('tipe');
+            $tripID = $this->dispatcher->getParam('tripId');
+            $this->view->tipe = $tipe;
+            
+        }
+
         public function addNewActivityAction(){
             //tambah new activity dari tourist|guide/trip/show dan /tourist/active
             $tipe = $this->dispatcher->getParam('tipe');

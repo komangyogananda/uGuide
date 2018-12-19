@@ -249,7 +249,7 @@
                                                             Find a Guide First.
                                                         </h3>
                                                     </div>
-                                                    <a href="<?= $this->url->get('tourist/trip/interested/1') ?>">
+                                                    <a href="<?= $this->url->get('tourist/trip/interested/' . $trip->id) ?>">
                                                         <div class="ui positive button">
                                                             Check Guide(s) interested in your trip!
                                                         </div>

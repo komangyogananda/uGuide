@@ -62,6 +62,15 @@ class TripRoutes extends RouterGroup{
         );
 
         $this->addPost(
+            '/tourist/trip/interested/:int',
+            [
+                'tipe' => 'tourist',
+                'action' => 'acceptInterest',
+                'tripId' => 1,
+            ]
+        );
+
+        $this->addPost(
             '/tourist/find',
             [
                 'tipe' => 'tourist',

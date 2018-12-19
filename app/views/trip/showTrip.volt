@@ -236,7 +236,7 @@
                                                             Find a Guide First.
                                                         </h3>
                                                     </div>
-                                                    <a href="{{ url('tourist/trip/interested/1') }}">
+                                                    <a href="{{ url('tourist/trip/interested/' ~ trip.id) }}">
                                                         <div class="ui positive button">
                                                             Check Guide(s) interested in your trip!
                                                         </div>
