@@ -29,6 +29,8 @@
             }
             $trans = Transaction::findFirst("trip_id = '$activeTrip->id'");
             $transID = $trans->id;
+            $service = Service::find("trip_id = '$activeTrip->id'");
+            $this->view->service = $service;
             $find = false;
             if ($activeTrip) $find = true;
             if ($find) {
@@ -185,9 +187,6 @@
                         $this->flash->error($message);
                     }
                 } else {
-                    if (!$this->request->hasFiles()) {
-                        $this->flash->error("CUK");
-                    }
                     $user = new User();
                     $user->setType($this->request->getPost('tipe'));
                     $user->setUsername($this->request->getPost('username'));
@@ -201,14 +200,14 @@
                     $user->setRating(0);
                     $user->setPicture(base64_encode(file_get_contents($this->request->getUploadedFiles()[0]->getTempName())));
                     if (!$user->save()) {
-                        $this->flash->error($user->getMessages());
+                        foreach ($user->getMessages() as $message) {
+                            $this->flashSession->error($message);
+                        }
                     } else {
-                        $this->flash->success("User was created successfully");
-                        Tag::resetInput();
+                        $this->flashSession->success("User was created successfully");
                     }
                 }
             }
-
             $this->view->form = $form;
             //(new Response())->redirect($this->request->getPost('tipe').'/login')->send();
         }

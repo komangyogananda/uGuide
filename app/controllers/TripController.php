@@ -28,6 +28,9 @@
             }
             $trans = Transaction::findFirst("trip_id = '$trip->id'");
             $transID = $trans->id;
+
+            $service = Service::find("trip_id = '$idTrip'");
+
             $find = false;
             if ($trip) $find = true;
             if ($find) {
@@ -53,6 +56,7 @@
             $this->view->activity = $activity;
             $this->view->tipe = $tipe;
             $this->view->client = $client;
+            $this->view->service = $service;
         }
 
         public function findTouristAction(){
@@ -117,18 +121,22 @@
             $this->view->tipe = $tipe;
             $location = $this->session->get('auth')['location'];
             $trip = Trip::find([
-                'destination = :loc: AND status = 1',
+                'destination = :loc: AND status = 1 AND guide_id is NULL',
                 'bind' => [
                     'loc' => $location
                 ]
             ]);
+            $service = array();
             $tourist = array();
             foreach ($trip as $key => $value) {
                 $temp = $value->tourist_id;
                 $tourist[$temp] = User::findFirst("id = '$temp'");
+                $temp2 = $value->trip_id;
+                $service[$temp2] = Service::find("trip_id = '$temp2'");
             }
             $this->view->trip = $trip;
             $this->view->tourist = $tourist;
+            $this->view->service = $service;
             $this->view->interestForm = $form;
         }
 
@@ -137,6 +145,8 @@
             $tipe = $this->dispatcher->getParam('tipe');
             $tripID = $this->dispatcher->getParam('tripId');
             $this->view->tipe = $tipe;
+            $trip = Trip::findFirst("id = '$tripID' AND guide_id is NULL");
+         
             $interests = Interest::find("trip_id = '$tripID'");
             $nama = array();
             foreach ($interests as $key => $value) {
@@ -144,10 +154,30 @@
                 $temp = User::findFirst("id = '$id'");
                 $nama[$id] = $temp;
             }
-            // print_r($nama);
-            // die();
+            $status = true;
+            if ($trip) $status = false;
             $this->view->interests = $interests;
+            $this->view->status = $status;
             $this->view->nama = $nama;
+        }
+
+        public function acceptInterestAction(){
+            $guide = $this->request->getPost('guide');
+            $plan = $this->request->getPost('plan');
+            $budget = $this->request->getPost('budget');
+            $tripID = $this->dispatcher->getParam('tripId');
+            $trip = Trip::findFirst("id = '$tripID'");
+            $trip->setGuideId($guide);
+            $trip->setDescription($trip->getDescription()."<br>Guide's plan:<br>".$plan);
+            $trans = Transaction::findFirst("trip_id = $tripID");
+            $trans->setAmount($budget);
+            $trip->save();
+            $trans->save();
+            $interests = Interest::find("guide_id = '$guide'");
+            foreach ($interests as $key => $value) {
+                $value->delete();
+            }
+            (new Response())->redirect('tourist/active')->send();
         }
 
         public function addNewActivityAction(){
@@ -188,7 +218,10 @@
             //payments
 
             $tipe = $this->dispatcher->getParam('tipe');
+            $idtrans = $this->dispatcher->getParam('id');
+            $trans = findFirst("trip_id = '$idtrans'");
             $this->view->tipe = $tipe;
+            $this->view->trans = $trans;
         }
 
         public function feedBackAction(){

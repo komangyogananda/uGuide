@@ -12,19 +12,12 @@
             <i class="user icon"></i>
             <span class="text">Profile</span>
         </div>
-        <div class="right menu">
-            <div class="item">
-                <div class="ui icon input">
-                    <input type="text" placeholder="Search...">
-                    <i class="search link icon"></i>
-                </div>
-            </div>
-        </div>
     </div>
 
     <div class="ui two column centered stackable grid">
         <div class="row">
             <div class="ui segment column middle aligned">
+                {{ flashSession.output() }}
                 <div class="column center aligned">
                     <h1 class="ui header">
                         <i class="user icon"></i>
@@ -78,7 +71,7 @@
                                     </div>
                                     <label>New Password</label>
                                     <div class="field">
-                                        {{ form.render('password', ['placeholder' : 'New Password']) }}
+                                        {{ form.render('newPass', ['placeholder' : 'New Password']) }}
                                     </div>
                                     <div class="field">
                                         {{ form.render('confpassword', ['placeholder' : 'New Password Confirmation']) }}
