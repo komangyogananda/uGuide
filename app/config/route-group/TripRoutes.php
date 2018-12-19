@@ -57,7 +57,7 @@ class TripRoutes extends RouterGroup{
             [
                 'tipe' => 'tourist',
                 'action' => 'interestedGuide',
-                'params' => 1,
+                'tripId' => 1,
             ]
         );
 

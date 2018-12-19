@@ -34,7 +34,6 @@
             </div>
         </div>
     </div>
-
     <div class="ui stackable grid centered">
         <?php if ($find == true) { ?>
             <div class="row">
@@ -46,7 +45,7 @@
                         active
                         <?php } ?> step" 
                         href="<?php if ($tipe == 'tourist') { ?>
-                            <?= $this->url->get('tourist/trip/interested/' . $trip->id) ?>
+                            <?= $this->url->get('tourist/trip/interested/' . $activeTrip->id) ?>
                         <?php } else { ?>
                             <?= $this->url->get('guide/find') ?>
                         <?php } ?>">
@@ -65,7 +64,7 @@
                         active
                         <?php } else { ?>
                         disabled
-                        <?php } ?> step" href="<?= $this->url->get('payments/' . $trip->id) ?>">
+                        <?php } ?> step" href="<?= $this->url->get('payments/' . $activeTrip->id) ?>">
                             <i class="payment icon"></i>
                             <div class="content">
                                 <?php if ($tipe == 'tourist') { ?>
@@ -81,7 +80,7 @@
                         active
                         <?php } else { ?>
                         disabled
-                        <?php } ?> step" href="<?= $this->url->get($tipe . '/trip/show/' . $trip->id) ?>">
+                        <?php } ?> step" href="<?= $this->url->get($tipe . '/trip/show/' . $activeTrip->id) ?>">
                             <i class="comments icon">
                             </i>
                             <div class="content">
@@ -94,7 +93,7 @@
                         active
                         <?php } else { ?>
                         disabled
-                        <?php } ?> step step" href="<?= $this->url->get($tipe . '/trip/show/' . $trip->id) ?>">
+                        <?php } ?> step step" href="<?= $this->url->get($tipe . '/trip/show/' . $activeTrip->id) ?>">
                             <i class="suitcase icon"></i>
                             <div class="content">
                                 <div class="title">Trip Day!</div>
@@ -108,9 +107,9 @@
                         disabled
                         <?php } ?> step step" 
                         href="<?php if ($tipe == 'tourist') { ?>
-                            <?= $this->url->get('tourist/trip/feedback/' . $trip->id) ?>
+                            <?= $this->url->get('tourist/trip/feedback/' . $activeTrip->id) ?>
                         <?php } else { ?>
-                            <?= $this->url->get($tipe . '/trip/show/' . $trip->id) ?>
+                            <?= $this->url->get($tipe . '/trip/show/' . $activeTrip->id) ?>
                         <?php } ?>">
                         <?php if ($tipe == 'tourist') { ?>
                             <i class="star icon"></i>
@@ -351,13 +350,25 @@
             <div class="content">
                 <p>Are you sure want to delete this trip ?</p>
             </div>
-            <div class="actions">
+            <form id="delete" method="post">
+                <input type="hidden" name="delete" value="yes">
+                <input type="hidden" name="trip" value="<?= $activeTrip->id ?>"> 
+            </form>
+            <div class="deleteButton actions">
                 <div class="ui green ok inverted button">
                     <i class="checkmark icon"></i>
                     Yes
                 </div>
             </div>
         </div>
+
+        <script>
+            $('.deleteButton').on('click', function(){
+                $('form#delete').submit();
+                // $('form#trip').submit();
+            });    
+        </script>
+        
     <?php } elseif ($tipe == 'guide' && $step[4] == true) { ?>
         <div id="endAction" class="ui tiny modal">
             <div class="ui icon header">
@@ -367,13 +378,24 @@
             <div class="content">
                 <p>Finish this trip ?</p>
             </div>
-            <div class="actions">
+            <form id="finish" method="post">
+                <input type="hidden" name="finish" value="yes">
+                <input type="hidden" name="trip" value="<?= $activeTrip->id ?>"> 
+            </form>
+            <div class="finishButton actions">
                 <div class="ui green ok inverted button">
                     <i class="checkmark icon"></i>
                     Yes
                 </div>
             </div>
         </div>
+
+        <script>
+            $('.finishButton').on('click', function(){
+                $('form#finish').submit();
+                // $('form#trip').submit();
+            });    
+        </script>
     <?php } ?>
 
     <script>
@@ -452,8 +474,13 @@
                 </div>
 
                 <div class="actions">
-                    <?= $messageForm->render('go', ['class' => 'ui positive button']) ?>
+                    <input type="hidden" name="activity" value="yes">
+                    <input type="hidden" name="trip" value="<?= $activeTrip->id ?>"> 
                 </div>
+
+                <div class="actions">
+                    <?= $messageForm->render('go', ['class' => 'ui positive button']) ?>
+                </div> 
 
             </form>
         </div>

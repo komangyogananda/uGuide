@@ -21,7 +21,6 @@
             </div>
         </div>
     </div>
-
     <div class="ui stackable grid centered">
         {% if find == true %}
             <div class="row">
@@ -33,7 +32,7 @@
                         active
                         {% endif %} step" 
                         href="{% if tipe == 'tourist' %}
-                            {{ url('tourist/trip/interested/' ~ trip.id) }}
+                            {{ url('tourist/trip/interested/' ~ activeTrip.id) }}
                         {% else %}
                             {{ url('guide/find') }}
                         {% endif %}">
@@ -52,7 +51,7 @@
                         active
                         {% else %}
                         disabled
-                        {% endif %} step" href="{{ url('payments/' ~ trip.id) }}">
+                        {% endif %} step" href="{{ url('payments/' ~ activeTrip.id) }}">
                             <i class="payment icon"></i>
                             <div class="content">
                                 {% if tipe == 'tourist' %}
@@ -68,7 +67,7 @@
                         active
                         {% else %}
                         disabled
-                        {% endif %} step" href="{{ url(tipe ~'/trip/show/' ~ trip.id) }}">
+                        {% endif %} step" href="{{ url(tipe ~'/trip/show/' ~ activeTrip.id) }}">
                             <i class="comments icon">
                             </i>
                             <div class="content">
@@ -81,7 +80,7 @@
                         active
                         {% else %}
                         disabled
-                        {% endif %} step step" href="{{ url(tipe ~ '/trip/show/' ~ trip.id) }}">
+                        {% endif %} step step" href="{{ url(tipe ~ '/trip/show/' ~ activeTrip.id) }}">
                             <i class="suitcase icon"></i>
                             <div class="content">
                                 <div class="title">Trip Day!</div>
@@ -95,9 +94,9 @@
                         disabled
                         {% endif %} step step" 
                         href="{% if tipe == 'tourist' %}
-                            {{ url('tourist/trip/feedback/' ~ trip.id) }}
+                            {{ url('tourist/trip/feedback/' ~ activeTrip.id) }}
                         {% else %}
-                            {{ url(tipe ~ '/trip/show/' ~ trip.id) }}
+                            {{ url(tipe ~ '/trip/show/' ~ activeTrip.id) }}
                         {% endif %}">
                         {% if tipe == 'tourist' %}
                             <i class="star icon"></i>
@@ -338,13 +337,25 @@
             <div class="content">
                 <p>Are you sure want to delete this trip ?</p>
             </div>
-            <div class="actions">
+            <form id="delete" method="post">
+                <input type="hidden" name="delete" value="yes">
+                <input type="hidden" name="trip" value="{{ activeTrip.id }}"> 
+            </form>
+            <div class="deleteButton actions">
                 <div class="ui green ok inverted button">
                     <i class="checkmark icon"></i>
                     Yes
                 </div>
             </div>
         </div>
+
+        <script>
+            $('.deleteButton').on('click', function(){
+                $('form#delete').submit();
+                // $('form#trip').submit();
+            });    
+        </script>
+        
     {% elseif tipe == 'guide' AND step[4] == true %}
         <div id="endAction" class="ui tiny modal">
             <div class="ui icon header">
@@ -354,13 +365,24 @@
             <div class="content">
                 <p>Finish this trip ?</p>
             </div>
-            <div class="actions">
+            <form id="finish" method="post">
+                <input type="hidden" name="finish" value="yes">
+                <input type="hidden" name="trip" value="{{ activeTrip.id }}"> 
+            </form>
+            <div class="finishButton actions">
                 <div class="ui green ok inverted button">
                     <i class="checkmark icon"></i>
                     Yes
                 </div>
             </div>
         </div>
+
+        <script>
+            $('.finishButton').on('click', function(){
+                $('form#finish').submit();
+                // $('form#trip').submit();
+            });    
+        </script>
     {% endif %}
 
     <script>

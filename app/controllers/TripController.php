@@ -50,10 +50,15 @@
         }
 
         public function findTouristAction(){
-            
+
             $form = new HolidayForm();
 
             $tipe = $this->dispatcher->getParam('tipe');
+
+            $user = $this->session->get('auth')['id'];
+            $active = Trip::findFirst("tourist_id = '$user' AND status = 1");
+            if ($active) (new Response())->redirect($tipe.'/trip/interested/'.$active->id)->send();
+
             $this->view->tipe = $tipe;
             $this->view->form = $form;
         }
@@ -90,6 +95,7 @@
             $trans = new Transaction();
             $trans->init($trip->getId(), NULL, NULL, date_format($date, 'Y-m-d'), NULL, 'PENDING');
             $trans->save();
+            (new Response())->redirect($tipe.'/dashboard')->send();
         }
 
         public function showTripAction(){
@@ -123,13 +129,32 @@
         public function interestedGuideAction(){
 
             $tipe = $this->dispatcher->getParam('tipe');
+            $tripID = $this->dispatcher->getParam('tripId');
             $this->view->tipe = $tipe;
+            $interest = Interest::find("trip_id = '$tripID'");
+            $nama = array();
+            foreach ($interest as $key => $value) {
+                $id = $value->guide_id;
+                $temp = User::findFirst("id = '$id'");
+                $nama[$id] = $temp->fname." ".$temp->lname;
+            }
+            $this->view->interest = $interest;
+            $this->view->nama = $nama;
         }
 
         public function addNewActivityAction(){
             //tambah new activity dari tourist|guide/trip/show dan /tourist/active
+            $tipe = $this->dispatcher->getParam('tipe');
             $idTrip = $this->dispatcher->getParam('tripId');
-            (new Response())->redirect('tourist/trip/show/'.$idTrip)->send();
+            $title = $this->request->getPost('title');
+            $content = $this->request->getPost('message');
+            $date_array = getdate();
+            $curr_date = $date_array['year']."-".$date_array['mon']."-".$date_array['mday'];
+            $activity = new Activity();
+            $activity->init($idTrip,$tipe,$title,$content,$curr_date);
+            $activity->save();
+
+            (new Response())->redirect($tipe.'/trip/show/'.$idTrip)->send();
         }
 
         public function addNewInterestedAction(){

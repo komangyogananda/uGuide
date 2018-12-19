@@ -17,7 +17,7 @@
 
         
 
-    <div class="ui menu">
+    <div class="ui stackable menu">
         <a class="sidebarToggle item">
             <i class="bars icon"></i>
         </a>
@@ -35,7 +35,7 @@
         </div>
     </div>
 
-    <div class="ui two column centered grid">
+    <div class="ui two column centered stackable grid">
         <div class="row">
             <div class="ui segment column middle aligned">
                 <div class="column center aligned">
@@ -46,16 +46,14 @@
                         Profile Information
                     </h2>
                 </div>
-                <div class="ui grid centered">
+                <div class="ui stackable grid centered">
                     <div class="two column row center aligned">
                         <div class="column center aligned">
-                                <?= $this->tag->form(['class' => 'ui form segment']) ?>
+                                <?= $this->tag->form(['class' => 'ui form segment', 'enctype' => 'multipart/form-data']) ?>
 
                                 <div class="ui medium bordered image">
-                                    <?php
-                                    ?>
                                     <!-- <img src="data:image/jpeg;base64, <?= $user->getPicture() ?>"> -->
-                                    <!-- <img src="https://www.gettyimages.ca/gi-resources/images/Homepage/Hero/UK/CMS_Creative_164657191_Kingfisher.jpg"> -->
+                                    <img src="data:image/jpeg;base64,<?php echo $user->getPicture() ?>">
                                 </div>
 
                                 <?php if ($tipe == 'tourist') { ?>
@@ -127,7 +125,7 @@
                             </form>
 
                             <div class="row">
-                                    <input class="ui button" type="submit" value="Edit">
+                                    <input class="ui button edit" type="submit" value="Edit">
                             </div>
                         </div>
                     </div>
@@ -137,7 +135,13 @@
 
     </div>
 
-    <div id="sidebarMenu" class="ui left vertical inverted sidebar labeled icon menu">
+    <script>
+        $('.edit').on('click', function(){
+            $('form').submit();
+        });
+    </script>
+
+    <div id="sidebarMenu" class="ui left vertical inverted sidebar labeled icon stackable menu">
         <div class="column">
             <img class="image" width=40 src="<?= $this->url->get('src/smallLogo.png') ?>">
         </div>
