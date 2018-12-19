@@ -25,10 +25,10 @@ class ProfileRoutes extends RouterGroup{
         );
 
         $this->addGet(
-            '/guide/profile/show/:params',
+            '/guide/profile/show/:int',
             [
                 'action' => 'showGuide',
-                'params' => 1,
+                'id' => 1,
             ]
         );
 

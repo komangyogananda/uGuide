@@ -78,7 +78,14 @@
             $password = $this->request->getPost('password');
             $email = $this->request->getPost('email');
             $user = User::findFirst("email = '$email'");
-            if ($user->getType() !== $tipe) echo "$tipe user not found";
+            if ($user == null) {
+                $this->flashSession->error('User not found!');
+                return (New Response())->redirect($tipe.'/login');
+            }
+            if ($user->getType() !== $tipe) {
+                $this->flashSession->error('User Type not Found!');
+                return (New Response())->redirect($tipe.'/login');
+            }
             else if ($user){
                 if (password_verify($password, $user->getPassword())){
                     $this->session->set(
@@ -93,7 +100,6 @@
                             'location' => $user->getLocation()
                         ]
                     );
-                    echo "Login Success";
                     $resp = new Response();
                     if ($tipe == 'tourist') {
                         $resp->redirect('tourist/dashboard')->send();
@@ -105,10 +111,9 @@
                         $resp->redirect('moderator')->send();
                     }
                 }else{
-                    echo "failed to verify";
+                    $this->flashSession->error('Wrong Username/Password Combination!');
+                    return (New Response())->redirect($tipe.'/login');
                 }
-            }else{
-                echo "user not found";
             }
 
         }
