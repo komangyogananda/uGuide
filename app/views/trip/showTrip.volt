@@ -326,7 +326,7 @@
                                                     FeedBack Trip
                                                 </div>
                                                 <div class="content center aligned">
-                                                    <div class="ui massive star rating"></div>
+                                                    <div id="getRating" class="ui massive star rating"></div>
                                                 </div>
                                                 <form id="feedBack" method="post" class='ui form'>
                                                     <input type="hidden" name="feedBack" value="yes">
@@ -338,8 +338,8 @@
                                                         <input type="text" name="feedBackDesc" id="feedBackDesc" placeholder="Your comments...">
                                                     </div>
                                                 </form>
-                                                <div class="feedBackButton actions">
-                                                    <div class="ui green ok inverted button">
+                                                <div class="actions">
+                                                    <div class="ui green ok feedBackButton inverted button">
                                                         <i class="checkmark icon"></i>
                                                         Yes
                                                     </div>
@@ -361,16 +361,10 @@
                                                     maxRating: 5
                                                 });
 
-                                                $('.massive.rating').rating({
-                                                    initialRating: 0,
-                                                    maxRating: 5
-                                                });
 
-
-                                                $('.massive.rating').on('click', function(){
-                                                    var rating = $('.rating').rating('get rating')[1];
-                                                    $('#ratingNew').val($rating);
-                                                    $('.rating').rating('disable');
+                                                $('#getRating').on('click', function(){
+                                                    var rating = $('#getRating').rating('get rating');
+                                                    $('#ratingNew').val(rating);
                                                 });
     
                                             </script>
@@ -425,8 +419,6 @@
                     </div>
                 </div>
             </div>
-            {% if step[4] == true AND tipe == 'tourist' %}
-            {% endif %}
     </div>  
 
     {% include 'layouts/sidebar.volt' %}

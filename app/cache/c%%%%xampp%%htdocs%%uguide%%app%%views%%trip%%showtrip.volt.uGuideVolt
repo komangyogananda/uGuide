@@ -339,16 +339,20 @@
                                                     FeedBack Trip
                                                 </div>
                                                 <div class="content center aligned">
-                                                    <div class="ui massive star rating"></div>
+                                                    <div id="getRating" class="ui massive star rating"></div>
                                                 </div>
                                                 <form id="feedBack" method="post" class='ui form'>
                                                     <input type="hidden" name="feedBack" value="yes">
+                                                    <input id="ratingNew" type="hidden" name="ratingNew">
+                                                    <input type="hidden" name="guideId" value="<?= $trip->guide_id ?>">
+                                                    <input type="hidden" name="tripId" value="<?= $trip->id ?>">
+                                                    <input type="hidden" name="touristId" value="<?= $trip->tourist_id ?>">
                                                     <div class="field">
                                                         <input type="text" name="feedBackDesc" id="feedBackDesc" placeholder="Your comments...">
                                                     </div>
                                                 </form>
-                                                <div class="feedBackButton actions">
-                                                    <div class="ui green ok inverted button">
+                                                <div class="actions">
+                                                    <div class="ui green ok feedBackButton inverted button">
                                                         <i class="checkmark icon"></i>
                                                         Yes
                                                     </div>
@@ -370,16 +374,12 @@
                                                     maxRating: 5
                                                 });
 
-                                                $('.massive.rating').rating({
-                                                    initialRating: 0,
-                                                    maxRating: 5
-                                                });
 
-
-                                                $('.massive.rating').on('click', function(){
-                                                    var rating = $('.rating').rating('get rating')[1];
+                                                $('#getRating').on('click', function(){
+                                                    var rating = $('#getRating').rating('get rating');
+                                                    $('#ratingNew').val(rating);
                                                     console.log(rating);
-                                                    $('.rating').rating('disable');
+                                                    console.log($('#ratingNew').val());
                                                 });
     
                                             </script>

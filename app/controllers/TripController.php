@@ -188,7 +188,6 @@
             $finishConfirm = $this->request->getPost('finish');
             $feedBackConfirm = $this->request->getPost('feedBack');
 
-
             if ($activityConfirm) {
                 
                 $title = $this->request->getPost('title');

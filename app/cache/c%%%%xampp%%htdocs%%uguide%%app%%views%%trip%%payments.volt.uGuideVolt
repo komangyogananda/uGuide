@@ -85,6 +85,16 @@
                                         <input type="file" name="proof" id="proof" type="image">
                                     </form>
                                 </div>
+                                <div id="uploadButton" class="ui positive button">
+                                    Upload
+                                </div>
+                                <script>
+                                
+                                    $("#uploadButton").on('click', function(){
+                                        $('form').submit();
+                                    });
+
+                                </script>
                             <?php } ?>
                         </div>
                         <?php if ($trans->proof != null && $trans->status == 'PENDING') { ?>
