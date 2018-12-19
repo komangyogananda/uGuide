@@ -68,6 +68,16 @@
             }
             $feedback = Feedback::find("guide_id = '$id'");
             $tipe = 'tourist';
+
+            $total = Feedback::sum([
+                'column' => 'rating',
+                'conditions' => "guide_id = '$guide->id'"
+            ]);
+            $count = Feedback::count("guide_id = '$guide->id'");
+            $rating = $total / $count;
+            $this->view->rating = $rating;
+
+
             $this->view->tipe = 'tourist';
             $this->view->guide = $guide;
         }

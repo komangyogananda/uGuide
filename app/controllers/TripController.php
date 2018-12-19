@@ -30,6 +30,13 @@
             $transID = $trans->id;
 
             $service = Service::find("trip_id = '$idTrip'");
+            $total = Feedback::sum([
+                'column' => 'rating',
+                'conditions' => "guide_id = '$client->id'"
+            ]);
+            $count = Feedback::count("guide_id = '$client->id'");
+            $rating = $total / $count;
+            $this->view->rating = $rating;
 
             $find = false;
             if ($trip) $find = true;
