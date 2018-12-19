@@ -65,6 +65,7 @@
         }
         
         public function showloginAction(){
+            $this->authorize('login');
             $form = new LoginForm();
 
             $this->view->form = $form;
@@ -73,9 +74,13 @@
         }
 
         public function loginAction(){
+            
             $tipe = $this->request->getPost('tipe');
             $password = $this->request->getPost('password');
             $email = $this->request->getPost('email');
+            $rememberMe = $this->request->getPost('remember');
+            // echo $rememberMe;
+            // die();
             $user = User::findFirst("email = '$email'");
             if ($user == null) {
                 $this->flashSession->error('User not found!');
@@ -99,6 +104,9 @@
                             'location' => $user->getLocation()
                         ]
                     );
+                    if ($rememberMe == 'on') {
+                        $this->startRememberMe($user->getId());
+                    }
                     $resp = new Response();
                     if ($tipe == 'tourist') {
                         $resp->redirect('tourist/dashboard')->send();
@@ -118,8 +126,7 @@
         }
 
         public function logoutAction(){
-            $this->session->destroy('auth');
-            (new Response())->redirect('')->send();      
+            $this->destroySession();    
         }
         
         public function dashboardAction(){

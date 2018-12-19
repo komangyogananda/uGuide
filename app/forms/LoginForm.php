@@ -158,7 +158,6 @@ class LoginForm extends Form{
             new Check(
                 'remember',
                 [
-                    'value' => '0',
                 ]
             )
         );
