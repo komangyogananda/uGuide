@@ -15,6 +15,8 @@ use Phalcon\Validation\Validator\Uniqueness;
 use Phalcon\Validation\Validator\PresenceOf;
 use Phalcon\Validation\Validator\Alnum;
 use Phalcon\Validation\Validator\Digit;
+use Phalcon\Validation\Validator\StringLength;
+
 
 class SignUpForm extends Form{
     public function initialize(){
@@ -106,6 +108,10 @@ class SignUpForm extends Form{
         $password->addValidators([
             new PresenceOf([
                 'message' => 'Password is required.'
+            ]),
+            new StringLength([
+                "min"            => 8,
+                "messageMinimum" => "Password must be at least 8 characters"
             ])
         ]);
 
@@ -115,10 +121,17 @@ class SignUpForm extends Form{
         new Password(
             'newPass',
             [
-                'minlength' => 0,
+                'minlength' => 8,
                 'placeholder' => 'newPass',
             ]
         );
+
+        $newPass->addValidators([
+            new StringLength([
+                "min"            => 8,
+                "messageMinimum" => "Password must be at least 8 characters"
+            ])
+        ]);
 
         $this->add($newPass);
     
@@ -212,11 +225,11 @@ class SignUpForm extends Form{
         );
 
 
-        // $picture->addValidators([
-        //     new PresenceOf([
-        //         'message' => 'Picture required.'
-        //     ])
-        // ]);
+        $picture->addValidators([
+            new PresenceOf([
+                'message' => 'Picture required.'
+            ])
+        ]);
 
         $this->add($picture);
 

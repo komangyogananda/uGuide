@@ -2,6 +2,22 @@
 
     use Phalcon\DI\FactoryDefault;
     use Phalcon\Mvc\Model\Manager;
+    use Phalcon\Flash\Direct as FlashDirect;
+    use Phalcon\Flash\Session as FlashSession;
+
+    $di->set(
+        'flash',
+        function () {
+            return new FlashDirect();
+        }
+    );
+
+    $di->set(
+        'flashSession',
+        function () {
+            return new FlashSession();
+        }
+    );
 
     $di->set(
         'voltService',

@@ -7,6 +7,7 @@ use Phalcon\Validation\Validator\Uniqueness;
 use Phalcon\Validation\Validator\PresenceOf;
 use Phalcon\Validation\Validator\Alnum;
 use Phalcon\Validation\Validator\Digit;
+use Phalcon\Validation\Validator\StringLength;
 
 class User extends Model
 {
@@ -26,6 +27,9 @@ class User extends Model
     public function initialize()
     {
         $this->setSource('user');
+        $this->setup(array(
+            'notNullValidations' => false,
+        ));
     }
     public function getId()
     {
@@ -210,6 +214,14 @@ class User extends Model
         );
 
         $validator->add(
+            'password',
+            new StringLength([
+                "min"            => 8,
+                "messageMinimum" => "Password must be at least 8 characters"
+            ])
+        );
+
+        $validator->add(
             'fname',
             new PresenceOf(
                 [
@@ -222,7 +234,7 @@ class User extends Model
             'lname',
             new PresenceOf(
                 [
-                    'message' => 'First name required.'
+                    'message' => 'Last name required.'
                 ]
             )
         );
@@ -231,16 +243,7 @@ class User extends Model
             'phone',
             new PresenceOf(
                 [
-                    'message' => 'First name required.'
-                ]
-            )
-        );
-
-        $validator->add(
-            'phone',
-            new Digit(
-                [
-                    'message' => 'Not a valid phone number.'
+                    'message' => 'Phone number required.'
                 ]
             )
         );
@@ -258,11 +261,10 @@ class User extends Model
             'picture',
             new PresenceOf(
                 [
-                    'message' => 'Not a valid phone number.'
+                    'message' => 'Picture is required.'
                 ]
             )
         );
         return $this->validate($validator);
     }
-
 }
