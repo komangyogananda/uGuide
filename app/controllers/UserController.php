@@ -41,7 +41,7 @@
                 if ($trans->status == 'ACCEPTED' && $step[1]) $step[2] = true;
                 $date_array = getdate();
                 $curr_date = $date_array['year']."-".$date_array['mon']."-".$date_array['mday'];
-                if ($curr_date >= $trip->date && $step[2]) $step[3] = true;
+                if ($curr_date >= $activeTrip->date && $step[2]) $step[3] = true;
                 $date_finish = date_create($activeTrip->date);
                 date_add($date_finish, date_interval_create_from_date_string("'$activeTrip->duration' days"));
                 $date_finish = date_format($date_finish, 'Y-m-d');
