@@ -3,7 +3,7 @@
     use Phalcon\Mvc\Controller;
     use Phalcon\Http\Response;
 
-    class TripController extends Controller{
+    class TripController extends BaseController{
 
         private function validateStep(){
             $id = $this->session->get('auth')['id'];
@@ -108,6 +108,8 @@
         }
 
         public function showTripAction(){
+            $id = $this->dispatcher->getParam('tripId');
+            $this->authorize('trip/show/'.$id);
             $messageForm = new MessageForm();
             $this->validateStep();
             $this->view->messageForm = $messageForm;
