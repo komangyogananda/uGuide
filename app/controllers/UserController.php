@@ -137,7 +137,7 @@
                 if ($tipe == 'tourist') $temp = $value->guide_id;
                 else $temp = $value->tourist_id;
                 $user = User::findFirst("id = '$temp'");
-                $nama[$temp] = $user->fname." ".$user->lname;
+                $nama[$temp] = $user;
             }
             $this->view->nama = $nama;
             $this->view->recents = $recents;

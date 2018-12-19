@@ -213,10 +213,10 @@
                                         {% if activeTrip.guide_id != NULL %}
                                             <div class="ui card centered">
                                                 <div class="image">
-                                                    <img src="/images/avatar2/large/kristy.png">
+                                                        <img src="data:image/jpeg;base64,{{ nama[activeTrip.guide_id].picture }}">
                                                 </div>
                                                 <div class="content">
-                                                    <a class="header">Novan</a>
+                                                <a class="header">{{ nama[activeTrip.guide_id].fname|capitalize ~ ' ' ~ nama[activeTrip.guide_id].lname|capitalize }}</a>
                                                     <div class="meta">
                                                         <span class="location">Tangerang</span>
                                                     </div>

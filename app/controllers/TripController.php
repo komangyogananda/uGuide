@@ -131,14 +131,16 @@
             $tipe = $this->dispatcher->getParam('tipe');
             $tripID = $this->dispatcher->getParam('tripId');
             $this->view->tipe = $tipe;
-            $interest = Interest::find("trip_id = '$tripID'");
+            $interests = Interest::find("trip_id = '$tripID'");
             $nama = array();
-            foreach ($interest as $key => $value) {
+            foreach ($interests as $key => $value) {
                 $id = $value->guide_id;
                 $temp = User::findFirst("id = '$id'");
-                $nama[$id] = $temp->fname." ".$temp->lname;
+                $nama[$id] = $temp;
             }
-            $this->view->interest = $interest;
+            // print_r($nama);
+            // die();
+            $this->view->interests = $interests;
             $this->view->nama = $nama;
         }
 

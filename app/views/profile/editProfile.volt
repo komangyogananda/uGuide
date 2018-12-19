@@ -39,7 +39,7 @@
                                 {{ form('class' : 'ui form segment',
                                 'enctype': 'multipart/form-data') }}
 
-                                <div class="ui medium bordered image">
+                                <div class="ui bordered image">
                                     <!-- <img src="data:image/jpeg;base64, {{ user.getPicture() }}"> -->
                                     <img src="data:image/jpeg;base64,<?php echo $user->getPicture() ?>">
                                 </div>
