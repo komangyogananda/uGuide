@@ -198,7 +198,7 @@
                 $activity->save();
             }
             else if ($deleteConfirm) {
-                
+
             }
             else if ($finishConfirm) {
                 $tripID = $this->request->getPost('tripId');
@@ -244,6 +244,17 @@
             $trans = Transaction::findFirst("trip_id = '$idtrans'");
             $this->view->tipe = $tipe;
             $this->view->trans = $trans;
+        }
+
+        public function addPayAction(){
+            //payments
+
+            $tipe = $this->dispatcher->getParam('tipe');
+            $idtrans = $this->dispatcher->getParam('id');
+            $trans = Transaction::findFirst("trip_id = '$idtrans'");
+            $trans->setPicture(base64_encode(file_get_contents($this->request->getUploadedFiles()[0]->getTempName())));
+            $trans->save();
+            (new Response())->redirect('tourist/payments/'.$idtrans)->send();
         }
     }
 ?>

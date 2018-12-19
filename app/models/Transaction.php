@@ -60,4 +60,8 @@ class Transaction extends Model
     {
         $this->status = $status;
     }
+    public function setProof($proof)
+    {
+        $this->proof = $proof;
+    }
 }

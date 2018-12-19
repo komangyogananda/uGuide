@@ -66,6 +66,7 @@
             if ($guide == null) {
                 return (New Response())->redirect('show404')->send();
             }
+            // $feedback = Feedback::find("tourist_id = '$id'");
             $tipe = 'tourist';
             $this->view->tipe = 'tourist';
             $this->view->guide = $guide;
