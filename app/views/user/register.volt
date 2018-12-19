@@ -5,6 +5,7 @@
 {% block content %}
 
 <div class="ui two column centered stackable grid customBox">
+        {{flashSession.output()}}
         {{ form('class' : 'ui form segment',
         'enctype': 'multipart/form-data') }}
 

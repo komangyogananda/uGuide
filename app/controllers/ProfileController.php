@@ -33,7 +33,10 @@
             } else if ($new != $conf) {
                 $this->flashSession->error('Confirmation Password does not match!');
                 return $this->response->redirect($tipe.'/profile/edit');
-            } 
+            } else if (strlen($new)!= 0 && strlen($new) < 8) {
+                $this->flashSession->error('Password must be at least 8 characters!');
+                return $this->response->redirect($tipe.'/profile/edit');
+            }
             else {
                 $user->setFName($this->request->getPost('firstName'));
                 $user->setLName($this->request->getPost('lastName'));

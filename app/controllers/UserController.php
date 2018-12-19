@@ -184,7 +184,8 @@
             if ($this->request->isPost()) {
                 if ($form->isValid($this->request->getPost()) == false) {
                     foreach ($form->getMessages() as $message) {
-                        $this->flash->error($message);
+                        $this->flashSession->error($message);
+                        return (new Response())->redirect($this->request->getPost('tipe'))->send();
                     }
                 } else {
                     $user = new User();
@@ -202,14 +203,16 @@
                     if (!$user->save()) {
                         foreach ($user->getMessages() as $message) {
                             $this->flashSession->error($message);
+                            return (new Response())->redirect($this->request->getPost('tipe'))->send();
                         }
                     } else {
                         $this->flashSession->success("User was created successfully");
+                        return (new Response())->redirect($this->request->getPost('tipe'.'/login'))->send();
                     }
                 }
             }
             $this->view->form = $form;
-            //(new Response())->redirect($this->request->getPost('tipe').'/login')->send();
+            (new Response())->redirect($this->request->getPost('tipe').'/login')->send();
         }
 
         public function allActiveAction(){

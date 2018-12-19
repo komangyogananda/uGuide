@@ -214,14 +214,6 @@ class User extends Model
         );
 
         $validator->add(
-            'password',
-            new StringLength([
-                "min"            => 8,
-                "messageMinimum" => "Password must be at least 8 characters"
-            ])
-        );
-
-        $validator->add(
             'fname',
             new PresenceOf(
                 [
