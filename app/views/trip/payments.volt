@@ -56,7 +56,11 @@
                                 <i class="pdf file outline icon"></i>
                                 No payment's proof uploaded.
                             </div>
-                            <div class="ui primary button">Add Payment Proof</div>
+                            <div class="ui primary button">
+                                <form method="post" enctype="multipart/form-data">
+                                    <input type="file" name="proof" id="proof" type="image">
+                                </form>
+                            </div>
                         </div>
                         <div class="ui content">
                             <div class="ui steps">
@@ -67,6 +71,19 @@
                                         Waiting for verification.
                                         </div>
                                         <p>Our team will check your payments as soon as possible.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui content">
+                            <div class="ui steps">
+                                <div class="step">
+                                    <i class="close icon"></i>
+                                    <div class="content">
+                                        <div class="header">
+                                        Payment already expired.
+                                        </div>
+                                        <p>Sorry!</p>
                                     </div>
                                 </div>
                             </div>
