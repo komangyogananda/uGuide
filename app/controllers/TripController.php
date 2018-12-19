@@ -17,6 +17,11 @@
                 5 => false,
             );
             $trip = Trip::findFirst("id = '$idTrip'");
+            if ($tipe == 'guide'){
+                $client = User::findFirst("id = '$trip->tourist_id'");
+            }else{
+                $client = User::findFirst("id = '$trip->guide_id'");
+            }
             $activity = Activity::find("trip_id = '$trip->id'");
             if (!$trip){
                 (new Response())->redirect('404')->send();
@@ -47,6 +52,7 @@
             $this->view->transID = $transID;
             $this->view->activity = $activity;
             $this->view->tipe = $tipe;
+            $this->view->client = $client;
         }
 
         public function findTouristAction(){
@@ -131,14 +137,16 @@
             $tipe = $this->dispatcher->getParam('tipe');
             $tripID = $this->dispatcher->getParam('tripId');
             $this->view->tipe = $tipe;
-            $interest = Interest::find("trip_id = '$tripID'");
+            $interests = Interest::find("trip_id = '$tripID'");
             $nama = array();
-            foreach ($interest as $key => $value) {
+            foreach ($interests as $key => $value) {
                 $id = $value->guide_id;
                 $temp = User::findFirst("id = '$id'");
-                $nama[$id] = $temp->fname." ".$temp->lname;
+                $nama[$id] = $temp;
             }
-            $this->view->interest = $interest;
+            // print_r($nama);
+            // die();
+            $this->view->interests = $interests;
             $this->view->nama = $nama;
         }
 

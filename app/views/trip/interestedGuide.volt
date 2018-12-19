@@ -30,132 +30,55 @@
             </div>
             <div class="ui two column eight wide row">
                 <div class="ui column center aligned">
-                    <div class="ui card centered">
-                        <div class="image">
-                            <img src="/images/avatar2/large/kristy.png">
-                        </div>
-                        <div class="content">
-                            <a class="header">Novan</a>
-                            <div class="meta">
-                                <span class="location">Tangerang</span>
-                            </div>
-                            <div class="ui star rating" data-rating="5"></div>
-                            <div class="description">
-                                Siap memandu anda kemanapun. Ahli dalam liburan bersama alam.
-                            </div>
-                        </div>
-                        <div class="extra content">
-                            <a>
-                                <i class="icon">
-                                    <i class="fas fa-hiking"></i>
-                                </i>
-                                10 Activies
-                            </a>
-                            <div class="ui two buttons">
-                                <div class="button">
-                                    <div class="ui basic green button buttonAccept">
-                                        Accept
+                    {% if interests|length == 0 %}
+                        <div class="ui info message">There is no guide interested with your trip yet.</div>
+                    {% else %}
+                        {% for interest in interests %}
+                            <div class="ui card centered">
+                                <div class="image">
+                                    <img src="data:image/jpeg;base64,{{ nama[interest.guide_id].picture }}">
+                                </div>
+                                <div class="content">
+                                    <a class="header">{{ nama[interest.guide_id].fname|capitalize ~ ' ' ~ nama[interest.guide_id].lname|capitalize}}</a>
+                                    <div class="meta">
+                                        <span class="location">{{ nama[interest.guide_id].location|capitalize }}</span>
+                                    </div>
+                                    <div class="ui star rating" data-rating="5"></div>
+                                    <div class="description">
+                                        <div class="item">
+                                            <div class="ui blue horizontal label">Budget</div>
+                                            <div class="ui teal horizontal label">{{ interest.budget }}</div>
+                                        </div>
+                                        <div class="item">
+                                            <div class="six wide column center aligned">
+                                                <div>
+                                                    <div class="ui blue horizontal label">Plan</div>
+                                                    <div class="ui teal horizontal label">
+                                                        {{ interest.plan }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="extra content">
+                                    <a>
+                                        <i class="icon">
+                                            <i class="fas fa-hiking"></i>
+                                        </i>
+                                        10 Activies
+                                    </a>
+                                    <div class="ui two buttons">
+                                        <div class="button">
+                                            <div class="ui basic green button buttonAccept" data-plan="{{ interest.plan }}" data-budget='{{ interest.budget }}' data-guide-id="{{ interest.guide_id }}">
+                                                Accept
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="ui column center aligned">
-                    <div class="ui card centered">
-                        <div class="image">
-                            <img src="/images/avatar2/large/kristy.png">
-                        </div>
-                        <div class="content">
-                            <a class="header">Novan</a>
-                            <div class="meta">
-                                <span class="location">Tangerang</span>
-                            </div>
-                            <div class="ui star rating" data-rating="5"></div>
-                            <div class="description">
-                                Siap memandu anda kemanapun. Ahli dalam liburan bersama alam.
-                            </div>
-                        </div>
-                        <div class="extra content">
-                            <a>
-                                <i class="icon">
-                                    <i class="fas fa-hiking"></i>
-                                </i>
-                                10 Activies
-                            </a>
-                            <div class="ui two buttons">
-                                <div class="button">
-                                    <div class="ui basic green button buttonAccept">
-                                        Accept
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="ui column center aligned">
-                    <div class="ui card centered">
-                        <div class="image">
-                            <img src="/images/avatar2/large/kristy.png">
-                        </div>
-                        <div class="content">
-                            <a class="header">Novan</a>
-                            <div class="meta">
-                                <span class="location">Tangerang</span>
-                            </div>
-                            <div class="ui star rating" data-rating="5"></div>
-                            <div class="description">
-                                Siap memandu anda kemanapun. Ahli dalam liburan bersama alam.
-                            </div>
-                        </div>
-                        <div class="extra content">
-                            <a>
-                                <i class="icon">
-                                    <i class="fas fa-hiking"></i>
-                                </i>
-                                10 Activies
-                            </a>
-                            <div class="ui two buttons">
-                                <div class="button">
-                                    <div class="ui basic green button buttonAccept">
-                                        Accept
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="ui column center aligned">
-                    <div class="ui card centered">
-                        <div class="image">
-                            <img src="/images/avatar2/large/kristy.png">
-                        </div>
-                        <div class="content">
-                            <a class="header">Novan</a>
-                            <div class="meta">
-                                <span class="location">Tangerang</span>
-                            </div>
-                            <div class="ui star rating" data-rating="5"></div>
-                            <div class="description">
-                                Siap memandu anda kemanapun. Ahli dalam liburan bersama alam.
-                            </div>
-                        </div>
-                        <div class="extra content">
-                            <a>
-                                <i class="icon">
-                                    <i class="fas fa-hiking"></i>
-                                </i>
-                                10 Activies
-                            </a>
-                            <div class="ui two buttons">
-                                <div class="button">
-                                    <div class="ui basic green button buttonAccept">
-                                        Accept
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        {% endfor %}
+                    {% endif %}
                 </div>
             </div>
     </div>
@@ -166,12 +89,12 @@
             Are you sure want to accept this propose ?
         </div>
         <div class="content">
-            <p>budget</p>
-            <p>Desc</p>
         </div>
         <div class="actions">
             <form method="post">
-                <input type="hidden" name="accept">
+                <input id="guideForm" type="hidden" name="guide">
+                <input id="budgetForm" type="hidden" name="budget">
+                <input id="planForm" type="hidden" name="plan">
                 <input type="submit" value="Yes" class="ui green ok inverted button">
             </form>
         </div>
@@ -186,6 +109,14 @@
         console.log($("#services").val());
 
         $('.buttonAccept').on('click', function(){
+            $guideId = $(this).data('guideId');
+            $budget = $(this).data('budget');
+            $plan = $(this).data('plan');
+            $('.modal div.content').html('<p>'+$budget+'</p>' + '<p>'+$plan+'</p>')
+            $('#guideForm').val($guideId);
+            $('#budgetForm').val($budget);
+            $('#planForm').val($plan);
+            console.log($('form').serialize());
             $('.ui.basic.modal').modal('show');
         });
 

@@ -180,12 +180,12 @@
                                             <div class="item">
                                                 <div class="ui blue horizontal label">Description</div>
                                                 <div class="six wide column center aligned">
-                                                        <div>
-                                                            <div class="ui teal horizontal label">
-                                                                Check Guide(s) interested in your trip!Check Guide(s) interested in your trip!Check Guide(s) interested in your trip!
-                                                            </div>
+                                                    <div>
+                                                        <div class="ui teal horizontal label">
+                                                            Check Guide(s) interested in your trip!Check Guide(s) interested in your trip!Check Guide(s) interested in your trip!
                                                         </div>
                                                     </div>
+                                                </div>
                                             </div>
                                         </div>
                                       </div>
