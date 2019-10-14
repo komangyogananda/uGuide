@@ -75,6 +75,7 @@
                 'username' => $config->database->username,
                 'password' => $config->database->password,
                 'dbname' => $config->database->dbname,
+                'port' => $config->database->port,
                 'options' => [PDO::ATTR_DEFAULT_FETCH_MODE=>PDO::FETCH_ASSOC],
             ]);
         }

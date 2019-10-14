@@ -25,14 +25,6 @@
             <i class="suitcase icon"></i>
             <span class="text">MyTrip</span>
         </div>
-        <div class="right menu">
-            <div class="item">
-                <div class="ui icon input">
-                    <input type="text" placeholder="Search...">
-                    <i class="search link icon"></i>
-                </div>
-            </div>
-        </div>
     </div>
 
     <div class="ui stackable grid centered">
@@ -117,8 +109,7 @@
                                 <div class="title">FeedBack</div>
                             </div>
                         <?php } else { ?>
-                            <i class="icon">
-                                <i class="fas fa-clipboard-check"></i>
+                            <i class="flag checkered icon">
                             </i>
                             <div class="content">
                                 <div class="title">Finish Trip</div>
@@ -212,14 +203,25 @@
                                                 <div class="meta">
                                                     <span class="location"><?= $client->location ?></span>
                                                 </div>
-                                                <div class="ui star guideRating rating" data-rating="2"></div>
+                                                <?php if ($tipe == 'tourist') { ?>
+                                                    <div id="guideRating" class="ui star rating" data-rating="<?= $rating ?>"></div>
+                                                    <script>
+                                                    
+                                                    $('#guideRating').rating({
+                                                        maxRating: 5
+                                                    });
+
+                                                    $('#guideRating').rating('disable');
+
+                                                    </script>
+                                                <?php } ?>
                                             </div>
                                             <div class="extra content">
                                                 <a>
                                                     <i class="icon">
                                                         <i class="fas fa-hiking"></i>
                                                     </i>
-                                                    10 Activies
+                                                    <?= $count ?> Feedback(s)
                                                 </a>
                                                 <?php if ($tipe == 'tourist') { ?>
                                                     <a href="<?= $this->url->get('guide/profile/show/' . $client->id) ?>">
@@ -261,10 +263,10 @@
                                         <div class="ui stackable grid">
                                             <?php foreach ($activity as $ac) { ?>
                                                 <div class="row">
-                                                    <div class="twelve wide column <?php if ($ac->sender_type == 0) { ?>right<?php } else { ?>left<?php } ?> floated">
-                                                        <div class="ui message <?php if ($ac->sender_type == 0) { ?>green<?php } else { ?>blue<?php } ?>">
+                                                    <div class="twelve wide column <?php if ($ac->sender_type == 'tourist') { ?>right<?php } else { ?>left<?php } ?> floated">
+                                                        <div class="ui message <?php if ($ac->sender_type == 'tourist') { ?>green<?php } else { ?>blue<?php } ?>">
                                                             <div class="header">
-                                                                <?php if ($ac->sender_type == 0) { ?>Tourist<?php } else { ?>Guide<?php } ?> - <?= $ac->title ?>
+                                                                <?php if ($ac->sender_type == 'tourist') { ?>Tourist<?php } else { ?>Guide<?php } ?> - <?= $ac->title ?>
                                                             </div>
                                                             <p><?= $ac->content ?></p>
                                                         </div>
@@ -378,8 +380,6 @@
                                                 $('#getRating').on('click', function(){
                                                     var rating = $('#getRating').rating('get rating');
                                                     $('#ratingNew').val(rating);
-                                                    console.log(rating);
-                                                    console.log($('#ratingNew').val());
                                                 });
     
                                             </script>
@@ -393,7 +393,7 @@
                                                 $('.guideRating').rating('disable');
 
                                         </script>
-                                    <?php } elseif ($tipe == 'guide' && $step[4] == true) { ?>
+                                    <?php } elseif ($tipe == 'guide' && $step[4] == true && $step[5] == false) { ?>
                                         <button id="actionButton" class="ui positive labeled icon button">
                                             <i class="check icon"></i>
                                             Finish
@@ -434,8 +434,6 @@
                     </div>
                 </div>
             </div>
-            <?php if ($step[4] == true && $tipe == 'tourist') { ?>
-            <?php } ?>
     </div>  
 
     <div id="sidebarMenu" class="ui left vertical inverted sidebar labeled icon stackable menu">

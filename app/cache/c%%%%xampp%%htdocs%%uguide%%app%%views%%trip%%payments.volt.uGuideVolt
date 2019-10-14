@@ -25,14 +25,6 @@
             <i class="money icon"></i>
             <span class="text">Payments</span>
         </div>
-        <div class="right menu">
-            <div class="item">
-                <div class="ui icon input">
-                    <input type="text" placeholder="Search...">
-                    <i class="search link icon"></i>
-                </div>
-            </div>
-        </div>
     </div>
     
     <div class="ui stackable grid centered">
@@ -68,17 +60,19 @@
                             </div>
                             <p><?= date('D, d-M-Y', strtotime($trans->date_expired)) ?></p>
                         </div>
-                        <div class="ui placeholder segment">
-                            <div class="ui icon header">
-                                <i class="pdf file outline icon"></i>
-                                <?php if ($trans->proof == null && $trans->status == 'PENDING') { ?>
-                                    No payment's proof uploaded.
+                        <div class="ui placeholder segment centered">
+                             <?php if ($trans->proof == null && $trans->status == 'PENDING') { ?>
+                                <div class="ui icon header">
+                                    <i class="pdf file outline icon"></i>
+                                   
+                                        No payment's proof uploaded.
+                                 </div>     
                                 <?php } elseif ($trans->proof != null) { ?>
-                                    <div class="ui bordered image">
-                                        <img src="data:image/jpeg;base64,<?= $trans->picture ?>">
+                                    <div class="ui bordered image centered">
+                                        <img src="data:image/jpeg;base64,<?= $trans->proof ?>">
                                     </div>
                                 <?php } ?>
-                            </div>
+                           
                             <?php if ($tipe == 'tourist' && $trans->status == 'PENDING') { ?>
                                 <div class="ui primary button">
                                     <form method="post" enctype="multipart/form-data">

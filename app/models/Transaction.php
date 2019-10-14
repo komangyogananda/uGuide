@@ -13,7 +13,7 @@ class Transaction extends Model
     protected $status;
     public function initialize()
     {
-        $this->setSource('Transaction');
+        $this->setSource('transaction');
     }
     public function init($trip_id, $amount, $date_paid, $date_expired, $proof, $status)
     {

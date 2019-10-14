@@ -18,7 +18,13 @@
         
 
 <div class="ui two column centered stackable grid customBox">
-    <?= $this->flashSession->output() ?>
+    <div class="row">
+        <div class="ui grid centered">
+            <div class="column wide row">
+                <?= $this->flashSession->output() ?>
+            </div>
+        </div>
+    </div>
     <?= $this->tag->form(['class' => 'ui form segment']) ?>
 
         <?php if ($tipe == 'tourist') { ?>
@@ -71,11 +77,6 @@
         </div>
 
         <?= $form->render('go', ['class' => 'ui button']) ?>
-
-        <div class="ui column">
-            <?= $this->tag->linkTo(['login/forgotPassword', 'Forgot Password']) ?>
-        </div>
-        
 
     </form>
 </div>

@@ -5,7 +5,7 @@ use Phalcon\Http\Response;
 
 class ModeratorController extends BaseController{
     public function indexAction(){
-    	$this->authorize('');
+    	// $this->authorize('');
     	$resp = new Response();
 
     	$pending = Transaction::find([
